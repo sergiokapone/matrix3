@@ -1,0 +1,254 @@
+<div class="discipline-page">
+    <!-- Заголовок та базова інформація -->
+    <h1>{{ discipline_code }}: {{ discipline.name }}</h1>
+
+    {% if discipline.description %}
+    <div class="discipline-description">
+        <p>{{ discipline.description }}</p>
+    </div>
+    {% endif %}
+
+    <!-- Карточка лектора -->
+    {% if discipline.lecturer %}
+    <div class="lecturer-card">
+        <div class="lecturer-photo">
+            <img src="{{ discipline.lecturer.photo_url }}" alt="Фото лектора {{ discipline.lecturer.full_name }}">
+        </div>
+        <div class="lecturer-info">
+            <p><strong>Лектор:</strong> 
+                {% if discipline.lecturer.profile_url %}
+                <a href="{{ discipline.lecturer.profile_url }}" target="_blank">{{ discipline.lecturer.full_name }}</a>
+                {% else %}
+                {{ discipline.lecturer.full_name }}
+                {% endif %}
+            </p>
+        </div>
+    </div>
+    {% endif %}
+
+    <div style="all: initial; display: block; font-family: inherit; font-size: inherit; color: inherit;">
+        <div style="display: flex; gap: 30px; margin-bottom: 30px; width: 100%; box-sizing: border-box;">
+            <div style="flex: 1 1 50%; max-width: 50%; box-sizing: border-box;">
+                <div class="basic-info" style="background: #f8f9fa; padding: 20px; border-radius: 8px; border-left: 4px solid #007bff; box-sizing: border-box;">
+                    {% if discipline.credits %}
+                    <p style="margin: 0 0 10px 0; padding: 0;"><strong>Кредити ЄКТС:</strong> {{ discipline.credits }}</p>
+                    {% endif %}
+                    <p style="margin: 0 0 10px 0; padding: 0;"><strong>Форма контролю:</strong> {{ discipline.control }}</p>
+                    {% if discipline.syllabus_url %}
+                    <p style="margin: 0 0 10px 0; padding: 0;"><strong>Силабус:</strong> <a href="{{ discipline.syllabus_url }}" target="_blank">Завантажити</a></p>
+                    {% endif %}
+                    {% if discipline.online_resources %}
+                        <p style="margin: 0 0 10px 0; padding: 0;"><strong>Розміщення курсу:</strong> <a href="{{ discipline.online_resources }}" target="_blank">Переглянути</a></p>
+                    {% endif %}
+                </div>
+            </div>
+            <div style="flex: 1 1 50%; max-width: 50%; box-sizing: border-box;">
+                <div class="program-context" style="background: #f8f9fa; padding: 20px; border-radius: 8px; border-left: 4px solid #28a745; box-sizing: border-box;">
+                    {% if metadata.website %}
+                    <p style="margin: 0 0 10px 0; padding: 0;"><strong>Освітня програма:</strong> <a href="{{ metadata.website }}" target="_blank">Переглянути</a></p>
+                    {% endif %}
+                    <p style="margin: 0 0 10px 0; padding: 0;"><strong>Рівень освіти:</strong> {{ metadata.degree }}</p>
+                    <p style="margin: 0 0 10px 0; padding: 0;"><strong>Рік програми:</strong> {{ metadata.year }}</p>
+                    <!-- <p style="margin: 0 0 10px 0; padding: 0;"><strong>Університет:</strong> {{ metadata.university }}</p> -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Структура курсу (якщо є субдисципліни) -->
+    {% if discipline.subdisciplines %}
+    <h2>Структура курсу</h2>
+    <div class="subdisciplines">
+        {% for sub_code, subdiscipline in discipline.subdisciplines.items() %}
+        <div class="subdiscipline">
+            <h3>{{ sub_code }}: {{ subdiscipline.name }}</h3>
+            <p><strong>Кредити:</strong> {{ subdiscipline.credits }} ЄКТС | <strong>Контроль:</strong> {{ subdiscipline.control }}</p>
+            {% if subdiscipline.syllabus_url %}
+                <p style="margin: 0 0 10px 0; padding: 0;"><strong>Силабус:</strong> <a href="{{ subdiscipline.syllabus_url }}" target="_blank">Завантажити</a></p>
+            {% endif %}
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    <!-- Компетенції -->
+    {% if general_competencies or professional_competencies %}
+    <h2>Компетенції, що формуються</h2>
+    <div class="competencies">
+        {% if general_competencies %}
+        <h3>Загальні компетенції</h3>
+        <ul class="competencies-list general-competencies">
+            {% for comp_code, comp_desc in general_competencies %}
+            <li><strong>{{ comp_code }}:</strong> {{ comp_desc }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+
+        {% if professional_competencies %}
+        <h3>Фахові компетенції</h3>
+        <ul class="competencies-list professional-competencies">
+            {% for comp_code, comp_desc in professional_competencies %}
+            <li><strong>{{ comp_code }}:</strong> {{ comp_desc }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+    </div>
+    {% endif %}
+
+    <!-- Програмні результати навчання -->
+    {% if mapped_program_results %}
+    <h2>Програмні результати навчання</h2>
+    <ul class="program-results">
+        {% for prn_code, prn_desc in mapped_program_results %}
+        <li><strong>{{ prn_code }}:</strong> {{ prn_desc }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+
+    <!-- Додаткова інформація -->
+    <div class="additional-info">
+        <p><em>Останнє оновлення: {{ metadata.last_updated }}</em></p>
+    </div>
+</div>
+
+<style>
+.discipline-page {
+    max-width: 800px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+.discipline-info {
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 8px;
+    margin: 20px 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.basic-info, .program-context {
+    margin: 0;
+}
+
+.program-context {
+    border-left: 3px solid #007cba;
+    padding-left: 15px;
+}
+
+.subdisciplines {
+    background: #fff3cd;
+    padding: 15px;
+    border-radius: 5px;
+    margin: 15px 0;
+}
+
+.subdiscipline {
+    margin-bottom: 15px;
+}
+
+.subdiscipline h3 {
+    margin: 0 0 5px 0;
+    color: #856404;
+}
+
+.competencies {
+    margin: 20px 0;
+}
+
+.competencies h3 {
+    color: #495057;
+    border-bottom: 2px solid #dee2e6;
+    padding-bottom: 5px;
+}
+
+.competencies-list {
+    margin: 15px 0;
+    padding-left: 20px;
+}
+
+.competencies-list li {
+    margin: 10px 0;
+}
+
+.general-competencies li {
+    border-left: 3px solid #28a745;
+    padding-left: 10px;
+    margin-left: 10px;
+}
+
+.professional-competencies li {
+    border-left: 3px solid #007bff;
+    padding-left: 10px;
+    margin-left: 10px;
+}
+
+.program-results {
+    margin: 20px 0;
+    padding-left: 20px;
+}
+
+.program-results li {
+    margin: 10px 0;
+    border-left: 3px solid #ffc107;
+    padding-left: 10px;
+    margin-left: 10px;
+}
+
+.additional-info {
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid #dee2e6;
+    color: #6c757d;
+    font-size: 0.9em;
+}
+
+@media (max-width: 768px) {
+    .discipline-info {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .program-context {
+        border-left: none;
+        border-top: 3px solid #007cba;
+        padding-left: 0;
+        padding-top: 15px;
+    }
+}
+
+.discipline-description {
+    background: #e2f0fb;
+    border-left: 4px solid #007cba;
+    padding: 15px 20px;
+    margin: 15px 0 25px 0;
+    border-radius: 5px;
+    font-style: italic;
+    color: #343a40;
+}
+
+.lecturer-card {
+    display: flex;
+    align-items: center;
+    background: #f1f8ff;
+    padding: 15px 20px;
+    border-radius: 8px;
+    margin: 15px 0;
+    gap: 20px;
+}
+
+.lecturer-photo img {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 2px solid #007cba;
+}
+
+.lecturer-info p {
+    margin: 5px 0;
+}
+
+
+</style>

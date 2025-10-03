@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>{{ metadata.title or "Матриці компетенцій" }} - Звіт</title>
+    <link rel="stylesheet" type="text/css" href="assets/styles.css">
+</head>
+<body>
+<h1>📊 {{ metadata.title or "Звіт по матрицях компетенцій" }}</h1>
+
+{% if metadata %}
+<div class="metadata">
+    <h3>ℹ️ Інформація про програму</h3>
+
+    {% if metadata.university %}
+        <p><strong>ВНЗ:</strong> {{ metadata.university }}</p>
+    {% endif %}
+    {% if metadata.faculty %}
+        <p><strong>Підрозділ:</strong> {{ metadata.faculty }}</p>
+    {% endif %}
+    {% if metadata.department %}
+        <p><strong>Кафедра:</strong> {{ metadata.department }}</p>
+    {% endif %}
+    {% if metadata.specialty %}
+        <p><strong>Спеціальність:</strong> {{ metadata.specialty }}</p>
+    {% endif %}
+    {% if metadata.specialization %}
+        <p><strong>Спеціалізація:</strong> {{ metadata.specialization }}</p>
+    {% endif %}
+    {% if metadata.degree %}
+        <p><strong>Освітній рівень:</strong> {{ metadata.degree }}</p>
+    {% endif %}
+    {% if metadata.year %}
+        <p><strong>Рік:</strong> {{ metadata.year }}</p>
+    {% endif %}
+    {% if metadata.credits_total %}
+        <p><strong>Обсяг програми:</strong> {{ metadata.credits_total }} кредитів ЄКТС</p>
+    {% endif %}
+    {% if metadata.study_years %}
+        <p><strong>Термін навчання:</strong> {{ metadata.study_years }} роки</p>
+    {% endif %}
+    {% if metadata.website %}
+        <p><strong>Сайт:</strong> <a href="{{ metadata.website }}" target="_blank">{{ metadata.website }}</a></p>
+    {% endif %}
+    {% if metadata.version %}
+        <p><strong>Версія матриці:</strong> {{ metadata.version }}</p>
+    {% endif %}
+    {% if metadata.last_updated %}
+        <p><strong>Останнє оновлення:</strong> {{ metadata.last_updated }}</p>
+    {% endif %}
+</div>
+{% endif %}
+
+
+<p><strong>Звіт згенеровано:</strong> {{ generated_at }}</p>
+
+<div class="stats">
+    <h3>📈 Статистика</h3>
+    <p><strong>Всього дисциплін:</strong> {{ disciplines|length }}</p>
+    <p><strong>Заповнено відповідностей:</strong> {{ mappings|length }}</p>
+    <p><strong>Залишилось заповнити:</strong> {{ unfilled_disciplines|length }}</p>
+</div>
+
+{% if unfilled_disciplines %}
+<div class="unfilled">
+    <h4>⚠️ Незаповнені дисципліни:</h4>
+    <ul>
+        {% for code in unfilled_disciplines %}
+        <li>{{ code }}: {{ disciplines[code] }}</li>
+        {% endfor %}
+    </ul>
+</div>
+{% endif %}
+
+<h2>🎯 Матриця компетенцій</h2>
+<table>
+<tr>
+    <th>Компетенція</th>
+    {% for disc_code, disc in disciplines.items() %}
+        <th class="discipline-header" title="{{ disc.name }}">{{ disc_code }}</th>
+    {% endfor %}
+</tr>
+
+{% for comp_code, comp_desc in competencies.items() %}
+<tr>
+    <td title="{{ comp_desc }}"><strong>{{ comp_code }}</strong></td>
+    {% for disc_code in disciplines.keys() %}
+        {% set has_mapping = disc_code in mappings and comp_code in mappings[disc_code].get("competencies", []) %}
+        <td class="{{ "filled" if has_mapping else "empty" }}">{{ "+" if has_mapping else "" }}</td>
+    {% endfor %}
+</tr>
+{% endfor %}
+</table>
+
+<h2>🎯 Матриця програмних результатів</h2>
+<table>
+<tr>
+    <th>Програмний результат</th>
+    {% for disc_code, disc in disciplines.items() %}
+        <th class="discipline-header" title="{{ disc.name }}">{{ disc_code }}</th>
+    {% endfor %}
+</tr>
+
+{% for prog_code, prog_desc in program_results.items() %}
+<tr>
+    <td title="{{ prog_desc }}"><strong>{{ prog_code }}</strong></td>
+    {% for disc_code in disciplines.keys() %}
+        {% set has_mapping = disc_code in mappings and prog_code in mappings[disc_code].get("program_results", []) %}
+        <td class="{{ "filled" if has_mapping else "empty" }}">{{ "+" if has_mapping else "" }}</td>
+    {% endfor %}
+</tr>
+{% endfor %}
+</table>
+
+<h2>📋 Зведена таблиця по дисциплінах</h2>
+<table style="width: 100%;">
+<tr>
+    <th style="width: 15%;">Код</th>
+    <th style="width: 30%;">Дисципліна</th>
+    <th style="width: 27.5%;">Компетенції</th>
+    <th style="width: 27.5%;">Програмні результати</th>
+</tr>
+{% for disc_code, disc in disciplines.items() %}
+<tr {% if disc_code not in mappings %} style="background-color: #f8d7da;" {% endif %}>
+    <td><strong><span class="tooltip-trigger" data-tooltip="{{ disc.name }}">{{ disc_code }}</span></strong></td>
+    <td style="text-align: left; padding-left: 10px;">{{ disc.name }}</td>
+    <td style="text-align: left; font-size: 0.9em;">
+        {% if mappings.get(disc_code) and mappings[disc_code].get("competencies") %}
+            {% for comp in mappings[disc_code].get("competencies") %}
+                <span class="tooltip-trigger" data-tooltip="{{ competencies.get(comp, comp) }}">{{ comp }}</span>{% if not loop.last %}, {% endif %}
+            {% endfor %}
+        {% else %}
+            <em>не заповнено</em>
+        {% endif %}
+    </td>
+    <td style="text-align: left; font-size: 0.9em;">
+        {% if mappings.get(disc_code) and mappings[disc_code].get("program_results") %}
+            {% for prog in mappings[disc_code].get("program_results") %}
+                <span class="tooltip-trigger" data-tooltip="{{ program_results.get(prog, prog) }}">{{ prog }}</span>{% if not loop.last %}, {% endif %}
+            {% endfor %}
+        {% else %}
+            <em>не заповнено</em>
+        {% endif %}
+    </td>
+</tr>
+{% endfor %}
+</table>
+
+<h2>📖 Пам'ятка: розшифровка компетенцій та програмних результатів</h2>
+
+<!-- Компетенції -->
+<h3>🎯 Компетенції</h3>
+<table style="width: 100%; font-size: 0.9em;">
+<tr><th style="width: 10%;">Код</th><th style="width: 90%;">Опис</th></tr>
+{% for comp_code, comp_desc in competencies.items() %}
+<tr>
+    <td style="text-align: center;"><strong>{{ comp_code }}</strong></td>
+    <td style="text-align: left; padding-left: 10px;">{{ comp_desc }}</td>
+</tr>
+{% endfor %}
+</table>
+
+<!-- Програмні результати -->
+<h3>📋 Програмні результати навчання</h3>
+<table style="width: 100%; font-size: 0.9em;">
+<tr><th style="width: 10%;">Код</th><th style="width: 90%;">Опис</th></tr>
+{% for prog_code, prog_desc in program_results.items() %}
+<tr>
+    <td style="text-align: center;"><strong>{{ prog_code }}</strong></td>
+    <td style="text-align: left; padding-left: 10px;">{{ prog_desc }}</td>
+</tr>
+{% endfor %}
+</table>
+
+
+<script src="assets/tooltip.js"></script>
+</body>
+</html>

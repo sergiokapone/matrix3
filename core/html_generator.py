@@ -1,11 +1,14 @@
 from pathlib import Path
 from venv import logger
 
-from core import config
 from core.data_manipulation import get_mapped_competencies, get_mapped_program_results, load_discipline_data, prepare_disciplines_with_totals
 from core.file_utils import get_safe_filename, load_yaml_data, save_html_file
 from core.render_html import render_template
 from core.validators import validate_yaml_schema
+
+from core.logging_config import get_logger
+
+logger = get_logger(__name__)
 
 
 def generate_discipline_page(

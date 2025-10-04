@@ -2,6 +2,7 @@ import argparse
 import sys
 from pathlib import Path
 
+
 from core.config import AppConfig, WordPressConfig
 from core.handlers import (
     clean_output_directory,
@@ -14,7 +15,7 @@ from core.handlers import (
     handle_generate_index,
     handle_parse_index_links,
 )
-from core.logging_config import logger
+
 from core.wordpress_client import WordPressClient
 from requests.auth import HTTPBasicAuth
 
@@ -25,8 +26,15 @@ def create_wordpress_client():
     return WordPressClient(api_url=wp_config.api_url, auth=auth)
 
 
+from core.logging_config import setup_logging, get_logger
+setup_logging(level="DEBUG")
+
+logger = get_logger()
+
 client = create_wordpress_client()
 config = AppConfig()
+
+
 
 
 def resolve_yaml_path(yaml_arg: str) -> Path:
@@ -123,7 +131,13 @@ def main():
                 handle_upload_index(yaml_file, client)
         
         elif args.command == "clean":
-            clean_output_directory(config.output_dir)
+            logger.info(f"Старт очищення директорії {output_dir}")
+            try:
+                clean_output_directory(output_dir)
+                logger.info("Операція завершена успішно")
+            except Exception as e:
+                logger.critical(f"Неможливо завершити очищення: {e}")
+                raise SystemExit(1)
 
     except KeyboardInterrupt:
         logger.warning("Operation cancelled by user")

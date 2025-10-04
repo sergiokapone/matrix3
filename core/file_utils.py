@@ -1,11 +1,12 @@
 import sys
 import yaml
 from pathlib import Path
-from venv import logger
-
 
 from core.exceptions import ParrentIdError
 
+from core.logging_config import get_logger
+
+logger = get_logger(__name__)
 
 def get_safe_filename(discipline_code: str) -> str:
     """Створює безпечне ім'я файлу з коду дисципліни"""

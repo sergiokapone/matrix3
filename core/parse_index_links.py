@@ -1,8 +1,12 @@
+
 import yaml
 from pathlib import Path
 import re
 from core.config import AppConfig
-from core.logging_config import logger
+
+from core.logging_config import get_logger
+
+logger = get_logger(__name__)
 
 config = AppConfig()
 

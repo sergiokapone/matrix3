@@ -1,11 +1,14 @@
 
 from logging import config
 from pathlib import Path
-from venv import logger
+
 from core.config import AppConfig
 from core.exceptions import DisciplineGeneratorError
 from core.file_utils import load_yaml_data
 from core.validators import validate_yaml_schema
+
+from core.logging_config import get_logger
+logger = get_logger(__name__)
 
 config = AppConfig()
 

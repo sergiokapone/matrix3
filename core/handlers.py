@@ -7,11 +7,12 @@ from core.parse_index_links import parse_index_links
 from core.config import AppConfig, WordPressConfig
 from core.file_utils import load_yaml_data, save_wp_links_yaml
 from core.html_generator import generate_discipline_page, generate_index_page
-from core.logging_config import logger
 from core.wordpress_client import WordPressClient
 from core.wordpress_uploader import upload_all_pages, upload_discipline_page, upload_index
 
+from core.logging_config import get_logger
 
+logger = get_logger(__name__)
 
 # =========================
 # Handlers для створення сторінок
@@ -206,16 +207,19 @@ def clean_output_directory(output_dir: Path | None = None) -> None:
     """
     Видаляє директорію з усім вмістом.
     """
+    if output_dir is None:
+        logger.warning("⚠️ Директорія не вказана — видалення пропущено")
+        return
 
-    if Path(output_dir).exists():
-        shutil.rmtree(output_dir)
+    path = Path(output_dir)
 
+    if not path.exists():
+        logger.debug(f"Директорія {path} не існує, нічого видаляти")
+        return
 
-# def find_default_yaml_file() -> Path | None:
-#     """Шукає стандартний YAML файл у папці даних"""
-#     yaml_files = list(config.yaml_data_folder.glob("*.yaml")) + list(config.yaml_data_folder.glob("*.yml"))
-    
-#     if yaml_files:
-#         return yaml_files[0]  # Повертаємо перший знайдений файл
-#     return None
-
+    try:
+        shutil.rmtree(path)
+        logger.info(f"Директорія {path} успішно видалена")
+    except Exception as e:
+        logger.error(f"Помилка при видаленні {path}: {e}")
+        raise

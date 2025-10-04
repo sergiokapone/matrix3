@@ -1,11 +1,13 @@
 # core/wordpress_uploader.py
-from core.logging_config import logger
-from core.file_utils import get_safe_filename, load_yaml_data, save_wp_links_yaml
+from core.file_utils import get_safe_filename, load_yaml_data
 from core.wordpress_client import WordPressClient
 from core.models import WordPressPage
 from core.config import AppConfig
 from pathlib import Path
 from slugify import slugify
+
+from core.logging_config import get_logger
+logger = get_logger(__name__)
 
 config = AppConfig()
 
@@ -27,7 +29,7 @@ def upload_discipline_page(discipline_code: str, discipline_info: dict, parent_i
         
         # Читаємо HTML контент
         html_content = html_file.read_text(encoding='utf-8')
-       
+
         # Готуємо дані для WordPress
         post_data = {
             'title': title,
@@ -48,7 +50,7 @@ def upload_discipline_page(discipline_code: str, discipline_info: dict, parent_i
             action = "оновлено"
         else:
             # Створюємо нову сторінку
-            logger.info(f"✅ Створюємо нову сторінку: {slug}")
+            logger.info(f"Створюємо нову сторінку: {slug}")
             result = client.create_page(post_data)
             action = "створено"
 
@@ -62,14 +64,14 @@ def upload_discipline_page(discipline_code: str, discipline_info: dict, parent_i
                 link=result.get('link'),
                 parent=parent_id
             )
-            logger.info(f"✅ Сторінку {action}: {title} (ID: {page.id}) завантажено")
+            logger.info(f"Сторінку {action}: {title} (ID: {page.id}) завантажено")
             return {discipline_code: page.link}
         else:
-            logger.info(f"❌ Не вдалося завантажити сторінку: {title}")
+            logger.info(f"Не вдалося завантажити сторінку: {title}")
             return None
             
     except Exception as e:
-        logger.error(f"❌ Помилка завантаження {discipline_code}: {e}")
+        logger.error(f"Помилка завантаження {discipline_code}: {e}")
         return None
 
 

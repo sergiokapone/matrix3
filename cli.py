@@ -131,7 +131,7 @@ def main():
         # =========================
         elif args.command == "upload":
             if args.all:
-                wp_links_filename = f"wp_links_{yaml_file.stem}.yaml"
+                wp_links_filename = config.wp_links_dir /  f"wp_links_{yaml_file.stem}.yaml"
                 handle_upload_all_disciplines(yaml_file, wp_links_filename, client)
                 logger.info("All disciplines uploaded")
             elif args.discipline:

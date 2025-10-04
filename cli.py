@@ -9,7 +9,6 @@ from core.handlers import (
     handle_dir_discipline,
     handle_generate_single_discipline,
     handle_generate_all_disciplines,
-    handle_parse_index_links,
     handle_upload_all_disciplines,
     handle_upload_discipline,
     handle_upload_index,
@@ -20,6 +19,8 @@ from core.handlers import (
 from core.wordpress_client import WordPressClient
 from requests.auth import HTTPBasicAuth
 
+from core.logging_config import setup_logging, get_logger
+
 
 def create_wordpress_client():
     wp_config = WordPressConfig()
@@ -27,15 +28,12 @@ def create_wordpress_client():
     return WordPressClient(api_url=wp_config.api_url, auth=auth)
 
 
-from core.logging_config import setup_logging, get_logger
 setup_logging(level="INFO")
 
 logger = get_logger()
 
 client = create_wordpress_client()
 config = AppConfig()
-
-
 
 
 def resolve_yaml_path(yaml_arg: str) -> Path:
@@ -88,9 +86,8 @@ def main():
     # dir
     # =========================
     
-    dir_discipline = subparsers.add_parser("dir", help="Show disciplines")
-
-    clean_folder = subparsers.add_parser("clean", help="Clean output folder")
+    subparsers.add_parser("dir", help="Show disciplines")
+    subparsers.add_parser("clean", help="Clean output folder")
 
     args = parser.parse_args()
 
@@ -134,8 +131,9 @@ def main():
         # =========================
         elif args.command == "upload":
             if args.all:
-                handle_upload_all_disciplines(yaml_file, config.output_dir)
-                logger.info(f"All disciplines uploaded")
+                wp_links_filename = f"wp_links_{yaml_file.stem}.yaml"
+                handle_upload_all_disciplines(yaml_file, wp_links_filename, client)
+                logger.info("All disciplines uploaded")
             elif args.discipline:
                 handle_upload_discipline(args.discipline, yaml_file, client)
                 logger.info(f"Discipline {args.discipline} uploaded")
@@ -167,7 +165,7 @@ def main():
         elif args.command == "dir":
             try:
                 handle_dir_discipline(yaml_file)
-            except Exception as e:
+            except Exception:
                 raise SystemExit(1)
         
         

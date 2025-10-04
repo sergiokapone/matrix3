@@ -57,7 +57,7 @@ def parse_index_links(data_yaml: str | Path) -> bool:
     # Беремо шлях до index.html з config
     index_file = config.output_dir / "index.html"
     if not index_file.exists():
-        logger.error(f"❌ Файл {index_file} не найден")
+        logger.error(f"Файл {index_file} не найден")
         return False
     
     # Формируем путь к YAML-файлу с WordPress ссылками
@@ -67,7 +67,7 @@ def parse_index_links(data_yaml: str | Path) -> bool:
 
     # Проверяем существование файла с WP ссылками
     if not wp_links_yaml.exists():
-        logger.error(f"❌ Файл с WordPress ссылками не найден: {wp_links_yaml}")
+        logger.error(f"Файл с WordPress ссылками не найден: {wp_links_yaml}")
         return False
 
     # Загружаем данные о WordPress ссылках из YAML
@@ -90,7 +90,7 @@ def parse_index_links(data_yaml: str | Path) -> bool:
     
     # Если метаданные не совпадают, прерываем выполнение
     if wp_year != year or wp_degree != degree:
-        logger.error(f"❌ Метаданные не совпадают: WP ({wp_year}/{wp_degree}) vs YAML ({year}/{degree}). Парсинг отменен.")
+        logger.error(f"Метаданные не совпадают: WP ({wp_year}/{wp_degree}) vs YAML ({year}/{degree}). Парсинг отменен.")
         return False
 
     # Читаем содержимое HTML-файла
@@ -102,7 +102,6 @@ def parse_index_links(data_yaml: str | Path) -> bool:
     # - NN - двузначный номер (с опциональной дробной частью вида .1, .2)
     # Примеры: "ЗО_01.html", "ПО 02.html", "ПВ_03.1.html"
     pattern = re.compile(r'href="((ЗО|ПО|ПВ|НК|ВК)[ _]\d{2}(?:\.\d+)?)\.html"')
-    return True
 
     def replace_href(match):
         """
@@ -136,4 +135,6 @@ def parse_index_links(data_yaml: str | Path) -> bool:
     index_file.write_text(html_new, encoding="utf-8")
     
     # Выводим сообщение об успешном выполнении
-    logger.info(f"✅ href в {index_file} заменены на WP ссылки для ЗО_XX / ПО_XX")
+    logger.info(f"href в {index_file} заменены на WP ссылки для ЗО_XX / ПО_XX")
+
+    return True

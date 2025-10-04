@@ -32,7 +32,7 @@ def load_yaml_data(yaml_path: Path):
         with open(yaml_path, encoding="utf-8") as f:
             return yaml.safe_load(f)
     except Exception as e:
-        logger.error(f"❌ ==> Помилка читання YAML файлу: {e}")
+        logger.error(f"Помилка читання YAML файлу: {e}")
         sys.exit(1)
 
 def get_discipline_parent_id(yaml_data) -> int:

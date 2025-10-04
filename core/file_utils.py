@@ -8,6 +8,7 @@ from core.logging_config import get_logger
 
 logger = get_logger(__name__)
 
+
 def get_safe_filename(discipline_code: str) -> str:
     """Створює безпечне ім'я файлу з коду дисципліни"""
     return discipline_code.replace(" ", "_").replace("/", "_")
@@ -36,10 +37,11 @@ def load_yaml_data(yaml_path: Path):
         logger.error(f"Помилка читання YAML файлу: {e}")
         sys.exit(1)
 
+
 def get_discipline_parent_id(yaml_data) -> int:
     """Отримує ID батьківської сторінки для дисциплін з YAML-даних"""
     try:
-        page_id = yaml_data['metadata']['page_id']
+        page_id = yaml_data["metadata"]["page_id"]
         logger.debug("Отримано parent_id з YAML", parent_id=page_id)
         return page_id
     except KeyError:
@@ -47,10 +49,10 @@ def get_discipline_parent_id(yaml_data) -> int:
         raise ParrentIdError("Missing 'page_id' in YAML metadata")
 
 
-def save_wp_links_yaml(wp_data: dict, output_file: str ="wp_links.yaml") -> None:
+def save_wp_links_yaml(wp_data: dict, output_file: str = "wp_links.yaml") -> None:
     """
     Зберігає посилання WordPress та метадані у YAML-файл.
-    
+
     Args:
         wp_data (dict): Структура з посиланнями та метаданими:
             {
@@ -60,14 +62,14 @@ def save_wp_links_yaml(wp_data: dict, output_file: str ="wp_links.yaml") -> None
             }
         output_file (str | Path, optional): Шлях до вихідного YAML-файлу.
             За замовчуванням "wp_links.yaml".
-    
+
     Note:
         Автоматично створює батьківські директорії якщо їх не існує.
         Використовує кодування UTF-8 для підтримки кирилиці.
     """
     output_path = Path(output_file)
-    
+
     with open(output_path, "w", encoding="utf-8") as f:
         yaml.dump(wp_data, f, allow_unicode=True)
-    
+
     print(f"📋 WP посилання збережені в {output_path}")

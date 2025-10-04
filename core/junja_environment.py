@@ -7,6 +7,7 @@ from core.config import AppConfig
 
 config = AppConfig()
 
+
 def get_jinja_environment() -> Environment:
     """Створює налаштоване Jinja2 Environment"""
     templates_dir = config.template_dir
@@ -17,5 +18,5 @@ def get_jinja_environment() -> Environment:
         loader=FileSystemLoader(str(templates_dir)),  # конвертируем только здесь
         autoescape=True,
         trim_blocks=True,
-        lstrip_blocks=True
+        lstrip_blocks=True,
     )

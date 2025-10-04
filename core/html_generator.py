@@ -1,7 +1,12 @@
 from pathlib import Path
 from venv import logger
 
-from core.data_manipulation import get_mapped_competencies, get_mapped_program_results, load_discipline_data, prepare_disciplines_with_totals
+from core.data_manipulation import (
+    get_mapped_competencies,
+    get_mapped_program_results,
+    load_discipline_data,
+    prepare_disciplines_with_totals,
+)
 from core.file_utils import get_safe_filename, load_yaml_data, save_html_file
 from core.render_html import render_template
 from core.validators import validate_yaml_schema
@@ -18,17 +23,17 @@ def generate_discipline_page(
     template_filename: str = "discipline_template.html",
 ) -> bool:
     """Генерує HTML-сторінку для конкретної дисципліни з використанням конфігурації"""
-    
+
     # Використовуємо load_discipline_data для завантаження даних
     data, discipline = load_discipline_data(yaml_file, discipline_code)
-    
+
     if data is None or discipline is None:
         logger.debug("Failed to load discipline data")
         return False
 
     # Отримуємо метадані з завантажених даних
     metadata = data.get("metadata", {})
-    
+
     # Отримуємо компетентності та результати навчальної програми
     general_comps, professional_comps = get_mapped_competencies(
         discipline_code, data.get("mappings", {}), data.get("competencies", {})
@@ -53,14 +58,13 @@ def generate_discipline_page(
     # Зберігаємо HTML файл
     output_filename = get_safe_filename(output_filename)
     save_html_file(html_content, output_filename)
-    
+
     logger.debug("Discipline page created")
     return True
 
 
 def generate_index_page(
-    yaml_file: str | Path,
-    output_file: str | Path = "index.html"
+    yaml_file: str | Path, output_file: str | Path = "index.html"
 ) -> bool:  # Змінюємо на bool
     """Генерує індексну сторінку зі списком всіх дисциплін"""
     try:
@@ -68,14 +72,13 @@ def generate_index_page(
         validate_yaml_schema(data)
 
         metadata = data.get("metadata", {})
-        disciplines = data.get("disciplines", {}) | data.get("elevative_disciplines", {})
+        disciplines = data.get("disciplines", {}) | data.get(
+            "elevative_disciplines", {}
+        )
 
         disciplines = prepare_disciplines_with_totals(disciplines)
 
-        context = {
-            "metadata": metadata,
-            "disciplines": disciplines
-        }
+        context = {"metadata": metadata, "disciplines": disciplines}
 
         html_content = render_template("index_template.html", context)
         save_html_file(html_content, output_file)

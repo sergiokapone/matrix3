@@ -10,13 +10,7 @@ COLORS = {
     "CRITICAL": "\033[41m",
 }
 
-EMOJIS = {
-    "DEBUG": "🐛",
-    "INFO": "✅",
-    "WARNING": "⚠️",
-    "ERROR": "❌",
-    "CRITICAL": "💥"
-}
+EMOJIS = {"DEBUG": "🐛", "INFO": "✅", "WARNING": "⚠️", "ERROR": "❌", "CRITICAL": "💥"}
 
 
 class ColorFormatter(logging.Formatter):
@@ -43,7 +37,7 @@ class ColorFormatter(logging.Formatter):
 def setup_logging(
     name: str = "wp pages",
     level: str = "INFO",
-    formatter: logging.Formatter | None = None
+    formatter: logging.Formatter | None = None,
 ):
     """Налаштувати логер з можливістю передати кастомний форматтер"""
     logger = logging.getLogger(name)
@@ -55,7 +49,7 @@ def setup_logging(
             # стандартний логер: кольори рівня + емодзі
             formatter = ColorFormatter(
                 "%(levelname)s | %(name)s: %(lineno)d | %(funcName)s() | %(message)s",
-                datefmt="%Y-%m-%d %H:%M:%S"
+                datefmt="%Y-%m-%d %H:%M:%S",
             )
         handler.setFormatter(formatter)
         logger.addHandler(handler)
@@ -67,7 +61,7 @@ def get_logger(
     name: str = "wp pages",
     level: str = "INFO",
     formatter: logging.Formatter | None = None,
-    color: str | None = None
+    color: str | None = None,
 ):
     """
     Отримати логер:
@@ -76,6 +70,8 @@ def get_logger(
       - level: рівень логування по замовчуванню
     """
     if formatter is None and color:
-        formatter = ColorFormatter("%(levelname)s | %(name)s | %(message)s", color=color)
+        formatter = ColorFormatter(
+            "%(levelname)s | %(name)s | %(message)s", color=color
+        )
 
     return setup_logging(name=name, level=level, formatter=formatter)

@@ -1,4 +1,3 @@
-
 from logging import config
 from pathlib import Path
 
@@ -8,14 +7,14 @@ from core.file_utils import load_yaml_data
 from core.validators import validate_yaml_schema
 
 from core.logging_config import get_logger
+
 logger = get_logger(__name__)
 
 config = AppConfig()
 
+
 def get_mapped_competencies(
-    discipline_code: str,
-    mappings: dict,
-    all_competencies: dict
+    discipline_code: str, mappings: dict, all_competencies: dict
 ) -> tuple[list[tuple[str, str]], list[tuple[str, str]]]:
     """Отримує компетенції для конкретної дисципліни"""
     if discipline_code not in mappings:
@@ -37,9 +36,7 @@ def get_mapped_competencies(
 
 
 def get_mapped_program_results(
-    discipline_code: str,
-    mappings: dict,
-    all_program_results: dict
+    discipline_code: str, mappings: dict, all_program_results: dict
 ) -> list[tuple[str, str]]:
     """Отримує програмні результати навчання для дисципліни"""
     if discipline_code not in mappings:
@@ -56,8 +53,7 @@ def get_mapped_program_results(
 
 
 def load_discipline_data(
-    yaml_file: str | Path,
-    discipline_code: str
+    yaml_file: str | Path, discipline_code: str
 ) -> tuple[dict | None, dict | None]:
     """Завантажує дані дисципліни та інформацію про викладачів"""
     try:
@@ -88,7 +84,7 @@ def load_discipline_data(
     except Exception as e:
         logger.error("Failed to load discipline data", error=str(e))
         raise DisciplineGeneratorError(f"Error loading discipline data: {e}")
-    
+
 
 def prepare_disciplines_with_totals(disciplines: dict) -> dict:
     """Додає розраховані підсумки до кожної дисципліни"""
@@ -98,6 +94,7 @@ def prepare_disciplines_with_totals(disciplines: dict) -> dict:
         discipline["all_controls"] = all_controls
 
     return disciplines
+
 
 def calculate_subdiscipline_totals(discipline: dict) -> tuple[int, str]:
     """Розраховує загальні кредити та форми контролю для піддисциплін"""

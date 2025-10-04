@@ -4,6 +4,7 @@ from typing import TypedDict
 
 from pydantic import BaseModel, field_validator
 
+
 class DisciplineData(TypedDict):
     name: str
     credits: int
@@ -16,13 +17,13 @@ class UploadResult(BaseModel):
     success: bool
     link: str | None
     message: str
-    
-    @field_validator('link')
+
+    @field_validator("link")
     def validate_link(cls, v, values):
-        if values.get('success') and not v:
-            raise ValueError('Link is required when success is True')
+        if values.get("success") and not v:
+            raise ValueError("Link is required when success is True")
         return v
-    
+
 
 class WordPressPage(BaseModel):
     id: int

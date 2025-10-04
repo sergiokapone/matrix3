@@ -1,6 +1,8 @@
 import shutil
 
 from pathlib import Path
+from tabulate import tabulate
+
 
 from core.models import WordPressPage
 from core.parse_index_links import parse_index_links
@@ -18,15 +20,26 @@ logger = get_logger(__name__)
 # Handlers для створення сторінок
 # =========================
 
-def handle_dir_discipline(yaml_file: str | Path):
 
+def handle_dir_discipline(yaml_file: str | Path, max_len: int = 80):
     data = load_yaml_data(yaml_file)
     all_disciplines = data.get("disciplines", {}).copy()
     if "elevative_disciplines" in data:
         all_disciplines.update(data.get("elevative_disciplines", {}))
     
+    table_data = []
     for discipline_code, info in all_disciplines.items():
-        print(f"{discipline_code}: {info.get('name')}")
+        name = info.get("name", "")
+        if len(name) > max_len:
+            name = name[:max_len-3] + "..."  # обрізаємо і додаємо три крапки
+        table_data.append([
+            discipline_code,
+            name,
+            data.get("metadata").get("year"),
+            data.get("metadata").get("degree")
+        ])
+    headers = ["Код ", "Назва", "Рік", "Рівень"]
+    print(tabulate(table_data, headers=headers, tablefmt="grid"))
 
 
 

@@ -17,6 +17,7 @@ tenacity = "*"
 python-slugify = "*"
 pytest = "*"
 responses = "*"
+tabulate = "*"
 
 [dev-packages]
 

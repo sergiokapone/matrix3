@@ -102,11 +102,12 @@ def upload_all_pages(yaml_file: Path, client: WordPressClient) -> list[WordPress
             parent_id=yaml_data['metadata']['page_id'],
             client=client
         )
-        
+        logger.info(f"Завантажую сторінку {discipline_code}")
+        logger.info(f"Посилання {link.get(discipline_code)}")
         if link:
             wp_links.update(link)
     
-    logger.debug(f"✅ Завантажено {len(wp_links)}/{len(all_disciplines)} сторінок")
+    logger.debug(f"Завантажено {len(wp_links)}/{len(all_disciplines)} сторінок")
 
 
     metadata = {

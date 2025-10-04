@@ -16,9 +16,7 @@ from core.logging_config import get_logger
 
 logger = get_logger(__name__)
 
-# =========================
-# Handlers для створення сторінок
-# =========================
+
 
 
 def handle_dir_discipline(yaml_file: str | Path, max_len: int = 80):
@@ -42,7 +40,9 @@ def handle_dir_discipline(yaml_file: str | Path, max_len: int = 80):
     print(tabulate(table_data, headers=headers, tablefmt="grid"))
 
 
-
+# =========================
+# Handlers для створення сторінок
+# =========================
 
 def handle_generate_single_discipline(yaml_file: str | Path, output_filename: Path, discipline_code: str):
     """CLI хендлер для генерації однієї дисципліни"""
@@ -131,7 +131,6 @@ def handle_upload_discipline(
 ):
     """CLI хендлер для завантаження сторінки дисципліни на WordPress"""
 
-    
     try:
         # Завантажуємо дані з YAML
         yaml_data = load_yaml_data(yaml_file)
@@ -176,7 +175,11 @@ def handle_upload_discipline(
         return False
 
 
-def handle_upload_all_disciplines(yaml_file: str | Path, client: WordPressClient, output_dir: Path) -> bool:
+def handle_upload_all_disciplines(
+    yaml_file: str | Path, 
+    wp_links_file: Path, 
+    client: WordPressClient
+    ) -> bool:
         """
         Handler для завантаження всіх дисциплін на WordPress.
         
@@ -188,7 +191,6 @@ def handle_upload_all_disciplines(yaml_file: str | Path, client: WordPressClient
         Повертає:
             True якщо хоча б одна сторінка завантажена, False інакше
         """
-
         try:
             wp_data = upload_all_pages(
                 yaml_file=yaml_file,
@@ -196,7 +198,7 @@ def handle_upload_all_disciplines(yaml_file: str | Path, client: WordPressClient
             )
             if wp_data:
                 logger.debug(f"Успішно завантажено {len(wp_data)} сторінок")
-                save_wp_links_yaml(wp_data, output_dir) 
+                save_wp_links_yaml(wp_data, wp_links_file) 
                 return True
             else:
                 logger.warning("Жодної сторінки не було завантажено")
@@ -204,7 +206,7 @@ def handle_upload_all_disciplines(yaml_file: str | Path, client: WordPressClient
         except Exception as e:
             logger.error(f"Помилка під час завантаження сторінок: {e}")
             return False
-    
+
 
 def handle_upload_index(yaml_file: str | Path, client: WordPressClient) -> WordPressPage | None:
     """

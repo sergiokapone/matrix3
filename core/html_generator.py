@@ -23,7 +23,7 @@ def generate_discipline_page(
     data, discipline = load_discipline_data(yaml_file, discipline_code)
     
     if data is None or discipline is None:
-        logger.error("Failed to load discipline data")
+        logger.debug("Failed to load discipline data")
         return False
 
     # Отримуємо метадані з завантажених даних
@@ -54,7 +54,7 @@ def generate_discipline_page(
     output_filename = get_safe_filename(output_filename)
     save_html_file(html_content, output_filename)
     
-    logger.info("Discipline page created")
+    logger.debug("Discipline page created")
     return True
 
 
@@ -80,9 +80,9 @@ def generate_index_page(
         html_content = render_template("index_template.html", context)
         save_html_file(html_content, output_file)
 
-        logger.info("Index page created: %s", str(output_file))
+        logger.debug("Index page created: %s", str(output_file))
         return True  # Успіх
 
     except Exception as e:
-        logger.error("Failed to generate index page: %s", str(e))
+        logger.debug("Failed to generate index page: %s", str(e))
         return False  # Не успіх

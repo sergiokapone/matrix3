@@ -6,6 +6,7 @@ from pathlib import Path
 from core.config import AppConfig, WordPressConfig
 from core.handlers import (
     clean_output_directory,
+    handle_dir_discipline,
     handle_generate_single_discipline,
     handle_generate_all_disciplines,
     handle_parse_index_links,
@@ -27,7 +28,7 @@ def create_wordpress_client():
 
 
 from core.logging_config import setup_logging, get_logger
-setup_logging(level="DEBUG")
+setup_logging(level="INFO")
 
 logger = get_logger()
 
@@ -82,6 +83,13 @@ def main():
     index_parser.add_argument("--parse", "-p", action="store_true", help="Parse WordPress links")
     index_parser.add_argument("--upload", "-u", action="store_true", help="Upload index page")
     
+    
+    # =========================
+    # dir
+    # =========================
+    
+    dir_discipline = subparsers.add_parser("dir", help="Show disciplines")
+
     clean_folder = subparsers.add_parser("clean", help="Clean output folder")
 
     args = parser.parse_args()
@@ -102,11 +110,24 @@ def main():
         # =========================
         if args.command == "generate":
             if args.all:
-                handle_generate_all_disciplines(yaml_file, output_dir)
+                success = handle_generate_all_disciplines(yaml_file, output_dir)
+                if success:
+                    logger.info("Disciplines generated")
+                else:
+                    logger.error("Failed to generate some disciplines")
             elif args.discipline:
-                handle_generate_single_discipline(yaml_file, config.output_dir / f'{args.discipline}.html', args.discipline)
+                success = handle_generate_single_discipline(
+                    yaml_file,
+                    config.output_dir / f'{args.discipline}.html',
+                    args.discipline
+                )
+                if success:
+                    logger.info(f"Discipline {args.discipline} generated")
+                else:
+                    logger.error(f"Discipline {args.discipline} generation failed")
             else:
                 logger.error("Specify --all or --discipline")
+
 
         # =========================
         # upload
@@ -114,8 +135,10 @@ def main():
         elif args.command == "upload":
             if args.all:
                 handle_upload_all_disciplines(yaml_file, config.output_dir)
+                logger.info(f"All disciplines uploaded")
             elif args.discipline:
                 handle_upload_discipline(args.discipline, yaml_file, client)
+                logger.info(f"Discipline {args.discipline} uploaded")
             else:
                 logger.error("Specify --all, --discipline")
 
@@ -125,19 +148,29 @@ def main():
         elif args.command == "index":
             if args.generate:
                 handle_generate_index(yaml_file, config.output_dir / "index.html")
+                logger.info("Index file generated")
             if args.parse:
                 handle_parse_index_links(yaml_file)
+                logger.info("Index file parsed")
             if args.upload:
                 handle_upload_index(yaml_file, client)
+                logger.info("Index file uploaded")
         
         elif args.command == "clean":
-            logger.info(f"Старт очищення директорії {output_dir}")
             try:
                 clean_output_directory(output_dir)
                 logger.info("Операція завершена успішно")
             except Exception as e:
                 logger.critical(f"Неможливо завершити очищення: {e}")
                 raise SystemExit(1)
+            
+        elif args.command == "dir":
+            try:
+                handle_dir_discipline(yaml_file)
+            except Exception as e:
+                raise SystemExit(1)
+        
+        
 
     except KeyboardInterrupt:
         logger.warning("Operation cancelled by user")

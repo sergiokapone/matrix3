@@ -21,7 +21,7 @@ def save_html_file(content: str, output_file: str | Path) -> None:
     try:
         with open(output_path, "w", encoding="utf-8") as f:
             f.write(content)
-        logger.info("HTML file saved")
+        logger.debug("HTML file saved")
     except Exception as e:
         logger.error("Failed to save HTML file")
         raise

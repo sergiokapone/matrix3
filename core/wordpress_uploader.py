@@ -45,12 +45,12 @@ def upload_discipline_page(discipline_code: str, discipline_info: dict, parent_i
         if existing_page:
             # Оновлюємо існуючу сторінку
             page_id = existing_page.get('id')
-            logger.info(f"♻️ Оновлюємо існуючу сторінку: {slug} (id={page_id})")
+            logger.debug(f"♻️ Оновлюємо існуючу сторінку: {slug} (id={page_id})")
             result = client.update_page(page_id, post_data)
             action = "оновлено"
         else:
             # Створюємо нову сторінку
-            logger.info(f"Створюємо нову сторінку: {slug}")
+            logger.debug(f"Створюємо нову сторінку: {slug}")
             result = client.create_page(post_data)
             action = "створено"
 
@@ -64,10 +64,10 @@ def upload_discipline_page(discipline_code: str, discipline_info: dict, parent_i
                 link=result.get('link'),
                 parent=parent_id
             )
-            logger.info(f"Сторінку {action}: {title} (ID: {page.id}) завантажено")
+            logger.debug(f"Сторінку {action}: {title} (ID: {page.id}) завантажено")
             return {discipline_code: page.link}
         else:
-            logger.info(f"Не вдалося завантажити сторінку: {title}")
+            logger.debug(f"Не вдалося завантажити сторінку: {title}")
             return None
             
     except Exception as e:
@@ -92,7 +92,7 @@ def upload_all_pages(yaml_file: Path, client: WordPressClient) -> list[WordPress
         logger.error(f"❌ No disciplines found in YAML file")
         return None
     
-    logger.info(f"📤 Uploading {len(all_disciplines)} pages to WordPress...")
+    logger.debug(f"📤 Uploading {len(all_disciplines)} pages to WordPress...")
     
     for discipline_code, discipline_info in all_disciplines.items():
         # Використовуємо upload_discipline_page для кожної дисципліни
@@ -106,7 +106,7 @@ def upload_all_pages(yaml_file: Path, client: WordPressClient) -> list[WordPress
         if link:
             wp_links.update(link)
     
-    logger.info(f"✅ Завантажено {len(wp_links)}/{len(all_disciplines)} сторінок")
+    logger.debug(f"✅ Завантажено {len(wp_links)}/{len(all_disciplines)} сторінок")
 
 
     metadata = {
@@ -148,7 +148,7 @@ def upload_index(yaml_file: Path, client: WordPressClient) -> WordPressPage | No
         }
         
         # Оновлюємо існуючу сторінку
-        logger.info(f"♻️ Оновлюємо індексну сторінку з id={page_id}")
+        logger.debug(f"♻️ Оновлюємо індексну сторінку з id={page_id}")
         result = client.update_page(page_id, post_data)
         
         if result:
@@ -159,7 +159,7 @@ def upload_index(yaml_file: Path, client: WordPressClient) -> WordPressPage | No
                 link=result.get('link')
             )
 
-            logger.info(f"✅ Індексну сторінку оновлено: {title} (ID: {page.id})")
+            logger.debug(f"✅ Індексну сторінку оновлено: {title} (ID: {page.id})")
             return page
         else:
             logger.error(f"❌ Не вдалося оновити індексну сторінку")

@@ -71,7 +71,7 @@ def load_discipline_data(
             all_disciplines.update(data["elevative_disciplines"])
 
         if discipline_code not in all_disciplines:
-            logger.warning("Discipline not found", discipline_code=discipline_code)
+            logger.debug("Discipline not found", discipline_code=discipline_code)
             return None, None
 
         discipline = all_disciplines[discipline_code]
@@ -81,7 +81,7 @@ def load_discipline_data(
             if lecturer_id in lecturers:
                 discipline["lecturer"] = lecturers[lecturer_id]
             else:
-                logger.warning("Lecturer not found", lecturer_id=lecturer_id)
+                logger.debug("Lecturer not found", lecturer_id=lecturer_id)
 
         return data, discipline
 

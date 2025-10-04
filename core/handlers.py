@@ -18,6 +18,18 @@ logger = get_logger(__name__)
 # Handlers для створення сторінок
 # =========================
 
+def handle_dir_discipline(yaml_file: str | Path):
+
+    data = load_yaml_data(yaml_file)
+    all_disciplines = data.get("disciplines", {}).copy()
+    if "elevative_disciplines" in data:
+        all_disciplines.update(data.get("elevative_disciplines", {}))
+    
+    for discipline_code, info in all_disciplines.items():
+        print(f"{discipline_code}: {info.get('name')}")
+
+
+
 
 def handle_generate_single_discipline(yaml_file: str | Path, output_filename: Path, discipline_code: str):
     """CLI хендлер для генерації однієї дисципліни"""
@@ -44,7 +56,7 @@ def handle_generate_all_disciplines(yaml_file: Path, output_dir: Path):
         all_disciplines.update(data.get("elevative_disciplines", {}))
 
     total = len(all_disciplines)
-    print(f"🎯 Generating {total} disciplines from {yaml_file.name}")
+    logger.info(f"🎯 Generating {total} disciplines from {yaml_file.name}")
 
     results = {}
     successful = 0
@@ -63,24 +75,24 @@ def handle_generate_all_disciplines(yaml_file: Path, output_dir: Path):
         if success:
             successful += 1
 
-    logger.info(f"\n📊 Results: {successful}/{total} successful")
+    logger.debug(f"\n📊 Results: {successful}/{total} successful")
     return results
 
 def handle_generate_index(yaml_file: str | Path, output_file = "index.html"):
     """CLI хендлер для генерації індексної сторінки зі списком дисциплін"""
     
 
-    logger.info(f"📄 Generating index page from: {yaml_file}")
-    logger.info(f"📁 Output: {output_file}")
+    logger.debug(f"📄 Generating index page from: {yaml_file}")
+    logger.debug(f"📁 Output: {output_file}")
     
     try:
         # Генеруємо індексну сторінку
         generate_index_page(str(yaml_file), str(output_file))
-        logger.info("Index page generated successfully!")
+        logger.debug("Index page generated successfully!")
         return True
         
     except Exception as e:
-        logger.error(f"Failed to generate index page: {e}")
+        logger.debug(f"Failed to generate index page: {e}")
         return False
 
 
@@ -124,30 +136,30 @@ def handle_upload_discipline(
         # Перевіряємо чи існує дисципліна
         if discipline_code not in all_disciplines:
             logger.error(f"Discipline '{discipline_code}' not found in YAML")
-            logger.info(f"Available disciplines: {list(all_disciplines.keys())}")
+            logger.debug(f"Available disciplines: {list(all_disciplines.keys())}")
             return False
         
         
         # Завантажуємо сторінку
         page = upload_discipline_page(
             discipline_code=discipline_code,
-            discipline_info=all_disciplines[discipline_code],
+            discipline_debug=all_disciplines[discipline_code],
             parent_id=wp_parent_id,
             client=client
         )
         
         if page:
-            logger.info(f"✅ Successfully uploaded: {discipline_code}")
-            logger.info(f"📝 Title: {page.title}")
-            logger.info(f"🔗 Link: {page.link}")
-            logger.info(f"🆔 ID: {page.id}")
+            logger.debug(f"✅ Successfully uploaded: {discipline_code}")
+            logger.debug(f"📝 Title: {page.title}")
+            logger.debug(f"🔗 Link: {page.link}")
+            logger.debug(f"🆔 ID: {page.id}")
             return True
         else:
             logger.error(f"Failed to upload: {discipline_code}")
             return False
             
     except Exception as e:
-        logger.info(f"Error uploading {discipline_code}: {e}")
+        logger.debug(f"Error uploading {discipline_code}: {e}")
         return False
 
 
@@ -170,7 +182,7 @@ def handle_upload_all_disciplines(yaml_file: str | Path, client: WordPressClient
                 client=client
             )
             if wp_data:
-                logger.info(f"Успішно завантажено {len(wp_data)} сторінок")
+                logger.debug(f"Успішно завантажено {len(wp_data)} сторінок")
                 save_wp_links_yaml(wp_data, output_dir) 
                 return True
             else:
@@ -196,7 +208,7 @@ def handle_upload_index(yaml_file: str | Path, client: WordPressClient) -> WordP
     page = upload_index(yaml_file, client)
 
     if page:
-        logger.info(f"Индексная страница успешно загружена: {page.title} (ID: {page.id})")
+        logger.debug(f"Индексная страница успешно загружена: {page.title} (ID: {page.id})")
     else:
         logger.error("Не удалось загрузить индексную страницу")
 
@@ -219,7 +231,7 @@ def clean_output_directory(output_dir: Path | None = None) -> None:
 
     try:
         shutil.rmtree(path)
-        logger.info(f"Директорія {path} успішно видалена")
+        logger.debug(f"Директорія {path} успішно видалена")
     except Exception as e:
         logger.error(f"Помилка при видаленні {path}: {e}")
         raise

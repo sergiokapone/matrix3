@@ -18,17 +18,17 @@
 
 ```
 # Генерація однієї дисципліни
-pipenv run python main.py bachelor2024.yaml -d "ПО 01"
+pipenv run python cli.py bachelor2024.yaml generate -d "ПО 01"
 
 # Генерація всіх дисциплін
-pipenv run python main.py bachelor2024.yaml --all
+pipenv run python main.py bachelor2024.yaml generate --all
 
 # Генерація індексної сторінки
-pipenv run python main.py bachelor2024.yaml --index
+pipenv run python main.py bachelor2024.yaml index --generate
 
 # Завантаження всіх сторінок на WordPress
-pipenv run python main.py bachelor2024.yaml --all --upload
+pipenv run python main.py bachelor2024.yaml generate --all
 
 # Завантаження індексної сторінки
-pipenv run python main.py bachelor2024.yaml --upload-index
+pipenv run python main.py bachelor2024.yaml index upload
 ```

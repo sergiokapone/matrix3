@@ -18,6 +18,7 @@ python-slugify = "*"
 pytest = "*"
 responses = "*"
 tabulate = "*"
+prompt-toolkit = "*"
 
 [dev-packages]
 

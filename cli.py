@@ -52,7 +52,7 @@ def resolve_yaml_path(yaml_arg: str) -> Path:
 #     return output_dir
 
 
-def main():
+def main(*args):
     parser = argparse.ArgumentParser(
         description="WordPress discipline pages manager"
     )
@@ -112,11 +112,23 @@ def main():
     )
 
     # =========================
-    # dir
+    # dir / clean
     # =========================
 
     subparsers.add_parser("dir", help="Show disciplines")
     subparsers.add_parser("clean", help="Clean output folder")
+    
+    
+    # =========================
+    # scenario
+    # =========================
+    scenario_parser = subparsers.add_parser("scenario", help="Run predefined workflows")
+    scenario_parser.add_argument(
+        "--full", "-f",
+        action="store_true",
+        help="Generate all, upload all, and rebuild index"
+    )
+
 
     args = parser.parse_args()
 
@@ -204,6 +216,30 @@ def main():
                 handle_dir_discipline(yaml_file)
             except Exception:
                 raise SystemExit(1)
+
+        # =========================
+        # scenario
+        # =========================
+        elif args.command == "scenario":
+            if args.full:
+                # 1. generate all
+                handle_generate_all_disciplines(yaml_file, output_dir)
+                logger.info("Disciplines generated")
+
+                # 2. upload all
+                wp_links_filename = config.wp_links_dir / f"wp_links_{yaml_file.stem}.yaml"
+                handle_upload_all_disciplines(yaml_file, wp_links_filename, client)
+                logger.info("All disciplines uploaded")
+
+                # 3. index
+                handle_generate_index(yaml_file, config.output_dir / "index.html")
+                logger.info("Index file generated")
+                handle_parse_index_links(yaml_file)
+                logger.info("Index file parsed")
+                handle_upload_index(yaml_file, client)
+                logger.info("Index file uploaded")
+            else:
+                logger.error("Specify --full for now")
 
     except KeyboardInterrupt:
         logger.warning("Operation cancelled by user")

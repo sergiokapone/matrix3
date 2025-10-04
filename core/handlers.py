@@ -197,7 +197,7 @@ def handle_upload_all_disciplines(
                 client=client
             )
             if wp_data:
-                logger.debug(f"Успішно завантажено {len(wp_data)} сторінок")
+                logger.info(f"Успішно завантажено {len(wp_data)} сторінок")
                 save_wp_links_yaml(wp_data, wp_links_file) 
                 return True
             else:

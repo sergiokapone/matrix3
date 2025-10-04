@@ -6,8 +6,13 @@ from core.config import AppConfig
 from pathlib import Path
 from slugify import slugify
 
-from core.logging_config import get_logger
+from core.logging_config import ColorFormatter, get_logger
 logger = get_logger(__name__)
+
+link_logger = get_logger(
+    __name__ + "_link",
+    formatter=ColorFormatter("LINK: %(message)s", color="\033[32m")
+)
 
 config = AppConfig()
 
@@ -24,7 +29,7 @@ def upload_discipline_page(discipline_code: str, discipline_info: dict, parent_i
         html_file = config.output_dir / f"{discipline_code_safe}.html"
         
         if not html_file.exists():
-            logger.error(f"❌ HTML file not found: {html_file}")
+            logger.debug(f"❌ HTML file not found: {html_file}")
             return None
         
         # Читаємо HTML контент
@@ -45,12 +50,12 @@ def upload_discipline_page(discipline_code: str, discipline_info: dict, parent_i
         if existing_page:
             # Оновлюємо існуючу сторінку
             page_id = existing_page.get('id')
-            logger.debug(f"♻️ Оновлюємо існуючу сторінку: {slug} (id={page_id})")
+            logger.info(f"♻️ Оновлюємо існуючу сторінку: {slug} (id={page_id})")
             result = client.update_page(page_id, post_data)
             action = "оновлено"
         else:
             # Створюємо нову сторінку
-            logger.debug(f"Створюємо нову сторінку: {slug}")
+            logger.info(f"Створюємо нову сторінку: {slug}")
             result = client.create_page(post_data)
             action = "створено"
 
@@ -82,7 +87,7 @@ def upload_all_pages(yaml_file: Path, client: WordPressClient) -> list[WordPress
     # Завантажуємо дані з YAML
     yaml_data = load_yaml_data(yaml_file)
     if not yaml_data:
-        logger.error(f"❌ Failed to load YAML data from {yaml_file}")
+        logger.debug(f"❌ Failed to load YAML data from {yaml_file}")
         return None
     
     # Отримуємо всі дисципліни
@@ -92,7 +97,7 @@ def upload_all_pages(yaml_file: Path, client: WordPressClient) -> list[WordPress
         logger.error(f"❌ No disciplines found in YAML file")
         return None
     
-    logger.debug(f"📤 Uploading {len(all_disciplines)} pages to WordPress...")
+    logger.info(f"📤 Uploading {len(all_disciplines)} pages to WordPress...")
     
     for discipline_code, discipline_info in all_disciplines.items():
         # Використовуємо upload_discipline_page для кожної дисципліни
@@ -102,8 +107,7 @@ def upload_all_pages(yaml_file: Path, client: WordPressClient) -> list[WordPress
             parent_id=yaml_data['metadata']['page_id'],
             client=client
         )
-        logger.info(f"Завантажую сторінку {discipline_code}")
-        logger.info(f"Посилання {link.get(discipline_code)}")
+        link_logger.info(link.get(discipline_code))
         if link:
             wp_links.update(link)
     

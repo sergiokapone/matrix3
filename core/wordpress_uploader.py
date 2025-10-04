@@ -11,14 +11,18 @@ from core.logging_config import ColorFormatter, get_logger
 logger = get_logger(__name__)
 
 link_logger = get_logger(
-    __name__ + "_link", formatter=ColorFormatter("LINK: %(message)s", color="\033[32m")
+    __name__ + "_link",
+    formatter=ColorFormatter("LINK: %(message)s", color="\033[32m"),
 )
 
 config = AppConfig()
 
 
 def upload_discipline_page(
-    discipline_code: str, discipline_info: dict, parent_id: int, client: WordPressClient
+    discipline_code: str,
+    discipline_info: dict,
+    parent_id: int,
+    client: WordPressClient,
 ) -> WordPressPage | None:
     """Завантажує сторінку дисципліни на WordPress"""
     try:
@@ -70,7 +74,9 @@ def upload_discipline_page(
                 link=result.get("link"),
                 parent=parent_id,
             )
-            logger.debug(f"Сторінку {action}: {title} (ID: {page.id}) завантажено")
+            logger.debug(
+                f"Сторінку {action}: {title} (ID: {page.id}) завантажено"
+            )
             return {discipline_code: page.link}
         else:
             logger.debug(f"Не вдалося завантажити сторінку: {title}")
@@ -100,7 +106,7 @@ def upload_all_pages(
     }
 
     if not all_disciplines:
-        logger.error(f"❌ No disciplines found in YAML file")
+        logger.error("❌ No disciplines found in YAML file")
         return None
 
     logger.info(f"📤 Uploading {len(all_disciplines)} pages to WordPress...")
@@ -117,7 +123,9 @@ def upload_all_pages(
         if link:
             wp_links.update(link)
 
-    logger.debug(f"Завантажено {len(wp_links)}/{len(all_disciplines)} сторінок")
+    logger.debug(
+        f"Завантажено {len(wp_links)}/{len(all_disciplines)} сторінок"
+    )
 
     metadata = {
         "year": yaml_data.get("metadata", {}).get("year", ""),
@@ -133,7 +141,9 @@ def upload_all_pages(
     return wp_data
 
 
-def upload_index(yaml_file: Path, client: WordPressClient) -> WordPressPage | None:
+def upload_index(
+    yaml_file: Path, client: WordPressClient
+) -> WordPressPage | None:
     """Завантажує індексну сторінку на WordPress"""
     try:
         config = AppConfig()
@@ -163,13 +173,18 @@ def upload_index(yaml_file: Path, client: WordPressClient) -> WordPressPage | No
 
         if result:
             page = WordPressPage(
-                id=page_id, title=title, content=html_content, link=result.get("link")
+                id=page_id,
+                title=title,
+                content=html_content,
+                link=result.get("link"),
             )
 
-            logger.debug(f"✅ Індексну сторінку оновлено: {title} (ID: {page.id})")
+            logger.debug(
+                f"✅ Індексну сторінку оновлено: {title} (ID: {page.id})"
+            )
             return page
         else:
-            logger.error(f"❌ Не вдалося оновити індексну сторінку")
+            logger.error("❌ Не вдалося оновити індексну сторінку")
             return None
 
     except Exception as e:

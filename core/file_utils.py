@@ -23,7 +23,7 @@ def save_html_file(content: str, output_file: str | Path) -> None:
         with open(output_path, "w", encoding="utf-8") as f:
             f.write(content)
         logger.debug("HTML file saved")
-    except Exception as e:
+    except Exception:
         logger.error("Failed to save HTML file")
         raise
 
@@ -49,7 +49,9 @@ def get_discipline_parent_id(yaml_data) -> int:
         raise ParrentIdError("Missing 'page_id' in YAML metadata")
 
 
-def save_wp_links_yaml(wp_data: dict, output_file: str = "wp_links.yaml") -> None:
+def save_wp_links_yaml(
+    wp_data: dict, output_file: str = "wp_links.yaml"
+) -> None:
     """
     Зберігає посилання WordPress та метадані у YAML-файл.
 

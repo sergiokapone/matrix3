@@ -10,7 +10,13 @@ COLORS = {
     "CRITICAL": "\033[41m",
 }
 
-EMOJIS = {"DEBUG": "🐛", "INFO": "✅", "WARNING": "⚠️", "ERROR": "❌", "CRITICAL": "💥"}
+EMOJIS = {
+    "DEBUG": "🐛",
+    "INFO": "✅",
+    "WARNING": "⚠️",
+    "ERROR": "❌",
+    "CRITICAL": "💥",
+}
 
 
 class ColorFormatter(logging.Formatter):

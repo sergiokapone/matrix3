@@ -5,7 +5,9 @@ import pytest
 import responses
 from requests.auth import HTTPBasicAuth
 
-sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
+sys.path.insert(
+    0, os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+)
 
 from core.wordpress_client import WordPressClient
 from core.config import WordPressConfig
@@ -111,7 +113,9 @@ class TestWordPressClient:
     @responses.activate
     def test_find_page_id_by_slug_not_found(self, wp_client):
         """Тест пошуку неіснуючого slug"""
-        responses.add(responses.GET, "https://example.com/pages", json=[], status=200)
+        responses.add(
+            responses.GET, "https://example.com/pages", json=[], status=200
+        )
 
         result = wp_client.find_page_id_by_slug("non-existent")
         assert result is None
@@ -119,7 +123,9 @@ class TestWordPressClient:
     @responses.activate
     def test_find_page_id_empty_response(self, wp_client):
         """Тест пошуку з пустою відповіддю"""
-        responses.add(responses.GET, "https://example.com/pages", json=[], status=200)
+        responses.add(
+            responses.GET, "https://example.com/pages", json=[], status=200
+        )
 
         result = wp_client.find_page_id_by_slug("empty")
         assert result is None
@@ -129,7 +135,10 @@ class TestWordPressClient:
     def test_create_page_success(self, wp_client, mock_page_data):
         """Тест успішного створення сторінки"""
         responses.add(
-            responses.POST, "https://example.com/pages", json=mock_page_data, status=201
+            responses.POST,
+            "https://example.com/pages",
+            json=mock_page_data,
+            status=201,
         )
 
         page_data = {"title": "New Page", "content": "Content"}
@@ -190,7 +199,10 @@ class TestWordPressClientEdgeCases:
     def test_client_with_custom_timeout(self, wp_client):
         """Тест клієнта з кастомним таймаутом"""
         responses.add(
-            responses.GET, "https://test.com/pages/1", json={"id": 1}, status=200
+            responses.GET,
+            "https://test.com/pages/1",
+            json={"id": 1},
+            status=200,
         )
 
         result = wp_client.get_page(1)

@@ -67,7 +67,9 @@ def load_discipline_data(
             all_disciplines.update(data["elevative_disciplines"])
 
         if discipline_code not in all_disciplines:
-            logger.debug("Discipline not found", discipline_code=discipline_code)
+            logger.debug(
+                "Discipline not found", discipline_code=discipline_code
+            )
             return None, None
 
         discipline = all_disciplines[discipline_code]
@@ -89,7 +91,9 @@ def load_discipline_data(
 def prepare_disciplines_with_totals(disciplines: dict) -> dict:
     """Додає розраховані підсумки до кожної дисципліни"""
     for _, discipline in disciplines.items():
-        total_credits, all_controls = calculate_subdiscipline_totals(discipline)
+        total_credits, all_controls = calculate_subdiscipline_totals(
+            discipline
+        )
         discipline["total_credits"] = total_credits
         discipline["all_controls"] = all_controls
 

@@ -53,10 +53,17 @@ def resolve_yaml_path(yaml_arg: str) -> Path:
 
 
 def main():
-    parser = argparse.ArgumentParser(description="WordPress discipline pages manager")
-    parser.add_argument("yaml_file", help="Path to YAML data file")  # перший аргумент
+    parser = argparse.ArgumentParser(
+        description="WordPress discipline pages manager"
+    )
     parser.add_argument(
-        "--clean", "-c", action="store_true", help="Clean directory before generation"
+        "yaml_file", help="Path to YAML data file"
+    )  # перший аргумент
+    parser.add_argument(
+        "--clean",
+        "-c",
+        action="store_true",
+        help="Clean directory before generation",
     )
 
     subparsers = parser.add_subparsers(dest="command", required=True)
@@ -64,8 +71,12 @@ def main():
     # =========================
     # generate
     # =========================
-    gen_parser = subparsers.add_parser("generate", help="Generate discipline pages")
-    gen_parser.add_argument("--discipline", "-d", help="Generate single discipline")
+    gen_parser = subparsers.add_parser(
+        "generate", help="Generate discipline pages"
+    )
+    gen_parser.add_argument(
+        "--discipline", "-d", help="Generate single discipline"
+    )
     gen_parser.add_argument(
         "--all", "-a", action="store_true", help="Generate all disciplines"
     )
@@ -73,8 +84,12 @@ def main():
     # =========================
     # upload
     # =========================
-    upload_parser = subparsers.add_parser("upload", help="Upload pages to WordPress")
-    upload_parser.add_argument("--discipline", "-d", help="Upload single discipline")
+    upload_parser = subparsers.add_parser(
+        "upload", help="Upload pages to WordPress"
+    )
+    upload_parser.add_argument(
+        "--discipline", "-d", help="Upload single discipline"
+    )
     upload_parser.add_argument(
         "--all", "-a", action="store_true", help="Upload all disciplines"
     )
@@ -120,7 +135,9 @@ def main():
         # =========================
         if args.command == "generate":
             if args.all:
-                success = handle_generate_all_disciplines(yaml_file, output_dir)
+                success = handle_generate_all_disciplines(
+                    yaml_file, output_dir
+                )
                 if success:
                     logger.info("Disciplines generated")
                 else:
@@ -134,7 +151,9 @@ def main():
                 if success:
                     logger.info(f"Discipline {args.discipline} generated")
                 else:
-                    logger.error(f"Discipline {args.discipline} generation failed")
+                    logger.error(
+                        f"Discipline {args.discipline} generation failed"
+                    )
             else:
                 logger.error("Specify --all or --discipline")
 
@@ -146,7 +165,9 @@ def main():
                 wp_links_filename = (
                     config.wp_links_dir / f"wp_links_{yaml_file.stem}.yaml"
                 )
-                handle_upload_all_disciplines(yaml_file, wp_links_filename, client)
+                handle_upload_all_disciplines(
+                    yaml_file, wp_links_filename, client
+                )
                 logger.info("All disciplines uploaded")
             elif args.discipline:
                 handle_upload_discipline(args.discipline, yaml_file, client)
@@ -159,7 +180,9 @@ def main():
         # =========================
         elif args.command == "index":
             if args.generate:
-                handle_generate_index(yaml_file, config.output_dir / "index.html")
+                handle_generate_index(
+                    yaml_file, config.output_dir / "index.html"
+                )
                 logger.info("Index file generated")
             if args.parse:
                 handle_parse_index_links(yaml_file)

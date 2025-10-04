@@ -11,4 +11,6 @@ def render_template(template_file_name: str, context: dict) -> str:
         template = env.get_template(template_file_name)
         return template.render(context)
     except Exception as e:
-        raise TemplateRenderError(f"Error rendering template {template_file_name}: {e}")
+        raise TemplateRenderError(
+            f"Error rendering template {template_file_name}: {e}"
+        )

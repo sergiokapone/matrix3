@@ -2,11 +2,9 @@
 import os
 from dataclasses import dataclass
 from pathlib import Path
-from typing import TypedDict, Optional, List, Tuple, Dict, Any
-from pydantic import BaseModel, field_validator
 from requests.auth import HTTPBasicAuth
 
-from dataclasses import dataclass, field
+from dataclasses import field
 
 from dotenv import load_dotenv
 

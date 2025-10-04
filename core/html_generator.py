@@ -10,7 +10,6 @@ from core.data_manipulation import (
 from core.file_utils import get_safe_filename, load_yaml_data, save_html_file
 from core.render_html import render_template
 from core.validators import validate_yaml_schema
-
 from core.logging_config import get_logger
 
 logger = get_logger(__name__)
@@ -39,7 +38,9 @@ def generate_discipline_page(
         discipline_code, data.get("mappings", {}), data.get("competencies", {})
     )
     program_results = get_mapped_program_results(
-        discipline_code, data.get("mappings", {}), data.get("program_results", {})
+        discipline_code,
+        data.get("mappings", {}),
+        data.get("program_results", {}),
     )
 
     # Формуємо контекст для шаблону

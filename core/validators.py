@@ -29,11 +29,15 @@ def validate_yaml_schema(data: dict) -> bool:
     try:
         required_keys = ["disciplines", "metadata"]
         if not all(key in data for key in required_keys):
-            raise YAMLValidationError(f"Missing required keys: {required_keys}")
+            raise YAMLValidationError(
+                f"Missing required keys: {required_keys}"
+            )
 
         metadata = data["metadata"]
         if "year" not in metadata or "degree" not in metadata:
-            raise YAMLValidationError("Metadata must contain 'year' and 'degree'")
+            raise YAMLValidationError(
+                "Metadata must contain 'year' and 'degree'"
+            )
 
         return True
     except Exception as e:

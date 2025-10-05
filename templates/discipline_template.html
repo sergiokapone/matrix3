@@ -15,49 +15,57 @@
             <img src="{{ discipline.lecturer.photo_url }}" alt="Фото лектора {{ discipline.lecturer.full_name }}">
         </div>
         <div class="lecturer-info">
-            <p><strong>Лектор:</strong> 
+            <p>
+                <strong>Лектор:</strong>
+                {% set parts = [] %}
+                {% if discipline.lecturer.degree %}
+                    {% set _ = parts.append(discipline.lecturer.degree) %}
+                {% endif %}
+                {% if discipline.lecturer.rank %}
+                    {% set _ = parts.append(discipline.lecturer.rank) %}
+                {% endif %}
+                {{ parts|join(', ') }}{% if parts %} {% endif %}
                 {% if discipline.lecturer.profile_url %}
-                <a href="{{ discipline.lecturer.profile_url }}" target="_blank">{{ discipline.lecturer.full_name }}</a>
+                    <a href="{{ discipline.lecturer.profile_url }}" target="_blank">{{ discipline.lecturer.full_name }}</a>
                 {% else %}
-                {{ discipline.lecturer.full_name }}
+                    {{ discipline.lecturer.full_name }}
                 {% endif %}
             </p>
         </div>
     </div>
     {% endif %}
 
-
-    <!-- Картка інформації про дисципліни -->
+    <!-- Картка інформації про дисципліну -->
     <div style="all: initial; display: block; font-family: inherit; font-size: inherit; color: inherit;">
         <div style="display: flex; gap: 30px; margin-bottom: 30px; width: 100%; box-sizing: border-box;">
             <div style="flex: 1 1 50%; max-width: 50%; box-sizing: border-box;">
                 <div class="basic-info" style="background: #f8f9fa; padding: 20px; border-radius: 8px; border-left: 4px solid #007bff; box-sizing: border-box;">
                     {% if discipline.credits %}
-                    <p style="margin: 0 0 10px 0; padding: 0;"><strong>Кредити ЄКТС:</strong> {{ discipline.credits }}</p>
+                    <p><strong>Кредити ЄКТС:</strong> {{ discipline.credits }}</p>
                     {% endif %}
-                    <p style="margin: 0 0 10px 0; padding: 0;"><strong>Форма контролю:</strong> {{ discipline.control }}</p>
+                    <p><strong>Форма контролю:</strong> {{ discipline.control }}</p>
                     {% if discipline.syllabus_url %}
-                    <p style="margin: 0 0 10px 0; padding: 0;"><strong>Силабус:</strong> <a href="{{ discipline.syllabus_url }}" target="_blank">Завантажити</a></p>
+                    <p><strong>Силабус:</strong> <a href="{{ discipline.syllabus_url }}" target="_blank">Завантажити</a></p>
                     {% endif %}
                     {% if discipline.online_resources %}
-                        <p style="margin: 0 0 10px 0; padding: 0;"><strong>Розміщення курсу:</strong> <a href="{{ discipline.online_resources }}" target="_blank">Переглянути</a></p>
+                    <p><strong>Розміщення курсу:</strong> <a href="{{ discipline.online_resources }}" target="_blank">Переглянути</a></p>
                     {% endif %}
                 </div>
             </div>
+
             <div style="flex: 1 1 50%; max-width: 50%; box-sizing: border-box;">
                 <div class="program-context" style="background: #f8f9fa; padding: 20px; border-radius: 8px; border-left: 4px solid #28a745; box-sizing: border-box;">
                     {% if metadata.website %}
-                    <p style="margin: 0 0 10px 0; padding: 0;"><strong>Освітня програма:</strong> <a href="{{ metadata.website }}" target="_blank">Переглянути</a></p>
+                    <p><strong>Освітня програма:</strong> <a href="{{ metadata.website }}" target="_blank">Переглянути</a></p>
                     {% endif %}
-                    <p style="margin: 0 0 10px 0; padding: 0;"><strong>Рівень освіти:</strong> {{ metadata.degree }}</p>
-                    <p style="margin: 0 0 10px 0; padding: 0;"><strong>Рік програми:</strong> {{ metadata.year }}</p>
-                    <!-- <p style="margin: 0 0 10px 0; padding: 0;"><strong>Університет:</strong> {{ metadata.university }}</p> -->
+                    <p><strong>Рівень освіти:</strong> {{ metadata.degree }}</p>
+                    <p><strong>Рік програми:</strong> {{ metadata.year }}</p>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Структура курсу (якщо є субдисципліни) -->
+    <!-- Структура курсу -->
     {% if discipline.subdisciplines %}
     <h2>Структура курсу</h2>
     <div class="subdisciplines">
@@ -66,24 +74,24 @@
             <h3>{{ sub_code }}: {{ subdiscipline.name }}</h3>
             <p><strong>Кредити:</strong> {{ subdiscipline.credits }} ЄКТС | <strong>Контроль:</strong> {{ subdiscipline.control }}</p>
             {% if subdiscipline.syllabus_url %}
-                <p style="margin: 0 0 10px 0; padding: 0;"><strong>Силабус:</strong> <a href="{{ subdiscipline.syllabus_url }}" target="_blank">Завантажити</a></p>
+            <p><strong>Силабус:</strong> <a href="{{ subdiscipline.syllabus_url }}" target="_blank">Завантажити</a></p>
             {% endif %}
         </div>
         {% endfor %}
     </div>
     {% endif %}
 
-
+    <!-- Зміст дисципліни -->
     {% if discipline.content %}
     <h2>Зміст дисципліни</h2>
     <div style="
-            border: 1px solid #ccc; 
-            border-radius: 8px; 
-            padding: 12px; 
-            margin: 8px 0; 
-            background-color: #f9f9f9;
-            box-shadow: 2px 2px 6px rgba(0,0,0,0.1);
-        ">
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        padding: 12px;
+        margin: 8px 0;
+        background-color: #f9f9f9;
+        box-shadow: 2px 2px 6px rgba(0,0,0,0.1);
+    ">
         {% for section in discipline.content %}
         <div>
             <h3 style="margin-top: 0; color: #2c3e50;">{{ section.title }}</h3>
@@ -98,8 +106,6 @@
         {% endfor %}
     </div>
     {% endif %}
-
-
 
     <!-- Компетенції -->
     {% if general_competencies or professional_competencies %}
@@ -148,6 +154,7 @@
     line-height: 1.6;
 }
 
+/* --- інші стилі залишено без змін --- */
 .discipline-info {
     background: #f8f9fa;
     padding: 20px;
@@ -279,6 +286,5 @@
 .lecturer-info p {
     margin: 5px 0;
 }
-
-
 </style>
+

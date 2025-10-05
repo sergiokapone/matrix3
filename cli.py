@@ -222,6 +222,9 @@ def main(*args):
         # =========================
         elif args.command == "scenario":
             if args.full:
+                # 0. Clear folder
+                clean_output_directory(output_dir)
+                logger.info("Cleaning folder")
                 # 1. generate all
                 handle_generate_all_disciplines(yaml_file, output_dir)
                 logger.info("Disciplines generated")

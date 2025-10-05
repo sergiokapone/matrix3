@@ -85,9 +85,12 @@ def load_discipline_data(
         if "discipline_id" in discipline:
             discipline_id = discipline["discipline_id"]
             if discipline_id in discipline_content:
-                discipline["content"] = discipline_content[discipline_id]
+                content = discipline_content[discipline_id]
+                discipline["description"] = content.get("description")
+                discipline["content"] = content.get("sections", [])
             else:
                 logger.debug("Discipline Id not found", discipline_id=discipline_id)
+
 
         return data, discipline
 

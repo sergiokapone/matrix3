@@ -109,9 +109,10 @@ def upload_all_pages(
         logger.error("❌ No disciplines found in YAML file")
         return None
 
-    logger.info(f"📤 Uploading {len(all_disciplines)} pages to WordPress...")
+    total = len(all_disciplines)
+    logger.info(f"📤 Uploading {total} pages to WordPress...")
 
-    for discipline_code, discipline_info in all_disciplines.items():
+    for i, (discipline_code, discipline_info) in enumerate(all_disciplines.items(), start=1):
         # Використовуємо upload_discipline_page для кожної дисципліни
         link = upload_discipline_page(
             discipline_code=discipline_code,
@@ -119,6 +120,7 @@ def upload_all_pages(
             parent_id=yaml_data["metadata"]["page_id"],
             client=client,
         )
+        logger.info(f"[{i}/{total}] Generating {discipline_code}...")
         link_logger.info(link.get(discipline_code))
         if link:
             wp_links.update(link)

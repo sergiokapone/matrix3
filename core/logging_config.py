@@ -64,7 +64,7 @@ def setup_logging(
 
 
 def get_logger(
-    name: str = "wp pages",
+    name: str = "wp_pages",
     level: str = "INFO",
     formatter: logging.Formatter | None = None,
     color: str | None = None,

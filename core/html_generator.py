@@ -66,7 +66,7 @@ def generate_discipline_page(
 
 def generate_index_page(
     yaml_file: str | Path, output_file: str | Path = "index.html"
-) -> bool:  # Змінюємо на bool
+) -> bool: 
     """Генерує індексну сторінку зі списком всіх дисциплін"""
     try:
         data = load_yaml_data(yaml_file)

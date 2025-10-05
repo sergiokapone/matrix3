@@ -18,7 +18,7 @@ def get_jinja_environment() -> Environment:
     return Environment(
         loader=FileSystemLoader(
             str(templates_dir)
-        ),  # конвертируем только здесь
+        ), 
         autoescape=True,
         trim_blocks=True,
         lstrip_blocks=True,

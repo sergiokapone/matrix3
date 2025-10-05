@@ -26,7 +26,7 @@ completer = NestedCompleter.from_nested_dict({
 
 def run_shell(yaml_file: str):
     """
-    Запускает интерактивную оболочку для управления main.py
+    Запускает интерактивную оболочку для управления cli.py
     с подстановкой yaml_file и автодополнением команд.
     """
     session = PromptSession()
@@ -41,7 +41,7 @@ def run_shell(yaml_file: str):
                 break
 
             argv = shlex.split(text)
-            # Вызываем main.py через subprocess с YAML и командой
+            # Вызываем cli.py через subprocess с YAML и командой
             cmd = [sys.executable, "cli.py", yaml_file] + argv
             subprocess.run(cmd)
         

@@ -7,7 +7,7 @@ def render_template(template_file_name: str, context: dict) -> str:
     try:
         env = get_jinja_environment()
         # FileSystemLoader уже знает про templates_dir,
-        # поэтому передаем только имя файла шаблона
+        # поэтому передаем только имя файла шаблона 
         template = env.get_template(template_file_name)
         return template.render(context)
     except Exception as e:

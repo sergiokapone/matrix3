@@ -5,9 +5,7 @@ import pytest
 import responses
 from requests.auth import HTTPBasicAuth
 
-sys.path.insert(
-    0, os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
-)
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
 from core.wordpress_client import WordPressClient
 from core.config import WordPressConfig
@@ -113,9 +111,7 @@ class TestWordPressClient:
     @responses.activate
     def test_find_page_id_by_slug_not_found(self, wp_client):
         """Тест пошуку неіснуючого slug"""
-        responses.add(
-            responses.GET, "https://example.com/pages", json=[], status=200
-        )
+        responses.add(responses.GET, "https://example.com/pages", json=[], status=200)
 
         result = wp_client.find_page_id_by_slug("non-existent")
         assert result is None
@@ -123,9 +119,7 @@ class TestWordPressClient:
     @responses.activate
     def test_find_page_id_empty_response(self, wp_client):
         """Тест пошуку з пустою відповіддю"""
-        responses.add(
-            responses.GET, "https://example.com/pages", json=[], status=200
-        )
+        responses.add(responses.GET, "https://example.com/pages", json=[], status=200)
 
         result = wp_client.find_page_id_by_slug("empty")
         assert result is None

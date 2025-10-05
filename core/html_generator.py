@@ -1,5 +1,4 @@
 from pathlib import Path
-from venv import logger
 
 from core.data_manipulation import (
     get_mapped_competencies,
@@ -66,7 +65,7 @@ def generate_discipline_page(
 
 def generate_index_page(
     yaml_file: str | Path, output_file: str | Path = "index.html"
-) -> bool: 
+) -> bool:
     """Генерує індексну сторінку зі списком всіх дисциплін"""
     try:
         data = load_yaml_data(yaml_file)

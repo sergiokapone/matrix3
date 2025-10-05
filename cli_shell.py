@@ -1,4 +1,3 @@
-import os
 import sys
 import shlex
 import subprocess
@@ -10,16 +9,18 @@ from core.config import AppConfig
 config = AppConfig()
 
 # ====== Список команд и флагов для автодополнения ======
-completer = NestedCompleter.from_nested_dict({
-    "generate": {"-a": None, "-d": None},
-    "upload": {"-a": None, "-d": None, "-i": None},
-    "index": {"-g": None, "-p": None, "-u": None},
-    "scenario": {"-f": None},
-    "dir": None,
-    "clean": None,
-    "exit": None,
-    "quit": None,
-})
+completer = NestedCompleter.from_nested_dict(
+    {
+        "generate": {"-a": None, "-d": None},
+        "upload": {"-a": None, "-d": None, "-i": None},
+        "index": {"-g": None, "-p": None, "-u": None},
+        "scenario": {"-f": None},
+        "dir": None,
+        "clean": None,
+        "exit": None,
+        "quit": None,
+    }
+)
 
 
 def choose_yaml_file() -> str:
@@ -28,13 +29,13 @@ def choose_yaml_file() -> str:
     if not folder.exists() or not folder.is_dir():
         print(f"Папка {folder} не существует или не является директорией.")
         sys.exit(1)
-    
+
     # Получаем список всех yaml файлов
     yaml_files = list(folder.glob("*.yaml")) + list(folder.glob("*.yml"))
     if not yaml_files:
         print(f"В папке {folder} нет YAML-файлов.")
         sys.exit(1)
-    
+
     print("Доступные YAML-файлы:")
     for i, f in enumerate(yaml_files, 1):
         print(f"{i}. {f.name}")  # показываем только имя файла
@@ -54,7 +55,9 @@ def run_shell(yaml_file: str):
 
     while True:
         try:
-            text = session.prompt(f"{Path(yaml_file).stem}> ", completer=completer).strip()
+            text = session.prompt(
+                f"{Path(yaml_file).stem}> ", completer=completer
+            ).strip()
 
             if not text:
                 continue
@@ -73,13 +76,14 @@ def run_shell(yaml_file: str):
 def main():
     while True:
         yaml_file = choose_yaml_file()  # выбор YAML
-        run_shell(yaml_file)            # запуск интерактивной оболочки
-        
+        run_shell(yaml_file)  # запуск интерактивной оболочки
+
         # После выхода из оболочки спрашиваем, хотим ли выбрать другой файл
         again = input("Хотите выбрать другой YAML-файл? (y/n): ").strip().lower()
-        if again != 'y':
+        if again != "y":
             print("Выход из программы.")
             break
+
 
 if __name__ == "__main__":
     main()

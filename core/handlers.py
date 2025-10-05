@@ -30,9 +30,7 @@ def handle_dir_discipline(yaml_file: str | Path, max_len: int = 80):
     for discipline_code, info in all_disciplines.items():
         name = info.get("name", "")
         if len(name) > max_len:
-            name = (
-                name[: max_len - 3] + "..."
-            )  # обрізаємо і додаємо три крапки
+            name = name[: max_len - 3] + "..."  # обрізаємо і додаємо три крапки
         table_data.append(
             [
                 discipline_code,
@@ -151,9 +149,7 @@ def handle_upload_discipline(
         # Перевіряємо чи існує дисципліна
         if discipline_code not in all_disciplines:
             logger.error(f"Discipline '{discipline_code}' not found in YAML")
-            logger.debug(
-                f"Available disciplines: {list(all_disciplines.keys())}"
-            )
+            logger.debug(f"Available disciplines: {list(all_disciplines.keys())}")
             return False
 
         # Завантажуємо сторінку

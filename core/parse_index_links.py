@@ -141,8 +141,6 @@ def parse_index_links(data_yaml: str | Path) -> bool:
     index_file.write_text(html_new, encoding="utf-8")
 
     # Выводим сообщение об успешном выполнении
-    logger.debug(
-        f"href в {index_file} заменены на WP ссылки для ЗО_XX / ПО_XX"
-    )
+    logger.debug(f"href в {index_file} заменены на WP ссылки для ЗО_XX / ПО_XX")
 
     return True

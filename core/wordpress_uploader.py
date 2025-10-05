@@ -74,9 +74,7 @@ def upload_discipline_page(
                 link=result.get("link"),
                 parent=parent_id,
             )
-            logger.debug(
-                f"Сторінку {action}: {title} (ID: {page.id}) завантажено"
-            )
+            logger.debug(f"Сторінку {action}: {title} (ID: {page.id}) завантажено")
             return {discipline_code: page.link}
         else:
             logger.debug(f"Не вдалося завантажити сторінку: {title}")
@@ -112,7 +110,9 @@ def upload_all_pages(
     total = len(all_disciplines)
     logger.info(f"📤 Uploading {total} pages to WordPress...")
 
-    for i, (discipline_code, discipline_info) in enumerate(all_disciplines.items(), start=1):
+    for i, (discipline_code, discipline_info) in enumerate(
+        all_disciplines.items(), start=1
+    ):
         # Використовуємо upload_discipline_page для кожної дисципліни
         link = upload_discipline_page(
             discipline_code=discipline_code,
@@ -125,9 +125,7 @@ def upload_all_pages(
         if link:
             wp_links.update(link)
 
-    logger.debug(
-        f"Завантажено {len(wp_links)}/{len(all_disciplines)} сторінок"
-    )
+    logger.debug(f"Завантажено {len(wp_links)}/{len(all_disciplines)} сторінок")
 
     metadata = {
         "year": yaml_data.get("metadata", {}).get("year", ""),
@@ -143,9 +141,7 @@ def upload_all_pages(
     return wp_data
 
 
-def upload_index(
-    yaml_file: Path, client: WordPressClient
-) -> WordPressPage | None:
+def upload_index(yaml_file: Path, client: WordPressClient) -> WordPressPage | None:
     """Завантажує індексну сторінку на WordPress"""
     try:
         config = AppConfig()
@@ -181,9 +177,7 @@ def upload_index(
                 link=result.get("link"),
             )
 
-            logger.debug(
-                f"✅ Індексну сторінку оновлено: {title} (ID: {page.id})"
-            )
+            logger.debug(f"✅ Індексну сторінку оновлено: {title} (ID: {page.id})")
             return page
         else:
             logger.error("❌ Не вдалося оновити індексну сторінку")

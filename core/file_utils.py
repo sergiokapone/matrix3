@@ -49,9 +49,7 @@ def get_discipline_parent_id(yaml_data) -> int:
         raise ParrentIdError("Missing 'page_id' in YAML metadata")
 
 
-def save_wp_links_yaml(
-    wp_data: dict, output_file: str = "wp_links.yaml"
-) -> None:
+def save_wp_links_yaml(wp_data: dict, output_file: str = "wp_links.yaml") -> None:
     """
     Зберігає посилання WordPress та метадані у YAML-файл.
 

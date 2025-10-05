@@ -15,9 +15,7 @@ class WordPressClient:
         self.auth = auth
         self.timeout = timeout
 
-    def _request(
-        self, method: str, endpoint: str, **kwargs
-    ) -> requests.Response:
+    def _request(self, method: str, endpoint: str, **kwargs) -> requests.Response:
         """Виконує HTTP запит"""
         url = f"{self.api_url}/{endpoint}"
         kwargs.setdefault("auth", self.auth)

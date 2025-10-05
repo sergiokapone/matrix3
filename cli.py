@@ -44,21 +44,94 @@ def resolve_yaml_path(yaml_arg: str) -> Path:
     return yaml_path
 
 
-# def resolve_output_path(output_dir: str) -> Path:
-#     """Возвращает корректный путь к YAML файлу"""
-#     output_dir = Path(output_dir)
-#     if not output_dir.is_absolute() and not output_dir.exists():
-#         output_dir = config.output_dir
-#     return output_dir
+def handle_generate(args, yaml_file: Path, output_dir: Path):
+    if args.all:
+        handle_generate_all_disciplines(yaml_file, output_dir)
+        logger.info("All disciplines generated")
+    elif args.discipline:
+        handle_generate_single_discipline(
+            yaml_file,
+            output_dir / f"{args.discipline}.html",
+            args.discipline,
+        )
+        logger.info(f"Discipline {args.discipline} generated")
+    else:
+        logger.error("Specify --all or --discipline")
 
 
-def main(*args):
-    parser = argparse.ArgumentParser(
-        description="WordPress discipline pages manager"
-    )
-    parser.add_argument(
-        "yaml_file", help="Path to YAML data file"
-    )  # перший аргумент
+def handle_upload(args, yaml_file: Path, client: WordPressClient):
+    if args.all:
+        wp_links_file = config.wp_links_dir / f"wp_links_{yaml_file.stem}.yaml"
+        handle_upload_all_disciplines(yaml_file, wp_links_file, client)
+        logger.info("All disciplines uploaded")
+    elif args.discipline:
+        handle_upload_discipline(args.discipline, yaml_file, client)
+        logger.info(f"Discipline {args.discipline} uploaded")
+    elif getattr(args, "index", False):
+        handle_upload_index(yaml_file, client)
+        logger.info("Index page uploaded")
+    else:
+        logger.error("Specify --all, --discipline, or --index")
+
+
+def handle_index(args, yaml_file: Path, client: WordPressClient, output_dir: Path):
+    if getattr(args, "generate", False):
+        handle_generate_index(yaml_file, output_dir / "index.html")
+        logger.info("Index file generated")
+    if getattr(args, "parse", False):
+        handle_parse_index_links(yaml_file)
+        logger.info("Index file parsed")
+    if getattr(args, "upload", False):
+        handle_upload_index(yaml_file, client)
+        logger.info("Index file uploaded")
+
+
+def handle_scenario(args, yaml_file: Path, client: WordPressClient, output_dir: Path):
+    if getattr(args, "full", False):
+        clean_output_directory(output_dir)
+        logger.info("Folder cleaned")
+
+        handle_generate_all_disciplines(yaml_file, output_dir)
+        logger.info("All disciplines generated")
+
+        wp_links_file = config.wp_links_dir / f"wp_links_{yaml_file.stem}.yaml"
+        handle_upload_all_disciplines(yaml_file, wp_links_file, client)
+        logger.info("All disciplines uploaded")
+
+        handle_generate_index(yaml_file, output_dir / "index.html")
+        handle_parse_index_links(yaml_file)
+        handle_upload_index(yaml_file, client)
+        logger.info("Index page generated, parsed, and uploaded")
+    else:
+        logger.error("Specify --full for scenario")
+
+
+def dispatch_command(args, yaml_file: Path, client: WordPressClient):
+    output_dir = config.output_dir
+
+    match args.command:
+        case "generate":
+            handle_generate(args, yaml_file, output_dir)
+        case "upload":
+            handle_upload(args, yaml_file, client)
+        case "index":
+            handle_index(args, yaml_file, client, output_dir)
+        case "dir":
+            handle_dir_discipline(yaml_file)
+        case "clean":
+            clean_output_directory(output_dir)
+            logger.info("Output directory cleaned")
+        case "scenario":
+            handle_scenario(args, yaml_file, client, output_dir)
+        case _:
+            logger.error(f"Unknown command: {args.command}")
+
+
+def build_parser() -> argparse.ArgumentParser:
+    parser = argparse.ArgumentParser(description="WordPress discipline pages manager")
+
+    parser.add_argument("yaml_file", help="Path to YAML data file")
+
     parser.add_argument(
         "--clean",
         "-c",
@@ -71,12 +144,8 @@ def main(*args):
     # =========================
     # generate
     # =========================
-    gen_parser = subparsers.add_parser(
-        "generate", help="Generate discipline pages"
-    )
-    gen_parser.add_argument(
-        "--discipline", "-d", help="Generate single discipline"
-    )
+    gen_parser = subparsers.add_parser("generate", help="Generate discipline pages")
+    gen_parser.add_argument("--discipline", "-d", help="Generate single discipline")
     gen_parser.add_argument(
         "--all", "-a", action="store_true", help="Generate all disciplines"
     )
@@ -84,12 +153,8 @@ def main(*args):
     # =========================
     # upload
     # =========================
-    upload_parser = subparsers.add_parser(
-        "upload", help="Upload pages to WordPress"
-    )
-    upload_parser.add_argument(
-        "--discipline", "-d", help="Upload single discipline"
-    )
+    upload_parser = subparsers.add_parser("upload", help="Upload pages to WordPress")
+    upload_parser.add_argument("--discipline", "-d", help="Upload single discipline")
     upload_parser.add_argument(
         "--all", "-a", action="store_true", help="Upload all disciplines"
     )
@@ -114,136 +179,33 @@ def main(*args):
     # =========================
     # dir / clean
     # =========================
-
     subparsers.add_parser("dir", help="Show disciplines")
     subparsers.add_parser("clean", help="Clean output folder")
-    
-    
+
     # =========================
     # scenario
     # =========================
     scenario_parser = subparsers.add_parser("scenario", help="Run predefined workflows")
     scenario_parser.add_argument(
-        "--full", "-f",
+        "--full",
+        "-f",
         action="store_true",
-        help="Generate all, upload all, and rebuild index"
+        help="Generate all, upload all, and rebuild index",
     )
 
+    return parser
 
+
+def main(*args):
+    parser = build_parser()
     args = parser.parse_args()
-
     yaml_file = resolve_yaml_path(args.yaml_file)
-    output_dir = config.output_dir
-
-    # yaml_file = config.yaml_data_folder
-
     if not yaml_file.exists():
         logger.error(f"YAML file not found: {yaml_file}")
         sys.exit(1)
 
     try:
-        # =========================
-        # generate
-        # =========================
-        if args.command == "generate":
-            if args.all:
-                success = handle_generate_all_disciplines(
-                    yaml_file, output_dir
-                )
-                if success:
-                    logger.info("Disciplines generated")
-                else:
-                    logger.error("Failed to generate some disciplines")
-            elif args.discipline:
-                success = handle_generate_single_discipline(
-                    yaml_file,
-                    config.output_dir / f"{args.discipline}.html",
-                    args.discipline,
-                )
-                if success:
-                    logger.info(f"Discipline {args.discipline} generated")
-                else:
-                    logger.error(
-                        f"Discipline {args.discipline} generation failed"
-                    )
-            else:
-                logger.error("Specify --all or --discipline")
-
-        # =========================
-        # upload
-        # =========================
-        elif args.command == "upload":
-            if args.all:
-                wp_links_filename = (
-                    config.wp_links_dir / f"wp_links_{yaml_file.stem}.yaml"
-                )
-                handle_upload_all_disciplines(
-                    yaml_file, wp_links_filename, client
-                )
-                logger.info("All disciplines uploaded")
-            elif args.discipline:
-                handle_upload_discipline(args.discipline, yaml_file, client)
-                logger.info(f"Discipline {args.discipline} uploaded")
-            else:
-                logger.error("Specify --all, --discipline")
-
-        # =========================
-        # index
-        # =========================
-        elif args.command == "index":
-            if args.generate:
-                handle_generate_index(
-                    yaml_file, config.output_dir / "index.html"
-                )
-                logger.info("Index file generated")
-            if args.parse:
-                handle_parse_index_links(yaml_file)
-                logger.info("Index file parsed")
-            if args.upload:
-                handle_upload_index(yaml_file, client)
-                logger.info("Index file uploaded")
-
-        elif args.command == "clean":
-            try:
-                clean_output_directory(output_dir)
-                logger.info("Операція завершена успішно")
-            except Exception as e:
-                logger.critical(f"Неможливо завершити очищення: {e}")
-                raise SystemExit(1)
-
-        elif args.command == "dir":
-            try:
-                handle_dir_discipline(yaml_file)
-            except Exception:
-                raise SystemExit(1)
-
-        # =========================
-        # scenario
-        # =========================
-        elif args.command == "scenario":
-            if args.full:
-                # 0. Clear folder
-                clean_output_directory(output_dir)
-                logger.info("Cleaning folder")
-                # 1. generate all
-                handle_generate_all_disciplines(yaml_file, output_dir)
-                logger.info("Disciplines generated")
-
-                # 2. upload all
-                wp_links_filename = config.wp_links_dir / f"wp_links_{yaml_file.stem}.yaml"
-                handle_upload_all_disciplines(yaml_file, wp_links_filename, client)
-                logger.info("All disciplines uploaded")
-
-                # 3. index
-                handle_generate_index(yaml_file, config.output_dir / "index.html")
-                logger.info("Index file generated")
-                handle_parse_index_links(yaml_file)
-                logger.info("Index file parsed")
-                handle_upload_index(yaml_file, client)
-                logger.info("Index file uploaded")
-            else:
-                logger.error("Specify --full for now")
-
+        dispatch_command(args, yaml_file, client)
     except KeyboardInterrupt:
         logger.warning("Operation cancelled by user")
         sys.exit(130)

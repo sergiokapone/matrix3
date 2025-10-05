@@ -33,20 +33,20 @@ def choose_yaml_file() -> str:
     # Получаем список всех yaml файлов
     yaml_files = list(folder.glob("*.yaml")) + list(folder.glob("*.yml"))
     if not yaml_files:
-        print(f"В папке {folder} нет YAML-файлов.")
+        print(f"В папці {folder} нема YAML-файлів.")
         sys.exit(1)
 
-    print("Доступные YAML-файлы:")
+    print("Доступні YAML-файли:")
     for i, f in enumerate(yaml_files, 1):
         print(f"{i}. {f.name}")  # показываем только имя файла
 
     while True:
-        choice = input(f"Выберите файл (1-{len(yaml_files)}): ").strip()
+        choice = input(f"Виберіть файл з даними (1-{len(yaml_files)}): ").strip()
         if choice.isdigit():
             idx = int(choice) - 1
             if 0 <= idx < len(yaml_files):
                 return str(yaml_files[idx])  # возвращаем путь в виде строки
-        print("Неверный выбор, попробуйте снова.")
+        print("Неправильний вибір, спробуйте знову.")
 
 
 def run_shell(yaml_file: str):
@@ -79,9 +79,9 @@ def main():
         run_shell(yaml_file)  # запуск интерактивной оболочки
 
         # После выхода из оболочки спрашиваем, хотим ли выбрать другой файл
-        again = input("Хотите выбрать другой YAML-файл? (y/n): ").strip().lower()
+        again = input("Хочете вибрати інший YAML-файл? (y/n): ").strip().lower()
         if again != "y":
-            print("Выход из программы.")
+            print("Вихід із програми.")
             break
 
 

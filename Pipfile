@@ -4,16 +4,12 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-structlog = "*"
 pyyaml = "*"
 jinja2 = "*"
 dotenv = "*"
-tqdm = "*"
 requests = "*"
 pydantic = "*"
 logger = "*"
-aiohttp = "*"
-tenacity = "*"
 python-slugify = "*"
 pytest = "*"
 responses = "*"
@@ -21,6 +17,7 @@ tabulate = "*"
 prompt-toolkit = "*"
 
 [dev-packages]
+djhtml = "*"
 
 [requires]
 python_version = "3.13"

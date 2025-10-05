@@ -59,6 +59,7 @@ def load_discipline_data(
     try:
         data = load_yaml_data(yaml_file)
         lecturers = load_yaml_data(config.lecturers_yaml)
+        discipline_content = load_yaml_data(config.discipline_content_yaml)
 
         validate_yaml_schema(data)
 
@@ -80,6 +81,13 @@ def load_discipline_data(
                 discipline["lecturer"] = lecturers[lecturer_id]
             else:
                 logger.debug("Lecturer not found", lecturer_id=lecturer_id)
+                
+        if "discipline_id" in discipline:
+            discipline_id = discipline["discipline_id"]
+            if discipline_id in discipline_content:
+                discipline["content"] = discipline_content[discipline_id]
+            else:
+                logger.debug("Discipline Id not found", discipline_id=discipline_id)
 
         return data, discipline
 

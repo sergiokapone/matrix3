@@ -2,15 +2,12 @@ import os
 import sys
 import shlex
 import subprocess
-
 from pathlib import Path
 from prompt_toolkit import PromptSession
 from prompt_toolkit.completion import NestedCompleter
 from core.config import AppConfig
 
 config = AppConfig()
-
-
 
 # ====== Список команд и флагов для автодополнения ======
 completer = NestedCompleter.from_nested_dict({
@@ -24,35 +21,65 @@ completer = NestedCompleter.from_nested_dict({
     "quit": None,
 })
 
-def run_shell(yaml_file: str):
-    """
-    Запускает интерактивную оболочку для управления cli.py
-    с подстановкой yaml_file и автодополнением команд.
-    """
-    session = PromptSession()
+
+def choose_yaml_file() -> str:
+    """Выбор YAML-файла из папки, указанной в config.yaml_data_folder"""
+    folder: Path = config.yaml_data_folder
+    if not folder.exists() or not folder.is_dir():
+        print(f"Папка {folder} не существует или не является директорией.")
+        sys.exit(1)
     
+    # Получаем список всех yaml файлов
+    yaml_files = list(folder.glob("*.yaml")) + list(folder.glob("*.yml"))
+    if not yaml_files:
+        print(f"В папке {folder} нет YAML-файлов.")
+        sys.exit(1)
+    
+    print("Доступные YAML-файлы:")
+    for i, f in enumerate(yaml_files, 1):
+        print(f"{i}. {f.name}")  # показываем только имя файла
+
+    while True:
+        choice = input(f"Выберите файл (1-{len(yaml_files)}): ").strip()
+        if choice.isdigit():
+            idx = int(choice) - 1
+            if 0 <= idx < len(yaml_files):
+                return str(yaml_files[idx])  # возвращаем путь в виде строки
+        print("Неверный выбор, попробуйте снова.")
+
+
+def run_shell(yaml_file: str):
+    """Запускает интерактивную оболочку для управления cli.py"""
+    session = PromptSession()
+
     while True:
         try:
             text = session.prompt(f"{Path(yaml_file).stem}> ", completer=completer).strip()
-            
+
             if not text:
                 continue
             if text in ("exit", "quit"):
                 break
 
             argv = shlex.split(text)
-            # Вызываем cli.py через subprocess с YAML и командой
             cmd = [sys.executable, "cli.py", yaml_file] + argv
             subprocess.run(cmd)
-        
+
         except (EOFError, KeyboardInterrupt):
             print("\nВыход")
             break
 
-if __name__ == "__main__":
-    if len(sys.argv) < 2:
-        print("Usage: python cli_shell.py <yaml_file>")
-        sys.exit(1)
 
-    yaml_file = sys.argv[1]
-    run_shell(yaml_file)
+def main():
+    while True:
+        yaml_file = choose_yaml_file()  # выбор YAML
+        run_shell(yaml_file)            # запуск интерактивной оболочки
+        
+        # После выхода из оболочки спрашиваем, хотим ли выбрать другой файл
+        again = input("Хотите выбрать другой YAML-файл? (y/n): ").strip().lower()
+        if again != 'y':
+            print("Выход из программы.")
+            break
+
+if __name__ == "__main__":
+    main()

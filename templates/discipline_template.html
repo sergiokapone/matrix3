@@ -26,6 +26,8 @@
     </div>
     {% endif %}
 
+
+    <!-- Картка інформації про дисципліни -->
     <div style="all: initial; display: block; font-family: inherit; font-size: inherit; color: inherit;">
         <div style="display: flex; gap: 30px; margin-bottom: 30px; width: 100%; box-sizing: border-box;">
             <div style="flex: 1 1 50%; max-width: 50%; box-sizing: border-box;">
@@ -70,6 +72,35 @@
         {% endfor %}
     </div>
     {% endif %}
+
+
+    <!-- Картка контенту дисципліни з inline стилями -->
+    {% if discipline.content %}
+    <h2>Зміст дисципліни</h2>
+    <div  style="
+            border: 1px solid #ccc; 
+            border-radius: 8px; 
+            padding: 12px; 
+            margin: 8px 0; 
+            background-color: #f9f9f9;
+            box-shadow: 2px 2px 6px rgba(0,0,0,0.1);
+        ">
+        {% for section in discipline.content %}
+        <div>
+            <h3 style="margin-top: 0; color: #2c3e50;">{{ section.title }}</h3>
+            {% if section.topics %}
+            <ul style="list-style-type: disc; padding-left: 32px;">
+                {% for topic in section.topics %}
+                <li style="margin-bottom: 4px; color: #34495e;">{{ topic }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+
 
     <!-- Компетенції -->
     {% if general_competencies or professional_competencies %}

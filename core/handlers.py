@@ -137,7 +137,7 @@ def handle_upload_discipline(
         # Отримуємо parent_id з метаданих
         wp_parent_id = yaml_data.get("metadata", {}).get("page_id")
         if not wp_parent_id:
-            logger.error("page_id not found in YAML metadata")
+            logger.debug("page_id not found in YAML metadata")
             return False
 
         # Отримуємо всі дисципліни
@@ -148,26 +148,23 @@ def handle_upload_discipline(
 
         # Перевіряємо чи існує дисципліна
         if discipline_code not in all_disciplines:
-            logger.error(f"Discipline '{discipline_code}' not found in YAML")
+            logger.debug(f"Discipline '{discipline_code}' not found in YAML")
             logger.debug(f"Available disciplines: {list(all_disciplines.keys())}")
             return False
 
         # Завантажуємо сторінку
         page = upload_discipline_page(
             discipline_code=discipline_code,
-            discipline_debug=all_disciplines[discipline_code],
+            discipline_info=all_disciplines[discipline_code],
             parent_id=wp_parent_id,
             client=client,
         )
-
         if page:
             logger.debug(f"✅ Successfully uploaded: {discipline_code}")
-            logger.debug(f"📝 Title: {page.title}")
-            logger.debug(f"🔗 Link: {page.link}")
-            logger.debug(f"🆔 ID: {page.id}")
+            logger.debug(f"🔗 Link: {page.get(discipline_code)}")
             return True
         else:
-            logger.error(f"Failed to upload: {discipline_code}")
+            logger.debug(f"Failed to upload: {discipline_code}")
             return False
 
     except Exception as e:

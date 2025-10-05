@@ -72,4 +72,4 @@ def save_wp_links_yaml(wp_data: dict, output_file: str = "wp_links.yaml") -> Non
     with open(output_path, "w", encoding="utf-8") as f:
         yaml.dump(wp_data, f, allow_unicode=True)
 
-    print(f"📋 WP посилання збережені в {output_path}")
+    logger.info(f"📋 WP посилання збережені в {output_path}")

@@ -28,9 +28,7 @@ def create_wordpress_client():
     return WordPressClient(api_url=wp_config.api_url, auth=auth)
 
 
-setup_logging(level="INFO")
-
-logger = get_logger()
+logger = get_logger(__name__)
 
 client = create_wordpress_client()
 config = AppConfig()

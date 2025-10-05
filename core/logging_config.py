@@ -18,6 +18,7 @@ EMOJIS = {
     "CRITICAL": "💥",
 }
 
+GLOBAL_LOG_LEVEL = "INFO"  # ставиш тут рівень на весь проект
 
 class ColorFormatter(logging.Formatter):
     def __init__(self, fmt=None, datefmt=None, color: str | None = None):
@@ -65,7 +66,7 @@ def setup_logging(
 
 def get_logger(
     name: str = "wp_pages",
-    level: str = "INFO",
+    level: str | None = None,  # тепер level необов'язковий
     formatter: logging.Formatter | None = None,
     color: str | None = None,
 ):
@@ -80,4 +81,8 @@ def get_logger(
             "%(levelname)s | %(name)s | %(message)s", color=color
         )
 
-    return setup_logging(name=name, level=level, formatter=formatter)
+    return setup_logging(
+        name=name,
+        level=level or GLOBAL_LOG_LEVEL,
+        formatter=formatter,
+    )

@@ -17,7 +17,7 @@ class WordPressConfig:
     username: str = field(default_factory=lambda: os.getenv("WP_USER", ""))
     password: str = field(default_factory=lambda: os.getenv("WP_PASSWORD", ""))
 
-    def __post_init__(self):
+    def __post_init__(self) -> None:
         if not self.username or not self.password:
             raise ValueError("WP_USER або WP_PASSWORD не встановлені")
 

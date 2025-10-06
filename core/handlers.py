@@ -18,7 +18,7 @@ from core.wordpress_uploader import (
 logger = get_logger(__name__)
 
 
-def handle_dir_discipline(yaml_file: str | Path, max_len: int = 80):
+def handle_dir_discipline(yaml_file: str | Path, max_len: int = 80) -> None:
     data = load_yaml_data(yaml_file)
     all_disciplines = data.get("disciplines", {}).copy()
     if "elevative_disciplines" in data:
@@ -48,7 +48,7 @@ def handle_dir_discipline(yaml_file: str | Path, max_len: int = 80):
 
 def handle_generate_single_discipline(
     yaml_file: str | Path, output_filename: Path, discipline_code: str
-):
+) -> bool:
     """CLI хендлер для генерації однієї дисципліни"""
     # Преобразуем в Path и проверяем существование
 
@@ -59,7 +59,7 @@ def handle_generate_single_discipline(
     )
 
 
-def handle_generate_all_disciplines(yaml_file: Path, output_dir: Path):
+def handle_generate_all_disciplines(yaml_file: Path, output_dir: Path) -> dict:
     """CLI handler for generating all disciplines with a progress bar."""
 
     data = load_yaml_data(yaml_file)
@@ -86,11 +86,13 @@ def handle_generate_all_disciplines(yaml_file: Path, output_dir: Path):
         if success:
             successful += 1
 
-    logger.debug(f"\n📊 Results: {successful}/{total} successful")
+    logger.info(f"Results: {successful}/{total} successful")
     return results
 
 
-def handle_generate_index(yaml_file: str | Path, output_file="index.html"):
+def handle_generate_index(
+    yaml_file: str | Path, output_file: str = "index.html"
+) -> bool:
     """CLI хендлер для генерації індексної сторінки зі списком дисциплін"""
 
     logger.debug(f"📄 Generating index page from: {yaml_file}")
@@ -107,7 +109,7 @@ def handle_generate_index(yaml_file: str | Path, output_file="index.html"):
         return False
 
 
-def handle_parse_index_links(yaml_file: str | Path):
+def handle_parse_index_links(yaml_file: str | Path) -> bool:
     """CLI хендлер для заміни локальних посилань на WordPress посилання"""
 
     try:
@@ -125,7 +127,7 @@ def handle_parse_index_links(yaml_file: str | Path):
 
 def handle_upload_discipline(
     discipline_code: str, yaml_file: Path, client: WordPressClient
-):
+) -> bool:
     """CLI хендлер для завантаження сторінки дисципліни на WordPress"""
 
     try:
@@ -135,7 +137,7 @@ def handle_upload_discipline(
         # Отримуємо parent_id з метаданих
         wp_parent_id = yaml_data.get("metadata", {}).get("page_id")
         # Оттимуємо рік рограми
-        programm_year=yaml_data.get("metadata", {}).get("year")
+        programm_year = yaml_data.get("metadata", {}).get("year")
 
         if not wp_parent_id:
             logger.debug("page_id not found in YAML metadata")

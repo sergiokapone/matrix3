@@ -10,12 +10,12 @@ config = WordPressConfig()
 class WordPressClient:
     """Низькорівневий клієнт для WordPress REST API"""
 
-    def __init__(self, api_url: str, auth: HTTPBasicAuth, timeout: int = 30):
+    def __init__(self, api_url: str, auth: HTTPBasicAuth, timeout: int = 30) -> None:
         self.api_url = api_url
         self.auth = auth
         self.timeout = timeout
 
-    def _request(self, method: str, endpoint: str, **kwargs) -> requests.Response:
+    def _request(self, method: str, endpoint: str, **kwargs: dict) -> requests.Response:
         """Виконує HTTP запит"""
         url = f"{self.api_url}/{endpoint}"
         kwargs.setdefault("auth", self.auth)

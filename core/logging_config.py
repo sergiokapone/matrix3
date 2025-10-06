@@ -20,15 +20,21 @@ EMOJIS = {
 
 GLOBAL_LOG_LEVEL = "INFO"  # ставиш тут рівень на весь проект
 
+
 class ColorFormatter(logging.Formatter):
-    def __init__(self, fmt=None, datefmt=None, color: str | None = None):
+    def __init__(
+        self,
+        fmt: str | None = None,
+        datefmt: str | None = None,
+        color: str | None = None,
+    ) -> None:
         """
         color: якщо задано, весь текст повідомлення буде в цьому кольорі
         """
         super().__init__(fmt, datefmt)
         self.color = color  # None = стандартний режим (кольори рівнів)
 
-    def format(self, record):
+    def format(self, record: logging.LogRecord) -> str:
         if self.color:
             # весь текст повідомлення у заданому кольорі
             record.msg = f"{self.color}{record.getMessage()}{RESET}"
@@ -45,19 +51,22 @@ def setup_logging(
     name: str = "wp pages",
     level: str = "INFO",
     formatter: logging.Formatter | None = None,
-):
+) -> logging.Logger:
     """Налаштувати логер з можливістю передати кастомний форматтер"""
+
     logger = logging.getLogger(name)
     logger.setLevel(getattr(logging, level.upper()))
 
     if not logger.hasHandlers():
         handler = logging.StreamHandler()
+
         if formatter is None:
             # стандартний логер: кольори рівня + емодзі
             formatter = ColorFormatter(
                 "%(levelname)s | %(name)s: %(lineno)d | %(funcName)s() | %(message)s",
                 datefmt="%Y-%m-%d %H:%M:%S",
             )
+
         handler.setFormatter(formatter)
         logger.addHandler(handler)
 
@@ -69,18 +78,20 @@ def get_logger(
     level: str | None = None,  # тепер level необов'язковий
     formatter: logging.Formatter | None = None,
     color: str | None = None,
-):
+) -> logging.Logger:
     """
     Отримати логер:
       - color: якщо задано, весь текст повідомлення буде в цьому кольорі
       - formatter: можна передати свій кастомний форматтер
       - level: рівень логування по замовчуванню
     """
-    if formatter is None and color:
+    if formatter is None and color is not None:
+        # Створюємо кастомний ColorFormatter із заданим кольором
         formatter = ColorFormatter(
             "%(levelname)s | %(name)s | %(message)s", color=color
         )
 
+    # Використовуємо setup_logging для створення/отримання логера
     return setup_logging(
         name=name,
         level=level or GLOBAL_LOG_LEVEL,

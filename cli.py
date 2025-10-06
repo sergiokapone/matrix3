@@ -20,7 +20,7 @@ from core.logging_config import get_logger
 from core.wordpress_client import WordPressClient
 
 
-def create_wordpress_client():
+def create_wordpress_client() -> Warning:
     wp_config = WordPressConfig()
     auth = HTTPBasicAuth(wp_config.username, wp_config.password)
     return WordPressClient(api_url=wp_config.api_url, auth=auth)
@@ -40,7 +40,7 @@ def resolve_yaml_path(yaml_arg: str) -> Path:
     return yaml_path
 
 
-def handle_generate(args, yaml_file: Path, output_dir: Path):
+def handle_generate(args: str, yaml_file: Path, output_dir: Path) -> None:
     if args.all:
         handle_generate_all_disciplines(yaml_file, output_dir)
         logger.info("All disciplines generated")
@@ -55,7 +55,7 @@ def handle_generate(args, yaml_file: Path, output_dir: Path):
         logger.error("Specify --all or --discipline")
 
 
-def handle_upload(args, yaml_file: Path, client: WordPressClient):
+def handle_upload(args: str, yaml_file: Path, client: WordPressClient) -> None:
     if args.all:
         wp_links_file = config.wp_links_dir / f"wp_links_{yaml_file.stem}.yaml"
         handle_upload_all_disciplines(yaml_file, wp_links_file, client)
@@ -70,7 +70,9 @@ def handle_upload(args, yaml_file: Path, client: WordPressClient):
         logger.error("Specify --all, --discipline, or --index")
 
 
-def handle_index(args, yaml_file: Path, client: WordPressClient, output_dir: Path):
+def handle_index(
+    args: str, yaml_file: Path, client: WordPressClient, output_dir: Path
+) -> None:
     if getattr(args, "generate", False):
         handle_generate_index(yaml_file, output_dir / "index.html")
         logger.info("Index file generated")
@@ -82,7 +84,9 @@ def handle_index(args, yaml_file: Path, client: WordPressClient, output_dir: Pat
         logger.info("Index file uploaded")
 
 
-def handle_scenario(args, yaml_file: Path, client: WordPressClient, output_dir: Path):
+def handle_scenario(
+    args: str, yaml_file: Path, client: WordPressClient, output_dir: Path
+) -> None:
     if getattr(args, "full", False):
         clean_output_directory(output_dir)
         logger.info("Folder cleaned")
@@ -102,7 +106,7 @@ def handle_scenario(args, yaml_file: Path, client: WordPressClient, output_dir: 
         logger.error("Specify --full for scenario")
 
 
-def dispatch_command(args, yaml_file: Path, client: WordPressClient):
+def dispatch_command(args: str, yaml_file: Path, client: WordPressClient) -> None:
     output_dir = config.output_dir
 
     match args.command:
@@ -192,7 +196,7 @@ def build_parser() -> argparse.ArgumentParser:
     return parser
 
 
-def main(*args):
+def main(*args: tuple) -> None:
     parser = build_parser()
     args = parser.parse_args()
     yaml_file = resolve_yaml_path(args.yaml_file)

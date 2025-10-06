@@ -19,7 +19,7 @@ class UploadResult(BaseModel):
     message: str
 
     @field_validator("link")
-    def validate_link(cls, v, values):
+    def validate_link(cls, v: str | None, values: dict[str, object]) -> str | None:
         if values.get("success") and not v:
             raise ValueError("Link is required when success is True")
         return v

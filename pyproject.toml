@@ -1,7 +1,7 @@
 [tool.ruff]
 # Проверка стиля и автофиксы
 line-length = 88
-lint.select = ["E", "W", "F", "C90", "I", "Q"]
+lint.select = ["E", "W", "F", "C90", "I", "Q", "ANN"]
 # Автофикс там, где возможно (trailing spaces, пустые строки, отступы)
 fix = true
 
@@ -11,6 +11,10 @@ lint.ignore = ["E501"]
 # W293 — blank line contains whitespace
 # E302 — две пустые строки перед top-level функцией или классом
 # E305 — одна пустая строка внутри класса между методами
+
+exclude = [
+    "tests"
+]
 
 [tool.black]
 line-length = 88

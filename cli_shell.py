@@ -9,7 +9,7 @@ from prompt_toolkit.completion import NestedCompleter
 from core.config import AppConfig
 from core.logging_config import get_logger
 
-logger = get_logger (__name__)
+logger = get_logger(__name__)
 config = AppConfig()
 
 # ====== Список команд и флагов для автодополнения ======
@@ -53,7 +53,7 @@ def choose_yaml_file() -> str:
         print("Неправильний вибір, спробуйте знову.")
 
 
-def run_shell(yaml_file: str):
+def run_shell(yaml_file: str) -> None:
     """Запускает интерактивную оболочку для управления cli.py"""
     session = PromptSession()
 
@@ -82,7 +82,7 @@ def run_shell(yaml_file: str):
             break
 
 
-def main():
+def main() -> None:
     while True:
         yaml_file = choose_yaml_file()  # выбор YAML
         run_shell(yaml_file)  # запуск интерактивной оболочки

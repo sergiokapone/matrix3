@@ -28,7 +28,7 @@ def save_html_file(content: str, output_file: str | Path) -> None:
         raise
 
 
-def load_yaml_data(yaml_path: Path):
+def load_yaml_data(yaml_path: Path) -> dict | None:
     """Завантаження YAML файлу"""
     try:
         with open(yaml_path, encoding="utf-8") as f:
@@ -38,7 +38,7 @@ def load_yaml_data(yaml_path: Path):
         sys.exit(1)
 
 
-def get_discipline_parent_id(yaml_data) -> int:
+def get_discipline_parent_id(yaml_data: dict) -> int:
     """Отримує ID батьківської сторінки для дисциплін з YAML-даних"""
     try:
         page_id = yaml_data["metadata"]["page_id"]

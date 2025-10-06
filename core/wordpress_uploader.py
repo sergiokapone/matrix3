@@ -97,7 +97,7 @@ def upload_all_pages(
     yaml_data = load_yaml_data(yaml_file)
 
     # Отримуємо рік дисципліни для slug
-    programm_year = yaml_data.get('metadata').get('year')
+    programm_year = yaml_data.get("metadata").get("year")
 
     if not yaml_data:
         logger.debug(f"❌ Failed to load YAML data from {yaml_file}")

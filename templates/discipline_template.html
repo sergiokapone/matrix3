@@ -24,7 +24,7 @@
                 <img src="{{ discipline.lecturer.photo_url }}" alt="Фото лектора {{ discipline.lecturer.full_name }}">
             </div>
             <div class="lecturer-info">
-                <p>
+                <div class="lecturer-line">
                     <strong>Лектор:</strong>
                     {% set parts = [] %}
                     {% if discipline.lecturer.degree %}
@@ -39,7 +39,7 @@
                     {% else %}
                         {{ discipline.lecturer.full_name }}
                     {% endif %}
-                </p>
+                </div>
             </div>
         </div>
     {% endif %}
@@ -49,7 +49,14 @@
         {% if discipline.credits %}
             <p><strong>Кредити ЄКТС:</strong> {{ discipline.credits }}</p>
         {% endif %}
-        <p><strong>Форма контролю:</strong> {{ discipline.control }}</p>
+        {% if discipline.controls %}
+            {% set controls = [] %}
+            {% for  conntrol in discipline.controls %}
+            {% set _ = controls.append(conntrol) %}
+            {% endfor %}
+            <p><strong>Види контролю:</strong> {{ controls|join(', ') }}{% if parts %} {% endif %}
+        {% endif %}
+        <p><strong>Форма підсумкового контролю:</strong> {{ discipline.control }}</p>
         {% if discipline.syllabus_url %}
             <p><strong>Силабус:</strong> <a href="{{ discipline.syllabus_url }}" target="_blank">Завантажити</a></p>
         {% endif %}
@@ -146,7 +153,21 @@
         line-height: 1.6;
     }
 
-/* --- інші стилі залишено без змін --- */
+    /* --- інші стилі залишено без змін --- */
+    .discipline-card p {
+		margin: 0 0 10px 0;
+    }
+
+    .discipline-description {
+        background: #e2f0fb;
+        border-left: 4px solid #007cba;
+        padding: 15px 20px;
+        margin: 15px 0 25px 0;
+        border-radius: 5px;
+        font-style: italic;
+        color: #343a40;
+    }
+
     .discipline-info {
         background: #f8f9fa;
         padding: 20px;
@@ -288,6 +309,15 @@
         text-decoration: underline;
     }
 
+    .lecturer-card {
+        display: flex;
+        align-items: center;
+        background: #f1f8ff;
+        padding: 15px 20px;
+        margin: 15px 0;
+        gap: 20px;
+    }
+
     .lecturer-photo {
         width: 120px;
         height: 120px;
@@ -306,6 +336,11 @@
 
     .lecturer-info p {
         margin: 5px 0;
+    }
+
+    .lecturer-line {
+        margin: 0;
+        display: inline-block;
     }
 </style>
 

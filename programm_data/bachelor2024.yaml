@@ -72,6 +72,9 @@ disciplines:
     name: Механіка
     credits: 7.0
     control: Екзамен
+    controls:
+      - МКР
+      - РГР
     syllabus_url: https://drive.google.com/file/d/1TGoXMap3sfTUrJFLd2swdUC8aiyK1gsf/view
     lecturer_id: zagorodniy_vv
     discipline_id: mechanics
@@ -80,6 +83,9 @@ disciplines:
     name: Термодинаміка та молекулярна фізика
     credits: 7.0
     control: Екзамен
+    controls:
+      - МКР
+      - РГР
     syllabus_url: https://drive.google.com/file/d/1fTIfrWdd0VvrK_fTGHuWGGwWRMMY4d3K/view
     lecturer_id: monastyrsky_ge
     discipline_id: thermodynamics
@@ -103,6 +109,9 @@ disciplines:
     name: Електрика та магнетизм
     credits: 8.0
     control: Екзамен
+    controls:
+      - МКР
+      - РГР
     syllabus_url: https://sergiokapone.github.io/ElMagLectures/Syllabus_ElMag/Syllabus_ElMag.pdf
     online_resources: https://classroom.google.com/c/NTQ1MzUzNjE5MDA3
     lecturer_id: ponomarenko_sm
@@ -112,12 +121,18 @@ disciplines:
     name: Оптика
     credits: 7.0
     control: Екзамен
+    controls:
+      - МКР
+      - РГР
     online_resources: https://do.ipo.kpi.ua/enrol/index.php?id=1988
     lecturer_id: ivanova_vv
     discipline_id: optics
 
   ЗО 08:
     name: Атомна фізика
+    controls:
+      - МКР
+      - РГР
     credits: 5.0
     control: Екзамен
     syllabus_url: https://drive.google.com/file/d/1d0QKt_uuvPVqmcG3VHZ3B8X83HcpqEtA/view

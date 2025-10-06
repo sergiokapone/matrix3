@@ -6,6 +6,9 @@ from prompt_toolkit import PromptSession
 from prompt_toolkit.completion import NestedCompleter
 from core.config import AppConfig
 
+from core.logging_config import get_logger
+
+logger = get_logger (__name__)
 config = AppConfig()
 
 # ====== Список команд и флагов для автодополнения ======
@@ -64,7 +67,12 @@ def run_shell(yaml_file: str):
             if text in ("exit", "quit"):
                 break
 
-            argv = shlex.split(text)
+            try:
+                argv = shlex.split(text)
+            except ValueError as e:
+                logger.error(f"Ошибка парсинга команды: {e}")
+                continue
+            
             cmd = [sys.executable, "cli.py", yaml_file] + argv
             subprocess.run(cmd)
 

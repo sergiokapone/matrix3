@@ -1,6 +1,5 @@
 from core.exceptions import YAMLValidationError
 
-
 YAML_SCHEMA = {
     "type": "object",
     "properties": {

@@ -1,12 +1,10 @@
 # config.py
 import os
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from pathlib import Path
-from requests.auth import HTTPBasicAuth
-
-from dataclasses import field
 
 from dotenv import load_dotenv
+from requests.auth import HTTPBasicAuth
 
 load_dotenv()
 

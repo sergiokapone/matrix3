@@ -7,9 +7,9 @@ from core.data_manipulation import (
     prepare_disciplines_with_totals,
 )
 from core.file_utils import get_safe_filename, load_yaml_data, save_html_file
+from core.logging_config import get_logger
 from core.render_html import render_template
 from core.validators import validate_yaml_schema
-from core.logging_config import get_logger
 
 logger = get_logger(__name__)
 

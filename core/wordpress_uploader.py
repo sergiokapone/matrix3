@@ -1,12 +1,13 @@
 # core/wordpress_uploader.py
-from core.file_utils import get_safe_filename, load_yaml_data
-from core.wordpress_client import WordPressClient
-from core.models import WordPressPage
-from core.config import AppConfig
 from pathlib import Path
+
 from slugify import slugify
 
+from core.config import AppConfig
+from core.file_utils import get_safe_filename, load_yaml_data
 from core.logging_config import ColorFormatter, get_logger
+from core.models import WordPressPage
+from core.wordpress_client import WordPressClient
 
 logger = get_logger(__name__)
 
@@ -94,10 +95,10 @@ def upload_all_pages(
 
     # Завантажуємо дані з YAML
     yaml_data = load_yaml_data(yaml_file)
-    
+
     # Отримуємо рік дисципліни для slug
     programm_year = yaml_data.get('metadata').get('year')
-    
+
     if not yaml_data:
         logger.debug(f"❌ Failed to load YAML data from {yaml_file}")
         return None

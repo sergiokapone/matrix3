@@ -1,21 +1,19 @@
 import shutil
-
 from pathlib import Path
+
 from tabulate import tabulate
 
-
-from core.models import WordPressPage
-from core.parse_index_links import parse_index_links
 from core.file_utils import load_yaml_data, save_wp_links_yaml
 from core.html_generator import generate_discipline_page, generate_index_page
+from core.logging_config import get_logger
+from core.models import WordPressPage
+from core.parse_index_links import parse_index_links
 from core.wordpress_client import WordPressClient
 from core.wordpress_uploader import (
     upload_all_pages,
     upload_discipline_page,
     upload_index,
 )
-
-from core.logging_config import get_logger
 
 logger = get_logger(__name__)
 
@@ -138,7 +136,7 @@ def handle_upload_discipline(
         wp_parent_id = yaml_data.get("metadata", {}).get("page_id")
         # Оттимуємо рік рограми
         programm_year=yaml_data.get("metadata", {}).get("year")
-        
+
         if not wp_parent_id:
             logger.debug("page_id not found in YAML metadata")
             return False

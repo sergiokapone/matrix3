@@ -1,11 +1,12 @@
-import sys
 import shlex
 import subprocess
+import sys
 from pathlib import Path
+
 from prompt_toolkit import PromptSession
 from prompt_toolkit.completion import NestedCompleter
-from core.config import AppConfig
 
+from core.config import AppConfig
 from core.logging_config import get_logger
 
 logger = get_logger (__name__)
@@ -72,7 +73,7 @@ def run_shell(yaml_file: str):
             except ValueError as e:
                 logger.error(f"Ошибка парсинга команды: {e}")
                 continue
-            
+
             cmd = [sys.executable, "cli.py", yaml_file] + argv
             subprocess.run(cmd)
 

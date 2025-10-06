@@ -2,24 +2,22 @@ import argparse
 import sys
 from pathlib import Path
 
+from requests.auth import HTTPBasicAuth
 
 from core.config import AppConfig, WordPressConfig
 from core.handlers import (
     clean_output_directory,
     handle_dir_discipline,
-    handle_generate_single_discipline,
     handle_generate_all_disciplines,
+    handle_generate_index,
+    handle_generate_single_discipline,
+    handle_parse_index_links,
     handle_upload_all_disciplines,
     handle_upload_discipline,
     handle_upload_index,
-    handle_generate_index,
-    handle_parse_index_links,
 )
-
+from core.logging_config import get_logger
 from core.wordpress_client import WordPressClient
-from requests.auth import HTTPBasicAuth
-
-from core.logging_config import setup_logging, get_logger
 
 
 def create_wordpress_client():

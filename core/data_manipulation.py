@@ -3,9 +3,8 @@ from pathlib import Path
 from core.config import AppConfig
 from core.exceptions import DisciplineGeneratorError
 from core.file_utils import load_yaml_data
-from core.validators import validate_yaml_schema
-
 from core.logging_config import get_logger
+from core.validators import validate_yaml_schema
 
 logger = get_logger(__name__)
 

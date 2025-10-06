@@ -1,14 +1,15 @@
 # tests/test_wordpress_client.py
-import sys
 import os
+import sys
+
 import pytest
 import responses
 from requests.auth import HTTPBasicAuth
 
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
-from core.wordpress_client import WordPressClient
 from core.config import WordPressConfig
+from core.wordpress_client import WordPressClient
 
 
 class TestWordPressConfig:

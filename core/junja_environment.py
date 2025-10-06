@@ -1,8 +1,7 @@
 from jinja2 import Environment, FileSystemLoader
 
-from core.exceptions import TemplateRenderError
-
 from core.config import AppConfig
+from core.exceptions import TemplateRenderError
 
 config = AppConfig()
 

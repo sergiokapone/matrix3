@@ -63,6 +63,9 @@
         {% if discipline.online_resources %}
             <p><strong>Розміщення курсу:</strong> <a href="{{ discipline.online_resources }}" target="_blank">Переглянути</a></p>
         {% endif %}
+        {% if discipline.outside_resources %}
+            <p><strong>Додаткові ресурси:</strong> <a href="{{ discipline.outside_resources }}" target="_blank">Переглянути</a></p>
+        {% endif %}
     </div>
 
     <!-- Структура курсу -->

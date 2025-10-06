@@ -21,6 +21,7 @@ config = AppConfig()
 def upload_discipline_page(
     discipline_code: str,
     discipline_info: dict,
+    programm_year: str,
     parent_id: int,
     client: WordPressClient,
 ) -> WordPressPage | None:
@@ -29,7 +30,7 @@ def upload_discipline_page(
         # Формуємо title та slug
         discipline_code_safe = get_safe_filename(discipline_code)
         title = f"{discipline_code}: {discipline_info['name']}"
-        slug = slugify(f"{discipline_code_safe}: {discipline_info['name']}")
+        slug = slugify(f"{discipline_code_safe}: {discipline_info['name']}-{programm_year}")
 
         # Шлях до HTML файлу
         html_file = config.output_dir / f"{discipline_code_safe}.html"
@@ -93,6 +94,10 @@ def upload_all_pages(
 
     # Завантажуємо дані з YAML
     yaml_data = load_yaml_data(yaml_file)
+    
+    # Отримуємо рік дисципліни для slug
+    programm_year = yaml_data.get('metadata').get('year')
+    
     if not yaml_data:
         logger.debug(f"❌ Failed to load YAML data from {yaml_file}")
         return None
@@ -118,6 +123,7 @@ def upload_all_pages(
             discipline_code=discipline_code,
             discipline_info=discipline_info,
             parent_id=yaml_data["metadata"]["page_id"],
+            programm_year=programm_year,
             client=client,
         )
         logger.info(f"[{i}/{total}] Generating {discipline_code}...")

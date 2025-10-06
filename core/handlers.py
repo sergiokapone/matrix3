@@ -136,6 +136,9 @@ def handle_upload_discipline(
 
         # Отримуємо parent_id з метаданих
         wp_parent_id = yaml_data.get("metadata", {}).get("page_id")
+        # Оттимуємо рік рограми
+        programm_year=yaml_data.get("metadata", {}).get("year")
+        
         if not wp_parent_id:
             logger.debug("page_id not found in YAML metadata")
             return False
@@ -156,6 +159,7 @@ def handle_upload_discipline(
         page = upload_discipline_page(
             discipline_code=discipline_code,
             discipline_info=all_disciplines[discipline_code],
+            programm_year=programm_year,
             parent_id=wp_parent_id,
             client=client,
         )

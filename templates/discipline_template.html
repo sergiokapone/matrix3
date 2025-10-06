@@ -2,7 +2,7 @@
     <!-- Блок контексту програми -->
     <div class="program-card">
         {% if metadata.website %}
-            <p><strong>Освітня програма:</strong> <a href="{{ metadata.website }}" target="_blank">Переглянути</a></p>
+            <p><strong>Освітня програма:</strong> <a href="{{ metadata.website }}" target="_blank" rel="noopener">Переглянути</a></p>
         {% endif %}
         <p><strong>Рівень освіти:</strong> {{ metadata.degree }}</p>
         <p><strong>Рік програми:</strong> {{ metadata.year }}</p>
@@ -21,7 +21,7 @@
     {% if discipline.lecturer %}
         <div class="lecturer-card">
             <div class="lecturer-photo">
-                <img src="{{ discipline.lecturer.photo_url }}" alt="Фото лектора {{ discipline.lecturer.full_name }}">
+                <img src="{{ discipline.lecturer.photo_url }}" alt="Фото лектора {{ discipline.lecturer.full_name }}" loading="lazy">
             </div>
             <div class="lecturer-info">
                 <div class="lecturer-line">
@@ -33,9 +33,9 @@
                     {% if discipline.lecturer.rank %}
                         {% set _ = parts.append(discipline.lecturer.rank) %}
                     {% endif %}
-                    {{ parts|join(', ') }}{% if parts %} {% endif %}
+                    {% if parts %}{{ parts|join(', ') }} {% endif %}
                     {% if discipline.lecturer.profile_url %}
-                        <a href="{{ discipline.lecturer.profile_url }}" target="_blank">{{ discipline.lecturer.full_name }}</a>
+                        <a href="{{ discipline.lecturer.profile_url }}" target="_blank" rel="noopener">{{ discipline.lecturer.full_name }}</a>
                     {% else %}
                         {{ discipline.lecturer.full_name }}
                     {% endif %}
@@ -50,21 +50,19 @@
             <p><strong>Кредити ЄКТС:</strong> {{ discipline.credits }}</p>
         {% endif %}
         {% if discipline.controls %}
-            {% set controls = [] %}
-            {% for  conntrol in discipline.controls %}
-            {% set _ = controls.append(conntrol) %}
-            {% endfor %}
-            <p><strong>Види контролю:</strong> {{ controls|join(', ') }}{% if parts %} {% endif %}
+            <p><strong>Види контролю:</strong> {{ discipline.controls|join(', ') }}</p>
         {% endif %}
-        <p><strong>Форма підсумкового контролю:</strong> {{ discipline.control }}</p>
+        {% if discipline.control %}
+            <p><strong>Форма семестрового контролю:</strong> <a href="https://kpi.ua/grading" target="_blank" rel="noopener">{{ discipline.control }}</a></p>
+        {% endif %}
         {% if discipline.syllabus_url %}
-            <p><strong>Силабус:</strong> <a href="{{ discipline.syllabus_url }}" target="_blank">Завантажити</a></p>
+            <p><strong>Силабус:</strong> <a href="{{ discipline.syllabus_url }}" target="_blank" rel="noopener">Завантажити</a></p>
         {% endif %}
         {% if discipline.online_resources %}
-            <p><strong>Розміщення курсу:</strong> <a href="{{ discipline.online_resources }}" target="_blank">Переглянути</a></p>
+            <p><strong>Розміщення курсу:</strong> <a href="{{ discipline.online_resources }}" target="_blank" rel="noopener">Переглянути</a></p>
         {% endif %}
         {% if discipline.outside_resources %}
-            <p><strong>Додаткові ресурси:</strong> <a href="{{ discipline.outside_resources }}" target="_blank">Переглянути</a></p>
+            <p><strong>Додаткові ресурси:</strong> <a href="{{ discipline.outside_resources }}" target="_blank" rel="noopener">Переглянути</a></p>
         {% endif %}
     </div>
 
@@ -77,7 +75,7 @@
                     <h3>{{ sub_code }}: {{ subdiscipline.name }}</h3>
                     <p><strong>Кредити:</strong> {{ subdiscipline.credits }} ЄКТС | <strong>Контроль:</strong> {{ subdiscipline.control }}</p>
                     {% if subdiscipline.syllabus_url %}
-                        <p><strong>Силабус:</strong> <a href="{{ subdiscipline.syllabus_url }}" target="_blank">Завантажити</a></p>
+                        <p><strong>Силабус:</strong> <a href="{{ subdiscipline.syllabus_url }}" target="_blank" rel="noopener">Завантажити</a></p>
                     {% endif %}
                 </div>
             {% endfor %}
@@ -87,20 +85,14 @@
     <!-- Зміст дисципліни -->
     {% if discipline.content %}
         <h2>Зміст дисципліни</h2>
-        <div style="
-                    border: 1px solid #ccc;
-                    border-radius: 8px;
-                    padding: 12px;
-                    margin: 8px 0;
-                    background-color: #f9f9f9;
-                    box-shadow: 2px 2px 6px rgba(0,0,0,0.1);">
+        <div class="content-wrapper">
             {% for section in discipline.content %}
-                <div>
-                    <h3 style="margin-top: 0; color: #2c3e50;">{{ section.title }}</h3>
+                <div class="content-section">
+                    <h3 class="content-section-title">{{ section.title }}</h3>
                     {% if section.topics %}
-                        <ul style="list-style-type: disc; padding-left: 32px; margin: 4px 0 0 0;">
+                        <ul class="content-topics">
                             {% for topic in section.topics %}
-                                <li style="margin-bottom: 4px; color: #34495e;">{{ topic }}</li>
+                                <li>{{ topic }}</li>
                             {% endfor %}
                         </ul>
                     {% endif %}
@@ -156,7 +148,6 @@
         line-height: 1.6;
     }
 
-    /* --- інші стилі залишено без змін --- */
     .discipline-card p {
 		margin: 0 0 10px 0;
     }
@@ -241,18 +232,33 @@
 
     .competencies-list li {
         margin: 10px 0;
+        transition: all 0.2s ease;
     }
 
     .general-competencies li {
         border-left: 3px solid #28a745;
         padding-left: 10px;
         margin-left: 10px;
+        border-radius: 4px;
+    }
+
+    .general-competencies li:hover {
+        background-color: #d4edda;
+        padding-left: 14px;
+        box-shadow: 0 2px 4px rgba(40, 167, 69, 0.2);
     }
 
     .professional-competencies li {
         border-left: 3px solid #007bff;
         padding-left: 10px;
         margin-left: 10px;
+        border-radius: 4px;
+    }
+
+    .professional-competencies li:hover {
+        background-color: #cce5ff;
+        padding-left: 14px;
+        box-shadow: 0 2px 4px rgba(0, 123, 255, 0.2);
     }
 
     .program-results {
@@ -265,6 +271,14 @@
         border-left: 3px solid #ffc107;
         padding-left: 10px;
         margin-left: 10px;
+        border-radius: 4px;
+        transition: all 0.2s ease;
+    }
+
+    .program-results li:hover {
+        background-color: #fff3cd;
+        padding-left: 14px;
+        box-shadow: 0 2px 4px rgba(255, 193, 7, 0.2);
     }
 
     .additional-info {
@@ -324,7 +338,7 @@
     .lecturer-photo {
         width: 120px;
         height: 120px;
-        flex-shrink: 0;      /* фиксируем размер в flex */
+        flex-shrink: 0;
         overflow: hidden;
         border-radius: 50%;
         border: 2px solid #007cba;
@@ -345,5 +359,78 @@
         margin: 0;
         display: inline-block;
     }
-</style>
 
+    /* Зміст дисципліни */
+    .content-wrapper {
+        border: 1px solid #dee2e6;
+        border-radius: 8px;
+        padding: 0;
+        margin: 16px 0;
+        background-color: #ffffff;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        overflow: hidden;
+    }
+
+    .content-section {
+        padding: 16px 20px;
+        border-bottom: 1px solid #e9ecef;
+        transition: background-color 0.2s ease;
+    }
+
+    .content-section:last-child {
+        border-bottom: none;
+    }
+
+    .content-section:hover {
+        background-color: #f8f9fa;
+    }
+
+    .content-section-title {
+        margin: 0 0 8px 0;
+        color: #2c3e50;
+        font-size: 1.1em;
+        font-weight: 600;
+        padding-left: 12px;
+        border-left: 4px solid #007cba;
+    }
+
+    .content-topics {
+        list-style: none !important;
+        padding-left: 0 !important;
+        margin: 0 !important;
+    }
+
+    .content-topics li {
+        padding: 4px 12px 4px 32px !important;
+        margin-bottom: 2px !important;
+        color: #495057;
+        line-height: 1.5;
+        position: relative;
+        border-radius: 4px;
+        transition: all 0.2s ease;
+        list-style: none !important;
+    }
+
+    .content-topics li::marker {
+        content: none !important;
+        display: none !important;
+    }
+
+    .content-topics li:before {
+        content: "▸" !important;
+        position: absolute;
+        left: 12px;
+        color: #007cba;
+        font-weight: bold;
+    }
+
+    .content-topics li:hover {
+        background-color: #e3f2fd;
+        padding-left: 36px;
+        color: #2c3e50;
+    }
+
+    .content-topics li:last-child {
+        margin-bottom: 0;
+    }
+</style>

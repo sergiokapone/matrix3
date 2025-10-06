@@ -29,6 +29,7 @@ def create_wordpress_client() -> Warning:
 logger = get_logger(__name__)
 
 client = create_wordpress_client()
+
 config = AppConfig()
 
 

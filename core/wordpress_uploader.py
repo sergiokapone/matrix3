@@ -31,7 +31,9 @@ def upload_discipline_page(
         # Формуємо title та slug
         discipline_code_safe = get_safe_filename(discipline_code)
         title = f"{discipline_code}: {discipline_info['name']}"
-        slug = slugify(f"{discipline_code_safe}: {discipline_info['name']}-{programm_year}")
+        slug = slugify(
+            f"{discipline_code_safe}: {discipline_info['name']}-{programm_year}"
+        )
 
         # Шлях до HTML файлу
         html_file = config.output_dir / f"{discipline_code_safe}.html"
@@ -53,7 +55,7 @@ def upload_discipline_page(
         }
 
         # Шукаємо існуючу сторінку
-        existing_page = client.get_page_by_slug(slug)
+        existing_page = client.get_page_by_slug(slug, parent_id=parent_id)
 
         if existing_page:
             # Оновлюємо існуючу сторінку

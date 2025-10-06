@@ -27,12 +27,50 @@ class WordPressClient:
         response = self._request("GET", f"pages/{page_id}")
         return response.json() if response.status_code == 200 else None
 
-    def get_page_by_slug(self, slug: str) -> dict | None:
-        """Отримує сторінку за slug"""
-        # response = requests('GET', self.api_url, params={"slug": slug}, auth=self.auth, timeout=30)
-        response = self._request("GET", "pages", params={"slug": slug})
+    # def get_page_by_slug(self, slug: str) -> dict | None:
+    #     """Отримує сторінку за slug"""
+    #     response = self._request("GET", "pages", params={"slug": slug})
+    #     pages = response.json()
+    #     return pages[0] if pages and response.status_code == 200 else None
+
+    def get_page_by_slug(
+        self,
+        slug: str,
+        parent_id: int | None = None,
+        status: str = "publish",
+        pick_latest: bool = True,
+    ) -> dict | None:
+        """
+        Отримує сторінку за slug, інтелігентно обираючи при дублікатах.
+
+        Args:
+            slug (str): slug сторінки
+            parent_id (int | None): якщо вказано, фільтруємо по батьківській сторінці
+            status (str): статус сторінки ("publish", "draft" і т.д.)
+            pick_latest (bool): якщо True, беремо найновішу сторінку; інакше найстарішу
+
+        Returns:
+            dict | None: знайдена сторінка або None
+        """
+        response = self._request(
+            "GET", "pages", params={"slug": slug, "status": status}
+        )
+        if response.status_code != 200:
+            return None
+
         pages = response.json()
-        return pages[0] if pages and response.status_code == 200 else None
+
+        # Фільтруємо по батьківській сторінці
+        if parent_id is not None:
+            pages = [p for p in pages if p.get("parent") == parent_id]
+
+        if not pages:
+            return None
+
+        # Сортуємо по даті публікації
+        pages.sort(key=lambda p: p.get("date"), reverse=pick_latest)
+
+        return pages[0]
 
     def create_page(self, data: dict) -> dict | None:
         """Створює нову сторінку"""

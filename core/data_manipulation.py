@@ -85,8 +85,9 @@ def load_discipline_data(
                 content = discipline_content[discipline_id]
                 discipline["description"] = content.get("description")
                 discipline["content"] = content.get("sections", [])
+                discipline["outside_resources"] = content.get("outside_resources", [])
             else:
-                logger.debug("Discipline Id not found", discipline_id=discipline_id)
+                logger.debug("Discipline ID not found", discipline_id=discipline_id)
 
         return data, discipline
 

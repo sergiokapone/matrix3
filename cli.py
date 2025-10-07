@@ -115,6 +115,7 @@ def handle_scenario(
 
 def dispatch_command(args: str, yaml_file: Path, client: WordPressClient) -> None:
     output_dir = config.output_dir
+    report_dir = config.report_dir
 
     match args.command:
         case "generate":
@@ -124,7 +125,7 @@ def dispatch_command(args: str, yaml_file: Path, client: WordPressClient) -> Non
         case "index":
             handle_index(args, yaml_file, client, output_dir)
         case "report":
-            handle_report(args, yaml_file, output_dir)
+            handle_report(args, yaml_file, report_dir)
         case "dir":
             handle_dir_discipline(yaml_file)
         case "clean":

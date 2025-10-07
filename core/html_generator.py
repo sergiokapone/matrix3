@@ -1,4 +1,4 @@
-import webbrowser
+# import webbrowser
 from datetime import datetime
 from pathlib import Path
 
@@ -51,8 +51,8 @@ def generate_html_report(
     output_filename = get_safe_filename(output_filename)
     save_html_file(html_content, output_filename)
 
-    webbrowser.open(f"file://{Path(output_filename).absolute()}")
-    logger.info(f"📊 HTML звіт відкрито в браузері: {output_filename}")
+    # webbrowser.open(f"file://{Path(output_filename).absolute()}")
+    # logger.info(f"📊 HTML звіт відкрито в браузері: {output_filename}")
 
     logger.debug("report page created")
     return True

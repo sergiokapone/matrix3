@@ -17,8 +17,46 @@ from core.wordpress_uploader import (
 
 logger = get_logger(__name__)
 
+# ==================================================================================
+# Утиліти
+# ==================================================================================
+
+
+def clean_output_directory(output_dir: Path | None = None) -> None:
+    """
+    Видаляє директорію з усім вмістом.
+    """
+    if output_dir is None:
+        logger.warning("⚠️ Директорія не вказана — видалення пропущено")
+        return
+
+    path = Path(output_dir)
+
+    if not path.exists():
+        logger.debug(f"Директорія {path} не існує, нічого видаляти")
+        return
+
+    try:
+        shutil.rmtree(path)
+        logger.debug(f"Директорія {path} успішно видалена")
+    except Exception as e:
+        logger.error(f"Помилка при видаленні {path}: {e}")
+        raise
+
 
 def handle_dir_discipline(yaml_file: str | Path, max_len: int = 80) -> None:
+    """
+    Вводить таблицю з кодом дисципліни, її назвою, роком навчання та рівнем освіти.
+
+    Args:
+        yaml_file (str | Path): Шлях до YAML-файлу з даними про дисципліни.
+        max_len (int, optional): Максимальна довжина назви дисципліни. Якщо назва перевищує
+            цей ліміт, вона буде обрізана та доповнена трьома крапками. За замовчуванням 80.
+
+    Returns:
+        None: Функція нічого не повертає, лише виводить таблицю у консоль.
+    """
+
     data = load_yaml_data(yaml_file)
     all_disciplines = data.get("disciplines", {}).copy()
     if "elevative_disciplines" in data:
@@ -41,9 +79,9 @@ def handle_dir_discipline(yaml_file: str | Path, max_len: int = 80) -> None:
     print(tabulate(table_data, headers=headers, tablefmt="grid"))
 
 
-# =========================
+# ==================================================================================
 # Handlers для створення сторінок
-# =========================
+# ==================================================================================
 
 
 def handle_generate_single_discipline(
@@ -90,39 +128,9 @@ def handle_generate_all_disciplines(yaml_file: Path, output_dir: Path) -> dict:
     return results
 
 
-def handle_generate_index(
-    yaml_file: str | Path, output_file: str = "index.html"
-) -> bool:
-    """CLI хендлер для генерації індексної сторінки зі списком дисциплін"""
-
-    logger.debug(f"📄 Generating index page from: {yaml_file}")
-    logger.debug(f"📁 Output: {output_file}")
-
-    try:
-        # Генеруємо індексну сторінку
-        generate_index_page(str(yaml_file), str(output_file))
-        logger.debug("Index page generated successfully!")
-        return True
-
-    except Exception as e:
-        logger.debug(f"Failed to generate index page: {e}")
-        return False
-
-
-def handle_parse_index_links(yaml_file: str | Path) -> bool:
-    """CLI хендлер для заміни локальних посилань на WordPress посилання"""
-
-    try:
-        result = parse_index_links(str(yaml_file))
-        return result
-    except Exception as e:
-        logger.error(f"Failed to parse links: {e}")
-        return False
-
-
-# =========================
+# ==================================================================================
 # Handlers для завантаження сторінок
-# =========================
+# ==================================================================================
 
 
 def handle_upload_discipline(
@@ -204,6 +212,46 @@ def handle_upload_all_disciplines(
         return False
 
 
+# ==================================================================================
+# Handler для створення індексу
+# ==================================================================================
+
+
+def handle_generate_index(
+    yaml_file: str | Path, output_file: str = "index.html"
+) -> bool:
+    """CLI хендлер для генерації індексної сторінки зі списком дисциплін"""
+
+    logger.debug(f"📄 Generating index page from: {yaml_file}")
+    logger.debug(f"📁 Output: {output_file}")
+
+    try:
+        # Генеруємо індексну сторінку
+        generate_index_page(str(yaml_file), str(output_file))
+        logger.debug("Index page generated successfully!")
+        return True
+
+    except Exception as e:
+        logger.debug(f"Failed to generate index page: {e}")
+        return False
+
+
+def handle_parse_index_links(yaml_file: str | Path) -> bool:
+    """CLI хендлер для заміни локальних посилань на WordPress посилання"""
+
+    try:
+        result = parse_index_links(str(yaml_file))
+        return result
+    except Exception as e:
+        logger.error(f"Failed to parse links: {e}")
+        return False
+
+
+# ==================================================================================
+# Handler для завантаження індексу
+# ==================================================================================
+
+
 def handle_upload_index(
     yaml_file: str | Path, client: WordPressClient
 ) -> WordPressPage | None:
@@ -228,25 +276,3 @@ def handle_upload_index(
         logger.error("Не удалось загрузить индексную страницу")
 
     return page
-
-
-def clean_output_directory(output_dir: Path | None = None) -> None:
-    """
-    Видаляє директорію з усім вмістом.
-    """
-    if output_dir is None:
-        logger.warning("⚠️ Директорія не вказана — видалення пропущено")
-        return
-
-    path = Path(output_dir)
-
-    if not path.exists():
-        logger.debug(f"Директорія {path} не існує, нічого видаляти")
-        return
-
-    try:
-        shutil.rmtree(path)
-        logger.debug(f"Директорія {path} успішно видалена")
-    except Exception as e:
-        logger.error(f"Помилка при видаленні {path}: {e}")
-        raise

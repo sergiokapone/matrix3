@@ -1,3 +1,5 @@
+import webbrowser
+from datetime import datetime
 from pathlib import Path
 
 from core.config import AppConfig
@@ -15,6 +17,45 @@ from core.validators import validate_yaml_schema
 logger = get_logger(__name__)
 
 config = AppConfig()
+
+
+def generate_html_report(
+    yaml_file: str,
+    output_filename: str | None = None,
+    template_filename: str = "report_template.html",
+) -> None:
+    """Генеррує звітні таблиці по компетенціям та програмним результатам навчання"""
+    config = load_yaml_data(yaml_file)
+
+    disciplines = config["disciplines"]
+    competencies = config["competencies"]
+    program_results = config["program_results"]
+    mappings = config.get("mappings", {})
+    metadata = config.get("metadata", {})
+    unfilled_disciplines = [code for code in disciplines if code not in mappings]
+
+    context = {
+        "metadata": metadata,
+        "disciplines": disciplines,
+        "competencies": competencies,
+        "program_results": program_results,
+        "mappings": mappings,
+        "unfilled_disciplines": unfilled_disciplines,
+        "generated_at": datetime.now().strftime("%d.%m.%Y о %H:%M"),
+    }
+
+    # Генеруємо HTML контент
+    html_content = render_template(template_filename, context)
+
+    # Зберігаємо HTML файл
+    output_filename = get_safe_filename(output_filename)
+    save_html_file(html_content, output_filename)
+
+    webbrowser.open(f"file://{Path(output_filename).absolute()}")
+    logger.info(f"📊 HTML звіт відкрито в браузері: {output_filename}")
+
+    logger.debug("report page created")
+    return True
 
 
 def get_control_description(control_abbr: str, education_control: dict) -> str:

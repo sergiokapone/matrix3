@@ -36,6 +36,7 @@ class AppConfig:
     yaml_extra_data_folder: Path = Path("extra_data")
     template_dir: Path = Path("templates")
     output_dir: Path = Path("disciplines")
+    report_dir: Path = Path("reports")
     wp_links_dir: Path = Path("wp_links")
     lecturers_yaml: Path = yaml_extra_data_folder / "lecturers.yaml"
     discipline_content_yaml: Path = yaml_extra_data_folder / "discipline_content.yaml"

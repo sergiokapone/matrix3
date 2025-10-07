@@ -10,6 +10,7 @@ from core.handlers import (
     handle_dir_discipline,
     handle_generate_all_disciplines,
     handle_generate_index,
+    handle_generate_report,
     handle_generate_single_discipline,
     handle_parse_index_links,
     handle_upload_all_disciplines,
@@ -85,6 +86,11 @@ def handle_index(
         logger.info("Index file uploaded")
 
 
+def handle_report(args: str, yaml_file: Path, output_dir: Path) -> None:
+    handle_generate_report(yaml_file, output_dir / f"report_{yaml_file.stem}.html")
+    logger.info("Report file generated")
+
+
 def handle_scenario(
     args: str, yaml_file: Path, client: WordPressClient, output_dir: Path
 ) -> None:
@@ -95,7 +101,7 @@ def handle_scenario(
         handle_generate_all_disciplines(yaml_file, output_dir)
         logger.info("All disciplines generated")
 
-        wp_links_file = config.wp_links_dir / f"wp_links_{yaml_file.stem}.yaml"
+        wp_links_file = config.report_dir / f"wp_links_{yaml_file.stem}.yaml"
         handle_upload_all_disciplines(yaml_file, wp_links_file, client)
         logger.info("All disciplines uploaded")
 
@@ -117,6 +123,8 @@ def dispatch_command(args: str, yaml_file: Path, client: WordPressClient) -> Non
             handle_upload(args, yaml_file, client)
         case "index":
             handle_index(args, yaml_file, client, output_dir)
+        case "report":
+            handle_report(args, yaml_file, output_dir)
         case "dir":
             handle_dir_discipline(yaml_file)
         case "clean":
@@ -176,6 +184,12 @@ def build_parser() -> argparse.ArgumentParser:
     index_parser.add_argument(
         "--upload", "-u", action="store_true", help="Upload index page"
     )
+
+    # =========================
+    # report
+    # =========================
+
+    subparsers.add_parser("report", help="Create report page")
 
     # =========================
     # dir / clean

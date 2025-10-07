@@ -4,7 +4,11 @@ from pathlib import Path
 from tabulate import tabulate
 
 from core.file_utils import load_yaml_data, save_wp_links_yaml
-from core.html_generator import generate_discipline_page, generate_index_page
+from core.html_generator import (
+    generate_discipline_page,
+    generate_html_report,
+    generate_index_page,
+)
 from core.logging_config import get_logger
 from core.models import WordPressPage
 from core.parse_index_links import parse_index_links
@@ -77,6 +81,17 @@ def handle_dir_discipline(yaml_file: str | Path, max_len: int = 80) -> None:
         )
     headers = ["Код ", "Назва", "Рік", "Рівень"]
     print(tabulate(table_data, headers=headers, tablefmt="grid"))
+
+
+# ==================================================================================
+# Handler для створення звіту
+# ==================================================================================
+
+
+def handle_generate_report(yaml_file: str | Path, output_filename: Path) -> bool:
+    """CLI хендлер для генерації звітніх таблиць"""
+
+    return generate_html_report(str(yaml_file), str(output_filename))
 
 
 # ==================================================================================

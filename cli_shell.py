@@ -20,6 +20,7 @@ completer = NestedCompleter.from_nested_dict(
         "index": {"-g": None, "-p": None, "-u": None},
         "scenario": {"-f": None},
         "dir": None,
+        "report": None,
         "clean": None,
         "exit": None,
         "quit": None,

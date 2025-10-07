@@ -50,7 +50,12 @@
             <p><strong>Кредити ЄКТС:</strong> {{ discipline.credits }}</p>
         {% endif %}
         {% if discipline.controls %}
-            <p><strong>Види контролю:</strong> {{ discipline.controls|join(', ') }}</p>
+            <p><strong>Види контролю:</strong>
+                {%- for control_abbr in discipline.controls %}
+                    <span class="control-tooltip" title="{{ get_control_description(control_abbr) }}">{{ control_abbr }}</span>
+                    {%- if not loop.last %}, {% endif -%}
+                {%- endfor %}
+            </p>
         {% endif %}
         {% if discipline.control %}
             <p><strong>Форма семестрового контролю:</strong> <a href="https://kpi.ua/grading" target="_blank" rel="noopener">{{ discipline.control }}</a></p>
@@ -432,5 +437,15 @@
 
     .content-topics li:last-child {
         margin-bottom: 0;
+    }
+
+    .control-tooltip {
+        cursor: help;
+        border-bottom: 1px dotted #666;
+        position: relative;
+    }
+
+    .control-tooltip:hover {
+        color: #0066cc;
     }
 </style>

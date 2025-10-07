@@ -222,8 +222,8 @@ def handle_generate_index(
 ) -> bool:
     """CLI хендлер для генерації індексної сторінки зі списком дисциплін"""
 
-    logger.debug(f"📄 Generating index page from: {yaml_file}")
-    logger.debug(f"📁 Output: {output_file}")
+    logger.info(f"📄 Generating index page from: {yaml_file}")
+    logger.info(f"📁 Output: {output_file}")
 
     try:
         # Генеруємо індексну сторінку

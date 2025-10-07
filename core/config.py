@@ -39,6 +39,7 @@ class AppConfig:
     wp_links_dir: Path = Path("wp_links")
     lecturers_yaml: Path = yaml_extra_data_folder / "lecturers.yaml"
     discipline_content_yaml: Path = yaml_extra_data_folder / "discipline_content.yaml"
+    glossary_yaml: Path = yaml_extra_data_folder / "glossary.yaml"
 
     # def __post_init__(self):
     #     self.validate()

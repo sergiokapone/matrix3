@@ -1,5 +1,6 @@
 from pathlib import Path
 
+from core.config import AppConfig
 from core.data_manipulation import (
     get_mapped_competencies,
     get_mapped_program_results,
@@ -13,6 +14,25 @@ from core.validators import validate_yaml_schema
 
 logger = get_logger(__name__)
 
+config = AppConfig()
+
+
+def get_control_description(control_abbr: str, education_control: dict) -> str:
+    """Отримує опис виду контролю з YAML"""
+    CONTROL_MAPPING = {
+        "МКР": "modular_control_work",
+        "РР": "calculation_work",
+        "РГР": "calculation_work",
+        "Реферат": "essay_analytical_review",
+        "СР": "independent_work",
+    }
+    control_key = CONTROL_MAPPING.get(control_abbr)
+    if control_key and control_key in education_control:
+        name = education_control[control_key]["name"]
+        description = education_control[control_key]["description"]
+        return f"{name}: {description}"
+    return control_abbr
+
 
 def generate_discipline_page(
     yaml_file: str,
@@ -24,6 +44,8 @@ def generate_discipline_page(
 
     # Використовуємо load_discipline_data для завантаження даних
     data, discipline = load_discipline_data(yaml_file, discipline_code)
+
+    education_control = load_yaml_data(config.glossary_yaml)
 
     if data is None or discipline is None:
         logger.debug("Failed to load discipline data")
@@ -50,6 +72,10 @@ def generate_discipline_page(
         "general_competencies": general_comps,
         "professional_competencies": professional_comps,
         "mapped_program_results": program_results,
+        # Додаємо функцію в контекст
+        "get_control_description": lambda ctrl: get_control_description(
+            ctrl, education_control
+        ),
     }
 
     # Генеруємо HTML контент

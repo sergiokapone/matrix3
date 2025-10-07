@@ -45,6 +45,7 @@
     {% endif %}
 
     <!-- Картка інформації про дисципліну -->
+    {% if discipline.syllabus_url %}
     <div class="discipline-card">
         {% if discipline.credits %}
             <p><strong>Кредити ЄКТС:</strong> {{ discipline.credits }}</p>
@@ -60,16 +61,15 @@
         {% if discipline.control %}
             <p><strong>Форма семестрового контролю:</strong> <a href="https://kpi.ua/grading" target="_blank" rel="noopener">{{ discipline.control }}</a></p>
         {% endif %}
-        {% if discipline.syllabus_url %}
             <p><strong>Силабус:</strong> <a href="{{ discipline.syllabus_url }}" target="_blank" rel="noopener">Завантажити</a></p>
-        {% endif %}
-        {% if discipline.online_resources %}
+            {% if discipline.online_resources %}
             <p><strong>Розміщення курсу:</strong> <a href="{{ discipline.online_resources }}" target="_blank" rel="noopener">Переглянути</a></p>
-        {% endif %}
-        {% if discipline.outside_resources %}
+            {% endif %}
+            {% if discipline.outside_resources %}
             <p><strong>Додаткові ресурси:</strong> <a href="{{ discipline.outside_resources }}" target="_blank" rel="noopener">Переглянути</a></p>
+            {% endif %}
+        </div>
         {% endif %}
-    </div>
 
     <!-- Структура курсу -->
     {% if discipline.subdisciplines %}

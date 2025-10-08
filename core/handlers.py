@@ -9,6 +9,7 @@ from core.html_generator import (
     generate_html_report,
     generate_index_page,
 )
+from core.excel_exporter import generate_excel_report
 from core.logging_config import get_logger
 from core.models import WordPressPage
 from core.parse_index_links import parse_index_links
@@ -84,7 +85,7 @@ def handle_dir_discipline(yaml_file: str | Path, max_len: int = 80) -> None:
 
 
 # ==================================================================================
-# Handler для створення звіту
+# Handlers для створення звіту
 # ==================================================================================
 
 
@@ -92,6 +93,12 @@ def handle_generate_report(yaml_file: str | Path, output_filename: Path) -> bool
     """CLI хендлер для генерації звітніх таблиць"""
 
     return generate_html_report(str(yaml_file), str(output_filename))
+
+
+def handle_generate_excel(yaml_file: str | Path, output_filename: Path) -> bool:
+    """CLI хендлер для генерації звітніх таблиць в excel"""
+
+    return generate_excel_report(str(yaml_file), str(output_filename))
 
 
 # ==================================================================================

@@ -3,10 +3,13 @@ from pathlib import Path
 import pandas as pd
 
 from core.file_utils import load_yaml_data
+from core.logging_config import get_logger
+
+logger = get_logger(__name__)
 
 
-def generate_matrices_from_yaml(
-    yaml_file: str | Path = "curriculum.yaml", output_file: str | Path = "matrices.xlsx"
+def generate_excel_report(
+    yaml_file: str, output_file: str | Path = "matrices.xlsx"
 ) -> None:
     """
     Генерує Excel файл з матрицями компетенцій та програмних результатів на основі YAML конфігу
@@ -115,7 +118,7 @@ def generate_matrices_from_yaml(
         worksheet.column_dimensions["E"].width = 15  # Кількість компетенцій
         worksheet.column_dimensions["F"].width = 15  # Кількість ПРН
 
-    logger.info("✅ Матриці згенеровано: {output_file}")
-    logger.info("📊 Компетенції: {len(competencies)} x {len(disciplines)}")
-    logger.info("📊 Програмні результати: {len(program_results)} x {len(disciplines)}")
-    logger.info("📋 Зведена таблиця: {len(disciplines)} дисциплін")
+    logger.info(f"✅ Матриці згенеровано: {output_file}")
+    logger.info(f"📊 Компетенції: {len(competencies)} x {len(disciplines)}")
+    logger.info(f"📊 Програмні результати: {len(program_results)} x {len(disciplines)}")
+    logger.info(f"📋 Зведена таблиця: {len(disciplines)} дисциплін")

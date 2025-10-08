@@ -9,6 +9,7 @@ from core.handlers import (
     clean_output_directory,
     handle_dir_discipline,
     handle_generate_all_disciplines,
+    handle_generate_excel,
     handle_generate_index,
     handle_generate_report,
     handle_generate_single_discipline,
@@ -86,9 +87,14 @@ def handle_index(
         logger.info("Index file uploaded")
 
 
-def handle_report(args: str, yaml_file: Path, output_dir: Path) -> None:
+def handle_report(yaml_file: Path, output_dir: Path) -> None:
     handle_generate_report(yaml_file, output_dir / f"report_{yaml_file.stem}.html")
     logger.info("Report file generated")
+
+
+def handle_excel(yaml_file: Path, output_dir: Path) -> None:
+    handle_generate_excel(yaml_file, output_dir / f"report_{yaml_file.stem}.xlsx")
+    logger.info("Excell report file generated")
 
 
 def handle_scenario(
@@ -126,6 +132,8 @@ def dispatch_command(args: str, yaml_file: Path, client: WordPressClient) -> Non
             handle_index(args, yaml_file, client, output_dir)
         case "report":
             handle_report(args, yaml_file, report_dir)
+        case "excel":
+            handle_excel(yaml_file, report_dir)
         case "dir":
             handle_dir_discipline(yaml_file)
         case "clean":
@@ -191,6 +199,7 @@ def build_parser() -> argparse.ArgumentParser:
     # =========================
 
     subparsers.add_parser("report", help="Create report page")
+    subparsers.add_parser("excel", help="Create excel report page")
 
     # =========================
     # dir / clean

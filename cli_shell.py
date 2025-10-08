@@ -21,6 +21,7 @@ completer = NestedCompleter.from_nested_dict(
         "scenario": {"-f": None},
         "dir": None,
         "report": None,
+        "excel": None,
         "clean": None,
         "exit": None,
         "quit": None,

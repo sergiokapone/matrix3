@@ -32,7 +32,7 @@ def choose_yaml_file() -> str:
     """Выбор YAML-файла из папки, указанной в config.yaml_data_folder"""
     folder: Path = config.yaml_data_folder
     if not folder.exists() or not folder.is_dir():
-        print(f"Папка {folder} не существует или не является директорией.")
+        logger.info(f"Папка {folder} не существует или не является директорией.")
         sys.exit(1)
 
     # Получаем список всех yaml файлов
@@ -41,7 +41,7 @@ def choose_yaml_file() -> str:
         print(f"В папці {folder} нема YAML-файлів.")
         sys.exit(1)
 
-    print("Доступні YAML-файли:")
+    logger.info("Доступні YAML-файли:")
     for i, f in enumerate(yaml_files, 1):
         print(f"{i}. {f.name}")  # показываем только имя файла
 
@@ -51,7 +51,7 @@ def choose_yaml_file() -> str:
             idx = int(choice) - 1
             if 0 <= idx < len(yaml_files):
                 return str(yaml_files[idx])  # возвращаем путь в виде строки
-        print("Неправильний вибір, спробуйте знову.")
+        logger.info("Неправильний вибір, спробуйте знову.")
 
 
 def run_shell(yaml_file: str) -> None:
@@ -72,7 +72,7 @@ def run_shell(yaml_file: str) -> None:
             try:
                 argv = shlex.split(text)
             except ValueError as e:
-                logger.error(f"Ошибка парсинга команды: {e}")
+                logger.error(f"Помилка парсингу команди: {e}")
                 continue
 
             cmd = [sys.executable, "cli.py", yaml_file] + argv

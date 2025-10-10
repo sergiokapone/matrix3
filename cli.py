@@ -61,7 +61,6 @@ def handle_generate(args: str, yaml_file: Path, output_dir: Path) -> None:
 def handle_upload(args: str, yaml_file: Path, client: WordPressClient) -> None:
     if args.all:
         wp_links_file = config.wp_links_dir / f"wp_links_{yaml_file.stem}.yaml"
-        print("===>>>>", wp_links_file)
         handle_upload_all_disciplines(yaml_file, wp_links_file, client)
         logger.info("All disciplines uploaded")
     elif args.discipline:
@@ -120,7 +119,80 @@ def handle_scenario(
         logger.error("Specify --full for scenario")
 
 
+# ==================================================================================
+# Handler для завантаження всього
+# ==================================================================================
+
+
+def handle_all(
+    args: argparse.Namespace,
+    folder: Path,
+    output_dir: Path,
+    report_dir: Path,
+    client: WordPressClient,
+) -> None:
+    """Обрабатывает все YAML файлы в указанной папке"""
+
+    if not folder.exists() or not folder.is_dir():
+        logger.error(f"Folder not found: {folder}")
+        return
+
+    yaml_files = list(folder.glob("*.yaml")) + list(folder.glob("*.yml"))
+
+    if not yaml_files:
+        logger.warning(f"No YAML files found in {folder}")
+        return
+
+    logger.info(f"Found {len(yaml_files)} YAML files to process")
+
+    for i, yaml_file in enumerate(yaml_files, 1):
+        logger.info(f"[{i}/{len(yaml_files)}] Processing {yaml_file.name}...")
+
+        try:
+            # Очистка папки перед каждым файлом
+            clean_output_directory(output_dir)
+            logger.info("Output directory cleaned")
+
+            # Генерация всех дисциплин
+            handle_generate_all_disciplines(yaml_file, output_dir)
+            logger.info(f"All disciplines generated for {yaml_file.name}")
+
+            # Генерация индекса
+            handle_generate_index(yaml_file, output_dir / "index.html")
+            logger.info(f"Index generated for {yaml_file.name}")
+
+            # Загрузка дисциплин на WordPress
+            if getattr(args, "upload", False):
+                wp_links_file = config.wp_links_dir / f"wp_links_{yaml_file.stem}.yaml"
+                handle_upload_all_disciplines(yaml_file, wp_links_file, client)
+                logger.info(f"All disciplines uploaded for {yaml_file.name}")
+
+                # Парсинг ссылок из WordPress
+                handle_parse_index_links(yaml_file)
+                logger.info(f"Index links parsed for {yaml_file.name}")
+
+                # Загрузка индекса
+                handle_upload_index(yaml_file, client)
+                logger.info(f"Index uploaded for {yaml_file.name}")
+
+            # Генерация отчета (сохраняется в report_dir, не удаляется)
+            handle_generate_report(
+                yaml_file, report_dir / f"report_{yaml_file.stem}.html"
+            )
+            logger.info(f"Report generated for {yaml_file.name}")
+
+            logger.info(f"Successfully processed {yaml_file.name}")
+
+        except Exception as e:
+            logger.error(f"Error processing {yaml_file.name}: {e}")
+            if not getattr(args, "continue_on_error", False):
+                raise
+
+    logger.info(f"All {len(yaml_files)} files processed successfully")
+
+
 def dispatch_command(args: str, yaml_file: Path, client: WordPressClient) -> None:
+    folder = config.yaml_data_folder
     output_dir = config.output_dir
     report_dir = config.report_dir
 
@@ -142,6 +214,8 @@ def dispatch_command(args: str, yaml_file: Path, client: WordPressClient) -> Non
             logger.info("Output directory cleaned")
         case "scenario":
             handle_scenario(args, yaml_file, client, output_dir)
+        case "all":
+            handle_all(args, folder, output_dir, report_dir, client)
         case _:
             logger.error(f"Unknown command: {args.command}")
 
@@ -217,6 +291,17 @@ def build_parser() -> argparse.ArgumentParser:
         "-f",
         action="store_true",
         help="Generate all, upload all, and rebuild index",
+    )
+
+    # =========================
+    # all (NEW)
+    # =========================
+    all_parser = subparsers.add_parser("all", help="Process all YAML files in folder")
+    all_parser.add_argument(
+        "--upload",
+        "-u",
+        action="store_true",
+        help="Upload generated content to WordPress",
     )
 
     return parser

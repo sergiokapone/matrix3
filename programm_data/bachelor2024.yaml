@@ -932,7 +932,7 @@ mappings:
       - ПРН 15
 
 elevative_disciplines:
-  ПВ 01:
+  ПВ 01.1:
     name: Термодинаміка газового потоку
     credits: 4.0
     control: Залік
@@ -940,7 +940,7 @@ elevative_disciplines:
     lecturer_id: gilchuk_av
     discipline_id: gas_flow
 
-  ПВ 01.1:
+  ПВ 01.2:
     name: Основи метрології в прикладній фізиці
     credits: 4.0
     control: Залік
@@ -948,12 +948,12 @@ elevative_disciplines:
     lecturer_id: negriiko_am
     discipline_id: metrology
 
-  ПВ 01.2:
+  ПВ 01.3:
     name: Органічна хімія живих систем
     credits: 4.0
     control: Залік
 
-  ПВ 02:
+  ПВ 02.1:
     name: Основи теплової енергетики
     credits: 4.0
     control: Залік
@@ -961,12 +961,12 @@ elevative_disciplines:
     lecturer_id: donyk_tv
     discipline_id: heat_energetics
 
-  ПВ 02.1:
+  ПВ 02.2:
     name: Основи нанобіотехнологій
     credits: 4.0
     control: Залік
 
-  ПВ 02.2:
+  ПВ 02.3:
     name: Фізика сучасних технологій та технологій майбутнього
     credits: 4.0
     control: Залік
@@ -974,22 +974,22 @@ elevative_disciplines:
     lecturer_id: monastyrsky_ge
     discipline_id: physics_modern_future_tech
 
-  ПВ 03:
+  ПВ 03.1:
     name: Основи електроніки
     credits: 4.0
     control: Залік
 
-  ПВ 03.1:
+  ПВ 03.2:
     name: "Електроніка: елементна база та ключові схеми"
     credits: 4.0
     control: Залік
 
-  ПВ 04:
+  ПВ 04.1:
     name: Моделювання та аналіз даних у фізиці
     credits: 4.0
     control: Залік
 
-  ПВ 04.1:
+  ПВ 04.2:
     name: Теорія теплопровідності
     credits: 4.0
     control: Залік
@@ -997,7 +997,7 @@ elevative_disciplines:
     lecturer_id: gilchuk_av
     discipline_id: thermal_conductivity
 
-  ПВ 04.2:
+  ПВ 04.3:
     name: Основи загальної біології
     credits: 4.0
     control: Залік
@@ -1005,7 +1005,7 @@ elevative_disciplines:
     lecturer_id: purnyn_oe
     discipline_id: gen_biology
 
-  ПВ 05:
+  ПВ 05.1:
     name: Гідродинаміка
     credits: 4.0
     control: Залік
@@ -1013,19 +1013,19 @@ elevative_disciplines:
     lecturer_id: dolgoshey_vb
     discipline_id: hydrodynamics
 
-  ПВ 05.1:
+  ПВ 05.2:
     name: Цифрова схемотехніка
     credits: 4.0
     control: Залік
     syllabus_url: https://drive.google.com/drive/u/4/folders/1DQ-JoZLoyE4PYdFJIeo_w4lgTfsod_HD
     discipline_id: digital_circuitry
 
-  ПВ 05.2:
+  ПВ 05.3:
     name: Електроніка для електрофізичних досліджень
     credits: 4.0
     control: Залік
 
-  ПВ 06:
+  ПВ 06.1:
     name: Основи конвективного теплообміну
     credits: 4.0
     control: Залік
@@ -1033,7 +1033,7 @@ elevative_disciplines:
     lecturer_id: xalatov_aa
     discipline_id: convective_heat_exchange
 
-  ПВ 06.1:
+  ПВ 06.2:
     name: Рентгенівські методи досліджень
     credits: 4.0
     control: Залік
@@ -1041,17 +1041,17 @@ elevative_disciplines:
     lecturer_id: zagorodniy_vv
     discipline_id: xray_methods
 
-  ПВ 06.2:
+  ПВ 06.3:
     name: Основи біохімії
     credits: 4.0
     control: Залік
 
-  ПВ 07:
+  ПВ 07.1:
     name: Фізика ядерної та термоядерної енергетики
     credits: 4.0
     control: Залік
 
-  ПВ 07.1:
+  ПВ 07.2:
     name: Основи фізичного матеріалознавства
     credits: 4.0
     control: Залік
@@ -1059,7 +1059,7 @@ elevative_disciplines:
     lecturer_id: voronov_so
     discipline_id: phys_matherial_science
 
-  ПВ 07.2:
+  ПВ 07.3:
     name: Основи біофізики
     credits: 4.0
     control: Залік
@@ -1067,7 +1067,7 @@ elevative_disciplines:
     lecturer_id: veselovsky_ms
     discipline_id: biophys
 
-  ПВ 08:
+  ПВ 08.1:
     name: Відновлювальні і альтернативні джерела енергії
     credits: 4.0
     control: Залік
@@ -1075,7 +1075,7 @@ elevative_disciplines:
     lecturer_id: donyk_tv
     discipline_id: energy_sources
 
-  ПВ 08.1:
+  ПВ 08.2:
     name: Оптоелектроніка
     credits: 4.0
     control: Залік
@@ -1083,7 +1083,7 @@ elevative_disciplines:
     lecturer_id: ivanova_vv
     discipline_id: optoelectronics
 
-  ПВ 09:
+  ПВ 09.1:
     name: Воднева енергетика
     credits: 4.0
     control: Залік
@@ -1091,7 +1091,7 @@ elevative_disciplines:
     lecturer_id: gilchuk_av
     discipline_id: hydrogen_energetics
 
-  ПВ 09.1:
+  ПВ 09.2:
     name: Фізика напівпровідникових приладів
     credits: 4.0
     control: Залік
@@ -1099,12 +1099,12 @@ elevative_disciplines:
     lecturer_id: gilchuk_av
     discipline_id: semicond_devices
 
-  ПВ 09.2:
+  ПВ 09.3:
     name: Наукові основи біосенсорики
     credits: 4.0
     control: Залік
 
-  ПВ 10:
+  ПВ 10.1:
     name: Термодинаміка складних систем
     credits: 4.0
     control: Залік
@@ -1112,17 +1112,17 @@ elevative_disciplines:
     lecturer_id: dolgoshey_vb
     discipline_id: thermodyn_complex_sys
 
-  ПВ 10.1:
+  ПВ 10.2:
     name: Квантова електроніка
     credits: 4.0
     control: Залік
 
-  ПВ 10.2:
-    name: Біофізика складних систем. Чвстина 1
+  ПВ 10.3:
+    name: Біофізика складних систем. Частина 1
     credits: 4.0
     control: Залік
 
-  ПВ 11:
+  ПВ 11.1:
     name: Комп'ютерне моделювання механіки суцільних середовищ
     credits: 4.0
     control: Залік
@@ -1130,19 +1130,19 @@ elevative_disciplines:
     lecturer_id: dymytriieva_nf
     discipline_id: comp_modelling_cont_media
 
-  ПВ 11.1:
+  ПВ 11.2:
     name: Комп'ютерне моделювання біофізичних систем
     credits: 4.0
     control: Залік
     syllabus_url: https://drive.google.com/file/d/1wihJdrCOrduOSxEBPLR1_m3Lc7YReqh9/view
 
-  ПВ 11.2:
+  ПВ 11.3:
     name: Методи машинного навчання
     credits: 4.0
     control: Залік
     syllabus_url: https://drive.google.com/file/d/1tGHp7DxmMIK1gPRjdOO1WD00h5nFp79p/view
 
-  ПВ 12:
+  ПВ 12.1:
     name: Фізика металів та сплавів
     credits: 4.0
     control: Залік
@@ -1150,7 +1150,7 @@ elevative_disciplines:
     lecturer_id: monastyrsky_ge
     discipline_id: metall_phys
 
-  ПВ 12.1:
+  ПВ 12.2:
     name: Термодинаміка циклів
     credits: 4.0
     control: Залік
@@ -1158,17 +1158,17 @@ elevative_disciplines:
     lecturer_id: dolgoshey_vb
     discipline_id: cycles_thermod
 
-  ПВ 12.2:
+  ПВ 12.3:
     name: Біофізика складних систем. Частина 2.
     credits: 4.0
     control: Залік
 
-  ПВ 13:
+  ПВ 13.1:
     name: Основи фотовольтаїки
     credits: 4.0
     control: Залік
 
-  ПВ 13.1:
+  ПВ 13.2:
     name: Сучасні теоретичні методи у фізиці твердого тіла
     syllabus_url: https://drive.google.com/file/d/1RZA7bJWcxifg3iSJqHUyAdNnklRarD3Q/view
     credits: 4.0
@@ -1176,17 +1176,17 @@ elevative_disciplines:
     lecturer_id: krivenko_yad
     discipline_id: solid_body_phys_theor_methods
 
-  ПВ 13.2:
+  ПВ 13.3:
     name: Оптичні методи дослідження живих систем
     credits: 4.0
     control: Залік
 
-  ПВ 14:
+  ПВ 14.1:
     name: Теорія гідродинамічної стійкості
     credits: 4.0
     control: Залік
 
-  ПВ 14.1:
+  ПВ 14.2:
     name: Симетрія в фізиці
     credits: 4.0
     control: Залік
@@ -1194,7 +1194,7 @@ elevative_disciplines:
     lecturer_id: zagorodniy_vv
     discipline_id: symmetry_in_phys
 
-  ПВ 14.2:
+  ПВ 14.3:
     name: Статистичні методи в фізиці живих систем
     credits: 4.0
     control: Залік

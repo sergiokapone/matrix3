@@ -13,7 +13,8 @@ lint.ignore = ["E501"]
 # E305 — одна пустая строка внутри класса между методами
 
 exclude = [
-    "tests"
+    "tests",
+    ".env"
 ]
 
 [tool.black]

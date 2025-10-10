@@ -53,11 +53,13 @@ disciplines:
     name: Алгебра та геометрія. Частина 1
     credits: 4.0
     control: Екзамен
+    syllabus_url: https://docs.google.com/document/d/18ca_gPHMnUE4fxRqj_soGYO7qlvFkuzs/edit
 
   ЗО 02.2:
     name: Алгебра та геометрія. Частина 2
     credits: 3.0
     control: Залік
+    syllabus_url: https://docs.google.com/document/d/1GhoI0xrecw0naPjpFTFQnCWeFWz6a0dc/edit
 
   ЗО 03:
     name: Механіка
@@ -123,13 +125,14 @@ disciplines:
     name: Історія науки і техніки
     credits: 2.0
     control: Залік
-    syllabus_url: https://osvita.kpi.ua/sites/default/files/files/syllabus_istoria-nauky-i-tehniky_zaochna_23-24.pdf
+    syllabus_url: https://osvita.kpi.ua/sites/default/files/files/Syllabus_Istoriia-nauky-i-tekhniky_denna_25-26.pdf
     discipline_id: sci_and_tex_hystory
 
   ЗО 11:
     name: Основи здорового способу життя
     credits: 3.0
     control: Залік
+    syllabus_url: https://osvita.kpi.ua/sites/default/files/files/Syllabus_Osnovy-zdorovoho-sposobu-zhyttia_denna_25-26.pdf
 
   ЗО 12:
     name: Англійська мова
@@ -681,18 +684,17 @@ mappings:
 
   ПО 03: # Обчислювальні методи та комп'ютерні пакети
     competencies:
-      - ЗК 1
-      - ЗК 2
-      - ЗК 5
-      - ЗК 6
-      - ЗК 9
-      - ФК 5
-      - ФК 7
+      - ЗК 01
+      - ЗК 02
+      - ЗК 05
+      - ЗК 09
+      - ФК 05
+      - ФК 07
       - ФК 10
       - ФК 11
     program_results:
-      - ПРН 2
-      - ПРН 4
+      - ПРН 02
+      - ПРН 04
       - ПРН 16
 
   ПО 04.1: # Теоретична фізика. Частина 1. Класична механіка
@@ -875,27 +877,28 @@ mappings:
 
   ПО 10: # Переддипломна практика
     competencies:
-      - ЗК 1
-      - ЗК 2
-      - ЗК 6
-      - ЗК 7
-      - ЗК 8
-      - ЗК 9
+      - ЗК 01
+      - ЗК 02
+      - ЗК 05
+      - ЗК 06
+      - ЗК 07
+      - ЗК 08
+      - ЗК 09
       - ЗК 10
       - ЗК 13
-      - ФК 1
-      - ФК 2
-      - ФК 3
-      - ФК 5
-      - ФК 6
-      - ФК 8
-      - ФК 9
+      - ФК 01
+      - ФК 02
+      - ФК 03
+      - ФК 05
+      - ФК 06
+      - ФК 08
+      - ФК 09
       - ФК 11
     program_results:
-      - ПРН 3
-      - ПРН 5
-      - ПРН 6
-      - ПРН 7
+      - ПРН 03
+      - ПРН 05
+      - ПРН 06
+      - ПРН 07
       - ПРН 10
       - ПРН 14
       - ПРН 15

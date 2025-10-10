@@ -132,7 +132,7 @@ def dispatch_command(args: str, yaml_file: Path, client: WordPressClient) -> Non
         case "index":
             handle_index(args, yaml_file, client, output_dir)
         case "report":
-            handle_report(args, yaml_file, report_dir)
+            handle_report(yaml_file, report_dir)
         case "excel":
             handle_excel(yaml_file, report_dir)
         case "dir":

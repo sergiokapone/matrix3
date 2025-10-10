@@ -61,6 +61,7 @@ def handle_generate(args: str, yaml_file: Path, output_dir: Path) -> None:
 def handle_upload(args: str, yaml_file: Path, client: WordPressClient) -> None:
     if args.all:
         wp_links_file = config.wp_links_dir / f"wp_links_{yaml_file.stem}.yaml"
+        print("===>>>>", wp_links_file)
         handle_upload_all_disciplines(yaml_file, wp_links_file, client)
         logger.info("All disciplines uploaded")
     elif args.discipline:
@@ -107,7 +108,7 @@ def handle_scenario(
         handle_generate_all_disciplines(yaml_file, output_dir)
         logger.info("All disciplines generated")
 
-        wp_links_file = config.report_dir / f"wp_links_{yaml_file.stem}.yaml"
+        wp_links_file = config.wp_links_dir / f"wp_links_{yaml_file.stem}.yaml"
         handle_upload_all_disciplines(yaml_file, wp_links_file, client)
         logger.info("All disciplines uploaded")
 

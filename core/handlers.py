@@ -3,13 +3,13 @@ from pathlib import Path
 
 from tabulate import tabulate
 
+from core.excel_exporter import generate_excel_report
 from core.file_utils import load_yaml_data, save_wp_links_yaml
 from core.html_generator import (
     generate_discipline_page,
     generate_html_report,
     generate_index_page,
 )
-from core.excel_exporter import generate_excel_report
 from core.logging_config import get_logger
 from core.models import WordPressPage
 from core.parse_index_links import parse_index_links

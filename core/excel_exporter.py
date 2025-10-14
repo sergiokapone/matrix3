@@ -47,7 +47,6 @@ def generate_excel_report(
                     prog_df.at[prog_code, discipline_code] = "+"
 
     # Створюємо багаторівневі заголовки колонок
-    # 🔧 ВИПРАВЛЕННЯ: отримуємо назву дисципліни
     comp_columns = pd.MultiIndex.from_tuples(
         [
             (

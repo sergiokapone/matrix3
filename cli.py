@@ -22,7 +22,7 @@ from core.logging_config import get_logger
 from core.wordpress_client import WordPressClient
 
 
-def create_wordpress_client() -> Warning:
+def create_wordpress_client() -> WordPressClient:
     wp_config = WordPressConfig()
     auth = HTTPBasicAuth(wp_config.username, wp_config.password)
     return WordPressClient(api_url=wp_config.api_url, auth=auth)

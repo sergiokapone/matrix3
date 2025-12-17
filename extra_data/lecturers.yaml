@@ -122,3 +122,17 @@ veselovsky_ms:
   full_name: Веселовський Микола Сергійович
   profile_url: https://apd.ipt.kpi.ua/kafedra/stuff/veselovsky/
   photo_url: https://apd.ipt.kpi.ua/wp-content/uploads/2025/01/Veselovsky.jpg
+
+stronsky_ov:
+  full_name: Стронський Олександр Володимирович
+  degree: д.ф.-м.н.
+  rank: професор
+  profile_url: https://apd.ipt.kpi.ua/kafedra/stuff/stronsky/
+  photo_url: https://apd.ipt.kpi.ua/wp-content/uploads/2025/01/Stronsky.jpg
+
+teterkin_vv:
+  full_name: Тетьоркін Володимир Володимирович
+  degree: д.ф.-м.н.
+  rank: професор
+  profile_url: https://apd.ipt.kpi.ua/kafedra/stuff/teterkin/
+  photo_url:

@@ -74,63 +74,66 @@ disciplines:
     name: Локальні методи досліджень
     credits: 4.0
     control: Залік
-    syllabus_url: https://docs.google.com/document/d/18It_MY48OuY7p7EmuWZ4Ucusfyvnq9_B/edit
     lecturer_id: gilchuk_av
     discipline_id: local_methods
+    # syllabus_url: https://docs.google.com/document/d/18It_MY48OuY7p7EmuWZ4Ucusfyvnq9_B/edit
 
   ЗО 07:
     name: Комп'ютерне моделювання та симуляції в фізиці
     credits: 4.0
     control: Залік
-    syllabus_url: https://drive.google.com/file/d/1wzz6YCwHgUC5bZ-cs7HPY9ckvv6Caz1q/view
     lecturer_id: gordiiko_no
     discipline_id: comp_modelling_and_symul_in_physics
+    # syllabus_url: https://drive.google.com/file/d/1wzz6YCwHgUC5bZ-cs7HPY9ckvv6Caz1q/view
 
   ПО 01:
     name: Квантова хімія і квантово-механічні методи обчислення
     credits: 5.0
     control: Екзамен
-    syllabus_url: https://sergiokapone.github.io/QChemLectures/A_Documents/Syllabus_QChem/Syllabus_QChem.pdf
     online_resources: https://classroom.google.com/c/MjI0NzY1NTA5OTMy
     lecturer_id: ponomarenko_sm
     discipline_id: qchem
+    # syllabus_url: https://sergiokapone.github.io/QChemLectures/A_Documents/Syllabus_QChem/Syllabus_QChem.pdf
 
   ПО 02:
     name: Нелінійна оптика
-    credits: 43.0
+    credits: 4.0
     control: Залік
+    lecturer_id: stronsky_ov
 
   ПО 03:
     name: Технологія і застосування наноструктур
     credits: 4.0
     control: Залік
-    syllabus_url: https://drive.google.com/file/d/1x8uiw4mTM5XL3-GTQykt5_pNbQzpLRis/view
-    lecturer_id: kulish_vv
+    lecturer_id: teterkin_vv
     discipline_id: nanostructure_tex_for_applications
+    # syllabus_url: https://drive.google.com/file/d/1x8uiw4mTM5XL3-GTQykt5_pNbQzpLRis/view
 
   ПО 04:
     name: Фізика суцільних середовищ
     credits: 5.0
     control: Екзамен
-    syllabus_url: https://drive.google.com/file/d/1x8uiw4mTM5XL3-GTQykt5_pNbQzpLRis/view
     lecturer_id: kulish_vv
     discipline_id: cont_media_phys
+    # syllabus_url: https://drive.google.com/file/d/1x8uiw4mTM5XL3-GTQykt5_pNbQzpLRis/view
 
   ПО 05:
     name: Нові речовини і матеріали для наукоємних технологій
     credits: 5.0
     control: Екзамен
-    syllabus_url: https://drive.google.com/file/d/1P9nEahBmMAduKa04tHFO3bHOuZvvM4lF/view
     lecturer_id: monastyrsky_ge
     discipline_id: new_substances
+    # syllabus_url: https://drive.google.com/file/d/1P9nEahBmMAduKa04tHFO3bHOuZvvM4lF/view
 
   ПО 06:
     name: Методи машинного навчання в фізичних дослідженнях
     credits: 4.0
     control: Залік
+    lecturer_id: gordiiko_no
 
   ПО 07:
     name: Наукова робота за темою магістерської дисертації
+    lecturer_id: voronov_so
     syllabus_url:
     subdisciplines:
       ПО 07.1:
@@ -146,12 +149,14 @@ disciplines:
     name: Науково-дослідна практика
     credits: 12.0
     control: Залік
-    syllabus_url: https://ela.kpi.ua/items/2e104af5-7820-40b4-9e22-d41e4d4fa955
+    # syllabus_url: https://ela.kpi.ua/items/2e104af5-7820-40b4-9e22-d41e4d4fa955
+    lecturer_id: ivanova_vv
 
   ПО 09:
     name: Виконання магістерської дисертації
     credits: 16.0
     control: Захист
+    lecturer_id: monastyrsky_ge
 
 competencies:
   ЗК 01: Здатність до абстрактного та аналітичного мислення, розуміння основних концепцій, парадигми та ідей прикладної фізики

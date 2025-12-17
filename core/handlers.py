@@ -119,7 +119,9 @@ def handle_generate_single_discipline(
     )
 
 
-def handle_generate_all_disciplines(yaml_file: Path, output_dir: Path) -> dict[str, bool]:
+def handle_generate_all_disciplines(
+    yaml_file: Path, output_dir: Path
+) -> dict[str, bool]:
     """CLI handler for generating all disciplines with a progress bar."""
 
     data = load_yaml_data(yaml_file)

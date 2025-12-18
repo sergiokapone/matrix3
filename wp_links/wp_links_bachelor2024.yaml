@@ -20,6 +20,7 @@ links:
   ЗО 18: https://apd.ipt.kpi.ua/osvita/osvitni-komponenti-bakalavr-2024/zo-18-prava-i-svobodi-liudini-2024/
   ЗО 19: https://apd.ipt.kpi.ua/osvita/osvitni-komponenti-bakalavr-2024/zo-19-khimiia-2024/
   ЗО 20: https://apd.ipt.kpi.ua/osvita/osvitni-komponenti-bakalavr-2024/zo-20-teoriia-imovirnosti-ta-matematichna-statistika-2024/
+  ЗО 21: https://apd.ipt.kpi.ua/osvita/osvitni-komponenti-bakalavr-2024/zo-21-komp-iuterna-grafika-2024/
   ПВ 01.1: https://apd.ipt.kpi.ua/osvita/osvitni-komponenti-bakalavr-2024/pv-01-1-termodinamika-gazovogo-potoku-2024/
   ПВ 01.2: https://apd.ipt.kpi.ua/osvita/osvitni-komponenti-bakalavr-2024/pv-01-2-osnovi-metrologii-v-prikladnii-fizitsi-2024/
   ПВ 01.3: https://apd.ipt.kpi.ua/osvita/osvitni-komponenti-bakalavr-2024/pv-01-3-organichna-khimiia-zhivikh-sistem-2024/
@@ -61,24 +62,23 @@ links:
   ПВ 14.2: https://apd.ipt.kpi.ua/osvita/osvitni-komponenti-bakalavr-2024/pv-14-2-simetriia-v-fizitsi-2024/
   ПВ 14.3: https://apd.ipt.kpi.ua/osvita/osvitni-komponenti-bakalavr-2024/pv-14-3-statistichni-metodi-v-fizitsi-zhivikh-sistem-2024/
   ПО 01: https://apd.ipt.kpi.ua/osvita/osvitni-komponenti-bakalavr-2024/po-01-programuvannia-2024/
-  ПО 02: https://apd.ipt.kpi.ua/osvita/osvitni-komponenti-bakalavr-2024/po-02-komp-iuterna-grafika-2024/
-  ПО 03: https://apd.ipt.kpi.ua/osvita/osvitni-komponenti-bakalavr-2024/po-03-vvedennia-v-spetsialnist-2024/
-  ПО 04: https://apd.ipt.kpi.ua/osvita/osvitni-komponenti-bakalavr-2024/po-04-tenzornii-analiz-2024/
-  ПО 05: https://apd.ipt.kpi.ua/osvita/osvitni-komponenti-bakalavr-2024/po-05-programuvannia-s-2024/
-  ПО 06: https://apd.ipt.kpi.ua/osvita/osvitni-komponenti-bakalavr-2024/po-06-klasichna-mekhanika-2024/
-  ПО 07: https://apd.ipt.kpi.ua/osvita/osvitni-komponenti-bakalavr-2024/po-07-komp-iuterni-paketi-dlia-predstavlennia-naukovikh-rezultativ-origin-latex-gnuplot-2024/
-  ПО 08: https://apd.ipt.kpi.ua/osvita/osvitni-komponenti-bakalavr-2024/po-08-rivniannia-matematichnoi-fiziki-2024/
-  ПО 09: https://apd.ipt.kpi.ua/osvita/osvitni-komponenti-bakalavr-2024/po-09-obchisliuvalni-metodi-2024/
-  ПО 10: https://apd.ipt.kpi.ua/osvita/osvitni-komponenti-bakalavr-2024/po-10-matematichne-modeliuvannia-ta-vidkriti-paketi-prikladnikh-program-2024/
-  ПО 11: https://apd.ipt.kpi.ua/osvita/osvitni-komponenti-bakalavr-2024/po-11-teoriia-polia-2024/
-  ПО 12: https://apd.ipt.kpi.ua/osvita/osvitni-komponenti-bakalavr-2024/po-12-elektrodinamika-sutsilnikh-seredovishch-2024/
-  ПО 13: https://apd.ipt.kpi.ua/osvita/osvitni-komponenti-bakalavr-2024/po-13-kolivannia-ta-khvili-2024/
-  ПО 14: https://apd.ipt.kpi.ua/osvita/osvitni-komponenti-bakalavr-2024/po-14-kvantova-mekhanika-2024/
-  ПО 15: https://apd.ipt.kpi.ua/osvita/osvitni-komponenti-bakalavr-2024/po-15-statistichna-fizika-ta-osnovi-fiziki-tverdogo-tila-2024/
-  ПО 16: https://apd.ipt.kpi.ua/osvita/osvitni-komponenti-bakalavr-2024/po-16-statistichna-radiofizika-ta-optika-2024/
-  ПО 17: https://apd.ipt.kpi.ua/osvita/osvitni-komponenti-bakalavr-2024/po-17-laboratorno-doslidnitskii-praktikum-2024/
-  ПО 18: https://apd.ipt.kpi.ua/osvita/osvitni-komponenti-bakalavr-2024/po-18-mizhdistsiplinarna-kursova-robota-2024/
-  ПО 19: https://apd.ipt.kpi.ua/osvita/osvitni-komponenti-bakalavr-2024/po-19-osnovi-naukovikh-doslidzhen-2024/
-  ПО 20: https://apd.ipt.kpi.ua/osvita/osvitni-komponenti-bakalavr-2024/po-20-pereddiplomna-praktika-2024/
-  ПО 21: https://apd.ipt.kpi.ua/osvita/osvitni-komponenti-bakalavr-2024/po-21-diplomne-proiektuvannia-2024/
+  ПО 02: https://apd.ipt.kpi.ua/osvita/osvitni-komponenti-bakalavr-2024/po-02-vvedennia-v-spetsialnist-2024/
+  ПО 03: https://apd.ipt.kpi.ua/osvita/osvitni-komponenti-bakalavr-2024/po-03-tenzornii-analiz-2024/
+  ПО 04: https://apd.ipt.kpi.ua/osvita/osvitni-komponenti-bakalavr-2024/po-04-programuvannia-s-2024/
+  ПО 05: https://apd.ipt.kpi.ua/osvita/osvitni-komponenti-bakalavr-2024/po-05-klasichna-mekhanika-2024/
+  ПО 06: https://apd.ipt.kpi.ua/osvita/osvitni-komponenti-bakalavr-2024/po-06-komp-iuterni-paketi-dlia-predstavlennia-naukovikh-rezultativ-origin-latex-gnuplot-2024/
+  ПО 07: https://apd.ipt.kpi.ua/osvita/osvitni-komponenti-bakalavr-2024/po-07-rivniannia-matematichnoi-fiziki-2024/
+  ПО 08: https://apd.ipt.kpi.ua/osvita/osvitni-komponenti-bakalavr-2024/po-08-obchisliuvalni-metodi-2024/
+  ПО 09: https://apd.ipt.kpi.ua/osvita/osvitni-komponenti-bakalavr-2024/po-09-matematichne-modeliuvannia-ta-vidkriti-paketi-prikladnikh-program-2024/
+  ПО 10: https://apd.ipt.kpi.ua/osvita/osvitni-komponenti-bakalavr-2024/po-10-teoriia-polia-2024/
+  ПО 11: https://apd.ipt.kpi.ua/osvita/osvitni-komponenti-bakalavr-2024/po-11-elektrodinamika-sutsilnikh-seredovishch-2024/
+  ПО 12: https://apd.ipt.kpi.ua/osvita/osvitni-komponenti-bakalavr-2024/po-12-kolivannia-ta-khvili-2024/
+  ПО 13: https://apd.ipt.kpi.ua/osvita/osvitni-komponenti-bakalavr-2024/po-13-kvantova-mekhanika-2024/
+  ПО 14: https://apd.ipt.kpi.ua/osvita/osvitni-komponenti-bakalavr-2024/po-14-statistichna-fizika-ta-osnovi-fiziki-tverdogo-tila-2024/
+  ПО 15: https://apd.ipt.kpi.ua/osvita/osvitni-komponenti-bakalavr-2024/po-15-statistichna-radiofizika-ta-optika-2024/
+  ПО 16: https://apd.ipt.kpi.ua/osvita/osvitni-komponenti-bakalavr-2024/po-16-laboratorno-doslidnitskii-praktikum-2024/
+  ПО 17: https://apd.ipt.kpi.ua/osvita/osvitni-komponenti-bakalavr-2024/po-17-fundamentalno-prikladni-aspekti-fiziki-mizhdistsiplinarna-kursova-robota-2024/
+  ПО 18: https://apd.ipt.kpi.ua/osvita/osvitni-komponenti-bakalavr-2024/po-18-osnovi-naukovikh-doslidzhen-2024/
+  ПО 19: https://apd.ipt.kpi.ua/osvita/osvitni-komponenti-bakalavr-2024/po-19-pereddiplomna-praktika-2024/
+  ПО 20: https://apd.ipt.kpi.ua/osvita/osvitni-komponenti-bakalavr-2024/po-20-diplomne-proiektuvannia-2024/
 year: '2024'

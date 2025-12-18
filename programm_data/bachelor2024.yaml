@@ -227,6 +227,11 @@ disciplines:
     syllabus_url: https://drive.google.com/file/d/1fE1TjVO8nYF7W52RNXlG3g3kZ71BUctU/view?usp=sharing
     discipline_id: prob_theory
 
+  ЗО 21:
+    name: Комп'ютерна графіка
+    credits: 2.0
+    control: Залік
+
   ПО 01:
     name: Програмування
     subdisciplines:
@@ -241,17 +246,12 @@ disciplines:
     discipline_id: programming
 
   ПО 02:
-    name: Комп'ютерна графіка
-    credits: 2.0
-    control: Залік
-
-  ПО 03:
     name: Введення в спеціальність
     credits: 3.0
     control: Залік
     discipline_id: intro
 
-  ПО 04:
+  ПО 03:
     name: Тензорний аналіз
     credits: 3.0
     control: Залік
@@ -259,12 +259,12 @@ disciplines:
     lecturer_id: nakaznoy_po
     discipline_id: tensor_analisys
 
-  ПО 05:
+  ПО 04:
     name: Програмування С++
     credits: 3.0
     control: Залік
 
-  ПО 06:
+  ПО 05:
     name: Класична механіка
     credits: 4.0
     control: Залік
@@ -272,13 +272,13 @@ disciplines:
     lecturer_id: nakaznoy_po
     discipline_id: classmech
 
-  ПО 07:
+  ПО 06:
     name: Комп'ютерні пакети для представлення наукових результатів (Origin, LaTeX, Gnuplot)
     credits: 3.0
     control: Залік
     syllabus_url: https://drive.google.com/file/d/13SzhVqT7OCOVbuVwDEJGW3ji8CQrTaIu/view?usp=sharing
 
-  ПО 08:
+  ПО 07:
     name: Рівняння математичної фізики
     credits: 3.0
     control: Залік
@@ -286,17 +286,17 @@ disciplines:
     lecturer_id: zhdanov_vi
     discipline_id: math_pys
 
-  ПО 09:
+  ПО 08:
     name: Обчислювальні методи
     credits: 3.0
     control: Залік
 
-  ПО 10:
+  ПО 09:
     name: Математичне моделювання та відкриті пакети прикладних програм
     credits: 3.0
     control: Залік
 
-  ПО 11:
+  ПО 10:
     name: Теорія поля
     credits: 4.0
     control: Екзамен
@@ -304,7 +304,7 @@ disciplines:
     lecturer_id: zhdanov_vi
     discipline_id: electrodynamics
 
-  ПО 12:
+  ПО 11:
     name: Електродинаміка суцільних середовищ
     credits: 4.0
     control: Екзамен
@@ -312,7 +312,7 @@ disciplines:
     lecturer_id: zhdanov_vi
     discipline_id: ess
 
-  ПО 13:
+  ПО 12:
     name: Коливання та хвилі
     credits: 4.0
     control: Залік
@@ -320,20 +320,20 @@ disciplines:
     lecturer_id: monastyrsky_ge
     discipline_id: oscillations_and_waves
 
-  ПО 14:
+  ПО 13:
     name: Квантова механіка
     credits: 5.0
     control: Екзамен
     syllabus_url: https://drive.google.com/file/d/1jmbTrWoa3cqZP0cx9Aqz0K7HVjPg1lmK/view
     discipline_id: quantum_mechanics
 
-  ПО 15:
+  ПО 14:
     name: Статистична фізика та основи фізики твердого тіла
     credits: 6.0
     control: Екзамен
     discipline_id: stat_phys
 
-  ПО 16:
+  ПО 15:
     name: Статистична радіофізика та оптика
     credits: 4.0
     control: Екзамен
@@ -341,7 +341,7 @@ disciplines:
     lecturer_id: monastyrsky_ge
     discipline_id: stochastic_processes
 
-  ПО 17:
+  ПО 16:
     name: Лабораторно-дослідницький практикум
     credits: 2.0
     control: Залік
@@ -349,25 +349,24 @@ disciplines:
     lecturer_id: voronov_so
     discipline_id: lab_research_pract
 
-  ПО 18:
-    name: Міждисциплінарна курсова робота
-    credits: 2.0
+  ПО 17:
+    name: "Фундаментально-прикладні аспекти фізики: Міждисциплінарна курсова робота"
     control: Залік
     discipline_id: interdiscipline_course_work
 
-  ПО 19:
+  ПО 18:
     name: Основи наукових досліджень
     credits: 3.0
     control: Залік
     discipline_id: ond
 
-  ПО 20:
+  ПО 19:
     name: Переддипломна практика
     credits: 6.0
     control: Залік
     discipline_id: pre_diploma_practic
 
-  ПО 21:
+  ПО 20:
     name: Дипломне проєктування
     credits: 6.0
     control: Захист
@@ -423,7 +422,6 @@ program_results:
 mappings:
   ЗО 01: # Математичний аналіз
     competencies:
-      - ЗК 1
       - ЗК 2
       - ФК 6
       - ФК 7
@@ -433,7 +431,6 @@ mappings:
 
   ЗО 02: # Алгебра та геометрія
     competencies:
-      - ЗК 1
       - ЗК 2
       - ФК 7
     program_results:
@@ -466,7 +463,6 @@ mappings:
 
   ЗО 05: # Диференціальні рівняння
     competencies:
-      - ЗК 1
       - ЗК 2
       - ФК 6
       - ФК 7
@@ -551,6 +547,7 @@ mappings:
 
   ЗО 14: # Філософські основи наукового пізнання
     competencies:
+      - ЗК 7
       - ЗК 8
       - ЗК 12
       - ЗК 13
@@ -618,6 +615,16 @@ mappings:
     program_results:
       - ПРН 16
 
+  ЗО 21: # Комп'ютерна графіка
+    competencies:
+      - ЗК 5
+      - ФК 5
+      - ФК 9
+      - ФК 10
+    program_results:
+      - ПРН 15
+      - ПРН 16
+
   ПО 01: # Програмування
     competencies:
       - ЗК 1
@@ -628,17 +635,7 @@ mappings:
       - ПРН 4
       - ПРН 16
 
-  ПО 02: # Комп'ютерна графіка
-    competencies:
-      - ЗК 5
-      - ФК 5
-      - ФК 9
-      - ФК 10
-    program_results:
-      - ПРН 15
-      - ПРН 16
-
-  ПО 03: # Введення в спеціальність
+  ПО 02: # Введення в спеціальність
     competencies:
       - ЗК 2
       - ЗК 7
@@ -650,7 +647,7 @@ mappings:
       - ПРН 7
       - ПРН 9
 
-  ПО 04: # Тензорний аналіз
+  ПО 03: # Тензорний аналіз
     competencies:
       - ЗК 1
       - ФК 5
@@ -660,7 +657,7 @@ mappings:
       - ПРН 2
       - ПРН 16
 
-  ПО 05: # Програмування C++
+  ПО 04: # Програмування C++
     competencies:
       - ЗК 1
       - ЗК 5
@@ -670,11 +667,12 @@ mappings:
       - ПРН 4
       - ПРН 16
 
-  ПО 06: # Класична механіка
+  ПО 05: # Класична механіка
     competencies:
       - ЗК 1
       - ЗК 2
       - ФК 5
+      - ФК 6
       - ФК 7
       - ФК 10
     program_results:
@@ -683,7 +681,7 @@ mappings:
       - ПРН 4
       - ПРН 17
 
-  ПО 07: # Комп'ютерні пакети для представлення наукових результатів
+  ПО 06: # Комп'ютерні пакети для представлення наукових результатів
     competencies:
       - ЗК 1
       - ЗК 2
@@ -694,11 +692,12 @@ mappings:
       - ПРН 2
       - ПРН 4
 
-  ПО 08: # Рівняння математичної фізики
+  ПО 07: # Рівняння математичної фізики
     competencies:
       - ЗК 1
       - ЗК 2
       - ФК 5
+      - ФК 6
       - ФК 7
       - ФК 10
     program_results:
@@ -706,7 +705,7 @@ mappings:
       - ПРН 4
       - ПРН 16
 
-  ПО 09: # Обчислювальні методи
+  ПО 08: # Обчислювальні методи
     competencies:
       - ЗК 1
       - ЗК 5
@@ -719,7 +718,7 @@ mappings:
       - ПРН 2
       - ПРН 16
 
-  ПО 10: # Математичне моделювання та відкриті пакети прикладних програм
+  ПО 09: # Математичне моделювання та відкриті пакети прикладних програм
     competencies:
       - ЗК 1
       - ЗК 5
@@ -735,11 +734,12 @@ mappings:
       - ПРН 4
       - ПРН 16
 
-  ПО 11: # Теорія поля
+  ПО 10: # Теорія поля
     competencies:
       - ЗК 1
       - ЗК 2
       - ФК 5
+      - ФК 6
       - ФК 7
       - ФК 10
     program_results:
@@ -747,7 +747,7 @@ mappings:
       - ПРН 2
       - ПРН 16
 
-  ПО 12: # Електродинаміка суцільних середовищ
+  ПО 11: # Електродинаміка суцільних середовищ
     competencies:
       - ЗК 1
       - ЗК 2
@@ -760,7 +760,7 @@ mappings:
       - ПРН 2
       - ПРН 17
 
-  ПО 13: # Коливання та хвилі
+  ПО 12: # Коливання та хвилі
     competencies:
       - ЗК 1
       - ЗК 2
@@ -773,7 +773,7 @@ mappings:
       - ПРН 2
       - ПРН 4
 
-  ПО 14: # Квантова механіка
+  ПО 13: # Квантова механіка
     competencies:
       - ЗК 1
       - ЗК 2
@@ -785,7 +785,7 @@ mappings:
       - ПРН 1
       - ПРН 2
 
-  ПО 15: # Статистична фізика та основи фізики твердого тіла
+  ПО 14: # Статистична фізика та основи фізики твердого тіла
     competencies:
       - ЗК 1
       - ЗК 2
@@ -798,7 +798,7 @@ mappings:
       - ПРН 2
       - ПРН 14
 
-  ПО 16: # Статистична радіофізика та оптика
+  ПО 15: # Статистична радіофізика та оптика
     competencies:
       - ЗК 1
       - ЗК 2
@@ -812,7 +812,7 @@ mappings:
       - ПРН 2
       - ПРН 17
 
-  ПО 17: # Лабораторно-дослідницький практикум
+  ПО 16: # Лабораторно-дослідницький практикум
     competencies:
       - ЗК 1
       - ЗК 2
@@ -839,7 +839,7 @@ mappings:
       - ПРН 10
       - ПРН 15
 
-  ПО 18: # Міждисциплінарна курсова робота
+  ПО 17: # Міждисциплінарна курсова робота
     competencies:
       - ЗК 1
       - ЗК 2
@@ -865,7 +865,7 @@ mappings:
       - ПРН 14
       - ПРН 15
 
-  ПО 19: # Основи наукових досліджень
+  ПО 18: # Основи наукових досліджень
     competencies:
       - ЗК 6
       - ЗК 7
@@ -881,7 +881,7 @@ mappings:
       - ПРН 9
       - ПРН 10
 
-  ПО 20: # Переддипломна практика
+  ПО 19: # Переддипломна практика
     competencies:
       - ЗК 1
       - ЗК 2
@@ -909,7 +909,7 @@ mappings:
       - ПРН 14
       - ПРН 15
 
-  ПО 21: # Дипломне проєктування
+  ПО 20: # Дипломне проєктування
     competencies:
       - ЗК 2
       - ЗК 6

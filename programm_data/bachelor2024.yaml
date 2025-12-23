@@ -422,6 +422,7 @@ program_results:
 mappings:
   ЗО 01: # Математичний аналіз
     competencies:
+      - ЗК 1
       - ЗК 2
       - ФК 6
       - ФК 7
@@ -431,6 +432,7 @@ mappings:
 
   ЗО 02: # Алгебра та геометрія
     competencies:
+      - ЗК 1
       - ЗК 2
       - ФК 7
     program_results:
@@ -463,6 +465,7 @@ mappings:
 
   ЗО 05: # Диференціальні рівняння
     competencies:
+      - ЗК 1
       - ЗК 2
       - ФК 6
       - ФК 7

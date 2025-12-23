@@ -429,6 +429,7 @@ mappings:
       - ФК 10
     program_results:
       - ПРН 2
+      - ПРН 16
 
   ЗО 02: # Алгебра та геометрія
     competencies:

@@ -1,0 +1,201 @@
+digraph Curriculum {
+    rankdir="LR";
+    splines="ortho";
+    nodesep=0.3;
+    ranksep=1.2;
+    newrank="true";
+    node [shape="box", style="rounded,filled", fontname="Arial", fontsize=10, width=2.5, height=0.6];
+    edge [color="#666666", penwidth=1.5];
+    // Семестр 1
+    subgraph cluster_1 {
+        label="Семестр 1";
+        style="filled";
+        color="#E8F4F8";
+        fontsize=14;
+        fontname="Arial Bold";
+        S1_MatAn1 [label="Математичний аналіз 1", fillcolor="#4A90E2"];
+        S1_Alg1 [label="Алгебра та геометрія 1", fillcolor="#4A90E2"];
+        S1_Mech [label="Механіка", fillcolor="#E85D75"];
+        S1_Intro [label="Введення в\nспеціальність", fillcolor="#F5A623"];
+        S1_Prog [label="Програмування", fillcolor="#7ED321"];
+        S1_Econ [label="Основи економіки", fillcolor="#F8E71C"];
+        S1_Ukr [label="Українська мова", fillcolor="#B8B8B8"];
+        S1_Eng [label="Англійська мова", fillcolor="#B8B8B8"];
+        S1_Health [label="Основи здорового\nспособу життя", fillcolor="#B8B8B8"];
+    // S1_invis1 [style="invis", height=0, width=0];
+    }
+    // Семестр 2
+    subgraph cluster_2 {
+        rank="same";
+        label="Семестр 2";
+        style="filled";
+        color="#E8F4F8";
+        fontsize=14;
+        fontname="Arial Bold";
+        S2_MatAn2 [label="Математичний аналіз 2", fillcolor="#4A90E2"];
+        S2_Alg2 [label="Алгебра та геометрія 2", fillcolor="#4A90E2"];
+        S2_Thermo [label="Термодинаміка та\nмолекулярна фізика", fillcolor="#E85D75"];
+        S2_Chem [label="Хімія", fillcolor="#E85D75"];
+        S2_Prog [label="Програмування", fillcolor="#7ED321"];
+        S2_Graph [label="Комп'ютерна графіка", fillcolor="#7ED321"];
+        S2_History [label="Історія науки\nі техніки", fillcolor="#B8B8B8"];
+        S2_Eng [label="Англійська мова", fillcolor="#B8B8B8"];
+    // S2_invis1 [style="invis", height=0, width=0];
+    // S2_invis2 [style="invis", height=0, width=0];
+    }
+    // Семестр 3
+    subgraph cluster_3 {
+        rank="same";
+        label="Семестр 3";
+        style="filled";
+        color="#E8F4F8";
+        fontsize=14;
+        fontname="Arial Bold";
+        S3_MatAn3 [label="Математичний аналіз 3", fillcolor="#4A90E2"];
+        S3_ElMag [label="Електрика та\nмагнетизм", fillcolor="#E85D75"];
+        S3_DiffEq1 [label="Диференціальні\nрівняння 1", fillcolor="#4A90E2"];
+        S3_MathPhys1 [label="Методи математичної\nфізики 1", fillcolor="#4A90E2"];
+        S3_CompMeth1 [label="Обчислювальні методи\nта комп'ютерні пакети 1", fillcolor="#7ED321"];
+        S3_Catalog [label="ЗУ-Каталог", fillcolor="#F5A623"];
+        S3_EngProf [label="Англійська мова\nпрофесійного спрямування", fillcolor="#B8B8B8"];
+        S3_Military [label="Базова загальновійськова\nпідготовка", fillcolor="#B8B8B8"];
+    // S3_invis1 [style="invis", height=0, width=0];
+    // S3_invis2 [style="invis", height=0, width=0];
+    }
+    // Семестр 4
+    subgraph cluster_4 {
+        rank="same";
+        label="Семестр 4";
+        style="filled";
+        color="#E8F4F8";
+        fontsize=14;
+        fontname="Arial Bold";
+        S4_ClassMech [label="Класична механіка", fillcolor="#E85D75"];
+        S4_Optics [label="Оптика", fillcolor="#E85D75"];
+        S4_DiffEq2 [label="Диференціальні\nрівняння 2", fillcolor="#4A90E2"];
+        S4_MathPhys2 [label="Методи математичної\nфізики 2", fillcolor="#4A90E2"];
+        S4_CompMeth2 [label="Обчислювальні методи\nта комп'ютерні пакети 2", fillcolor="#7ED321"];
+        S4_F1 [label="Ф1 (Вибіркова)", fillcolor="#F5A623"];
+        S4_Philos [label="Філософські основи\nнаукового пізнання", fillcolor="#B8B8B8"];
+        S4_Catalog [label="ЗУ-Каталог", fillcolor="#F5A623"];
+        S4_EngProf [label="Англійська мова\nпрофесійного спрямування", fillcolor="#B8B8B8"];
+        S4_Military [label="Базова загальновійськова\nпідготовка", fillcolor="#B8B8B8"];
+    }
+    // Семестр 5
+    subgraph cluster_5 {
+        rank="same";
+        label="Семестр 5";
+        style="filled";
+        color="#E8F4F8";
+        fontsize=14;
+        fontname="Arial Bold";
+        S5_MathPhys3 [label="Методи математичної\nфізики 3", fillcolor="#4A90E2"];
+        S5_Atomic [label="Атомна фізика", fillcolor="#E85D75"];
+        S5_FieldTheory [label="Теорія поля", fillcolor="#E85D75"];
+        S5_OscWaves [label="Коливання та хвилі", fillcolor="#E85D75"];
+        S5_F2 [label="Ф2 (Вибіркова)", fillcolor="#F5A623"];
+        S5_F3 [label="Ф3 (Вибіркова)", fillcolor="#F5A623"];
+        S5_F4 [label="Ф4 (Вибіркова)", fillcolor="#F5A623"];
+        S5_Ecology [label="Екологія", fillcolor="#B8B8B8"];
+    // S5_invis1 [style="invis", height=0, width=0];
+    // S5_invis2 [style="invis", height=0, width=0];
+    }
+    // Семестр 6
+    subgraph cluster_6 {
+        rank="same";
+        label="Семестр 6";
+        style="filled";
+        color="#E8F4F8";
+        fontsize=14;
+        fontname="Arial Bold";
+        S6_ProbStat [label="Теорія ймовірності\nта математична статистика", fillcolor="#4A90E2"];
+        S6_MathModel [label="Математичне моделювання\nта відкриті пакети", fillcolor="#7ED321"];
+        S6_ESS [label="Електродинаміка суцільних\nсередовищ", fillcolor="#E85D75"];
+        S6_QMech [label="Квантова механіка", fillcolor="#E85D75"];
+        S6_F5 [label="Ф5 (Вибіркова)", fillcolor="#F5A623"];
+        S6_F6 [label="Ф6 (Вибіркова)", fillcolor="#F5A623"];
+        S6_F7 [label="Ф7 (Вибіркова)", fillcolor="#F5A623"];
+        S6_Rights [label="Права і свободи\nлюдини", fillcolor="#B8B8B8"];
+    // S6_invis1 [style="invis", height=0, width=0];
+    // S6_invis2 [style="invis", height=0, width=0];
+    }
+    // Семестр 7
+    subgraph cluster_7 {
+        rank="same";
+        label="Семестр 7";
+        style="filled";
+        color="#E8F4F8";
+        fontsize=14;
+        fontname="Arial Bold";
+        S7_StatPhys [label="Стат. фіз. та основи ФТТ", fillcolor="#E85D75"];
+        S7_StatRadio [label="Статистична радіофізика\nта оптика", fillcolor="#E85D75"];
+        S7_Lab [label="Лабораторно-дослідницький\nпрактикум", fillcolor="#9013FE"];
+        S7_Course [label="Міждисциплінарна курсова\nробота з прикладної фізики", fillcolor="#9013FE"];
+        S7_F8 [label="Ф8 (Вибіркова)", fillcolor="#F5A623"];
+        S7_F9 [label="Ф9 (Вибіркова)", fillcolor="#F5A623"];
+        S7_F10 [label="Ф10 (Вибіркова)", fillcolor="#F5A623"];
+        S7_F11 [label="Ф11 (Вибіркова)", fillcolor="#F5A623"];
+    // S7_invis1 [style="invis", height=0, width=0];
+    // S7_invis2 [style="invis", height=0, width=0];
+    }
+    // Семестр 8
+    subgraph cluster_8 {
+        rank="same";
+        label="Семестр 8";
+        style="filled";
+        color="#E8F4F8";
+        fontsize=14;
+        fontname="Arial Bold";
+        S8_Research [label="Основи наукових\nдосліджень", fillcolor="#9013FE"];
+        S8_Practice [label="Переддипломна\nпрактика", fillcolor="#9013FE"];
+        S8_Diploma [label="Дипломне\nпроектування", fillcolor="#9013FE"];
+        S8_F12 [label="Ф12 (Вибіркова)", fillcolor="#F5A623"];
+        S8_F13 [label="Ф13 (Вибіркова)", fillcolor="#F5A623"];
+        S8_F14 [label="Ф14 (Вибіркова)", fillcolor="#F5A623"];
+    // S8_invis1 [style="invis", height=0, width=0];
+    // S8_invis2 [style="invis", height=0, width=0];
+    // S8_invis3 [style="invis", height=0, width=0];
+    // S8_invis4 [style="invis", height=0, width=0];
+    }
+    // Пререквізити - Математика
+    S1_MatAn1 -> S2_MatAn2 [color="#2E5C8A"];
+    S2_MatAn2 -> S3_MatAn3 [color="#2E5C8A"];
+    S2_MatAn2 -> S3_DiffEq1 [color="#2E5C8A"];
+    S3_MatAn3 -> S4_MathPhys2 [color="#2E5C8A"];
+    S3_DiffEq1 -> S4_DiffEq2 [color="#2E5C8A"];
+    S3_MathPhys1 -> S4_MathPhys2 [color="#2E5C8A"];
+    S4_MathPhys2 -> S5_MathPhys3 [color="#2E5C8A"];
+    S4_DiffEq2 -> S5_OscWaves [color="#2E5C8A"];
+    S5_MathPhys3 -> S6_ProbStat [color="#2E5C8A"];
+    S1_Alg1 -> S2_Alg2 [color="#2E5C8A"];
+    S2_Alg2 -> S3_MathPhys1 [color="#2E5C8A"];
+    // Пререквізити - Фізика
+    S1_Mech -> S2_Thermo [color="#A83248"];
+    S1_Mech -> S4_ClassMech [color="#A83248"];
+    S2_Chem -> S5_Atomic [color="#A83248"];
+    S2_Thermo -> S3_ElMag [color="#A83248"];
+    S3_ElMag -> S4_Optics [color="#A83248"];
+    S4_ClassMech -> S5_FieldTheory [color="#A83248"];
+    S4_Optics -> S5_Atomic [color="#A83248"];
+    S5_FieldTheory -> S6_ESS [color="#A83248"];
+    S5_OscWaves -> S6_ESS [color="#A83248"];
+    S5_Atomic -> S6_QMech [color="#A83248"];
+    S6_ESS -> S7_StatPhys [color="#A83248"];
+    S6_QMech -> S7_StatPhys [color="#A83248"];
+    S6_QMech -> S7_StatRadio [color="#A83248"];
+    // Пререквізити - Програмування
+    S1_Prog -> S2_Prog [color="#4D8C1A"];
+    S2_Prog -> S3_CompMeth1 [color="#4D8C1A"];
+    S3_CompMeth1 -> S4_CompMeth2 [color="#4D8C1A"];
+    S4_CompMeth2 -> S6_MathModel [color="#4D8C1A"];
+    // Пререквізити - Англійська
+    S1_Eng -> S2_Eng [color="#808080"];
+    S2_Eng -> S3_EngProf [color="#808080"];
+    S3_EngProf -> S4_EngProf [color="#808080"];
+    // Пререквізити - Військова
+    S3_Military -> S4_Military [color="#808080"];
+    // Пререквізити до фінальних робіт
+    S7_Lab -> S8_Research [color="#6609B2"];
+    S7_Course -> S8_Diploma [color="#6609B2"];
+    S7_Lab -> S8_Practice [color="#6609B2"];
+}

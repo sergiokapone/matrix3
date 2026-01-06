@@ -12,7 +12,7 @@ def generate_excel_report(
     yaml_file: str, output_file: str | Path = "matrices.xlsx"
 ) -> None:
     """
-    Генерує Excel файл з матрицями компетенцій та програмних результатів на основі YAML конфігу
+    Генерує Excel файл з матрицями компетентності та програмних результатів на основі YAML конфігу
     """
 
     # Завантажуємо YAML
@@ -23,7 +23,7 @@ def generate_excel_report(
     program_results = config["program_results"]
     mappings = config["mappings"]
 
-    # === МАТРИЦЯ КОМПЕТЕНЦІЙ ===
+    # === МАТРИЦЯ КОМПЕТЕНТНОСТЕЙ ===
     comp_df = pd.DataFrame(
         "", index=list(competencies.keys()), columns=list(disciplines.keys())
     )
@@ -36,7 +36,7 @@ def generate_excel_report(
     # Заповнюємо матриці на основі mappings
     for discipline_code, mapping in mappings.items():
         if discipline_code in disciplines:
-            # Компетенції
+            # Компетентності
             for comp_code in mapping.get("competencies", []):
                 if comp_code in comp_df.index:
                     comp_df.at[comp_code, discipline_code] = "+"
@@ -98,9 +98,9 @@ def generate_excel_report(
                 {
                     "Код": disc_code,
                     "Дисципліна": disc_name,
-                    "Компетенції": ", ".join(comps) if comps else "",
+                    "Компетентності": ", ".join(comps) if comps else "",
                     "Програмні результати": ", ".join(progs) if progs else "",
-                    "Кількість компетенцій": len(comps),
+                    "Кількість компетентностей": len(comps),
                     "Кількість ПРН": len(progs),
                 }
             )
@@ -112,12 +112,12 @@ def generate_excel_report(
         worksheet = writer.sheets["Зведена таблиця"]
         worksheet.column_dimensions["A"].width = 10  # Код
         worksheet.column_dimensions["B"].width = 50  # Дисципліна
-        worksheet.column_dimensions["C"].width = 40  # Компетенції
+        worksheet.column_dimensions["C"].width = 40  # Компетентності
         worksheet.column_dimensions["D"].width = 40  # Програмні результати
-        worksheet.column_dimensions["E"].width = 15  # Кількість компетенцій
+        worksheet.column_dimensions["E"].width = 15  # Кількість компетентностей
         worksheet.column_dimensions["F"].width = 15  # Кількість ПРН
 
     logger.info(f"✅ Матриці згенеровано: {output_file}")
-    logger.info(f"📊 Компетенції: {len(competencies)} x {len(disciplines)}")
+    logger.info(f"📊 Компетентності: {len(competencies)} x {len(disciplines)}")
     logger.info(f"📊 Програмні результати: {len(program_results)} x {len(disciplines)}")
     logger.info(f"📋 Зведена таблиця: {len(disciplines)} дисциплін")

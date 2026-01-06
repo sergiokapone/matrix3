@@ -14,7 +14,7 @@ config = AppConfig()
 def get_mapped_competencies(
     discipline_code: str, mappings: dict, all_competencies: dict
 ) -> tuple[list[tuple[str, str]], list[tuple[str, str]]]:
-    """Отримує компетенції для конкретної дисципліни"""
+    """Отримує компетентності для конкретної дисципліни"""
     if discipline_code not in mappings:
         return [], []
 

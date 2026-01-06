@@ -24,7 +24,7 @@ def generate_html_report(
     output_filename: str | None = None,
     template_filename: str = "report_template.html",
 ) -> None:
-    """Генеррує звітні таблиці по компетенціям та програмним результатам навчання"""
+    """Генеррує звітні таблиці по компетентностям та програмним результатам навчання"""
     config = load_yaml_data(yaml_file)
 
     disciplines = config["disciplines"]

@@ -21,6 +21,9 @@
     {% if metadata.department %}
         <p><strong>Кафедра:</strong> {{ metadata.department }}</p>
     {% endif %}
+    {% if metadata.field %}
+        <p><strong>Галузь знань:</strong> {{ metadata.field }}</p>
+    {% endif %}
     {% if metadata.specialty %}
         <p><strong>Спеціальність:</strong> {{ metadata.specialty }}</p>
     {% endif %}

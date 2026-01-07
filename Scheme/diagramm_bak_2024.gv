@@ -141,88 +141,119 @@ digraph Curriculum {
         _dummy1 [label="", shape=point, width=0, height=0];
         S8_Diploma [label="Дипломне\nпроектування", fillcolor="#D4A5FF"];
     }
-    // ПРЕРЕКВІЗИТИ - Математика
-    S1_MatAn1 -> S2_MatAn2 [color="#4A90E2", penwidth=2];
-    S2_MatAn2 -> S3_MatAn3 [color="#4A90E2", penwidth=2];
-    S2_MatAn2 -> S3_DiffEq1 [color="#4A90E2", penwidth=2];
-    S3_MatAn3 -> S5_MathPhys3 [color="#4A90E2", penwidth=2];
-    S3_DiffEq1 -> S4_DiffEq2 [color="#4A90E2", penwidth=2];
-    S4_DiffEq2 -> S5_MathPhys3 [color="#4A90E2", penwidth=2];
-    S1_Alg1 -> S2_Alg2 [color="#4A90E2", penwidth=2];
-    S2_Alg2 -> S3_Tensor [color="#4A90E2", penwidth=2];
-    S3_MatAn3 -> S6_ProbStat [color="#4A90E2", penwidth=2];
-    // ПРЕРЕКВІЗИТИ - Фізика
-    S1_MatAn1 -> S3_ClassMech [color="#E85D75", penwidth=2];
-    S1_Alg1 -> S3_ClassMech [color="#E85D75", penwidth=2];
-    S1_MatAn1 -> S3_Tensor [color="#E85D75", penwidth=2];
-    S1_Alg1 -> S3_Tensor [color="#E85D75", penwidth=2];
-    S1_MatAn1 -> S3_DiffEq1 [color="#E85D75", penwidth=2];
-    S1_Alg1 -> S3_DiffEq1 [color="#E85D75", penwidth=2];
-    S3_DiffEq1 -> S4_DiffEq2 [color="#E85D75", penwidth=2];
-    S1_MatAn1 -> S4_TFKZ [color="#E85D75", penwidth=2];
-    S2_MatAn2 -> S4_TFKZ [color="#E85D75", penwidth=2];
-    S3_MatAn3 -> S4_TFKZ [color="#E85D75", penwidth=2];
-    S3_ClassMech -> S5_FieldTheory [color="#E85D75", penwidth=2];
-    S3_ClassMech -> S6_ESS [color="#E85D75", penwidth=2];
-    S3_ClassMech -> S5_OscWaves [color="#E85D75", penwidth=2];
-    S3_ClassMech -> S6_QMech [color="#E85D75", penwidth=2];
-    S3_ClassMech -> S7_StatPhys [color="#E85D75", penwidth=2];
-    S4_DiffEq2 -> S5_MathPhys3 [color="#E85D75", penwidth=2];
-    S4_DiffEq2 -> S5_FieldTheory [color="#E85D75", penwidth=2];
-    S4_DiffEq2 -> S6_ESS [color="#E85D75", penwidth=2];
-    S4_DiffEq2 -> S5_OscWaves [color="#E85D75", penwidth=2];
-    S4_DiffEq2 -> S6_QMech [color="#E85D75", penwidth=2];
-    S4_DiffEq2 -> S7_StatPhys [color="#E85D75", penwidth=2];
-    S3_Tensor -> S4_Optics [color="#E85D75", penwidth=2];
-    S3_Tensor -> S5_FieldTheory [color="#E85D75", penwidth=2];
-    S3_Tensor -> S6_ESS [color="#E85D75", penwidth=2];
-    S3_Tensor -> S7_StatPhys [color="#E85D75", penwidth=2];
-    S4_TFKZ -> S5_FieldTheory [color="#E85D75", penwidth=2];
-    S4_TFKZ -> S6_ESS [color="#E85D75", penwidth=2];
-    S4_TFKZ -> S5_OscWaves [color="#E85D75", penwidth=2];
-    S4_TFKZ -> S6_QMech [color="#E85D75", penwidth=2];
-    S1_Mech -> S2_Thermo [color="#E85D75", penwidth=2];
-    S1_Mech -> S3_ElMag [color="#E85D75", penwidth=2];
-    S1_Mech -> S3_ClassMech [color="#E85D75", penwidth=2];
-    S3_ClassMech -> S5_FieldTheory [color="#E85D75", penwidth=2];
-    S3_ElMag -> S4_Optics [color="#E85D75", penwidth=2];
-    S3_ElMag -> S5_FieldTheory [color="#E85D75", penwidth=2];
-    S3_ElMag -> S6_ESS [color="#E85D75", penwidth=2];
-    S4_Optics -> S5_Atomic [color="#E85D75", penwidth=2];
-    S4_Optics -> S7_StatRadio [color="#E85D75", penwidth=2];
-    S4_Philos -> S8_Research [color="#E85D75", penwidth=2];
-    S5_FieldTheory -> S6_ESS [color="#E85D75", penwidth=2];
-    S5_Atomic -> S6_QMech [color="#E85D75", penwidth=2];
-    S5_OscWaves -> S6_ESS [color="#E85D75", penwidth=2];
-    S6_QMech -> S7_StatPhys [color="#E85D75", penwidth=2];
-    S2_Thermo -> S7_StatPhys [color="#E85D75", penwidth=2];
-    S6_ProbStat -> S7_StatPhys [color="#E85D75", penwidth=2];
-    // ПРЕРЕКВІЗИТИ - Програмування та обчислення
-    S1_Prog -> S2_Prog [color="#7ED321", penwidth=2];
-    S2_Prog -> S3_cpp [color="#7ED321", penwidth=2];
-    S3_cpp -> S4_CompSoft [color="#7ED321", penwidth=2];
-    S3_cpp -> S4_CompMeth [color="#7ED321", penwidth=2];
-    S2_Prog -> S4_CompMeth [color="#7ED321", penwidth=2];
-    S4_CompMeth -> S6_MathModel [color="#7ED321", penwidth=2];
-    S4_CompSoft -> S6_MathModel [color="#7ED321", penwidth=2];
-    S4_TFKZ -> S6_MathModel [color="#7ED321", penwidth=2];
-    // ПРЕРЕКВІЗИТИ - Іноземна мова (послідовність)
-    S1_EngPract -> S2_EngPract [color="#B8B8B8", penwidth=2];
-    S2_EngPract -> S3_EngPract [color="#B8B8B8", penwidth=2];
-    S3_EngPract -> S4_EngPract [color="#B8B8B8", penwidth=2];
-    S4_EngPract -> S5_EngProf [color="#B8B8B8", penwidth=2];
-    S5_EngProf -> S6_EngProf [color="#B8B8B8", penwidth=2];
-    S6_EngProf -> S7_EngProf [color="#B8B8B8", penwidth=2];
-    S7_EngProf -> S8_EngProf [color="#B8B8B8", penwidth=2];
-    // ПРЕРЕКВІЗИТИ - Практика та дослідження
-    S1_Intro -> S7_Course [color="#9013FE", penwidth=2];
-    S1_Intro -> S8_Diploma [color="#9013FE", penwidth=2];
-    S6_MathModel -> S7_Lab [color="#9013FE", penwidth=2];
-    S6_QMech -> S7_Lab [color="#9013FE", penwidth=2];
-    S7_Lab -> S7_Course [color="#9013FE", penwidth=2];
-    // S7_Course -> S8_Research [color="#9013FE", penwidth=2];
-    S7_Course -> S8_Diploma [color="#9013FE", penwidth=2];
-    S8_Research -> S8_Practice [color="#9013FE", penwidth=2];
-    // S6_Rights -> S8_Diploma [color="#9013FE", weight=1000, constraint="true"];
-    S8_Practice -> S8_Diploma [color="#9013FE", weight=1000, constraint="true"];
+ // ПРЕРЕКВІЗИТИ — Математика
+S1_Alg1     -> S2_Alg2        [color="#4A90E2", penwidth=2];
+S1_Alg1     -> S3_DiffEq1     [color="#E85D75", penwidth=2];
+S1_Alg1     -> S3_Tensor      [color="#E85D75", penwidth=2];
+S1_Alg1     -> S2_MatAn2;
+
+S1_MatAn1   -> S2_MatAn2      [color="#4A90E2", penwidth=2];
+S1_MatAn1   -> S3_DiffEq1     [color="#E85D75", penwidth=2];
+S1_MatAn1   -> S3_Tensor      [color="#E85D75", penwidth=2];
+S1_MatAn1   -> S4_TFKZ        [color="#E85D75", penwidth=2];
+
+S2_Alg2     -> S3_Tensor      [color="#4A90E2", penwidth=2];
+
+S2_MatAn2   -> S3_DiffEq1     [color="#4A90E2", penwidth=2];
+S2_MatAn2   -> S3_MatAn3      [color="#4A90E2", penwidth=2];
+S2_MatAn2   -> S4_TFKZ        [color="#E85D75", penwidth=2];
+
+S3_DiffEq1  -> S4_DiffEq2     [color="#4A90E2", penwidth=2];
+
+S3_MatAn3   -> S4_TFKZ        [color="#E85D75", penwidth=2];
+S3_MatAn3   -> S5_MathPhys3  [color="#4A90E2", penwidth=2];
+S3_MatAn3   -> S6_ProbStat   [color="#4A90E2", penwidth=2];
+
+S4_DiffEq2  -> S5_MathPhys3  [color="#4A90E2", penwidth=2];
+
+
+// ПРЕРЕКВІЗИТИ — Фізика
+S1_Alg1     -> S3_ClassMech   [color="#E85D75", penwidth=2];
+S1_MatAn1   -> S3_ClassMech   [color="#E85D75", penwidth=2];
+
+S1_Mech     -> S2_Thermo      [color="#E85D75", penwidth=2];
+S1_Mech     -> S3_ClassMech   [color="#E85D75", penwidth=2];
+S1_Mech     -> S3_ElMag       [color="#E85D75", penwidth=2];
+
+S2_Chem     -> S5_Atomic      [color="#E85D75", penwidth=2];
+
+S3_ClassMech -> S5_FieldTheory [color="#E85D75", penwidth=2];
+S3_ClassMech -> S5_OscWaves   [color="#E85D75", penwidth=2];
+S3_ClassMech -> S6_ESS        [color="#E85D75", penwidth=2];
+S3_ClassMech -> S6_QMech      [color="#E85D75", penwidth=2];
+S3_ClassMech -> S7_StatPhys   [color="#E85D75", penwidth=2];
+
+S3_ElMag    -> S4_Optics      [color="#E85D75", penwidth=2];
+S3_ElMag    -> S5_FieldTheory [color="#E85D75", penwidth=2];
+S3_ElMag    -> S6_ESS         [color="#E85D75", penwidth=2];
+
+S3_Tensor   -> S4_Optics      [color="#E85D75", penwidth=2];
+S3_Tensor   -> S5_FieldTheory [color="#E85D75", penwidth=2];
+S3_Tensor   -> S6_ESS         [color="#E85D75", penwidth=2];
+S3_Tensor   -> S7_StatPhys    [color="#E85D75", penwidth=2];
+
+S4_DiffEq2  -> S5_FieldTheory [color="#E85D75", penwidth=2];
+S4_DiffEq2  -> S5_OscWaves    [color="#E85D75", penwidth=2];
+S4_DiffEq2  -> S6_ESS         [color="#E85D75", penwidth=2];
+S4_DiffEq2  -> S6_QMech       [color="#E85D75", penwidth=2];
+S4_DiffEq2  -> S7_StatPhys    [color="#E85D75", penwidth=2];
+
+S4_Optics   -> S5_Atomic      [color="#E85D75", penwidth=2];
+S4_Optics   -> S7_StatRadio   [color="#E85D75", penwidth=2];
+
+S4_TFKZ     -> S5_FieldTheory [color="#E85D75", penwidth=2];
+S4_TFKZ     -> S5_OscWaves    [color="#E85D75", penwidth=2];
+S4_TFKZ     -> S6_ESS         [color="#E85D75", penwidth=2];
+S4_TFKZ     -> S6_QMech       [color="#E85D75", penwidth=2];
+
+S5_MathPhys3 -> S6_ESS;
+S5_MathPhys3 -> S7_StatRadio;
+S5_Atomic   -> S6_QMech       [color="#E85D75", penwidth=2];
+S5_FieldTheory -> S6_ESS      [color="#E85D75", penwidth=2];
+S5_OscWaves -> S6_ESS         [color="#E85D75", penwidth=2];
+
+S2_Thermo   -> S7_StatPhys    [color="#E85D75", penwidth=2];
+S6_QMech    -> S7_StatPhys    [color="#E85D75", penwidth=2];
+
+
+// ПРЕРЕКВІЗИТИ — Математика в фізику
+S6_ProbStat -> S7_StatPhys    [color="#E85D75", penwidth=2];
+
+
+// ПРЕРЕКВІЗИТИ — Програмування та обчислення
+S2_Graph    -> S4_CompSoft    [color="#7ED321", penwidth=2];
+S1_Prog     -> S2_Prog        [color="#7ED321", penwidth=2];
+S2_Prog     -> S3_cpp         [color="#7ED321", penwidth=2];
+S2_Prog     -> S4_CompMeth    [color="#7ED321", penwidth=2];
+S3_cpp      -> S4_CompMeth    [color="#7ED321", penwidth=2];
+S3_cpp      -> S4_CompSoft    [color="#7ED321", penwidth=2];
+S4_CompMeth -> S6_MathModel   [color="#7ED321", penwidth=2];
+S4_CompSoft -> S6_MathModel   [color="#7ED321", penwidth=2];
+S4_TFKZ     -> S6_MathModel   [color="#7ED321", penwidth=2];
+
+
+// ПРЕРЕКВІЗИТИ — Іноземна мова
+S1_EngPract -> S2_EngPract    [color="#B8B8B8", penwidth=2];
+S2_EngPract -> S3_EngPract    [color="#B8B8B8", penwidth=2];
+S3_EngPract -> S4_EngPract    [color="#B8B8B8", penwidth=2];
+S4_EngPract -> S5_EngProf     [color="#B8B8B8", penwidth=2];
+S5_EngProf  -> S6_EngProf     [color="#B8B8B8", penwidth=2];
+S6_EngProf  -> S7_EngProf     [color="#B8B8B8", penwidth=2];
+S7_EngProf  -> S8_EngProf     [color="#B8B8B8", penwidth=2];
+
+
+// ПРЕРЕКВІЗИТИ — Практика та дослідження
+S1_Intro    -> S7_Course      [color="#9013FE", penwidth=2];
+S1_Intro    -> S8_Diploma     [color="#9013FE", penwidth=2];
+
+S6_MathModel -> S7_Lab        [color="#9013FE", penwidth=2];
+S6_QMech    -> S7_Lab         [color="#9013FE", penwidth=2];
+S7_Lab      -> S7_Course      [color="#9013FE", penwidth=2];
+S7_Course   -> S8_Diploma     [color="#9013FE", penwidth=2];
+
+S8_Research -> S8_Practice    [color="#9013FE", penwidth=2];
+S8_Practice -> S8_Diploma     [color="#9013FE", weight=1000, constraint="true"];
+
+S4_Philos   -> S8_Research    [color="#E85D75", penwidth=2];
+
 }

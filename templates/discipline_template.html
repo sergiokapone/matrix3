@@ -4,9 +4,7 @@
     {% if metadata.website %}
     <p>
       <strong>Освітня програма:</strong>
-      <a href="{{ metadata.website }}" target="_blank" rel="noopener"
-        >Переглянути</a
-      >
+      <a href="{{ metadata.website }}" target="_blank" rel="noopener">Переглянути</a>
     </p>
     {% endif %}
     <p><strong>Рівень освіти:</strong> {{ metadata.degree }}</p>
@@ -26,26 +24,13 @@
   {% if discipline.lecturer %}
   <div class="lecturer-card">
     <div class="lecturer-photo">
-      <img
-        src="{{ discipline.lecturer.photo_url }}"
-        alt="Фото лектора {{ discipline.lecturer.full_name }}"
-        loading="lazy"
-      />
+      <img src="{{ discipline.lecturer.photo_url }}" alt="Фото лектора {{ discipline.lecturer.full_name }}" loading="lazy" />
     </div>
     <div class="lecturer-info">
       <div class="lecturer-line">
         <strong>Лектор:</strong>
-        {% set parts = [] %} {% if discipline.lecturer.degree %} {% set _ =
-        parts.append(discipline.lecturer.degree) %} {% endif %} {% if
-        discipline.lecturer.rank %} {% set _ =
-        parts.append(discipline.lecturer.rank) %} {% endif %} {% if parts %}{{
-        parts|join(', ') }} {% endif %} {% if discipline.lecturer.profile_url %}
-        <a
-          href="{{ discipline.lecturer.profile_url }}"
-          target="_blank"
-          rel="noopener"
-          >{{ discipline.lecturer.full_name }}</a
-        >
+        {% set parts = [] %} {% if discipline.lecturer.degree %} {% set _ = parts.append(discipline.lecturer.degree) %} {% endif %} {% if discipline.lecturer.rank %} {% set _ = parts.append(discipline.lecturer.rank) %} {% endif %} {% if parts %}{{ parts|join(', ') }} {% endif %} {% if discipline.lecturer.profile_url %}
+        <a href="{{ discipline.lecturer.profile_url }}" target="_blank" rel="noopener">{{ discipline.lecturer.full_name }}</a>
         {% else %} {{ discipline.lecturer.full_name }} {% endif %}
       </div>
     </div>
@@ -53,55 +38,36 @@
   {% endif %}
 
   <!-- Картка інформації про дисципліну -->
-  {% if discipline.syllabus_url %}
   <div class="discipline-card">
     {% if discipline.credits %}
     <p><strong>Кредити ЄКТС:</strong> {{ discipline.credits }}</p>
     {% endif %} {% if discipline.controls %}
     <p>
-      <strong>Види контролю:</strong>
-      {%- for control_abbr in discipline.controls %}
-      <span
-        class="control-tooltip"
-        title="{{ get_control_description(control_abbr) }}"
-        >{{ control_abbr }}</span
-      >
+      <strong>Види контролю:</strong> {%- for control_abbr in discipline.controls %} <span class="control-tooltip" title="{{ get_control_description(control_abbr) }}">{{ control_abbr }}</span>
       {%- if not loop.last %}, {% endif -%} {%- endfor %}
     </p>
     {% endif %} {% if discipline.control %}
-    <p>
-      <strong>Форма семестрового контролю:</strong>
-      <a href="https://kpi.ua/grading" target="_blank" rel="noopener"
-        >{{ discipline.control }}</a
-      >
-    </p>
+    <p><strong>Форма семестрового контролю:</strong> <a href="https://kpi.ua/grading" target="_blank" rel="noopener">{{ discipline.control }}</a></p>
     {% endif %}
-    <p>
-      <strong>Силабус:</strong>
-      <a href="{{ discipline.syllabus_url }}" target="_blank" rel="noopener"
-        >Завантажити</a
-      >
-    </p>
-    {% if discipline.online_resources %}
-    <p>
-      <strong>Розміщення курсу:</strong>
-      <a href="{{ discipline.online_resources }}" target="_blank" rel="noopener"
-        >Переглянути</a
-      >
-    </p>
+
+    <!-- Пререквізити -->
+
+    {% if discipline.prerequisites %}
+    <p><strong>Пререквізити:</strong> {% for prereq in discipline.prerequisites %} {% if prereq in disciplines_by_id %} {{ disciplines_by_id[prereq].name }} {% elif prereq in disciplines_by_code %} {{ disciplines_by_code[prereq].name }} {% else %} {{ prereq }} {% endif %}{% if not loop.last %}, {% endif %} {% endfor %}</p>
+    {% endif %}
+
+    <!-- Постреквізити -->
+
+    {% if discipline.postrequisites %}
+    <p><strong>Постреквізити:</strong> {% for postreq in discipline.postrequisites %} {% if postreq in disciplines_by_id %} {{ disciplines_by_id[postreq].name }} {% elif postreq in disciplines_by_code %} {{ disciplines_by_code[postreq].name }} {% else %} {{ postreq }} {% endif %}{% if not loop.last %}, {% endif %} {% endfor %}</p>
+    {% endif %} {% if discipline.syllabus_url %}
+    <p><strong>Силабус:</strong> <a href="{{ discipline.syllabus_url }}" target="_blank" rel="noopener">Завантажити</a></p>
+    {% endif %} {% if discipline.online_resources %}
+    <p><strong>Розміщення курсу:</strong> <a href="{{ discipline.online_resources }}" target="_blank" rel="noopener">Переглянути</a></p>
     {% endif %} {% if discipline.outside_resources %}
-    <p>
-      <strong>Додаткові ресурси:</strong>
-      <a
-        href="{{ discipline.outside_resources }}"
-        target="_blank"
-        rel="noopener"
-        >Переглянути</a
-      >
-    </p>
+    <p><strong>Додаткові ресурси:</strong> <a href="{{ discipline.outside_resources }}" target="_blank" rel="noopener">Переглянути</a></p>
     {% endif %}
   </div>
-  {% endif %}
 
   <!-- Структура курсу -->
   {% if discipline.subdisciplines %}
@@ -110,19 +76,11 @@
     {% for sub_code, subdiscipline in discipline.subdisciplines.items() %}
     <div class="subdiscipline">
       <h3>{{ sub_code }}: {{ subdiscipline.name }}</h3>
-      <p>
-        <strong>Кредити:</strong> {{ subdiscipline.credits }} ЄКТС |
-        <strong>Контроль:</strong> {{ subdiscipline.control }}
-      </p>
+      <p><strong>Кредити:</strong> {{ subdiscipline.credits }} ЄКТС | <strong>Контроль:</strong> {{ subdiscipline.control }}</p>
       {% if subdiscipline.syllabus_url %}
       <p>
         <strong>Силабус:</strong>
-        <a
-          href="{{ subdiscipline.syllabus_url }}"
-          target="_blank"
-          rel="noopener"
-          >Завантажити</a
-        >
+        <a href="{{ subdiscipline.syllabus_url }}" target="_blank" rel="noopener">Завантажити</a>
       </p>
       {% endif %}
     </div>

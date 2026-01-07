@@ -35,51 +35,85 @@ metadata:
     Атестація здобувачів вищої освіти за освітньою програмою проводиться у формі захисту кваліфікаційної бакалаврської роботи та завершується видачею документа встановленого зразка про присудження йому ступеня бакалавра з присвоєнням кваліфікації: бакалавр з прикладної фізики та наноматеріалів. Кваліфікаційна робота перевіряється на плагіат та після захисту розміщується в репозиторії НТБ Університету для вільного доступу. Атестація здійснюється відкрито і публічно.
 
 disciplines:
-  ЗО 01:
-    name: Математичний аналіз
-    subdisciplines:
-      ЗО 01.1:
-        name: Математичний аналіз. Частина 1
-        credits: 5.0
-        control: Екзамен
-      ЗО 01.2:
-        name: Математичний аналіз. Частина 2
-        credits: 4.5
-        control: Залік
-      ЗО 01.3:
-        name: Математичний аналіз. Частина 3
-        credits: 4.0
-        control: Екзамен
-      ЗО 01.4:
-        name: Математичний аналіз. Частина 4. ТФКЗ
-        credits: 3.0
-        control: Залік
-    prerequisites:
-    pоstrequsites:
-      - diff_eqns
+  ЗО 01.1:
+    name: Математичний аналіз. Частина 1
+    credits: 5.0
+    control: Екзамен
+    postrequisites:
+      - ЗО 05.1
       - classmech
-      - math_analisys
+      - ЗО 01.2
       - tensor_analisys
+    syllabus_url:
     discipline_id: math_analisys
 
-  ЗО 02:
-    name: Алгебра та геометрія
-    subdisciplines:
-      ЗО 02.1:
-        name: Алгебра та геометрія. Частина 1
-        credits: 5.0
-        control: Екзамен
-      ЗО 02.2:
-        name: Алгебра та геометрія. Частина 2
-        credits: 3.0
-        control: Залік
-    discipline_id: algeom
+  ЗО 01.2:
+    name: Математичний аналіз. Частина 2
+    credits: 4.5
+    control: Залік
     prerequisites:
-    pоstrequsites:
-      - diff_eqns
+      - ЗО 02.1
+      - ЗО 01.1
+    postrequisites:
+      - ЗО 05.1
+      - ЗО 01.3
+    syllabus_url:
+    discipline_id: math_analisys
+
+  ЗО 01.3:
+    name: Математичний аналіз. Частина 3
+    credits: 4.0
+    control: Екзамен
+    prerequisites:
+      - ЗО 01.2
+    postrequisites:
+      - math_pys
+      - ЗО 01.4
+      - prob_theory
+    syllabus_url:
+    discipline_id: math_analisys
+
+  ЗО 01.4:
+    name: Математичний аналіз. Частина 4. ТФКЗ
+    credits: 3.0
+    control: Залік
+    prerequisites:
+      - ЗО 01.1
+      - ЗО 01.2
+      - ЗО 01.3
+    postrequisites:
+      - electrodynamics
+      - quantum_mechanics
+      - oscillations_and_waves
+      - ПО 09
+      - electrodynamics
+    syllabus_url:
+    discipline_id: math_analisys
+    lecturer_id: nakaznoy_po
+
+  ЗО 02.1:
+    name: Алгебра та геометрія. Частина 1
+    credits: 5.0
+    control: Екзамен
+    postrequisites:
+      - ЗО 02.2
+      - ЗО 05.1
       - classmech
-      - math_analisys
+      - ЗО 01.2
       - tensor_analisys
+    syllabus_url:
+    discipline_id: algeom1
+
+  ЗО 02.2:
+    name: Алгебра та геометрія. Частина 2
+    credits: 3.0
+    control: Залік
+    prerequisites:
+      - ЗО 02.1
+    postrequisites:
+      - tensor_analisys
+    syllabus_url:
+    discipline_id: algeom2
 
   ЗО 03:
     name: Механіка
@@ -104,24 +138,42 @@ disciplines:
     controls:
       - МКР
       - РР
+    prerequisites:
+      - mechanics
+    postrequisites:
+      - stat_phys
     syllabus_url: https://drive.google.com/file/d/1fTIfrWdd0VvrK_fTGHuWGGwWRMMY4d3K/view
     lecturer_id: monastyrsky_ge
     discipline_id: thermodynamics
 
-  ЗО 05:
-    name: Диференціальні рівняння
-    lecturer_id: nakaznoy_po
-    subdisciplines:
-      ЗО 05.1:
-        name: Диференціальні рівняння. Частина 1
-        credits: 3.0
-        control: Залік
-
-      ЗО 05.2:
-        name: Диференціальні рівняння. Частина 2
-        credits: 4.0
-        control: Екзамен
+  ЗО 05.1:
+    name: Диференціальні рівняння. Частина 1
+    credits: 3.0
+    control: Залік
+    prerequisites:
+      - ЗО 02.1
+      - ЗО 01.1
+      - ЗО 01.2
+    postrequisites:
+      - ЗО 05.2
     discipline_id: diff_eqns
+    lecturer_id: nakaznoy_po
+
+  ЗО 05.2:
+    name: Диференціальні рівняння. Частина 2
+    credits: 4.0
+    control: Екзамен
+    prerequisites:
+      - ЗО 05.1
+    postrequisites:
+      - ess
+      - quantum_mechanics
+      - oscillations_and_waves
+      - math_pys
+      - stat_phys
+      - electrodynamics
+    discipline_id: diff_eqns
+    lecturer_id: nakaznoy_po
 
   ЗО 06:
     name: Електрика та магнетизм
@@ -130,6 +182,12 @@ disciplines:
     controls:
       - МКР
       - РР
+    prerequisites:
+      - mechanics
+    postrequisites:
+      - ess
+      - optics
+      - electrodynamics
     syllabus_url: https://sergiokapone.github.io/ElMagLectures/Syllabus_ElMag/Syllabus_ElMag.pdf
     online_resources: https://classroom.google.com/c/NTQ1MzUzNjE5MDA3
     lecturer_id: ponomarenko_sm
@@ -142,6 +200,12 @@ disciplines:
     controls:
       - МКР
       - РР
+    prerequisites:
+      - elmag
+      - tensor_analisys
+    postrequisites:
+      - atom
+      - stochastic_processes
     online_resources: https://do.ipo.kpi.ua/enrol/index.php?id=1988
     lecturer_id: ivanova_vv
     discipline_id: optics
@@ -154,6 +218,11 @@ disciplines:
       - РР
     credits: 5.0
     control: Екзамен
+    prerequisites:
+      - optics
+      - chemistry
+    postrequisites:
+      - quantum_mechanics
     syllabus_url: https://drive.google.com/file/d/1d0QKt_uuvPVqmcG3VHZ3B8X83HcpqEtA/view
     lecturer_id: krivenko_yad
     discipline_id: atom
@@ -186,11 +255,17 @@ disciplines:
         name: Частина 1
         credits: 3.0
         control: Залік
+        postrequisites:
+          - ЗО 12.2
         syllabus_url: https://osvita.kpi.ua/sites/default/files/files/Prakt_kurs_inoz_movy_English_1_Klaster_2_denna_24-25.pdf
       ЗО 12.2:
         name: Частина 2
         credits: 3.0
         control: Залік
+        prerequisites:
+          - ЗО 12.1
+        postrequisites:
+          - ЗО 12.1
         syllabus_url: https://osvita.kpi.ua/sites/default/files/files/Prakt_kurs_inoz_movy_English_2_denna_24-25.pdf
 
   ЗО 13:
@@ -202,6 +277,8 @@ disciplines:
     name: Філософські основи наукового пізнання
     credits: 2.0
     control: Залік
+    postrequisites:
+      - ond
     syllabus_url: https://osvita.kpi.ua/sites/default/files/files/Filosofski_osnovy_naukovoho_piznannia_zaochna_24-25.pdf
 
   ЗО 15:
@@ -216,10 +293,18 @@ disciplines:
         name: Практичний курс іноземної мови професійного спрямування. Частина 1
         credits: 3.0
         control: Залік
+        prerequisites:
+          - ЗО 12.2
+        postrequisites:
+          - ЗО 16.2
       ЗО 16.2:
         name: Практичний курс іноземної мови професійного спрямування. Частина 2
         credits: 3.0
         control: Екзамен
+        prerequisites:
+          - ЗО 16.1
+        postrequisites:
+          - ЗО 16.1
 
   ЗО 17:
     name: Безпека життєдіяльності та цивільний захист
@@ -235,6 +320,8 @@ disciplines:
     name: Хімія
     credits: 4.0
     control: Екзамен
+    postrequisites:
+      - atom
     syllabus_url: https://drive.google.com/file/d/1dw1GswMiY1RBhnq-znLgnOWdTlEXDbEq/view
     discipline_id: chemistry
 
@@ -242,6 +329,10 @@ disciplines:
     name: Теорія ймовірності та математична статистика
     credits: 3.0
     control: Залік
+    prerequisites:
+      - ЗО 01.3
+    postrequisites:
+      - stat_phys
     syllabus_url: https://drive.google.com/file/d/1fE1TjVO8nYF7W52RNXlG3g3kZ71BUctU/view?usp=sharing
     discipline_id: prob_theory
 
@@ -249,6 +340,8 @@ disciplines:
     name: Комп'ютерна графіка
     credits: 2.0
     control: Залік
+    postrequisites:
+      - ПО 06
 
   ПО 01:
     name: Програмування
@@ -257,22 +350,43 @@ disciplines:
         name: Програмування. Частина 1
         credits: 3.0
         control: Залік
+        prerequisites: []
+        postrequisites:
+          - ПО 01.2
       ПО 01.2:
         name: Програмування. Частина 2
         credits: 3.0
         control: Залік
+        prerequisites:
+          - ПО 01.1
+        postrequisites:
+          - ПО 08
+          - ПО 04
     discipline_id: programming
 
   ПО 02:
     name: Введення в спеціальність
     credits: 3.0
     control: Залік
+    prerequisites: []
+    postrequisites:
+      - diploma_proecting
+      - interdiscipline_course_work
     discipline_id: intro
 
   ПО 03:
     name: Тензорний аналіз
     credits: 3.0
     control: Залік
+    prerequisites:
+      - ЗО 02.1
+      - ЗО 02.2
+      - ЗО 01.1
+    postrequisites:
+      - ess
+      - optics
+      - stat_phys
+      - electrodynamics
     syllabus_url: https://drive.google.com/file/d/1krJtTPtjaey_3BkQzzRn-TO24Ylc6q6e/view
     lecturer_id: nakaznoy_po
     discipline_id: tensor_analisys
@@ -281,11 +395,26 @@ disciplines:
     name: Програмування С++
     credits: 3.0
     control: Залік
+    prerequisites:
+      - ПО 01.2
+    postrequisites:
+      - ПО 06
+      - ПО 08
 
   ПО 05:
     name: Класична механіка
     credits: 4.0
     control: Залік
+    prerequisites:
+      - ЗО 02.1
+      - ЗО 01.1
+      - mechanics
+    postrequisites:
+      - ess
+      - quantum_mechanics
+      - oscillations_and_waves
+      - stat_phys
+      - electrodynamics
     syllabus_url: https://drive.google.com/file/d/1krZIzImw2_e_mb-kKi-BSArnIuAQMma1/view
     lecturer_id: nakaznoy_po
     discipline_id: classmech
@@ -294,12 +423,23 @@ disciplines:
     name: Комп'ютерні пакети для представлення наукових результатів (Origin, LaTeX, Gnuplot)
     credits: 3.0
     control: Залік
+    prerequisites:
+      - ЗО 21
+      - ПО 04
+    postrequisites:
+      - ПО 09
     syllabus_url: https://drive.google.com/file/d/13SzhVqT7OCOVbuVwDEJGW3ji8CQrTaIu/view?usp=sharing
 
   ПО 07:
     name: Рівняння математичної фізики
     credits: 3.0
     control: Залік
+    prerequisites:
+      - ЗО 05.2
+      - ЗО 01.3
+    postrequisites:
+      - ess
+      - stochastic_processes
     syllabus_url: https://drive.google.com/file/d/1mb5lwm8raz9hajvLuhigkMINTk-51Evl/view
     lecturer_id: zhdanov_vi
     discipline_id: math_pys
@@ -308,16 +448,35 @@ disciplines:
     name: Обчислювальні методи
     credits: 3.0
     control: Залік
+    prerequisites:
+      - ПО 01.2
+      - ПО 04
+    postrequisites:
+      - ПО 09
 
   ПО 09:
     name: Математичне моделювання та відкриті пакети прикладних програм
     credits: 3.0
     control: Залік
+    prerequisites:
+      - ПО 06
+      - ПО 08
+      - ЗО 01.4
+    postrequisites:
+      - lab_research_pract
 
   ПО 10:
     name: Теорія поля
     credits: 4.0
     control: Екзамен
+    prerequisites:
+      - ЗО 05.2
+      - elmag
+      - classmech
+      - ЗО 01.4
+      - tensor_analisys
+    postrequisites:
+      - ess
     syllabus_url: https://drive.google.com/file/d/1PniXet07U8aZaX-D8ZvE8Lo5uuXZjF8O/view
     lecturer_id: zhdanov_vi
     discipline_id: electrodynamics
@@ -326,6 +485,16 @@ disciplines:
     name: Електродинаміка суцільних середовищ
     credits: 4.0
     control: Екзамен
+    prerequisites:
+      - ЗО 05.2
+      - elmag
+      - classmech
+      - oscillations_and_waves
+      - math_pys
+      - ЗО 01.4
+      - tensor_analisys
+      - electrodynamics
+    postrequisites: []
     syllabus_url: https://drive.google.com/file/d/14ohDpHhQ0lazL3pYtWZ4xVF6suG3Q1TU/view
     lecturer_id: zhdanov_vi
     discipline_id: ess
@@ -334,6 +503,12 @@ disciplines:
     name: Коливання та хвилі
     credits: 4.0
     control: Залік
+    prerequisites:
+      - ЗО 05.2
+      - classmech
+      - ЗО 01.4
+    postrequisites:
+      - ess
     syllabus_url: https://drive.google.com/file/d/1T0aPVmTh91Pl1DXbXV95ukwPSuPmewbK/view
     lecturer_id: monastyrsky_ge
     discipline_id: oscillations_and_waves
@@ -342,6 +517,14 @@ disciplines:
     name: Квантова механіка
     credits: 5.0
     control: Екзамен
+    prerequisites:
+      - atom
+      - ЗО 05.2
+      - classmech
+      - ЗО 01.4
+    postrequisites:
+      - lab_research_pract
+      - stat_phys
     syllabus_url: https://drive.google.com/file/d/1jmbTrWoa3cqZP0cx9Aqz0K7HVjPg1lmK/view
     discipline_id: quantum_mechanics
 
@@ -349,12 +532,24 @@ disciplines:
     name: Статистична фізика та основи фізики твердого тіла
     credits: 6.0
     control: Екзамен
+    prerequisites:
+      - ЗО 05.2
+      - quantum_mechanics
+      - classmech
+      - tensor_analisys
+      - prob_theory
+      - thermodynamics
+    postrequisites: []
     discipline_id: stat_phys
 
   ПО 15:
     name: Статистична радіофізика та оптика
     credits: 4.0
     control: Екзамен
+    prerequisites:
+      - optics
+      - math_pys
+    postrequisites: []
     syllabus_url: https://drive.google.com/file/d/1UkdnozhKDbA-YHX_zx3J8BoD8DdARKn0/view
     lecturer_id: monastyrsky_ge
     discipline_id: stochastic_processes
@@ -363,6 +558,11 @@ disciplines:
     name: Лабораторно-дослідницький практикум
     credits: 2.0
     control: Залік
+    prerequisites:
+      - quantum_mechanics
+      - ПО 09
+    postrequisites:
+      - interdiscipline_course_work
     syllabus_url: https://drive.google.com/file/d/1C-Hq56Tt-E8-8M05kq-CKkU_x3CmQuSs/view
     lecturer_id: voronov_so
     discipline_id: lab_research_pract
@@ -370,24 +570,41 @@ disciplines:
   ПО 17:
     name: "Фундаментально-прикладні аспекти фізики: Міждисциплінарна курсова робота"
     control: Залік
+    prerequisites:
+      - intro
+      - lab_research_pract
+    postrequisites:
+      - diploma_proecting
     discipline_id: interdiscipline_course_work
 
   ПО 18:
     name: Основи наукових досліджень
     credits: 3.0
     control: Залік
+    prerequisites:
+      - ЗО 14
+    postrequisites:
+      - pre_diploma_practic
     discipline_id: ond
 
   ПО 19:
     name: Переддипломна практика
     credits: 6.0
     control: Залік
+    prerequisites:
+      - ond
+    postrequisites:
+      - diploma_proecting
     discipline_id: pre_diploma_practic
 
   ПО 20:
     name: Дипломне проєктування
     credits: 6.0
     control: Захист
+    prerequisites:
+      - intro
+      - interdiscipline_course_work
+      - pre_diploma_practic
     discipline_id: diploma_proecting
 
 competencies:

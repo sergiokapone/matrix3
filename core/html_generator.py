@@ -95,6 +95,22 @@ def generate_discipline_page(
     # Отримуємо метадані з завантажених даних
     metadata = data.get("metadata", {})
 
+    # Отримуємо всі дисципліни для lookup
+    all_disciplines = data.get("disciplines", {})
+
+    # Створюємо два словники для lookup
+    disciplines_by_id = {}
+    disciplines_by_code = {}
+
+    for disc_code, disc_data in all_disciplines.items():
+        # По коду дисципліни (ЗО 06, тощо)
+        disciplines_by_code[disc_code] = disc_data
+
+        # По discipline_id (mechanics, elmag, тощо)
+        disc_id = disc_data.get("discipline_id")
+        if disc_id:
+            disciplines_by_id[disc_id] = disc_data
+
     # Отримуємо компетентності та результати навчальної програми
     general_comps, professional_comps = get_mapped_competencies(
         discipline_code, data.get("mappings", {}), data.get("competencies", {})
@@ -109,6 +125,8 @@ def generate_discipline_page(
     context = {
         "discipline_code": discipline_code,
         "discipline": discipline,
+        "disciplines_by_id": disciplines_by_id,
+        "disciplines_by_code": disciplines_by_code,
         "metadata": metadata,
         "general_competencies": general_comps,
         "professional_competencies": professional_comps,

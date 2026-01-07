@@ -54,6 +54,12 @@ disciplines:
         name: Математичний аналіз. Частина 4. ТФКЗ
         credits: 3.0
         control: Залік
+    prerequisites:
+    pоstrequsites:
+      - diff_eqns
+      - classmech
+      - math_analisys
+      - tensor_analisys
     discipline_id: math_analisys
 
   ЗО 02:
@@ -68,6 +74,12 @@ disciplines:
         credits: 3.0
         control: Залік
     discipline_id: algeom
+    prerequisites:
+    pоstrequsites:
+      - diff_eqns
+      - classmech
+      - math_analisys
+      - tensor_analisys
 
   ЗО 03:
     name: Механіка
@@ -76,6 +88,11 @@ disciplines:
     controls:
       - МКР
       - РР
+    prerequisites:
+    pоstrequsites:
+      - classmech
+      - elmag
+      - thermodynamics
     syllabus_url: https://drive.google.com/file/d/13TkeSMkGY_Ul48OxI9gCTFhIBfRZioSG/view?usp=sharing
     lecturer_id: zagorodniy_vv
     discipline_id: mechanics

@@ -1,28 +1,29 @@
-import re
 import json
+import re
 
-def parse_graphviz_file(filename):
+
+def parse_graphviz_file(filename: str) -> tuple[dict, list]:
     """Парсинг Graphviz файлу для витягування курсів та їх зв'язків"""
 
     courses = {}
     edges = []
 
-    with open(filename, 'r', encoding='utf-8') as f:
+    with open(filename, "r", encoding="utf-8") as f:
         content = f.read()
 
     # Парсинг визначень вузлів (курсів)
     node_pattern = r'(\w+)\s*\[label="([^"]+)"[^\]]*fillcolor="([^"]+)"'
     for match in re.finditer(node_pattern, content):
         node_id = match.group(1)
-        label = match.group(2).replace('\\n', ' ')
+        label = match.group(2).replace("\\n", " ")
         color = match.group(3)
         courses[node_id] = {
-            'name': label,
-            'color': color
+            "name": label,
+            "color": color
         }
 
     # Парсинг ребер (пререквізитів)
-    edge_pattern = r'(\w+)\s*->\s*(\w+)'
+    edge_pattern = r"(\w+)\s*->\s*(\w+)"
     for match in re.finditer(edge_pattern, content):
         from_node = match.group(1)
         to_node = match.group(2)
@@ -32,7 +33,7 @@ def parse_graphviz_file(filename):
     return courses, edges
 
 
-def build_prerequisite_dict(courses, edges):
+def build_prerequisite_dict(courses: dict, edges: list) -> dict:
     """Побудова словника з пререквізитами та пострерквізитами для кожного курсу"""
 
     result = {}
@@ -40,22 +41,22 @@ def build_prerequisite_dict(courses, edges):
     # Ініціалізація для всіх курсів
     for course_id, course_info in courses.items():
         result[course_id] = {
-            'name': course_info['name'],
-            'prerequisites': [],  # курси, які потрібні перед цим
-            'postrequisites': []  # курси, для яких потрібен цей
+            "name": course_info["name"],
+            "prerequisites": [],  # курси, які потрібні перед цим
+            "postrequisites": []  # курси, для яких потрібен цей
         }
 
     # Заповнення зв'язків
     for from_node, to_node in edges:
         # from_node є пререквізитом для to_node
-        result[to_node]['prerequisites'].append(courses[from_node]['name'])
+        result[to_node]["prerequisites"].append(courses[from_node]["name"])
         # to_node є пострерквізитом для from_node
-        result[from_node]['postrequisites'].append(courses[to_node]['name'])
+        result[from_node]["postrequisites"].append(courses[to_node]["name"])
 
     # Сортування для зручності
     for course_id in result:
-        result[course_id]['prerequisites'].sort()
-        result[course_id]['postrequisites'].sort()
+        result[course_id]["prerequisites"].sort()
+        result[course_id]["postrequisites"].sort()
 
     return result
 
@@ -84,7 +85,7 @@ if __name__ == "__main__":
             print()
 
         # Збереження в JSON (опціонально)
-        with open('prerequisites.json', 'w', encoding='utf-8') as f:
+        with open("prerequisites.json", "w", encoding="utf-8") as f:
             json.dump(prerequisite_dict, f, ensure_ascii=False, indent=2)
 
         print("✅ Результат збережено в prerequisites.json")

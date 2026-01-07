@@ -1,10 +1,12 @@
 import json
+from pathlib import Path
 
-def generate_html_table(json_filename, output_html='prerequisites.html'):
+
+def generate_html_table(json_filename: Path, output_html: str ="prerequisites.html") -> None:
     """Генерація HTML таблиці з JSON файлу з пререквізитами"""
 
     # Читання JSON
-    with open(json_filename, 'r', encoding='utf-8') as f:
+    with open(json_filename, "r", encoding="utf-8") as f:
         data = json.load(f)
 
     # Генерація HTML
@@ -251,22 +253,22 @@ def generate_html_table(json_filename, output_html='prerequisites.html'):
 
         # Пререквізити
         prereq_html = ""
-        if course['prerequisites']:
-            prereq_items = "".join([f"<li>{p}</li>" for p in course['prerequisites']])
+        if course["prerequisites"]:
+            prereq_items = "".join([f"<li>{p}</li>" for p in course["prerequisites"]])
             prereq_html = f'<ul class="list-items">{prereq_items}</ul>'
         else:
             prereq_html = '<div class="empty-list">Немає пререквізитів</div>'
 
         # Пострерквізити
         postreq_html = ""
-        if course['postrequisites']:
-            postreq_items = "".join([f"<li>{p}</li>" for p in course['postrequisites']])
+        if course["postrequisites"]:
+            postreq_items = "".join([f"<li>{p}</li>" for p in course["postrequisites"]])
             postreq_html = f'<ul class="list-items">{postreq_items}</ul>'
         else:
             postreq_html = '<div class="empty-list">Немає пострерквізитів</div>'
 
-        prereq_count = len(course['prerequisites'])
-        postreq_count = len(course['postrequisites'])
+        prereq_count = len(course["prerequisites"])
+        postreq_count = len(course["postrequisites"])
 
         html += f"""
                 <tr>
@@ -324,7 +326,7 @@ def generate_html_table(json_filename, output_html='prerequisites.html'):
 """
 
     # Збереження HTML
-    with open(output_html, 'w', encoding='utf-8') as f:
+    with open(output_html, "w", encoding="utf-8") as f:
         f.write(html)
 
     print(f"✅ HTML таблиця створена: {output_html}")
@@ -332,5 +334,5 @@ def generate_html_table(json_filename, output_html='prerequisites.html'):
 
 
 if __name__ == "__main__":
-    generate_html_table('prerequisites.json')
-    
+    generate_html_table("prerequisites.json")
+

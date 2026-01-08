@@ -248,11 +248,12 @@ S1_Intro    -> S8_Diploma     [color="#9013FE", penwidth=2];
 
 S6_MathModel -> S7_Lab        [color="#9013FE", penwidth=2];
 S6_QMech    -> S7_Lab         [color="#9013FE", penwidth=2];
-S7_Lab      -> S7_Course      [color="#9013FE", penwidth=2];
+S7_Lab      -> S8_Practice    [color="#9013FE", penwidth=2];
+S7_Lab      -> S8_Diploma      [color="#9013FE", penwidth=2];
 S7_Course   -> S8_Diploma     [color="#9013FE", penwidth=2];
 
 S8_Research -> S8_Practice    [color="#9013FE", penwidth=2];
-S8_Practice -> S8_Diploma     [color="#9013FE", weight=1000, constraint="true"];
+// S8_Practice -> S8_Diploma     [color="#9013FE", weight=1000, constraint="true"];
 
 S4_Philos   -> S8_Research    [color="#E85D75", penwidth=2];
 

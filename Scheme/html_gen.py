@@ -2,7 +2,7 @@ import json
 from pathlib import Path
 
 
-def generate_html_table(json_filename: Path, output_html: str ="prerequisites.html") -> None:
+def generate_html_table(json_filename: Path, output_html: str ="requisites_bachelor_2024.html") -> None:
     """Генерація HTML таблиці з JSON файлу з пререквізитами"""
 
     # Читання JSON

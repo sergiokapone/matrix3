@@ -39,37 +39,39 @@ disciplines:
     name: Інтелектуальна власність та патентознавство
     credits: 3.0
     control: Залік
+    syllabus_url: https://drive.google.com/file/d/1D8RdzT6Fob4PyFKcniKLbIdtjHHoxe1N/view?usp=sharing
 
   ЗО 02:
     name: Основи інженерії та технології сталого розвитку
     credits: 2.0
     control: Залік
-    syllabus_url: https://osvita.kpi.ua/node/1180
+    syllabus_url: https://drive.google.com/file/d/18ER767-f1bf65zRmWglCujAP8yFMtNwM/view?usp=sharing
 
   ЗО 03:
     name: Практичний курс іноземної мови для наукової комунікації
-    syllabus_url: https://drive.google.com/file/d/1MYmR1cDyGMkIIAMdgeYg4mJrNwf_UaMK/view
     subdisciplines:
       ЗО 03.1:
         name: Частина 1
         credits: 3.0
         control: Залік
+        syllabus_url: https://drive.google.com/file/d/1fCrJqJ_q8e_k26bufWCucPCr7VglHr1n/view?usp=sharing
       ЗО 03.2:
         name: Частина 2
         credits: 2.0
         control: Залік
+        syllabus_url: https://drive.google.com/file/d/16du2LU7I2yXhQfURF9sxH95YLw6SDWiL/view?usp=sharing
 
   ЗО 04:
     name: Менеджмент стартап проектів
     credits: 3.0
     control: Залік
-    syllabus_url: https://osvita.kpi.ua/taxonomy/term/98?page=2
+    syllabus_url: https://drive.google.com/file/d/1LNF_5qpxOqiDcav6cWIdsSelgCd85egZ/view?usp=sharing
 
   ЗО 05:
     name: Педагогічна майстерність
     credits: 2.0
     control: Залік
-    syllabus_url: https://osvita.kpi.ua/node/1181
+    syllabus_url: https://drive.google.com/file/d/1qMys6sydBdEPur2So-lf9Y13zmW3Wjh4/view?usp=sharing
 
   ЗО 06:
     name: Локальні методи досліджень
@@ -77,7 +79,7 @@ disciplines:
     control: Залік
     lecturer_id: gilchuk_av
     discipline_id: local_methods
-    # syllabus_url: https://docs.google.com/document/d/18It_MY48OuY7p7EmuWZ4Ucusfyvnq9_B/edit
+    syllabus_url: https://drive.google.com/file/d/1UQCLCvO_I4TooowaltoaSy-mAikJUqny/view?usp=sharing
 
   ЗО 07:
     name: Комп'ютерне моделювання та симуляції в фізиці
@@ -94,13 +96,14 @@ disciplines:
     online_resources: https://classroom.google.com/c/MjI0NzY1NTA5OTMy
     lecturer_id: ponomarenko_sm
     discipline_id: qchem
-    syllabus_url: https://docs.google.com/gview?url=https://raw.githubusercontent.com/sergiokapone/QChemLectures/master/A_Documents/Syllabus_QChem/Syllabus_QChem_105.pdf&embedded=true
+    syllabus_url: https://drive.google.com/file/d/1QNcHMBtyxuCBFnSoDhpbq64JDTcoeRaX/view?usp=sharing
 
   ПО 02:
     name: Нелінійна оптика
     credits: 4.0
     control: Залік
     lecturer_id: stronsky_ov
+    syllabus_url: https://drive.google.com/file/d/1uQDlxWw8caOY-rr_VebbOFBtYiph08DW/view?usp=sharing
 
   ПО 03:
     name: Технологія і застосування наноструктур
@@ -108,7 +111,7 @@ disciplines:
     control: Залік
     lecturer_id: teterkin_vv
     discipline_id: nanostructure_tex_for_applications
-    # syllabus_url: https://drive.google.com/file/d/1x8uiw4mTM5XL3-GTQykt5_pNbQzpLRis/view
+    syllabus_url: https://drive.google.com/file/d/117hhx-QS7G9JaLggZ8h6B7E0v5LPVYfc/view?usp=sharing
 
   ПО 04:
     name: Фізика суцільних середовищ
@@ -116,7 +119,7 @@ disciplines:
     control: Екзамен
     lecturer_id: kulish_vv
     discipline_id: cont_media_phys
-    # syllabus_url: https://drive.google.com/file/d/1x8uiw4mTM5XL3-GTQykt5_pNbQzpLRis/view
+    syllabus_url: https://drive.google.com/file/d/1Qn1JudtGqbsKyCBeCvewjoaJ8BwIuGwR/view?usp=sharing
 
   ПО 05:
     name: Нові речовини і матеріали для наукоємних технологій
@@ -124,7 +127,7 @@ disciplines:
     control: Екзамен
     lecturer_id: monastyrsky_ge
     discipline_id: new_substances
-    # syllabus_url: https://drive.google.com/file/d/1P9nEahBmMAduKa04tHFO3bHOuZvvM4lF/view
+    syllabus_url: https://drive.google.com/file/d/1L8gEnvulF-0AsMImGRB03CLpLdLrA-ig/view?usp=sharing
 
   ПО 06:
     name: Методи машинного навчання в фізичних дослідженнях
@@ -135,22 +138,23 @@ disciplines:
   ПО 07:
     name: Наукова робота за темою магістерської дисертації
     lecturer_id: voronov_so
-    syllabus_url:
     subdisciplines:
       ПО 07.1:
         name: Частина 1.
         credits: 2.0
         control: Залік
+        syllabus_url: https://drive.google.com/file/d/1hEmOhe7-W57EW8TcyqyCJ5wYsrF0nPPX/view?usp=sharing
       ПО 07.2:
         name: Частина 2.
         credits: 6.0
         control: Залік
+        syllabus_url: https://drive.google.com/file/d/15k6o8F39pLA_jQ5jjOvpyv053_OU38z6/view?usp=sharing
 
   ПО 08:
     name: Науково-дослідна практика
     credits: 12.0
     control: Залік
-    # syllabus_url: https://ela.kpi.ua/items/2e104af5-7820-40b4-9e22-d41e4d4fa955
+    syllabus_url: https://drive.google.com/file/d/1Y7i7EZpJvfRPMMfmbSHGpHq4I_7JYdCr/view?usp=sharing
     lecturer_id: ivanova_vv
 
   ПО 09:
@@ -158,6 +162,7 @@ disciplines:
     credits: 16.0
     control: Захист
     lecturer_id: monastyrsky_ge
+    syllabus_url: https://drive.google.com/file/d/1Y7i7EZpJvfRPMMfmbSHGpHq4I_7JYdCr/view?usp=sharing
 
 competencies:
   ЗК 01: Здатність до абстрактного та аналітичного мислення, розуміння основних концепцій, парадигми та ідей прикладної фізики

@@ -1,8 +1,18 @@
+"""
+Генерація HTML таблиці з пререквізитами
+Використання: python html_gen.py [year]
+Приклад: python html_gen.py 2025
+"""
+
 import json
+import sys
 from pathlib import Path
 
+# ===== НАЛАШТУВАННЯ ЗА ЗАМОВЧУВАННЯМ =====
+DEFAULT_YEAR = 2025
 
-def generate_html_table(json_filename: Path, output_html: str ="requisites_bachelor_2024.html") -> None:
+
+def generate_html_table(json_filename: Path, output_html: str) -> None:
     """Генерація HTML таблиці з JSON файлу з пререквізитами"""
 
     # Читання JSON
@@ -333,6 +343,33 @@ def generate_html_table(json_filename: Path, output_html: str ="requisites_bache
     print(f"📊 Всього дисциплін: {len(data)}")
 
 
-if __name__ == "__main__":
-    generate_html_table("prerequisites.json")
+def main():
+    """Головна функція"""
+    year = DEFAULT_YEAR
+    
+    if len(sys.argv) > 1:
+        try:
+            year = int(sys.argv[1])
+        except ValueError:
+            print("Error: Year must be a number")
+            print("Usage: python html_gen.py [year]")
+            print("Example: python html_gen.py 2025")
+            sys.exit(1)
+    
+    # Формуємо імена файлів на основі року
+    json_file = Path(f"prerequisites_{year}.json")
+    html_file = f"requisites_bachelor_{year}.html"
+    
+    # Перевіряємо чи існує JSON файл
+    if not json_file.exists():
+        print(f"Error: File '{json_file}' not found!")
+        print(f"Make sure you have a prerequisites file for year {year}")
+        sys.exit(1)
+    
+    # Генеруємо HTML
+    generate_html_table(json_file, html_file)
+    print(f"Year: {year}")
 
+
+if __name__ == "__main__":
+    main()

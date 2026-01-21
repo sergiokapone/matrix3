@@ -1,5 +1,16 @@
+"""
+Парсинг Graphviz файлу для витягування пререквізитів та пострерквізитів
+Використання: python prepost_extract.py [year] [lang]
+Приклад: python prepost_extract.py 2025 ua
+"""
+
 import json
 import re
+import sys
+
+# ===== НАЛАШТУВАННЯ ЗА ЗАМОВЧУВАННЯМ =====
+DEFAULT_YEAR = 2025
+DEFAULT_LANG = "ua"
 
 
 def parse_graphviz_file(filename: str) -> tuple[dict, list]:
@@ -61,13 +72,36 @@ def build_prerequisite_dict(courses: dict, edges: list) -> dict:
     return result
 
 
-# Головна функція
-if __name__ == "__main__":
-    filename = "diagramm_bak_2024.gv"
+def main():
+    """Головна функція"""
+    year = DEFAULT_YEAR
+    lang = DEFAULT_LANG
+    
+    # Парсинг аргументів
+    if len(sys.argv) > 1:
+        try:
+            year = int(sys.argv[1])
+        except ValueError:
+            print("Error: Year must be a number")
+            print("Usage: python prepost_extract.py [year] [lang]")
+            print("Example: python prepost_extract.py 2025 ua")
+            sys.exit(1)
+    
+    if len(sys.argv) > 2:
+        lang = sys.argv[2].lower()
+        if lang not in ["ua", "en"]:
+            print("Error: Language must be 'ua' or 'en'")
+            print("Usage: python prepost_extract.py [year] [lang]")
+            print("Example: python prepost_extract.py 2025 ua")
+            sys.exit(1)
+    
+    # Формуємо імена файлів
+    input_file = f"diagramm_bak_{year}_{lang}.gv"
+    output_file = f"prerequisites_{year}.json"
 
     try:
         # Парсинг файлу
-        courses, edges = parse_graphviz_file(filename)
+        courses, edges = parse_graphviz_file(input_file)
 
         # Побудова словника
         prerequisite_dict = build_prerequisite_dict(courses, edges)
@@ -75,8 +109,11 @@ if __name__ == "__main__":
         # Виведення результату
         print(f"Завантажено {len(courses)} курсів та {len(edges)} зв'язків\n")
 
-        # Виведення у зручному форматі
-        for course_id in sorted(prerequisite_dict.keys()):
+        # Виведення у зручному форматі (перші 3 для прикладу)
+        for i, course_id in enumerate(sorted(prerequisite_dict.keys())):
+            if i >= 3:
+                print("...")
+                break
             info = prerequisite_dict[course_id]
             print(f"{course_id}:")
             print(f"  Назва: {info['name']}")
@@ -84,17 +121,21 @@ if __name__ == "__main__":
             print(f"  Пострерквізити ({len(info['postrequisites'])}): {info['postrequisites']}")
             print()
 
-        # Збереження в JSON (опціонально)
-        with open("prerequisites.json", "w", encoding="utf-8") as f:
+        # Збереження в JSON
+        with open(output_file, "w", encoding="utf-8") as f:
             json.dump(prerequisite_dict, f, ensure_ascii=False, indent=2)
 
-        print("✅ Результат збережено в prerequisites.json")
-
-        # Також повертаємо словник для використання в коді
-        # prerequisite_dict доступний для подальшого використання
+        print(f"✅ Результат збережено в {output_file}")
+        print(f"Year: {year}, Language: {lang}")
 
     except FileNotFoundError:
-        print(f"❌ Файл '{filename}' не знайдено!")
+        print(f"❌ Файл '{input_file}' не знайдено!")
+        print(f"Спершу згенеруйте діаграму: python gen_gv.py {lang} {year}")
+        sys.exit(1)
     except Exception as e:
         print(f"❌ Помилка: {e}")
+        sys.exit(1)
 
+
+if __name__ == "__main__":
+    main()

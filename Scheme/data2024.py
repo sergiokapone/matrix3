@@ -3,7 +3,7 @@ DISCIPLINES = {
         "semester": 1,
         "type": "math",
         "ua": "Математичний аналіз 1",
-        "en": "Calculus 1",
+        "en": "Mathematical Analysis 1",
     },
     "S1_Alg1": {
         "semester": 1,
@@ -21,7 +21,7 @@ DISCIPLINES = {
         "semester": 1,
         "type": "pract",
         "ua": "Введення в спеціальність",
-        "en": "Introduction to the Specialty",
+        "en": "Introduction to Specialty",
     },
     "S1_Prog": {
         "semester": 1,
@@ -45,7 +45,7 @@ DISCIPLINES = {
         "semester": 1,
         "type": "general",
         "ua": "Практичний курс\n іноземної мови",
-        "en": "Practical Course\n in Foreign Language",
+        "en": "Foreign Language",
     },
     "S1_Health": {
         "semester": 1,
@@ -57,7 +57,7 @@ DISCIPLINES = {
         "semester": 2,
         "type": "math",
         "ua": "Математичний аналіз 2",
-        "en": "Calculus 2",
+        "en": "Mathematical Analysis 2",
     },
     "S2_Alg2": {
         "semester": 2,
@@ -92,8 +92,8 @@ DISCIPLINES = {
     "S2_BZhD": {
         "semester": 2,
         "type": "general",
-        "ua": "Безпека життєдіяльності",
-        "en": "Life Safety",
+        "ua": "Безпека життєдіяльності та\n цивільній захист",
+        "en": "Life Safety and\n Civil Defence",
     },
     "S2_History": {
         "semester": 2,
@@ -105,7 +105,7 @@ DISCIPLINES = {
         "semester": 2,
         "type": "general",
         "ua": "Практичний курс\n іноземної мови",
-        "en": "Practical Course\n in Foreign Language",
+        "en": "Foreign Language",
     },
     "S2_Health": {
         "semester": 2,
@@ -117,7 +117,7 @@ DISCIPLINES = {
         "semester": 3,
         "type": "math",
         "ua": "Математичний аналіз 3",
-        "en": "Calculus 3",
+        "en": "Mathematical Analysis 3",
     },
     "S3_ElMag": {
         "semester": 3,
@@ -147,7 +147,7 @@ DISCIPLINES = {
         "semester": 3,
         "type": "comp",
         "ua": "Програмування C++",
-        "en": "C++ Programming",
+        "en": "Programming in C++",
     },
     "S3_Catalog": {
         "semester": 3,
@@ -159,7 +159,7 @@ DISCIPLINES = {
         "semester": 3,
         "type": "general",
         "ua": "Практичний курс\n іноземної мови",
-        "en": "Practical Course\n in Foreign Language",
+        "en": "Foreign Language",
     },
     "S3_Ecology": {
         "semester": 3,
@@ -187,9 +187,9 @@ DISCIPLINES = {
     },
     "S4_TFKZ": {
         "semester": 4,
-        "type": "comp",
-        "ua": "ТФКЗ",
-        "en": "Theoretical Foundations\n of Computer Science",
+        "type": "math",
+        "ua": "Математичний аналіз 4",
+        "en": "Mathematical Analysis 4",
     },
     "S4_CompSoft": {
         "semester": 4,
@@ -213,7 +213,7 @@ DISCIPLINES = {
         "semester": 4,
         "type": "general",
         "ua": "Практичний курс іноземної мови",
-        "en": "Practical Course in Foreign Language",
+        "en": "Foreign Language",
     },
     "S4_Philos": {
         "semester": 4,
@@ -225,7 +225,7 @@ DISCIPLINES = {
         "semester": 5,
         "type": "math",
         "ua": "Рівняння математичної\n фізики",
-        "en": "Equations of\n Mathematical Physics",
+        "en": "Mathematical Physics\n Equations",
     },
     "S5_Atomic": {
         "semester": 5,
@@ -267,7 +267,7 @@ DISCIPLINES = {
         "semester": 5,
         "type": "general",
         "ua": "Практичний курс іноземної\n мови професійного спрямування",
-        "en": "Practical Course in\n Foreign Language (Professional Orientation)",
+        "en": "Foreign Language for\n Professional Purposes",
     },
     "S6_ProbStat": {
         "semester": 6,
@@ -278,8 +278,8 @@ DISCIPLINES = {
     "S6_MathModel": {
         "semester": 6,
         "type": "comp",
-        "ua": "Математичне моделювання",
-        "en": "Mathematical Modeling",
+        "ua": "Математичне моделювання та\n відкриті пакети\n прикладних програм",
+        "en": "Mathematical Modelling and\n Applied Open Source\n Software Packages ",
     },
     "S6_ESS": {
         "semester": 6,
@@ -315,7 +315,7 @@ DISCIPLINES = {
         "semester": 6,
         "type": "general",
         "ua": "Практичний курс іноземної мови\n професійного спрямування",
-        "en": "Practical Course in\n Foreign Language (Professional Orientation)",
+        "en": "Foreign Language for\n Professional Purposes",
     },
     "S6_Rights": {
         "semester": 6,
@@ -327,7 +327,7 @@ DISCIPLINES = {
         "semester": 7,
         "type": "physics",
         "ua": "Стат. фіз. та основи ФТТ",
-        "en": "Statistical Physics and\n Fundamentals of Solid State Physics",
+        "en": "SStatistical Physics and\n Basics Solid State Physics",
     },
     "S7_StatRadio": {
         "semester": 7,
@@ -339,7 +339,7 @@ DISCIPLINES = {
         "semester": 7,
         "type": "pract",
         "ua": "Лабораторно-дослідницький практикум",
-        "en": "Laboratory Research Practicum",
+        "en": "Laboratory Session",
     },
     "S7_Course": {
         "semester": 7,
@@ -375,7 +375,7 @@ DISCIPLINES = {
         "semester": 7,
         "type": "general",
         "ua": "Практичний курс іноземної мови\n професійного спрямування",
-        "en": "Practical Course in\n Foreign Language (Professional Orientation)",
+        "en": "Foreign Language for\n Professional Purposes",
     },
     "S8_Research": {
         "semester": 8,
@@ -405,19 +405,19 @@ DISCIPLINES = {
         "semester": 8,
         "type": "general",
         "ua": "Практичний курс іноземної мови\n професійного спрямування",
-        "en": "Practical Course in\n Foreign Language (Professional Orientation)",
+        "en": "Foreign Language for\n Professional Purposes",
     },
     "S8_Practice": {
         "semester": 9,
         "type": "pract",
         "ua": "Переддипломна практика",
-        "en": "Pre-Diploma Internship",
+        "en": "Pre-diploma Practice",
     },
     "S8_Diploma": {
         "semester": 9,
         "type": "pract",
         "ua": "Дипломне проектування",
-        "en": "Diploma Project",
+        "en": "Degree Project",
     },
 }
 

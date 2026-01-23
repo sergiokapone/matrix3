@@ -125,15 +125,15 @@ def main():
         with open(output_file, "w", encoding="utf-8") as f:
             json.dump(prerequisite_dict, f, ensure_ascii=False, indent=2)
 
-        print(f"✅ Результат збережено в {output_file}")
+        print(f"[OK] Результат збережено в {output_file}")
         print(f"Year: {year}, Language: {lang}")
 
     except FileNotFoundError:
-        print(f"❌ Файл '{input_file}' не знайдено!")
+        print(f"[ERROR] Файл '{input_file}' не знайдено!")
         print(f"Спершу згенеруйте діаграму: python gen_gv.py {lang} {year}")
         sys.exit(1)
     except Exception as e:
-        print(f"❌ Помилка: {e}")
+        print(f"[ERROR] Помилка: {e}")
         sys.exit(1)
 
 

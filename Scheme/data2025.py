@@ -415,6 +415,8 @@ EDGES = [
     ("S1_Intro",     "S7_Course"),
     ("S1_Intro",     "S8_Diploma"),      # або S8_Practice — але в коді було саме Diploma
 
+    ("S1_Eng",       "S2_Eng"),
+
 
     # ───────────────────────────────────────────────
     # Семестр 2 → пізніші
@@ -422,11 +424,16 @@ EDGES = [
     ("S2_Alg",       "S3_MathPhys"),
 
     ("S2_MatAn",     "S3_DiffEq"),
-    # ("S2_MatAn",   "S3_MatAn"),        # видалено — немає S3_MatAn
+    ("S2_MatAn",   "S3_MatAn"),
 
     ("S2_Thermo",    "S7_StatPhys"),
 
     ("S2_Prog",      "S4_CompMeth"),
+
+    ("S2_Graph",     "S4_CompMeth"),
+
+    ("S2_Chem", "S5_Atomic"),
+    ("S2_Eng",       "S3_EngProf"),
 
 
     # ───────────────────────────────────────────────
@@ -434,7 +441,13 @@ EDGES = [
     # ───────────────────────────────────────────────
     ("S3_DiffEq",    "S4_DiffEq"),
 
-    ("S3_MathPhys",  "S5_MathPhys"),     # хоча S3_MathPhys → S4_MathPhys → S5_MathPhys, але прямий теж логічний
+    ("S3_MathPhys",  "S5_MathPhys"),
+
+    ("S3_MatAn", "S4_Optics"),
+    ("S3_MatAn", "S5_FieldTheory"),
+    ("S3_MatAn", "S6_ESS"),
+    ("S3_MatAn", "S7_StatPhys"),
+    ("S3_MatAn", "S4_MathPhys"),
 
     ("S4_ClassMech", "S5_FieldTheory"),
     ("S4_ClassMech", "S5_OscWaves"),
@@ -445,6 +458,8 @@ EDGES = [
     ("S3_ElMag",     "S4_Optics"),
     ("S3_ElMag",     "S5_FieldTheory"),
     ("S3_ElMag",     "S6_ESS"),
+    ("S3_EngProf",   "S4_EngPract"),
+    ("S3_Military",   "S4_Military"),
 
 
     # ───────────────────────────────────────────────
@@ -464,6 +479,8 @@ EDGES = [
 
     ("S4_CompMeth",  "S6_MathModel"),
 
+    ("S4_EngPract",  "S7_Course"),
+
 
     # ───────────────────────────────────────────────
     # Семестр 5 → пізніші
@@ -476,7 +493,7 @@ EDGES = [
     ("S5_FieldTheory","S6_ESS"),
 
     ("S5_OscWaves",  "S6_ESS"),
-
+    ("S3_MatAn" ,"S6_ProbStat"),
 
     # ───────────────────────────────────────────────
     # Семестр 6 → пізніші
@@ -498,6 +515,11 @@ EDGES = [
 
     # Філософія → наукові дослідження (дуже пізній, але є в оригіналі)
     ("S4_Philos",    "S8_Research"),
+
+    # ───────────────────────────────────────────────
+    # Семестр 8 заключний
+    # ───────────────────────────────────────────────
     ("S8_Research",  "S8_Practice"),
+    ("S8_Practice",  "S8_Diploma")
 ]
 

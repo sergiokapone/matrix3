@@ -1,485 +1,531 @@
 {
   "S1_Alg": {
-    "name": "Алгебра та геометрія",
+    "name": "Algebra and Geometry",
     "prerequisites": [],
     "postrequisites": [
-      "Алгебра та геометрія",
-      "Диференціальні рівняння",
-      "Класична механіка",
-      "Математичний аналіз",
-      "Методи математичної фізики 1"
+      "Algebra and Geometry",
+      "Classical Mechanics",
+      "Differential Equations 1",
+      "Mathematical Analysis",
+      "Methods of Mathematical Physics 1"
     ]
   },
   "S1_Econ": {
-    "name": "Основи економіки",
+    "name": "Fundamentals\n of Economics",
     "prerequisites": [],
     "postrequisites": []
   },
   "S1_Eng": {
-    "name": "Англійська мова",
+    "name": "English Language",
     "prerequisites": [],
-    "postrequisites": []
+    "postrequisites": [
+      "English Language"
+    ]
   },
   "S1_Health": {
-    "name": "Основи здорового\n способу життя",
+    "name": "Fundamentals of\n Healthy Lifestyle",
     "prerequisites": [],
     "postrequisites": []
   },
   "S1_Intro": {
-    "name": "Введення в спеціальність",
+    "name": "Introduction to Specialty",
     "prerequisites": [],
     "postrequisites": [
-      "Дипломне проектування",
-      "Міждисциплінарна\n курсова робота"
+      "Bachelor Thesis",
+      "Interdisciplinary\n Course Work"
     ]
   },
   "S1_MatAn": {
-    "name": "Математичний аналіз",
+    "name": "Mathematical Analysis",
     "prerequisites": [],
     "postrequisites": [
-      "Диференціальні рівняння",
-      "Класична механіка",
-      "Математичний аналіз",
-      "Методи математичної фізики 1"
+      "Classical Mechanics",
+      "Differential Equations 1",
+      "Mathematical Analysis",
+      "Methods of Mathematical Physics 1"
     ]
   },
   "S1_Mech": {
-    "name": "Механіка",
+    "name": "Mechanics",
     "prerequisites": [],
     "postrequisites": [
-      "Електрика та магнетизм",
-      "Класична механіка",
-      "Термодинаміка\n та молекулярна фізика"
+      "Classical Mechanics",
+      "Electricity and Magnetism",
+      "Thermodynamics\n and Molecular Physics"
     ]
   },
   "S1_Prog": {
-    "name": "Програмування",
+    "name": "Programming",
     "prerequisites": [],
     "postrequisites": [
-      "Програмування"
+      "Programming"
     ]
   },
   "S1_Ukr": {
-    "name": "Українська мова\n за проф. спрямуванням",
+    "name": "Ukrainian for\n Professional Purposes",
     "prerequisites": [],
     "postrequisites": []
   },
   "S2_Alg": {
-    "name": "Алгебра та геометрія",
+    "name": "Algebra and Geometry",
     "prerequisites": [
-      "Алгебра та геометрія"
+      "Algebra and Geometry"
     ],
     "postrequisites": [
-      "Методи математичної фізики 1"
+      "Methods of Mathematical Physics 1"
     ]
   },
   "S2_Chem": {
-    "name": "Хімія",
+    "name": "Chemistry",
     "prerequisites": [],
-    "postrequisites": []
+    "postrequisites": [
+      "Atomic Physics"
+    ]
   },
   "S2_Eng": {
-    "name": "Англійська мова",
-    "prerequisites": [],
-    "postrequisites": []
+    "name": "English Language",
+    "prerequisites": [
+      "English Language"
+    ],
+    "postrequisites": [
+      "English for professional purposes"
+    ]
   },
   "S2_Graph": {
-    "name": "Комп'ютерна графіка",
+    "name": "Computer Graphics",
     "prerequisites": [],
-    "postrequisites": []
+    "postrequisites": [
+      "Numerical Methods and computer Software"
+    ]
   },
   "S2_History": {
-    "name": "Історія науки і техніки",
+    "name": "History of Science and Technology",
     "prerequisites": [],
     "postrequisites": []
   },
   "S2_MatAn": {
-    "name": "Математичний аналіз",
+    "name": "Mathematical Analysis",
     "prerequisites": [
-      "Алгебра та геометрія",
-      "Математичний аналіз"
+      "Algebra and Geometry",
+      "Mathematical Analysis"
     ],
     "postrequisites": [
-      "Диференціальні рівняння"
+      "Differential Equations 1",
+      "Mathematical Analysis"
     ]
   },
   "S2_Prog": {
-    "name": "Програмування",
+    "name": "Programming",
     "prerequisites": [
-      "Програмування"
+      "Programming"
     ],
     "postrequisites": [
-      "Обчислювальні методи та компютерні пакети"
+      "Numerical Methods and computer Software"
     ]
   },
   "S2_Thermo": {
-    "name": "Термодинаміка\n та молекулярна фізика",
+    "name": "Thermodynamics\n and Molecular Physics",
     "prerequisites": [
-      "Механіка"
+      "Mechanics"
     ],
     "postrequisites": [
-      "Стат. фіз. та основи ФТТ"
+      "Statistical Physics and\n Fundamentals of Solid State Physics"
     ]
   },
   "S3_Catalog": {
-    "name": "ЗУ-Каталог",
+    "name": "University Elective Catalog",
     "prerequisites": [],
     "postrequisites": []
   },
   "S3_CompMeth": {
-    "name": "Обчислювальні методи та\n компютерні пакети",
+    "name": "Numerical Methods and\n computer Software",
     "prerequisites": [],
     "postrequisites": []
   },
   "S3_DiffEq": {
-    "name": "Диференціальні рівняння",
+    "name": "Differential Equations 1",
     "prerequisites": [
-      "Алгебра та геометрія",
-      "Математичний аналіз",
-      "Математичний аналіз"
+      "Algebra and Geometry",
+      "Mathematical Analysis",
+      "Mathematical Analysis"
     ],
     "postrequisites": [
-      "Диференціальні рівняння"
+      "Differential Equations"
     ]
   },
   "S3_ElMag": {
-    "name": "Електрика та магнетизм",
+    "name": "Electricity and Magnetism",
     "prerequisites": [
-      "Механіка"
+      "Mechanics"
     ],
     "postrequisites": [
-      "Електродинаміка\n суцільних середовищ",
-      "Оптика",
-      "Теорія поля"
+      "Electrodynamics\n of Continuous Media",
+      "Field Theory",
+      "Optics"
     ]
   },
   "S3_EngProf": {
-    "name": "Англійська мова\n професійного спрямування",
-    "prerequisites": [],
-    "postrequisites": []
-  },
-  "S3_MatAn": {
-    "name": "Математичний аналіз",
-    "prerequisites": [],
-    "postrequisites": []
-  },
-  "S3_MathPhys": {
-    "name": "Методи математичної фізики 1",
+    "name": "English for professional purposes",
     "prerequisites": [
-      "Алгебра та геометрія",
-      "Алгебра та геометрія",
-      "Математичний аналіз"
+      "English Language"
     ],
     "postrequisites": [
-      "Методи математичної фізики"
+      "Practical Course in Foreign Language"
+    ]
+  },
+  "S3_MatAn": {
+    "name": "Mathematical Analysis",
+    "prerequisites": [
+      "Mathematical Analysis"
+    ],
+    "postrequisites": [
+      "Electrodynamics\n of Continuous Media",
+      "Field Theory",
+      "Methods of Mathematical Physics",
+      "Optics",
+      "Probability Theory and\n Mathematical Statistics",
+      "Statistical Physics and\n Fundamentals of Solid State Physics"
+    ]
+  },
+  "S3_MathPhys": {
+    "name": "Methods of Mathematical Physics 1",
+    "prerequisites": [
+      "Algebra and Geometry",
+      "Algebra and Geometry",
+      "Mathematical Analysis"
+    ],
+    "postrequisites": [
+      "Methods of Mathematical Physics"
     ]
   },
   "S3_Military": {
-    "name": "Базова загальновійськова\n підготовка",
+    "name": "Basic general military training",
     "prerequisites": [],
-    "postrequisites": []
+    "postrequisites": [
+      "Basic general military training"
+    ]
   },
   "S4_Catalog": {
-    "name": "ЗУ-Каталог",
+    "name": "University Elective Catalog",
     "prerequisites": [],
     "postrequisites": []
   },
   "S4_ClassMech": {
-    "name": "Класична механіка",
+    "name": "Classical Mechanics",
     "prerequisites": [
-      "Алгебра та геометрія",
-      "Математичний аналіз",
-      "Механіка"
+      "Algebra and Geometry",
+      "Mathematical Analysis",
+      "Mechanics"
     ],
     "postrequisites": [
-      "Електродинаміка\n суцільних середовищ",
-      "Квантова механіка",
-      "Коливання та хвилі",
-      "Стат. фіз. та основи ФТТ",
-      "Теорія поля"
+      "Electrodynamics\n of Continuous Media",
+      "Field Theory",
+      "Oscillations and Waves",
+      "Quantum Mechanics",
+      "Statistical Physics and\n Fundamentals of Solid State Physics"
     ]
   },
   "S4_CompMeth": {
-    "name": "Обчислювальні методи та компютерні пакети",
+    "name": "Numerical Methods and computer Software",
     "prerequisites": [
-      "Програмування"
+      "Computer Graphics",
+      "Programming"
     ],
     "postrequisites": [
-      "Математичне моделювання та\n відкриті пакети\n прикладних програм"
+      "Mathematical Modelling and\n Applied Open Source\n Software Packages"
     ]
   },
   "S4_DiffEq": {
-    "name": "Диференціальні рівняння",
+    "name": "Differential Equations",
     "prerequisites": [
-      "Диференціальні рівняння"
+      "Differential Equations 1"
     ],
     "postrequisites": [
-      "Електродинаміка\n суцільних середовищ",
-      "Квантова механіка",
-      "Коливання та хвилі",
-      "Методи математичної фізики",
-      "Стат. фіз. та основи ФТТ",
-      "Теорія поля"
+      "Electrodynamics\n of Continuous Media",
+      "Field Theory",
+      "Methods of Mathematical Physics",
+      "Oscillations and Waves",
+      "Quantum Mechanics",
+      "Statistical Physics and\n Fundamentals of Solid State Physics"
     ]
   },
   "S4_EngPract": {
-    "name": "Практичний курс іноземної мови",
-    "prerequisites": [],
-    "postrequisites": []
+    "name": "Practical Course in Foreign Language",
+    "prerequisites": [
+      "English for professional purposes"
+    ],
+    "postrequisites": [
+      "Interdisciplinary\n Course Work"
+    ]
   },
   "S4_F1": {
-    "name": "Ф1 (Вибіркова)",
+    "name": "Elective F1",
     "prerequisites": [],
     "postrequisites": []
   },
   "S4_MathPhys": {
-    "name": "Методи математичної фізики",
-    "prerequisites": [],
+    "name": "Methods of Mathematical Physics",
+    "prerequisites": [
+      "Mathematical Analysis"
+    ],
     "postrequisites": [
-      "Методи математичної фізики"
+      "Methods of Mathematical Physics"
     ]
   },
   "S4_Military": {
-    "name": "Базова загальновійськова\n підготовка",
-    "prerequisites": [],
+    "name": "Basic general military training",
+    "prerequisites": [
+      "Basic general military training"
+    ],
     "postrequisites": []
   },
   "S4_Optics": {
-    "name": "Оптика",
+    "name": "Optics",
     "prerequisites": [
-      "Електрика та магнетизм"
+      "Electricity and Magnetism",
+      "Mathematical Analysis"
     ],
     "postrequisites": [
-      "Атомна фізика",
-      "Статистична радіофізика\n та оптика"
+      "Atomic Physics",
+      "Statistical Radiophysics\n and Optics"
     ]
   },
   "S4_Philos": {
-    "name": "Філософські основи\n наукового пізнання",
+    "name": "Philosophical Foundations\n of Scientific Knowledge",
     "prerequisites": [],
     "postrequisites": [
-      "Основи наукових досліджень"
+      "Fundamentals of Scientific Research"
     ]
   },
   "S5_Atomic": {
-    "name": "Атомна фізика",
+    "name": "Atomic Physics",
     "prerequisites": [
-      "Оптика"
+      "Chemistry",
+      "Optics"
     ],
     "postrequisites": [
-      "Квантова механіка"
+      "Quantum Mechanics"
     ]
   },
   "S5_Ecology": {
-    "name": "Екологія",
+    "name": "Ecology",
     "prerequisites": [],
     "postrequisites": []
   },
   "S5_F2": {
-    "name": "Ф2 (Вибіркова)",
+    "name": "Elective F2",
     "prerequisites": [],
     "postrequisites": []
   },
   "S5_F3": {
-    "name": "Ф3 (Вибіркова)",
+    "name": "Elective F3",
     "prerequisites": [],
     "postrequisites": []
   },
   "S5_F4": {
-    "name": "Ф4 (Вибіркова)",
+    "name": "Elective F4",
     "prerequisites": [],
     "postrequisites": []
   },
   "S5_FieldTheory": {
-    "name": "Теорія поля",
+    "name": "Field Theory",
     "prerequisites": [
-      "Диференціальні рівняння",
-      "Електрика та магнетизм",
-      "Класична механіка"
+      "Classical Mechanics",
+      "Differential Equations",
+      "Electricity and Magnetism",
+      "Mathematical Analysis"
     ],
     "postrequisites": [
-      "Електродинаміка\n суцільних середовищ"
+      "Electrodynamics\n of Continuous Media"
     ]
   },
   "S5_MathPhys": {
-    "name": "Методи математичної фізики",
+    "name": "Methods of Mathematical Physics",
     "prerequisites": [
-      "Диференціальні рівняння",
-      "Методи математичної фізики",
-      "Методи математичної фізики 1"
+      "Differential Equations",
+      "Methods of Mathematical Physics",
+      "Methods of Mathematical Physics 1"
     ],
     "postrequisites": [
-      "Електродинаміка\n суцільних середовищ",
-      "Статистична радіофізика\n та оптика"
+      "Electrodynamics\n of Continuous Media",
+      "Statistical Radiophysics\n and Optics"
     ]
   },
   "S5_OscWaves": {
-    "name": "Коливання та хвилі",
+    "name": "Oscillations and Waves",
     "prerequisites": [
-      "Диференціальні рівняння",
-      "Класична механіка"
+      "Classical Mechanics",
+      "Differential Equations"
     ],
     "postrequisites": [
-      "Електродинаміка\n суцільних середовищ"
+      "Electrodynamics\n of Continuous Media"
     ]
   },
   "S6_ESS": {
-    "name": "Електродинаміка\n суцільних середовищ",
+    "name": "Electrodynamics\n of Continuous Media",
     "prerequisites": [
-      "Диференціальні рівняння",
-      "Електрика та магнетизм",
-      "Класична механіка",
-      "Коливання та хвилі",
-      "Методи математичної фізики",
-      "Теорія поля"
+      "Classical Mechanics",
+      "Differential Equations",
+      "Electricity and Magnetism",
+      "Field Theory",
+      "Mathematical Analysis",
+      "Methods of Mathematical Physics",
+      "Oscillations and Waves"
     ],
     "postrequisites": []
   },
   "S6_F5": {
-    "name": "Ф5 (Вибіркова)",
+    "name": "Elective F5",
     "prerequisites": [],
     "postrequisites": []
   },
   "S6_F6": {
-    "name": "Ф6 (Вибіркова)",
+    "name": "Elective F6",
     "prerequisites": [],
     "postrequisites": []
   },
   "S6_F7": {
-    "name": "Ф7 (Вибіркова)",
+    "name": "Elective F7",
     "prerequisites": [],
     "postrequisites": []
   },
   "S6_MathModel": {
-    "name": "Математичне моделювання та\n відкриті пакети\n прикладних програм",
+    "name": "Mathematical Modelling and\n Applied Open Source\n Software Packages",
     "prerequisites": [
-      "Обчислювальні методи та компютерні пакети"
+      "Numerical Methods and computer Software"
     ],
     "postrequisites": [
-      "Лабораторно-дослідницький\n практикум"
+      "Laboratory Session"
     ]
   },
   "S6_ProbStat": {
-    "name": "Теорія ймовірності та\n математична статистика",
-    "prerequisites": [],
+    "name": "Probability Theory and\n Mathematical Statistics",
+    "prerequisites": [
+      "Mathematical Analysis"
+    ],
     "postrequisites": [
-      "Стат. фіз. та основи ФТТ"
+      "Statistical Physics and\n Fundamentals of Solid State Physics"
     ]
   },
   "S6_QMech": {
-    "name": "Квантова механіка",
+    "name": "Quantum Mechanics",
     "prerequisites": [
-      "Атомна фізика",
-      "Диференціальні рівняння",
-      "Класична механіка"
+      "Atomic Physics",
+      "Classical Mechanics",
+      "Differential Equations"
     ],
     "postrequisites": [
-      "Лабораторно-дослідницький\n практикум",
-      "Стат. фіз. та основи ФТТ"
+      "Laboratory Session",
+      "Statistical Physics and\n Fundamentals of Solid State Physics"
     ]
   },
   "S6_Rights": {
-    "name": "Права і свободи людини",
+    "name": "Human Rights and Freedoms",
     "prerequisites": [],
     "postrequisites": []
   },
   "S7_Course": {
-    "name": "Міждисциплінарна\n курсова робота",
+    "name": "Interdisciplinary\n Course Work",
     "prerequisites": [
-      "Введення в спеціальність"
+      "Introduction to Specialty",
+      "Practical Course in Foreign Language"
     ],
     "postrequisites": [
-      "Дипломне проектування"
+      "Bachelor Thesis"
     ]
   },
   "S7_F10": {
-    "name": "Ф10 (Вибіркова)",
+    "name": "Elective F10",
     "prerequisites": [],
     "postrequisites": []
   },
   "S7_F11": {
-    "name": "Ф11 (Вибіркова)",
+    "name": "Elective F11",
     "prerequisites": [],
     "postrequisites": []
   },
   "S7_F8": {
-    "name": "Ф8 (Вибіркова)",
+    "name": "Elective F8",
     "prerequisites": [],
     "postrequisites": []
   },
   "S7_F9": {
-    "name": "Ф9 (Вибіркова)",
+    "name": "Elective F9",
     "prerequisites": [],
     "postrequisites": []
   },
   "S7_Lab": {
-    "name": "Лабораторно-дослідницький\n практикум",
+    "name": "Laboratory Session",
     "prerequisites": [
-      "Квантова механіка",
-      "Математичне моделювання та\n відкриті пакети\n прикладних програм"
+      "Mathematical Modelling and\n Applied Open Source\n Software Packages",
+      "Quantum Mechanics"
     ],
     "postrequisites": [
-      "Дипломне проектування",
-      "Переддипломна практика"
+      "Bachelor Thesis",
+      "Pre-Diploma Practice"
     ]
   },
   "S7_StatPhys": {
-    "name": "Стат. фіз. та основи ФТТ",
+    "name": "Statistical Physics and\n Fundamentals of Solid State Physics",
     "prerequisites": [
-      "Диференціальні рівняння",
-      "Квантова механіка",
-      "Класична механіка",
-      "Теорія ймовірності та\n математична статистика",
-      "Термодинаміка\n та молекулярна фізика"
+      "Classical Mechanics",
+      "Differential Equations",
+      "Mathematical Analysis",
+      "Probability Theory and\n Mathematical Statistics",
+      "Quantum Mechanics",
+      "Thermodynamics\n and Molecular Physics"
     ],
     "postrequisites": []
   },
   "S7_StatRadio": {
-    "name": "Статистична радіофізика\n та оптика",
+    "name": "Statistical Radiophysics\n and Optics",
     "prerequisites": [
-      "Методи математичної фізики",
-      "Оптика"
+      "Methods of Mathematical Physics",
+      "Optics"
     ],
     "postrequisites": []
   },
   "S8_F12": {
-    "name": "Ф12 (Вибіркова)",
+    "name": "Elective F12",
     "prerequisites": [],
     "postrequisites": []
   },
   "S8_F13": {
-    "name": "Ф13 (Вибіркова)",
+    "name": "Elective F13",
     "prerequisites": [],
     "postrequisites": []
   },
   "S8_F14": {
-    "name": "Ф14 (Вибіркова)",
+    "name": "Elective F14",
     "prerequisites": [],
     "postrequisites": []
   },
   "S8_Research": {
-    "name": "Основи наукових досліджень",
+    "name": "Fundamentals of Scientific Research",
     "prerequisites": [
-      "Філософські основи\n наукового пізнання"
+      "Philosophical Foundations\n of Scientific Knowledge"
     ],
     "postrequisites": [
-      "Переддипломна практика"
+      "Pre-Diploma Practice"
     ]
   },
   "S8_Practice": {
-    "name": "Переддипломна практика",
+    "name": "Pre-Diploma Practice",
     "prerequisites": [
-      "Лабораторно-дослідницький\n практикум",
-      "Основи наукових досліджень"
+      "Fundamentals of Scientific Research",
+      "Laboratory Session"
     ],
-    "postrequisites": []
+    "postrequisites": [
+      "Bachelor Thesis"
+    ]
   },
   "S8_Diploma": {
-    "name": "Дипломне проектування",
+    "name": "Bachelor Thesis",
     "prerequisites": [
-      "Введення в спеціальність",
-      "Лабораторно-дослідницький\n практикум",
-      "Міждисциплінарна\n курсова робота"
+      "Interdisciplinary\n Course Work",
+      "Introduction to Specialty",
+      "Laboratory Session",
+      "Pre-Diploma Practice"
     ],
     "postrequisites": []
   }

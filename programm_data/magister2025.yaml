@@ -93,7 +93,7 @@ disciplines:
     online_resources: https://classroom.google.com/c/MjI0NzY1NTA5OTMy
     lecturer_id: ponomarenko_sm
     discipline_id: qchem
-    syllabus_url: https://docs.google.com/gview?url=https://raw.githubusercontent.com/sergiokapone/QChemLectures/master/A_Documents/Syllabus_QChem/Syllabus_QChem.pdf&embedded=true
+    syllabus_url: https://sergiokapone.github.io/QChemLectures/A_Documents/Syllabus_QChem/Syllabus_QChem.pdf
 
   ПО 02:
     name: Нелінійна оптика

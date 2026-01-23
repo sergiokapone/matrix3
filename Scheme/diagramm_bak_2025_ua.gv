@@ -153,8 +153,14 @@ S1_MatAn     -> S3_MathPhys        [color="#4A90E2", penwidth=2];
 S1_MatAn     -> S4_ClassMech        [color="#4A90E2", penwidth=2];
 S2_Alg     -> S3_MathPhys        [color="#4A90E2", penwidth=2];
 S2_MatAn     -> S3_DiffEq        [color="#4A90E2", penwidth=2];
+S2_MatAn     -> S3_MatAn        [color="#4A90E2", penwidth=2];
 S3_DiffEq     -> S4_DiffEq        [color="#4A90E2", penwidth=2];
 S3_MathPhys     -> S5_MathPhys        [color="#4A90E2", penwidth=2];
+S3_MatAn     -> S4_Optics        [color="#4A90E2", penwidth=2];
+S3_MatAn     -> S5_FieldTheory        [color="#4A90E2", penwidth=2];
+S3_MatAn     -> S6_ESS        [color="#4A90E2", penwidth=2];
+S3_MatAn     -> S7_StatPhys        [color="#4A90E2", penwidth=2];
+S3_MatAn     -> S4_MathPhys        [color="#4A90E2", penwidth=2];
 S4_DiffEq     -> S5_MathPhys        [color="#4A90E2", penwidth=2];
 S4_DiffEq     -> S5_FieldTheory        [color="#4A90E2", penwidth=2];
 S4_DiffEq     -> S5_OscWaves        [color="#4A90E2", penwidth=2];
@@ -164,6 +170,7 @@ S4_DiffEq     -> S7_StatPhys        [color="#4A90E2", penwidth=2];
 S4_MathPhys     -> S5_MathPhys        [color="#4A90E2", penwidth=2];
 S5_MathPhys     -> S6_ESS        [color="#4A90E2", penwidth=2];
 S5_MathPhys     -> S7_StatRadio        [color="#4A90E2", penwidth=2];
+S3_MatAn     -> S6_ProbStat        [color="#4A90E2", penwidth=2];
 S6_ProbStat     -> S7_StatPhys        [color="#4A90E2", penwidth=2];
 
  // ПРЕРЕКВІЗИТИ — Фізика
@@ -171,6 +178,7 @@ S1_Mech     -> S2_Thermo        [color="#E85D75", penwidth=2];
 S1_Mech     -> S4_ClassMech        [color="#E85D75", penwidth=2];
 S1_Mech     -> S3_ElMag        [color="#E85D75", penwidth=2];
 S2_Thermo     -> S7_StatPhys        [color="#E85D75", penwidth=2];
+S2_Chem     -> S5_Atomic        [color="#E85D75", penwidth=2];
 S4_ClassMech     -> S5_FieldTheory        [color="#E85D75", penwidth=2];
 S4_ClassMech     -> S5_OscWaves        [color="#E85D75", penwidth=2];
 S4_ClassMech     -> S6_ESS        [color="#E85D75", penwidth=2];
@@ -190,10 +198,16 @@ S6_QMech     -> S7_Lab        [color="#E85D75", penwidth=2];
  // ПРЕРЕКВІЗИТИ — Програмування та обчислення
 S1_Prog     -> S2_Prog        [color="#7ED321", penwidth=2];
 S2_Prog     -> S4_CompMeth        [color="#7ED321", penwidth=2];
+S2_Graph     -> S4_CompMeth        [color="#7ED321", penwidth=2];
 S4_CompMeth     -> S6_MathModel        [color="#7ED321", penwidth=2];
 S6_MathModel     -> S7_Lab        [color="#7ED321", penwidth=2];
 
  // ПРЕРЕКВІЗИТИ — Іноземна мова
+S1_Eng     -> S2_Eng        [color="#B8B8B8", penwidth=2];
+S2_Eng     -> S3_EngProf        [color="#B8B8B8", penwidth=2];
+S3_EngProf     -> S4_EngPract        [color="#B8B8B8", penwidth=2];
+S3_Military     -> S4_Military        [color="#B8B8B8", penwidth=2];
+S4_EngPract     -> S7_Course        [color="#B8B8B8", penwidth=2];
 S4_Philos     -> S8_Research        [color="#B8B8B8", penwidth=2];
 
  // ПРЕРЕКВІЗИТИ — Практика та дослідження
@@ -203,5 +217,6 @@ S7_Lab     -> S8_Practice        [color="#9013FE", penwidth=2];
 S7_Lab     -> S8_Diploma        [color="#9013FE", penwidth=2];
 S7_Course     -> S8_Diploma        [color="#9013FE", penwidth=2];
 S8_Research     -> S8_Practice        [color="#9013FE", penwidth=2];
+S8_Practice     -> S8_Diploma        [color="#9013FE", penwidth=2];
 
 }

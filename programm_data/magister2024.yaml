@@ -87,7 +87,7 @@ disciplines:
     control: Залік
     lecturer_id: gordiiko_no
     discipline_id: comp_modelling_and_symul_in_physics
-    # syllabus_url: https://drive.google.com/file/d/1wzz6YCwHgUC5bZ-cs7HPY9ckvv6Caz1q/view
+    syllabus_url: https://drive.google.com/file/d/1Er8voIvxXbKwZChWUrR84Zd3K4aL8BI-/view?usp=sharing
 
   ПО 01:
     name: Квантова хімія і квантово-механічні методи обчислення
@@ -134,6 +134,7 @@ disciplines:
     credits: 4.0
     control: Залік
     lecturer_id: gordiiko_no
+    syllabus_url: https://drive.google.com/file/d/1Buhr5E06UyD2M4xbWhslnk1w6nIGiHuE/view?usp=sharing
 
   ПО 07:
     name: Наукова робота за темою магістерської дисертації

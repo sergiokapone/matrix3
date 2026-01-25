@@ -2,10 +2,7 @@
   <!-- Блок контексту програми -->
   <div class="program-card">
     {% if metadata.website %}
-    <p>
-      <strong>Освітня програма:</strong>
-      <a href="{{ metadata.website }}" target="_blank" rel="noopener">Переглянути</a>
-    </p>
+    <p><strong>Освітня програма:</strong> <a href="{{ metadata.website }}" target="_blank" rel="noopener">Переглянути</a></p>
     {% endif %}
     <p><strong>Рівень освіти:</strong> {{ metadata.degree }}</p>
     <p><strong>Рік програми:</strong> {{ metadata.year }}</p>

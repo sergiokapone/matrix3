@@ -47,19 +47,17 @@ disciplines:
     control: Залік
     syllabus_url: https://drive.google.com/file/d/18ER767-f1bf65zRmWglCujAP8yFMtNwM/view?usp=sharing
 
-  ЗО 03:
-    name: Практичний курс іноземної мови для наукової комунікації
-    subdisciplines:
-      ЗО 03.1:
-        name: Частина 1
-        credits: 3.0
-        control: Залік
-        syllabus_url: https://drive.google.com/file/d/1fCrJqJ_q8e_k26bufWCucPCr7VglHr1n/view?usp=sharing
-      ЗО 03.2:
-        name: Частина 2
-        credits: 2.0
-        control: Залік
-        syllabus_url: https://drive.google.com/file/d/16du2LU7I2yXhQfURF9sxH95YLw6SDWiL/view?usp=sharing
+  ЗО 03.1:
+    name: Практичний курс іноземної мови для наукової комунікації. Частина 1
+    credits: 3.0
+    control: Залік
+    syllabus_url: https://drive.google.com/file/d/1fCrJqJ_q8e_k26bufWCucPCr7VglHr1n/view?usp=sharing
+
+  ЗО 03.2:
+    name: Практичний курс іноземної мови для наукової комунікації. Частина 2
+    credits: 2.0
+    control: Залік
+    syllabus_url: https://drive.google.com/file/d/16du2LU7I2yXhQfURF9sxH95YLw6SDWiL/view?usp=sharing
 
   ЗО 04:
     name: Менеджмент стартап проектів
@@ -103,6 +101,7 @@ disciplines:
     credits: 4.0
     control: Залік
     lecturer_id: stronsky_ov
+    discipline_id: nonlinear_optics
     syllabus_url: https://drive.google.com/file/d/1uQDlxWw8caOY-rr_VebbOFBtYiph08DW/view?usp=sharing
 
   ПО 03:
@@ -136,20 +135,21 @@ disciplines:
     lecturer_id: gordiiko_no
     syllabus_url: https://drive.google.com/file/d/1Buhr5E06UyD2M4xbWhslnk1w6nIGiHuE/view?usp=sharing
 
-  ПО 07:
-    name: Наукова робота за темою магістерської дисертації
+  ПО 07.1:
+    name: Наукова робота за темою магістерської дисертації. Частина 1.
+    credits: 2.0
+    control: Залік
+    syllabus_url: https://drive.google.com/file/d/1hEmOhe7-W57EW8TcyqyCJ5wYsrF0nPPX/view?usp=sharing
     lecturer_id: voronov_so
-    subdisciplines:
-      ПО 07.1:
-        name: Частина 1.
-        credits: 2.0
-        control: Залік
-        syllabus_url: https://drive.google.com/file/d/1hEmOhe7-W57EW8TcyqyCJ5wYsrF0nPPX/view?usp=sharing
-      ПО 07.2:
-        name: Частина 2.
-        credits: 6.0
-        control: Залік
-        syllabus_url: https://drive.google.com/file/d/15k6o8F39pLA_jQ5jjOvpyv053_OU38z6/view?usp=sharing
+    discipline_id: ond_mag
+
+  ПО 07.2:
+    name: Наукова робота за темою магістерської дисертації. Частина 2.
+    credits: 6.0
+    control: Залік
+    syllabus_url: https://drive.google.com/file/d/15k6o8F39pLA_jQ5jjOvpyv053_OU38z6/view?usp=sharing
+    lecturer_id: voronov_so
+    discipline_id: ndztmd_mag
 
   ПО 08:
     name: Науково-дослідна практика
@@ -236,7 +236,17 @@ mappings:
       - ПРН 12
       - ПРН 15
 
-  ЗО 03: # Практичний курс іноземної мови для наукової комунікації
+  ЗО 03.1: # Практичний курс іноземної мови для наукової комунікації
+    competencies:
+      - ЗК 03
+      - ЗК 05
+      - ЗК 11
+      - ФК 06
+    program_results:
+      - ПРН 07
+      - ПРН 13
+
+  ЗО 03.2: # Практичний курс іноземної мови для наукової комунікації
     competencies:
       - ЗК 03
       - ЗК 05
@@ -374,7 +384,43 @@ mappings:
       - ПРН 09
       - ПРН 11
 
-  ПО 07: # Наукова робота за темою магістерської дисертації
+  ПО 07.1: # Основи наукових досліджень
+    competencies:
+      - ЗК 01
+      - ЗК 02
+      - ЗК 03
+      - ЗК 04
+      - ЗК 05
+      - ЗК 06
+      - ЗК 07
+      - ЗК 08
+      - ЗК 09
+      - ФК 01
+      - ФК 02
+      - ФК 03
+      - ФК 04
+      - ФК 05
+      - ФК 06
+      - ФК 07
+      - ФК 08
+      - ФК 09
+      - ФК 10
+      - ФК 11
+      - ФК 12
+    program_results:
+      - ПРН 01
+      - ПРН 02
+      - ПРН 03
+      - ПРН 05
+      - ПРН 07
+      - ПРН 09
+      - ПРН 10
+      - ПРН 11
+      - ПРН 12
+      - ПРН 13
+      - ПРН 14
+
+  ПО 07.2: # Наукова робота за темою магістерської дисертації
     competencies:
       - ЗК 01
       - ЗК 02
@@ -481,63 +527,74 @@ mappings:
       - ПРН 14
       - ПРН 15
       - ПРН 16
-# elevative_disciplines:
-#   ПВ 01:
-#     name: Спецглави фізичного матеріалознавства
-#     syllabus_url: https://docs.google.com/document/d/18rs7sHDyr_dpUieBgWW-dUHMWVDYlDj2/edit
-#     credits: 5.0
-#     control: Екзамен
-#     lecturer_id: voronov_so
-#     discipline_id: spec_chapters_for_phys_matherialscience
 
-#   ПВ 02:
-#     name: Основи анатомії і фізіології людини
-#     syllabus_url: https://docs.google.com/document/d/15kYjeQXb8p0ZYQbqWtT0tK9mFf28vYSe/edit
-#     credits: 5.0
-#     control: Екзамен
-#     lecturer_id: purnyn_oe
-#     discipline_id: anathomy
+elevative_disciplines:
+  ПВ 01.1:
+    name: Спецглави фізичного матеріалознавства
+    syllabus_url: https://drive.google.com/file/d/1aO9r7HCrfgTAPyzBKPZfhcW1FlBOC4NA/view?usp=sharing
+    credits: 5.0
+    control: Екзамен
+    lecturer_id: voronov_so
+    discipline_id: spec_chapters_for_phys_matherialscience
 
-#   ПВ 03:
-#     name: Фізика горіння
-#     syllabus_url: https://drive.google.com/file/d/1sAFbvZfXCWwgQUuJp7tZAVrAq-mC6u7r/view?usp=sharing
-#     credits: 5.0
-#     control: Екзамен
-#     lecturer_id: ponomarenko_sm
-#     discipline_id: combustion_physics
+  ПВ 01.2:
+    name: Основи анатомії і фізіології людини
+    syllabus_url: https://drive.google.com/file/d/1h9I4UDa77r91dxBACY0nZNYjZAQ6k_sA/view?usp=sharing
+    credits: 5.0
+    control: Екзамен
+    lecturer_id: purnyn_oe
+    discipline_id: anathomy
 
-#   ПВ 04:
-#     name: Фізика невпорядкованих систем
-#     syllabus_url: https://drive.google.com/file/d/1sr9D_7WseBm71gWlA1ctOwDxBSFD-NMo/view
-#     credits: 4.0
-#     control: Залік
-#     lecturer_id: dimitriev_op
-#     discipline_id: disordered_sys
+  ПВ 03.1:
+    name: Фізика горіння
+    syllabus_url: https://drive.google.com/file/d/1sAFbvZfXCWwgQUuJp7tZAVrAq-mC6u7r/view?usp=sharing
+    credits: 5.0
+    control: Екзамен
+    lecturer_id: ponomarenko_sm
+    discipline_id: combustion_physics
 
-#   ПВ 05:
-#     name: Методи дослідження збудливих мембран
-#     syllabus_url: https://docs.google.com/document/d/1jKB9XUbpcWk0sx6A7wYvmYW2AXhBCltt/edit
-#     credits: 4.0
-#     control: Залік
-#     lecturer_id: purnyn_oe
-#     discipline_id: excitable_membranes
+  ПВ 03.2:
+    name: Біофізика мембранних структур
+    syllabus_url: https://drive.google.com/file/d/1K0ExAWZ7daVM5Yu7uMVYJrx4RXcJHa42/view?usp=sharing
+    credits: 5.0
+    control: Екзамен
+  #   ПВ 04:
+  #     name: Фізика невпорядкованих систем
+  #     syllabus_url: https://drive.google.com/file/d/1sr9D_7WseBm71gWlA1ctOwDxBSFD-NMo/view
+  #     credits: 4.0
+  #     control: Залік
+  #     lecturer_id: dimitriev_op
+  #     discipline_id: disordered_sys
 
-#   ПВ 06:
-#     name: Вейвлет аналіз сигналів
-#     syllabus_url: https://drive.google.com/file/d/1crennYphnZD33-VIv9lTpC8y44EK6Sle/view
-#     credits: 4.0
-#     control: Залік
-#     lecturer_id: progonov_do
-#     discipline_id: wavelet_signal_analysis
+  #   ПВ 05:
+  #     name: Методи дослідження збудливих мембран
+  #     syllabus_url: https://docs.google.com/document/d/1jKB9XUbpcWk0sx6A7wYvmYW2AXhBCltt/edit
+  #     credits: 4.0
+  #     control: Залік
+  #     lecturer_id: purnyn_oe
+  #     discipline_id: excitable_membranes
 
-#   ПВ 07:
-#     name: Спеціальні глави теорії теплообміну
-#     syllabus_url: https://drive.google.com/file/d/1-viEUoeqgoeZEbun0d_36UKT_fLAsh3q/view
-#     credits: 5.0
-#     control: Екзамен
-#     lecturer_id: xalatov_aa
-#     discipline_id: spec_chapters_for_heat_exchange_theory
+  #   ПВ 06:
+  #     name: Вейвлет аналіз сигналів
+  #     syllabus_url: https://drive.google.com/file/d/1crennYphnZD33-VIv9lTpC8y44EK6Sle/view
+  #     credits: 4.0
+  #     control: Залік
+  #     lecturer_id: progonov_do
+  #     discipline_id: wavelet_signal_analysis
 
+  ПВ 07.1:
+    name: Спеціальні глави теорії теплообміну
+    syllabus_url: https://drive.google.com/file/d/1-viEUoeqgoeZEbun0d_36UKT_fLAsh3q/view
+    credits: 5.0
+    control: Екзамен
+    lecturer_id: xalatov_aa
+    discipline_id: spec_chapters_for_heat_exchange_theory
+
+  ПВ 07.2:
+    name: Кінетичні моделі в біофізиці
+    syllabus_url: https://drive.google.com/file/d/18CAji8p3dIcqSEUZjhq9FMr7jN7Mv9yx/view?usp=sharing
+    credits: 5.0
+    control: Екзамен
 #   ПВ 08:
 #     name: Біофізика мембранних структур
 

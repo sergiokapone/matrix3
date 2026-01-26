@@ -612,6 +612,8 @@ elevative_disciplines:
 
   ПВ 04.3:
     name: Енергозберігаючі технології
+    syllabus_url: https://drive.google.com/file/d/1ZQ4d1Q9Xmm_aAyQv1_LfoCI8_r3RoFQr/view?usp=sharing
+    lecturer_id: donyk_tv
 
   ПВ 05.1:
     name: Експериментальні дослідницькі установки
@@ -633,7 +635,7 @@ elevative_disciplines:
 
   ПВ 06.2:
     name: Новітні джерела енергії
-    syllabus_url: https://docs.google.com/document/d/1k_yVmdlzunZLk1Fll7aOjJa7KdVp66ty/edit
+    syllabus_url: https://drive.google.com/file/d/1ZjzGtlks3jaZBORXvjBLRjRE106yS5dz/view?usp=sharing
     credits: 5.0
     control: Екзамен
     lecturer_id: gilchuk_av
@@ -655,7 +657,7 @@ elevative_disciplines:
 
   ПВ 08.1:
     name: Системи охолодження високотемпературних енергетичних установок
-    syllabus_url: https://docs.google.com/document/d/18E0luSlSDFGxpjIRw4PN6y-yG_5g8Rjd/edit
+    syllabus_url: https://drive.google.com/file/d/1IBJl2l4thJw_-SXW0e8xqgA5rIBd7Cc6/view?usp=sharing
     credits: 4.0
     control: Залік
     lecturer_id: donyk_tv
@@ -664,7 +666,9 @@ elevative_disciplines:
   ПВ 08.2:
     name: Наноструктури в електроніці та фотоціці
     credits: 4.0
+    syllabus_url: https://drive.google.com/file/d/18zMpvyKlPP2_u8wZ6Dla1UyqipA5aX9G/view?usp=sharing
 
   ПВ 08.3:
     name: Молекулярна фізіологія
     credits: 4.0
+    syllabus_url: https://drive.google.com/file/d/1yHoNdw9JCisytgmxwfDzgalvKTNMVRfz/view?usp=sharing

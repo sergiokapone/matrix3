@@ -555,7 +555,7 @@ elevative_disciplines:
 
   ПВ 02.1:
     name: Методи дослідження збудливих мембран
-    syllabus_url: https://docs.google.com/document/d/1jKB9XUbpcWk0sx6A7wYvmYW2AXhBCltt/edit
+    syllabus_url:
     credits: 4.0
     control: Залік
     lecturer_id: purnyn_oe
@@ -563,7 +563,7 @@ elevative_disciplines:
 
   ПВ 02.2:
     name: Фізика невпорядкованих систем
-    syllabus_url: https://drive.google.com/file/d/1sr9D_7WseBm71gWlA1ctOwDxBSFD-NMo/view
+    syllabus_url:
     credits: 4.0
     control: Залік
     lecturer_id: dimitriev_op
@@ -571,7 +571,7 @@ elevative_disciplines:
 
   ПВ 02.3:
     name: Спеціальні глави теорії теплообміну
-    syllabus_url: https://drive.google.com/file/d/1-viEUoeqgoeZEbun0d_36UKT_fLAsh3q/view
+    syllabus_url:
     credits: 5.0
     control: Екзамен
     lecturer_id: xalatov_aa
@@ -585,8 +585,7 @@ elevative_disciplines:
 
   ПВ 03.2:
     name: Вейвлет аналіз сигналів
-    syllabus_url: https://drive.google.com/file/d/1crennYphnZD33-VIv9lTpC8y44EK6Sle/view
-    credits: 4.0
+    syllabus_url:
     control: Залік
     lecturer_id: progonov_do
     discipline_id: wavelet_signal_analysis
@@ -601,7 +600,7 @@ elevative_disciplines:
 
   ПВ 04.1:
     name: Фізична кінетика
-    syllabus_url: https://drive.google.com/file/d/1iYd4Qa8QKB88MHFRdkwHZwcDWQBktgbZ/view
+    syllabus_url:
     credits: 4.0
     control: Залік
     lecturer_id: kulish_vv
@@ -617,7 +616,7 @@ elevative_disciplines:
 
   ПВ 05.1:
     name: Експериментальні дослідницькі установки
-    syllabus_url: https://docs.google.com/document/d/1_8gfAGSkhm3AsR7RmyjEUixADjvaXQZ6/edit
+    syllabus_url:
     credits: 4.0
     control: Залік
     lecturer_id: donyk_tv
@@ -649,7 +648,7 @@ elevative_disciplines:
 
   ПВ 07.2:
     name: Основи теорії примежового шару
-    syllabus_url: https://drive.google.com/file/d/1CWYovr9Vc1dWIat8ftVT7GQ4tbKAbVFx/view
+    syllabus_url:
     credits: 5.0
     control: Залік
     lecturer_id: dymytriieva_nf

@@ -547,7 +547,7 @@ elevative_disciplines:
 
   ПВ 03.1:
     name: Фізика горіння
-    syllabus_url: https://drive.google.com/file/d/1sAFbvZfXCWwgQUuJp7tZAVrAq-mC6u7r/view?usp=sharing
+    syllabus_url: https://drive.google.com/file/d/161FalimQlj6fDot5FIyx14D7_2c56rSF/view?usp=sharing
     credits: 5.0
     control: Екзамен
     lecturer_id: ponomarenko_sm
@@ -595,17 +595,14 @@ elevative_disciplines:
     syllabus_url: https://drive.google.com/file/d/18CAji8p3dIcqSEUZjhq9FMr7jN7Mv9yx/view?usp=sharing
     credits: 5.0
     control: Екзамен
-#   ПВ 08:
-#     name: Біофізика мембранних структур
 
-#   ПВ 09:
-#     name: Фізика плазми
-#     syllabus_url: https://drive.google.com/file/d/1e9EOICc2wiRxQCaO6hBb-zBl6xHNmBdj/view?usp=sharing
-#     credits: 5.0
-#     control: Екзамен
-#     lecturer_id: ponomarenko_sm
-#     discipline_id: plasma_phys
-
+  ПВ 08.1:
+    name: Фізика плазми
+    syllabus_url: https://drive.google.com/file/d/1ojMp2eV_nK_Wp3P06uNM4aUGWhc-MXX8/view?usp=sharing
+    credits: 5.0
+    control: Екзамен
+    lecturer_id: ponomarenko_sm
+    discipline_id: plasma_phys
 #   ПВ 10:
 #     name: Фізична кінетика
 #     syllabus_url: https://drive.google.com/file/d/1iYd4Qa8QKB88MHFRdkwHZwcDWQBktgbZ/view

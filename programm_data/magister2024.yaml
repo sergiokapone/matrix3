@@ -39,7 +39,7 @@ disciplines:
     name: Інтелектуальна власність та патентознавство
     credits: 3.0
     control: Залік
-    syllabus_url: https://drive.google.com/file/d/1D8RdzT6Fob4PyFKcniKLbIdtjHHoxe1N/view?usp=sharing
+    syllabus_url: https://drive.google.com/file/d/1aDKJ_gvozBVhbi9oI077dKrmTyKlq1BW/view?usp=sharing
 
   ЗО 02:
     name: Основи інженерії та технології сталого розвитку
@@ -69,7 +69,7 @@ disciplines:
     name: Педагогічна майстерність
     credits: 2.0
     control: Залік
-    syllabus_url: https://drive.google.com/file/d/1qMys6sydBdEPur2So-lf9Y13zmW3Wjh4/view?usp=sharing
+    syllabus_url: https://drive.google.com/file/d/1XRsmNigp5_WhhA2PGtQA2Yve7pTZ0TXb/view?usp=sharing
 
   ЗО 06:
     name: Локальні методи досліджень
@@ -608,9 +608,11 @@ elevative_disciplines:
 
   ПВ 04.2:
     name: Біохімія клітинних процесів
+    credits: 4.0
 
   ПВ 04.3:
     name: Енергозберігаючі технології
+    credits: 4.0
     syllabus_url: https://drive.google.com/file/d/1ZQ4d1Q9Xmm_aAyQv1_LfoCI8_r3RoFQr/view?usp=sharing
     lecturer_id: donyk_tv
 

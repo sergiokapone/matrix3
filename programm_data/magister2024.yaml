@@ -545,7 +545,7 @@ elevative_disciplines:
     lecturer_id: purnyn_oe
     discipline_id: anathomy
 
-  ПВ 03.1:
+  ПВ 01.3:
     name: Фізика горіння
     syllabus_url: https://drive.google.com/file/d/161FalimQlj6fDot5FIyx14D7_2c56rSF/view?usp=sharing
     credits: 5.0
@@ -553,36 +553,23 @@ elevative_disciplines:
     lecturer_id: ponomarenko_sm
     discipline_id: combustion_physics
 
-  ПВ 03.2:
-    name: Біофізика мембранних структур
-    syllabus_url: https://drive.google.com/file/d/1K0ExAWZ7daVM5Yu7uMVYJrx4RXcJHa42/view?usp=sharing
-    credits: 5.0
-    control: Екзамен
-  #   ПВ 04:
-  #     name: Фізика невпорядкованих систем
-  #     syllabus_url: https://drive.google.com/file/d/1sr9D_7WseBm71gWlA1ctOwDxBSFD-NMo/view
-  #     credits: 4.0
-  #     control: Залік
-  #     lecturer_id: dimitriev_op
-  #     discipline_id: disordered_sys
+  ПВ 02.1:
+    name: Методи дослідження збудливих мембран
+    syllabus_url: https://docs.google.com/document/d/1jKB9XUbpcWk0sx6A7wYvmYW2AXhBCltt/edit
+    credits: 4.0
+    control: Залік
+    lecturer_id: purnyn_oe
+    discipline_id: excitable_membranes
 
-  #   ПВ 05:
-  #     name: Методи дослідження збудливих мембран
-  #     syllabus_url: https://docs.google.com/document/d/1jKB9XUbpcWk0sx6A7wYvmYW2AXhBCltt/edit
-  #     credits: 4.0
-  #     control: Залік
-  #     lecturer_id: purnyn_oe
-  #     discipline_id: excitable_membranes
+  ПВ 02.2:
+    name: Фізика невпорядкованих систем
+    syllabus_url: https://drive.google.com/file/d/1sr9D_7WseBm71gWlA1ctOwDxBSFD-NMo/view
+    credits: 4.0
+    control: Залік
+    lecturer_id: dimitriev_op
+    discipline_id: disordered_sys
 
-  #   ПВ 06:
-  #     name: Вейвлет аналіз сигналів
-  #     syllabus_url: https://drive.google.com/file/d/1crennYphnZD33-VIv9lTpC8y44EK6Sle/view
-  #     credits: 4.0
-  #     control: Залік
-  #     lecturer_id: progonov_do
-  #     discipline_id: wavelet_signal_analysis
-
-  ПВ 07.1:
+  ПВ 02.3:
     name: Спеціальні глави теорії теплообміну
     syllabus_url: https://drive.google.com/file/d/1-viEUoeqgoeZEbun0d_36UKT_fLAsh3q/view
     credits: 5.0
@@ -590,58 +577,94 @@ elevative_disciplines:
     lecturer_id: xalatov_aa
     discipline_id: spec_chapters_for_heat_exchange_theory
 
-  ПВ 07.2:
+  ПВ 03.1:
+    name: Біофізика мембранних структур
+    syllabus_url: https://drive.google.com/file/d/1K0ExAWZ7daVM5Yu7uMVYJrx4RXcJHa42/view?usp=sharing
+    credits: 5.0
+    control: Екзамен
+
+  ПВ 03.2:
+    name: Вейвлет аналіз сигналів
+    syllabus_url: https://drive.google.com/file/d/1crennYphnZD33-VIv9lTpC8y44EK6Sle/view
+    credits: 4.0
+    control: Залік
+    lecturer_id: progonov_do
+    discipline_id: wavelet_signal_analysis
+
+  ПВ 03.3:
+    name: Фізика плазми
+    syllabus_url: https://drive.google.com/file/d/1geG8qk45MZxoHlDFF2y9RRZFTaB6-Rfo/view?usp=sharing
+    credits: 5.0
+    control: Екзамен
+    lecturer_id: ponomarenko_sm
+    discipline_id: plasma_phys
+
+  ПВ 04.1:
+    name: Фізична кінетика
+    syllabus_url: https://drive.google.com/file/d/1iYd4Qa8QKB88MHFRdkwHZwcDWQBktgbZ/view
+    credits: 4.0
+    control: Залік
+    lecturer_id: kulish_vv
+    discipline_id: phys_kinetics
+
+  ПВ 04.2:
+    name: Біохімія клітинних процесів
+
+  ПВ 04.3:
+    name: Енергозберігаючі технології
+
+  ПВ 05.1:
+    name: Експериментальні дослідницькі установки
+    syllabus_url: https://docs.google.com/document/d/1_8gfAGSkhm3AsR7RmyjEUixADjvaXQZ6/edit
+    credits: 4.0
+    control: Залік
+    lecturer_id: donyk_tv
+    discipline_id: edu
+
+  ПВ 05.2:
+    name: Біофізика синаптичної передачі
+    credits: 4.0
+    control: Залік
+
+  ПВ 06.1:
+    name: Оптика і фотоніка
+    credits: 4.0
+    control: Залік
+
+  ПВ 06.2:
+    name: Новітні джерела енергії
+    syllabus_url: https://docs.google.com/document/d/1k_yVmdlzunZLk1Fll7aOjJa7KdVp66ty/edit
+    credits: 5.0
+    control: Екзамен
+    lecturer_id: gilchuk_av
+    discipline_id: new_energy_sources
+
+  ПВ 07.1:
     name: Кінетичні моделі в біофізиці
     syllabus_url: https://drive.google.com/file/d/18CAji8p3dIcqSEUZjhq9FMr7jN7Mv9yx/view?usp=sharing
     credits: 5.0
     control: Екзамен
 
-  ПВ 08.1:
-    name: Фізика плазми
-    syllabus_url: https://drive.google.com/file/d/1ojMp2eV_nK_Wp3P06uNM4aUGWhc-MXX8/view?usp=sharing
+  ПВ 07.2:
+    name: Основи теорії примежового шару
+    syllabus_url: https://drive.google.com/file/d/1CWYovr9Vc1dWIat8ftVT7GQ4tbKAbVFx/view
     credits: 5.0
-    control: Екзамен
-    lecturer_id: ponomarenko_sm
-    discipline_id: plasma_phys
-#   ПВ 10:
-#     name: Фізична кінетика
-#     syllabus_url: https://drive.google.com/file/d/1iYd4Qa8QKB88MHFRdkwHZwcDWQBktgbZ/view
-#     credits: 4.0
-#     control: Залік
-#     lecturer_id: kulish_vv
-#     discipline_id: phys_kinetics
+    control: Залік
+    lecturer_id: dymytriieva_nf
+    discipline_id: interbound_layer
 
-#   ПВ 11:
-#     name: Енергозберігаючі технології
+  ПВ 08.1:
+    name: Системи охолодження високотемпературних енергетичних установок
+    syllabus_url: https://docs.google.com/document/d/18E0luSlSDFGxpjIRw4PN6y-yG_5g8Rjd/edit
+    credits: 4.0
+    control: Залік
+    lecturer_id: donyk_tv
+    discipline_id: cooling_sys
 
-#   ПВ 12:
-#     name: Експериментальні дослідницькі установки
-#     syllabus_url: https://docs.google.com/document/d/1_8gfAGSkhm3AsR7RmyjEUixADjvaXQZ6/edit
-#     credits: 4.0
-#     control: Залік
-#     lecturer_id: donyk_tv
-#     discipline_id: edu
+  ПВ 08.2:
+    name: Наноструктури в електроніці та фотоціці
+    credits: 4.0
 
-#   ПВ 13:
-#     name: Основи теорії примежового шару
-#     syllabus_url: https://drive.google.com/file/d/1CWYovr9Vc1dWIat8ftVT7GQ4tbKAbVFx/view
-#     credits: 5.0
-#     control: Залік
-#     lecturer_id: dymytriieva_nf
-#     discipline_id: interbound_layer
-
-#   ПВ 14:
-#     name: Системи охолодження високотемпературних енергетичних установок
-#     syllabus_url: https://docs.google.com/document/d/18E0luSlSDFGxpjIRw4PN6y-yG_5g8Rjd/edit
-#     credits: 4.0
-#     control: Залік
-#     lecturer_id: donyk_tv
-#     discipline_id: cooling_sys
-
-#   ПВ 15:
-#     name: Новітні джерела енергії
-#     syllabus_url: https://docs.google.com/document/d/1k_yVmdlzunZLk1Fll7aOjJa7KdVp66ty/edit
-#     credits: 5.0
-#     control: Екзамен
-#     lecturer_id: gilchuk_av
-#     discipline_id: new_energy_sources
+  ПВ 08.3:
+    name: Молекулярна фізіологія
+    credits: 4.0

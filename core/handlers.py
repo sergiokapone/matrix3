@@ -9,6 +9,7 @@ from core.html_generator import (
     generate_discipline_page,
     generate_html_report,
     generate_index_page,
+    generate_syllabus_page,
 )
 from core.logging_config import get_logger
 from core.models import WordPressPage
@@ -18,6 +19,7 @@ from core.wordpress_uploader import (
     upload_all_pages,
     upload_discipline_page,
     upload_index,
+    upload_syllabus,
 )
 
 logger = get_logger(__name__)
@@ -298,5 +300,53 @@ def handle_upload_index(
         )
     else:
         logger.error("Не удалось загрузить индексную страницу")
+
+    return page
+
+
+# ==================================================================================
+# Handler для створення та завантаження сторінки силабусів
+# ==================================================================================
+
+def handle_generate_syllabus(
+    yaml_file: str | Path, output_file: str = "syllabus.html"
+) -> bool:
+    """CLI хендлер для генерації сторінки силабусів"""
+
+    logger.info(f"📄 Generating syllabus page from: {yaml_file}")
+    logger.info(f"📁 Output: {output_file}")
+
+    try:
+        # Генеруємо сторінку силабусів
+        generate_syllabus_page(str(yaml_file), str(output_file))
+        logger.debug("Syllabus page generated successfully!")
+        return True
+
+    except Exception as e:
+        logger.debug(f"Failed to generate syllabus page: {e}")
+        return False
+
+def handle_upload_syllabus(
+    yaml_file: str | Path, client: WordPressClient
+) -> WordPressPage | None:
+    """
+    Обработчик для CLI: загружает или обновляет страницу силабусов на WordPress.
+
+    Args:
+        index_file (str | Path): Путь к HTML-файлу силабусов.
+        page_id (int): ID существующей страницы на WP для обновления.
+        client (WordPressClient): Экземпляр клиента WP.
+
+    Returns:
+        WordPressPage | None: Загруженная/обновленная страница или None при ошибке.
+    """
+    page = upload_syllabus(yaml_file, client)
+
+    if page:
+        logger.debug(
+            f"Syllabus page successfully uploaded: {page.title} (ID: {page.id})"
+        )
+    else:
+        logger.error("Failed to upload syllabus page")
 
     return page

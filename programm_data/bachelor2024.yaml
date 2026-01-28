@@ -16,6 +16,7 @@ metadata:
   qf_ehea: "перший цикл"
   eqf_lll: 6
   page_id: 3372
+  syllabus_page_id: 312
   created_date: "2025-01-01"
   last_updated: "2025-09-26" # автоматично оновлюється
 
@@ -210,7 +211,7 @@ disciplines:
     online_resources: https://do.ipo.kpi.ua/enrol/index.php?id=1988
     lecturer_id: ivanova_vv
     discipline_id: optics
-    syllabus_url: https://drive.google.com/file/d/1NW7ehu03xvhOb9zBxwjOY_Kj-LuOYLO0/view?usp=sharing
+    syllabus_url: https://drive.google.com/file/d/11L0aEtu2ifzBJC0NlEgz_mUc0w7BajZ5/view?usp=sharing
 
   ЗО 08:
     name: Атомна фізика
@@ -374,6 +375,7 @@ disciplines:
       - diploma_proecting
       - interdiscipline_course_work
     discipline_id: intro
+    syllabus_url: https://drive.google.com/file/d/1BJZmxHB-_S_dDSjT-8bYPcLnn1WmBzrZ/view?usp=sharing
 
   ПО 03:
     name: Тензорний аналіз
@@ -454,6 +456,7 @@ disciplines:
       - ПО 04
     postrequisites:
       - ПО 09
+    syllabus_url: https://drive.google.com/file/d/1jzu-eeR9kCbFyl7kisKY9SZPs5U_ZSuD/view?usp=sharing
 
   ПО 09:
     name: Математичне моделювання та відкриті пакети прикладних програм
@@ -510,7 +513,7 @@ disciplines:
       - ЗО 01.4
     postrequisites:
       - ess
-    syllabus_url: https://drive.google.com/file/d/1T0aPVmTh91Pl1DXbXV95ukwPSuPmewbK/view
+    syllabus_url: https://drive.google.com/file/d/1dxS1pzZ2KoWMRXZqpk6Ih-r_ekbAF3TJ/view?usp=sharing
     lecturer_id: monastyrsky_ge
     discipline_id: oscillations_and_waves
 
@@ -577,6 +580,7 @@ disciplines:
     postrequisites:
       - diploma_proecting
     discipline_id: interdiscipline_course_work
+    syllabus_url: https://drive.google.com/file/d/1FzIryNnKmNBASMU45dcWTc5bPXwTS33u/view?usp=sharing
 
   ПО 18:
     name: Основи наукових досліджень

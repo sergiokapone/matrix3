@@ -195,3 +195,50 @@ def upload_index(yaml_file: Path, client: WordPressClient) -> WordPressPage | No
     except Exception as e:
         logger.error(f"❌ Помилка завантаження індексної сторінки: {e}")
         return None
+
+
+def upload_syllabus(yaml_file: Path, client: WordPressClient) -> WordPressPage | None:
+    """Завантажує сторінку силабусів на WordPress"""
+    try:
+        config = AppConfig()
+        syllabus_file = config.output_dir / "syllabus.html"
+        if not syllabus_file.exists():
+            logger.error(f"❌ Syllabus file does not exist: {syllabus_file}")
+            return None
+
+        # Отримуємо title з YAML
+        yaml_data = load_yaml_data(yaml_file)
+        syllabus_page_id = yaml_data["metadata"]["syllabus_page_id"]
+        title = f"Силабуси: {yaml_data['metadata'].get('degree', '')} {yaml_data['metadata'].get('year', '')}"
+
+        html_content = syllabus_file.read_text(encoding="utf-8")
+
+        # Готуємо дані
+        post_data = {
+            "title": title,
+            "content": html_content,
+            "parent": 16,
+            "status": "publish",
+        }
+
+        # Оновлюємо існуючу сторінку
+        logger.debug(f"♻️ Оновлюємо сторінку силабусів з id={syllabus_page_id}")
+        result = client.update_page(syllabus_page_id, post_data)
+
+        if result:
+            page = WordPressPage(
+                id=syllabus_page_id,
+                title=title,
+                content=html_content,
+                link=result.get("link"),
+            )
+
+            logger.debug(f"✅ Сторінку силабусів оновлено: {title} (ID: {page.id})")
+            return page
+        else:
+            logger.error("❌ Не вдалося оновити сторінку силабусів")
+            return None
+
+    except Exception as e:
+        logger.error(f"❌ Помилка завантаження сторінки силабусів: {e}")
+        return None

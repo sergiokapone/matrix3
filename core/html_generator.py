@@ -174,3 +174,31 @@ def generate_index_page(
     except Exception as e:
         logger.debug("Failed to generate index page: %s", str(e))
         return False  # Не успіх
+
+
+def generate_syllabus_page(
+    yaml_file: str | Path, output_file: str | Path = "syllabus.html"
+) -> bool:
+    """Генерує сторінку силабусу зі списком всіх дисциплін"""
+    try:
+        data = load_yaml_data(yaml_file)
+        validate_yaml_schema(data)
+
+        metadata = data.get("metadata", {})
+        disciplines = data.get("disciplines", {}) | data.get(
+            "elevative_disciplines", {}
+        )
+
+        disciplines = prepare_disciplines_with_totals(disciplines)
+
+        context = {"metadata": metadata, "disciplines": disciplines}
+
+        html_content = render_template("syllabus_template.html", context)
+        save_html_file(html_content, output_file)
+
+        logger.debug("Syllabus page created: %s", str(output_file))
+        return True  # Успіх
+
+    except Exception as e:
+        logger.debug("Failed to generate syllabus page: %s", str(e))
+        return False  # Не успіх

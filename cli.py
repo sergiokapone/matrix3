@@ -13,10 +13,12 @@ from core.handlers import (
     handle_generate_index,
     handle_generate_report,
     handle_generate_single_discipline,
+    handle_generate_syllabus,
     handle_parse_index_links,
     handle_upload_all_disciplines,
     handle_upload_discipline,
     handle_upload_index,
+    handle_upload_syllabus,
 )
 from core.logging_config import get_logger
 from core.wordpress_client import WordPressClient
@@ -85,6 +87,16 @@ def handle_index(
     if getattr(args, "upload", False):
         handle_upload_index(yaml_file, client)
         logger.info("Index file uploaded")
+
+def handle_syllabus(
+    args: str, yaml_file: Path, client: WordPressClient, output_dir: Path
+) -> None:
+    if getattr(args, "generate", False):
+        handle_generate_syllabus(yaml_file, output_dir / "syllabus.html")
+        logger.info("Syllabus file generated")
+    if getattr(args, "upload", False):
+        handle_upload_syllabus(yaml_file, client)
+        logger.info("Syllabus file uploaded")
 
 
 def handle_report(yaml_file: Path, output_dir: Path) -> None:
@@ -203,6 +215,8 @@ def dispatch_command(args: str, yaml_file: Path, client: WordPressClient) -> Non
             handle_upload(args, yaml_file, client)
         case "index":
             handle_index(args, yaml_file, client, output_dir)
+        case "syllabus":
+            handle_syllabus(args, yaml_file, client, output_dir)
         case "report":
             handle_report(yaml_file, report_dir)
         case "excel":
@@ -267,6 +281,17 @@ def build_parser() -> argparse.ArgumentParser:
     )
     index_parser.add_argument(
         "--upload", "-u", action="store_true", help="Upload index page"
+    )
+
+    # =========================
+    # syllabus
+    # =========================
+    index_parser = subparsers.add_parser("syllabus", help="Work with syllabus page")
+    index_parser.add_argument(
+        "--generate", "-g", action="store_true", help="Generate index page"
+    )
+    index_parser.add_argument(
+        "--upload", "-u", action="store_true", help="Upload syllabus page"
     )
 
     # =========================

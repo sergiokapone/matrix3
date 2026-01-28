@@ -1,97 +1,84 @@
-<!-- syllabus_template.html -->
+<!-- <!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="utf-8">
+        <title>{{ metadata.title }} - Дисципліни</title>
+        <style>
+            body { font-family: Arial, sans-serif; max-width: 1000px; margin: 0 auto; padding: 20px; }
+            .header { background: #f8f9fa; padding: 20px; border-radius: 8px; margin-bottom: 30px; }
+            .disciplines-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; }
+            .discipline-card { border: 1px solid #dee2e6; border-radius: 8px; padding: 15px; }
+            .discipline-card h3 { margin-top: 0; color: #495057; }
+            .discipline-code { background: #e9ecef; padding: 2px 8px; border-radius: 4px; font-weight: bold; }
+            .credits { color: #6c757d; font-size: 0.9em; }
+            .metadata-info { margin-bottom: 20px; font-size: 0.95em; color: #495057; }
+            .metadata-info p { margin: 3px 0; }
+            .footer { margin-top: 40px; text-align: center; color: #6c757d; font-size: 0.9em; }
+        </style>
+    </head>
+    <body> -->
+<div style="background: #ffffff; padding: 25px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); margin-bottom: 40px; font-family: &quot;Segoe UI&quot;, Tahoma, Geneva, Verdana, sans-serif">
+  <h1 style="color: #1f3c88; font-size: 1.8em; margin-bottom: 15px; font-weight: bold; text-align: center">{{ metadata.title }}</h1>
 
-{% macro discipline_card(discipline) %}
-<li style="background: #fff !important; border: 1px solid #dee2e6 !important; border-radius: 6px !important; padding: 12px !important; margin-bottom: 12px !important; list-style: none !important; list-style-type: none !important; position: relative !important; line-height: 1.4 !important;">
+  <div style="font-size: 0.95em; color: #495057; line-height: 1.6; margin-bottom: 20px">
+    <p><strong>Університет:</strong> {{ metadata.university }}</p>
+    <p><strong>Інститут | Кафедра:</strong> {{ metadata.faculty }} | {{ metadata.department }}</p>
+    <p><strong>Спеціальність:</strong> {{ metadata.specialty }}</p>
+    <p><strong>Рівень освіти:</strong> {{ metadata.degree }} (NQF: {{ metadata.nqf_level }}, EQF: {{ metadata.eqf_lll }}, EHEA: {{ metadata.qf_ehea }})</p>
+    <p><strong>Рік програми:</strong> {{ metadata.year }}</p>
+    <p><strong>Тривалість:</strong> {{ metadata.duration }}</p>
+    <p><strong>Форма навчання:</strong> {{ metadata.form }}</p>
+    {% if metadata.language %}
+    <p><strong>Мова навчання:</strong> {{ metadata.language }}</p>
+    {% endif %} {% if metadata.website %}
+    <p><strong>Посилання на програму:</strong> <a href="{{ metadata.website }}" target="_blank" style="color: #1f3c88; text-decoration: underline">Переглянути</a></p>
+    {% endif %}
+    <p><strong>Кредити:</strong> {{ metadata.total_credits }} ECTS</p>
+  </div>
 
-<div style="font-weight: 600 !important; margin-bottom: 4px !important; display: block !important;">
-  {% if discipline.syllabus_url %}<a href="{{ discipline.syllabus_url }}" target="_blank"><strong>{{ discipline.code }}: {{ discipline.name }}</strong></a>{% else %}<strong>{{ discipline.code }}: {{ discipline.name }}</strong>{% endif %}{% if (discipline.credits and discipline.credits != 'N/A') or (discipline.hours and discipline.hours != 'N/A') or (discipline.control and discipline.control != 'N/A') %} ({% if discipline.credits and discipline.credits != 'N/A' %}{{ discipline.credits }} кредитів{% endif %}{% if discipline.hours and discipline.hours != 'N/A' %}{% if discipline.credits and discipline.credits != 'N/A' %}, {% endif %}{{ discipline.hours }} годин{% endif %}{% if discipline.control and discipline.control != 'N/A' %}{% if (discipline.credits and discipline.credits != 'N/A') or (discipline.hours and discipline.hours != 'N/A') %}, {% endif %}{{ discipline.control }}{% endif %}){% endif %}
+  <hr style="border: 0; border-top: 2px solid #e0e0e0; margin: 20px 0" />
+
+  <div style="margin-bottom: 20px">
+    <h2 style="color: #1f3c88; font-size: 1.4em; margin-bottom: 10px">Мета програми</h2>
+    <p style="color: #495057">{{ metadata.program_purpose }}</p>
+  </div>
+  <!-- 
+            <div style="margin-bottom: 20px;">
+                <h2 style="color: #1f3c88; font-size: 1.4em; margin-bottom: 10px;">Основний фокус</h2>
+                <p style="color: #495057;">{{ metadata.main_focus }}</p>
+            </div>
+
+            <div style="margin-bottom: 20px;">
+                <h2 style="color: #1f3c88; font-size: 1.4em; margin-bottom: 10px;">Особливості програми</h2>
+                <p style="color: #495057;">{{ metadata.features }}</p>
+            </div>
+
+            <div style="margin-bottom: 20px;">
+                <h2 style="color: #1f3c88; font-size: 1.4em; margin-bottom: 10px;">Інтегральна компетентність</h2>
+                <p style="color: #495057;">{{ metadata.integral_competence }}</p>
+            </div>
+
+            <div style="margin-bottom: 0;">
+                <h2 style="color: #1f3c88; font-size: 1.4em; margin-bottom: 10px;">Форма атестації</h2>
+                <p style="color: #495057;">{{ metadata.attestation_form }}</p>
+            </div> -->
 </div>
 
-  {% if discipline.description %}
-  <div style="margin: 6px 0 !important; color: #495057 !important; font-style: italic !important; background: #f8f9fa !important; padding: 6px !important; border-radius: 4px !important; border-left: 3px solid #17a2b8 !important; display: block !important; clear: both !important; font-size: 0.95em !important; line-height: 1.3 !important;">
-    {% if discipline.description %}
-      {{ discipline.description }}
-    {% endif %}
+{% set zo_disciplines = [] %} {% set po_disciplines = [] %} {% set pv_disciplines = [] %} {% set nk_disciplines = [] %} {% set vk_disciplines = [] %} {% for code, discipline in disciplines.items() %} {% if code.startswith('ЗО') %} {% set _ = zo_disciplines.append((code, discipline)) %} {% elif code.startswith('ПО') %} {% set _ = po_disciplines.append((code, discipline)) %} {% elif code.startswith('ПВ') %} {% set _ = pv_disciplines.append((code, discipline)) %} {% elif code.startswith('НК') %} {% set _ = nk_disciplines.append((code, discipline)) %} {% elif code.startswith('ВК') %} {% set _ = vk_disciplines.append((code, discipline)) %} {% endif %} {% endfor %} {% macro render_disciplines(title, disciplines) %} {% if disciplines %}
+<h2>{{ title }}</h2>
+<div style="display: block; margin-bottom: 40px">
+  {% for code, discipline in disciplines %}
+  <div style="border: 1px solid #dee2e6; border-radius: 8px; padding: 15px">
+    <h3 style="margin-top: 0; color: #495057">
+      <span style="background: #e9ecef; padding: 2px 8px; border-radius: 4px; font-weight: bold">{{ code }}</span>
+    </h3>
+    <p style="font-weight: bold; color: #0056b3; font-size: 1.1em; margin: 6px 0">{{ discipline.name }}</p>
+    <div style="color: #6c757d; font-size: 0.9em"><strong>{{ discipline.total_credits }}</strong> кредитів ЄКТС | {{ discipline.all_controls }}</div>
+    <div style="white-space: nowrap; display: inline-block">{% if discipline.syllabus_url %}<a href="{{ discipline.syllabus_url }}" target="_blank">Силабус</a>{% endif %}</div>
   </div>
-  {% endif %}
-
-  {% if discipline.subdisciplines %}
-  <ul style="margin: 6px 0 0 20px !important; list-style: disc !important; padding-left: 0 !important;">
-    {% for sub_code, sub in discipline.subdisciplines.items() %}
-    <li style="margin: 1px 0 !important; list-style: disc !important; list-style-type: disc !important;">
-      {{ sub.name }} <span style="color: #6c757d !important; font-size: 0.85em !important;">({{ sub.credits }} кредитів)</span>
-    </li>
-    {% endfor %}
-  </ul>
-  {% endif %}
-
-  {% if discipline.lecturer %}
-  <div style="margin-top: 6px !important; padding: 6px !important; background: #fdfdfd !important; border: 1px solid #eee !important; border-radius: 4px !important; font-size: 0.9em !important; color: #333 !important; display: flex !important; align-items: center !important; gap: 6px !important;">
-    <span style="font-size: 1.1em !important;">👨‍🏫</span>
-    {% if discipline.lecturer.profile_url %}
-    <a href="{{ discipline.lecturer.profile_url }}" target="_blank" style="color: #007bff !important; text-decoration: none !important;">
-      {{ discipline.lecturer.full_name }}
-    </a>
-    
-    {% else %}
-    {{ discipline.lecturer.full_name }}
-    {% endif %}
-  </div>
-  {% endif %}
-
-</li>
-{% endmacro %}
-
-
-<div style="max-width: 900px !important; margin: 0 auto !important; padding: 20px !important; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif !important; line-height: 1.6 !important; color: #333 !important;">
-
-  <h1 style="text-align: center !important; color: #2c3e50 !important; border-bottom: 2px solid #eee !important; padding-bottom: 15px !important; margin-bottom: 30px !important;">
-    {{ metadata.title }} ({{ metadata.year }}). Силабуси
-  </h1>
-
-  <div style="background: #f8f9fa !important; padding: 20px !important; border-radius: 5px !important; margin-bottom: 30px !important; text-align: center !important; border: 1px solid #dee2e6 !important;">
-    <h2 style="margin: 0 0 10px 0 !important; color: #495057 !important; font-size: 1.3em !important;">{{ metadata.title }}</h2>
-    <p style="margin: 5px 0 !important;"><strong>{{ metadata.university }}</strong></p>
-    <p style="margin: 5px 0 !important;">{{ metadata.faculty }}</p>
-    <p style="margin: 5px 0 !important;">{{ metadata.department }}</p>
-    <p style="margin: 5px 0 !important;"><strong>Сайт програми</strong>: <a href="{{ metadata.website }}" target="_blank" style="color: #007bff !important; text-decoration: none !important;">Переглянути</a></p>
-    <p style="color: #6c757d !important; margin: 10px 0 0 0 !important;"><em>Оновлено: {{ current_date }}</em></p>
-  </div>
-
-  {% if general_disciplines %}
-    <h2 style="color: #495057 !important; border-bottom: 4px solid #28a745 !important; padding-bottom: 10px !important; margin: 30px 0 15px 0 !important;">
-    Цикл загальної підготовки
-    </h2>
-
-  <ul style="list-style: none !important; list-style-type: none !important; padding: 0 !important; margin: 0 !important;">
-    {% for d in general_disciplines %}
-      {{ discipline_card(d) }}
-    {% endfor %}
-  </ul>
-  {% endif %}
-
-  {% if professional_disciplines %}
-    <h2 style="color: #495057 !important; border-bottom: 4px solid #28a745 !important; padding-bottom: 10px !important; margin: 30px 0 15px 0 !important;">
-        Цикл професійної підготовки
-    </h2>
-
-  <ul style="list-style: none !important; list-style-type: none !important; padding: 0 !important; margin: 0 !important;">
-    {% for d in professional_disciplines %}
-      {{ discipline_card(d) }}
-    {% endfor %}
-  </ul>
-  {% endif %}
-
-    {% if elevate_disciplines %}
-    <h2 style="color: #495057 !important; border-bottom: 4px solid #28a745 !important; padding-bottom: 10px !important; margin: 30px 0 15px 0 !important;">
-        Вибіркові дисципліни
-    </h2>
-
-  <ul style="list-style: none !important; list-style-type: none !important; padding: 0 !important; margin: 0 !important;">
-    {% for d in elevate_disciplines %}
-      {{ discipline_card(d) }}
-    {% endfor %}
-  </ul>
-  {% endif %}
-
+  {% endfor %}
 </div>
+{% endif %} {% endmacro %} {{ render_disciplines("Обов'язкові компоненти циклу загальної підготовки", zo_disciplines) }} {{ render_disciplines("Обов'язкові компоненти циклу професійної підготовки", po_disciplines) }} {{ render_disciplines("Вибіркові компоненти циклу професійної підготовки", pv_disciplines) }} {{ render_disciplines("Нормативні освітні компоненти", nk_disciplines) }} {{ render_disciplines("Вибіркові освітні компоненти", vk_disciplines) }}
+
+<!-- </body>
+    </html> -->

@@ -18,6 +18,7 @@ completer = NestedCompleter.from_nested_dict(
         "generate": {"-a": None, "-d": None},
         "upload": {"-a": None, "-d": None, "-i": None},
         "index": {"-g": None, "-p": None, "-u": None},
+        "syllabus": {"-g": None, "-u": None},
         "scenario": {"-f": None},
         "dir": None,
         "report": None,

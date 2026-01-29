@@ -555,15 +555,15 @@ elevative_disciplines:
 
   ПВ 02.1:
     name: Методи дослідження збудливих мембран
-    syllabus_url:
     credits: 4.0
     control: Залік
     lecturer_id: purnyn_oe
     discipline_id: excitable_membranes
+    syllabus_url: https://drive.google.com/file/d/1exYYmzlXUMP_NHBI-n9bZmUwVquOy9y4/view?usp=sharing
 
   ПВ 02.2:
     name: Фізика невпорядкованих систем
-    syllabus_url:
+    syllabus_url: https://drive.google.com/file/d/17AUkhX0RaCCCvrfI898PzNKPNbw7Bv_8/view?usp=sharing
     credits: 4.0
     control: Залік
     lecturer_id: dimitriev_op
@@ -571,7 +571,7 @@ elevative_disciplines:
 
   ПВ 02.3:
     name: Спеціальні глави теорії теплообміну
-    syllabus_url:
+    syllabus_url: https://drive.google.com/file/d/1xk0avsuQ4GdhIx2cWORkDsr8eYsrjDFL/view?usp=sharing
     credits: 5.0
     control: Екзамен
     lecturer_id: xalatov_aa
@@ -585,7 +585,7 @@ elevative_disciplines:
 
   ПВ 03.2:
     name: Вейвлет аналіз сигналів
-    syllabus_url:
+    syllabus_url: https://drive.google.com/file/d/15KDM3GvkcLNvUUzReAoZqoKaOzhZSUoJ/view?usp=sharing
     control: Залік
     lecturer_id: progonov_do
     discipline_id: wavelet_signal_analysis
@@ -609,6 +609,7 @@ elevative_disciplines:
   ПВ 04.2:
     name: Біохімія клітинних процесів
     credits: 4.0
+    syllabus_url: https://drive.google.com/file/d/1s6BN-EUCsTAb5NO0Z8PuXqE-UDfFygyV/view?usp=sharing
 
   ПВ 04.3:
     name: Енергозберігаючі технології
@@ -618,7 +619,7 @@ elevative_disciplines:
 
   ПВ 05.1:
     name: Експериментальні дослідницькі установки
-    syllabus_url:
+    syllabus_url: https://drive.google.com/file/d/10wJiI3SfLjzp_q0D-Jfvi_QDHdvTOHoZ/view?usp=sharing
     credits: 4.0
     control: Залік
     lecturer_id: donyk_tv
@@ -628,6 +629,7 @@ elevative_disciplines:
     name: Біофізика синаптичної передачі
     credits: 4.0
     control: Залік
+    syllabus_url:
 
   ПВ 06.1:
     name: Оптика і фотоніка
@@ -642,11 +644,18 @@ elevative_disciplines:
     lecturer_id: gilchuk_av
     discipline_id: new_energy_sources
 
-  ПВ 07.1:
-    name: Кінетичні моделі в біофізиці
-    syllabus_url: https://drive.google.com/file/d/18CAji8p3dIcqSEUZjhq9FMr7jN7Mv9yx/view?usp=sharing
+  ПВ 06.3:
+    name: Сучасні виклики біології
+    syllabus_url: https://drive.google.com/file/d/1F_D_yLbKLNNsdaQeUniEXIjwmbuuqvHe/view?usp=sharing
     credits: 5.0
     control: Екзамен
+
+  ПВ 07.1:
+    name: Кінетичні моделі в біофізиці
+    syllabus_url: https://drive.google.com/file/d/1IMRoaY2eQpisBDH9Fi9O-9CuIBhX2ayT/view?usp=sharing
+    credits: 5.0
+    control: Екзамен
+    discipline_id: kinetic_models_in_biophysics
 
   ПВ 07.2:
     name: Основи теорії примежового шару

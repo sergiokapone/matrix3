@@ -51,7 +51,7 @@ disciplines:
     name: Практичний курс іноземної мови для наукової комунікації. Частина 1
     credits: 3.0
     control: Залік
-    syllabus_url: https://drive.google.com/file/d/1fCrJqJ_q8e_k26bufWCucPCr7VglHr1n/view?usp=sharing
+    syllabus_url: https://drive.google.com/file/d/1RUXWlQk5-B__ZHCYoQg2uktftnggH--F/view?usp=sharing
 
   ЗО 03.2:
     name: Практичний курс іноземної мови для наукової комунікації. Частина 2
@@ -163,7 +163,7 @@ disciplines:
     credits: 16.0
     control: Захист
     lecturer_id: monastyrsky_ge
-    syllabus_url: https://drive.google.com/file/d/1Y7i7EZpJvfRPMMfmbSHGpHq4I_7JYdCr/view?usp=sharing
+    syllabus_url: https://drive.google.com/file/d/1RRtVIvXjurouWp6Ndz30PrUJJKlFl5O6/view?usp=sharing
 
 competencies:
   ЗК 01: Здатність до абстрактного та аналітичного мислення, розуміння основних концепцій, парадигми та ідей прикладної фізики
@@ -555,11 +555,11 @@ elevative_disciplines:
 
   ПВ 02.1:
     name: Методи дослідження збудливих мембран
+    syllabus_url: https://drive.google.com/file/d/1exYYmzlXUMP_NHBI-n9bZmUwVquOy9y4/view?usp=sharing
     credits: 4.0
     control: Залік
     lecturer_id: purnyn_oe
     discipline_id: excitable_membranes
-    syllabus_url: https://drive.google.com/file/d/1exYYmzlXUMP_NHBI-n9bZmUwVquOy9y4/view?usp=sharing
 
   ПВ 02.2:
     name: Фізика невпорядкованих систем
@@ -586,6 +586,7 @@ elevative_disciplines:
   ПВ 03.2:
     name: Вейвлет аналіз сигналів
     syllabus_url: https://drive.google.com/file/d/15KDM3GvkcLNvUUzReAoZqoKaOzhZSUoJ/view?usp=sharing
+    credits: 4.0
     control: Залік
     lecturer_id: progonov_do
     discipline_id: wavelet_signal_analysis
@@ -600,7 +601,7 @@ elevative_disciplines:
 
   ПВ 04.1:
     name: Фізична кінетика
-    syllabus_url:
+    syllabus_url: https://drive.google.com/file/d/1PsusNUBkHuBUYDmVmpS6kwfLspPcEGcy/view?usp=sharing
     credits: 4.0
     control: Залік
     lecturer_id: kulish_vv
@@ -608,13 +609,13 @@ elevative_disciplines:
 
   ПВ 04.2:
     name: Біохімія клітинних процесів
-    credits: 4.0
     syllabus_url: https://drive.google.com/file/d/1s6BN-EUCsTAb5NO0Z8PuXqE-UDfFygyV/view?usp=sharing
+    credits: 4.0
 
   ПВ 04.3:
     name: Енергозберігаючі технології
-    credits: 4.0
     syllabus_url: https://drive.google.com/file/d/1ZQ4d1Q9Xmm_aAyQv1_LfoCI8_r3RoFQr/view?usp=sharing
+    credits: 4.0
     lecturer_id: donyk_tv
 
   ПВ 05.1:
@@ -626,13 +627,20 @@ elevative_disciplines:
     discipline_id: edu
 
   ПВ 05.2:
-    name: Біофізика синаптичної передачі
+    name: Фізика та хімія поверхні
+    syllabus_url: https://drive.google.com/file/d/1GzkgNZdEccoXnWn1dTCyl5nED5FNONYO/view?usp=sharing
     credits: 4.0
     control: Залік
-    syllabus_url:
+
+  ПВ 05.3:
+    name: Біофізика синаптичної передачі
+    syllabus_url: https://drive.google.com/file/d/1eareqvSqXdy-zrIjbPlMxHS7YNded7qY/view?usp=sharing
+    credits: 4.0
+    control: Залік
 
   ПВ 06.1:
     name: Оптика і фотоніка
+    syllabus_url: https://drive.google.com/file/d/1yDq9mDyGeJpRCGy_Owose3CwXhr7DhlP/view?usp=sharing
     credits: 4.0
     control: Залік
 
@@ -659,7 +667,7 @@ elevative_disciplines:
 
   ПВ 07.2:
     name: Основи теорії примежового шару
-    syllabus_url:
+    syllabus_url: https://drive.google.com/file/d/1XIP8W1qXLitN2rkh07xtSraOmxnPq2Ep/view?usp=sharing
     credits: 5.0
     control: Залік
     lecturer_id: dymytriieva_nf
@@ -674,11 +682,15 @@ elevative_disciplines:
     discipline_id: cooling_sys
 
   ПВ 08.2:
-    name: Наноструктури в електроніці та фотоціці
-    credits: 4.0
+    name: Наноструктури в електроніці та фотоніці
     syllabus_url: https://drive.google.com/file/d/18zMpvyKlPP2_u8wZ6Dla1UyqipA5aX9G/view?usp=sharing
+    credits: 4.0
 
   ПВ 08.3:
     name: Молекулярна фізіологія
-    credits: 4.0
     syllabus_url: https://drive.google.com/file/d/1yHoNdw9JCisytgmxwfDzgalvKTNMVRfz/view?usp=sharing
+    credits: 4.0
+    control: Залік
+    controls:
+      - МКР
+      - ДКР

@@ -513,11 +513,11 @@ elevative_disciplines:
 
   ПВ 03:
     name: Фізика горіння
-    credits: 5.0
-    control: Екзамен
+    credits: 4.0
+    control: Залік
     lecturer_id: ponomarenko_sm
     discipline_id: combustion_physics
-    # syllabus_url: https://drive.google.com/file/d/1sAFbvZfXCWwgQUuJp7tZAVrAq-mC6u7r/view?usp=sharing
+    syllabus_url: https://drive.google.com/file/d/1kgLtxcGTgBx39n3En1M1iREDjOS_uEsu/view?usp=sharing
 
   ПВ 04:
     name: Фізика невпорядкованих систем
@@ -560,7 +560,7 @@ elevative_disciplines:
     control: Екзамен
     lecturer_id: ponomarenko_sm
     discipline_id: plasma_phys
-    # syllabus_url: https://drive.google.com/file/d/1e9EOICc2wiRxQCaO6hBb-zBl6xHNmBdj/view?usp=sharing
+    syllabus_url: https://drive.google.com/file/d/1hhOfdiB6idzLYvjOs7SNFvdmzGVq67Pe/view?usp=sharing
 
   ПВ 10:
     name: Фізична кінетика

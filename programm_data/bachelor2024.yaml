@@ -71,7 +71,7 @@ disciplines:
       - math_pys
       - ЗО 01.4
       - prob_theory
-    syllabus_url: http://#
+    syllabus_url: https://drive.google.com/file/d/1gTPcqxd474qZDiAqj0QpyFqdEi4AH09q/view?usp=sharing
     discipline_id: math_analisys
 
   ЗО 01.4:
@@ -88,7 +88,7 @@ disciplines:
       - oscillations_and_waves
       - ПО 09
       - electrodynamics
-    syllabus_url: http://#
+    syllabus_url: https://drive.google.com/file/d/1CFsRW5TnGgaYaCbsgJUbM6Tm-XdlV6gk/view?usp=sharing
     discipline_id: math_analisys
     lecturer_id: nakaznoy_po
 
@@ -149,7 +149,7 @@ disciplines:
 
   ЗО 05.1:
     name: Диференціальні рівняння. Частина 1
-    syllabus_url: http://#
+    syllabus_url: https://drive.google.com/file/d/1RSyhou5P7ScX8Fcbj7zpawCKqMJpMzIq/view?usp=sharing
     credits: 3.0
     control: Залік
     prerequisites:
@@ -163,6 +163,7 @@ disciplines:
 
   ЗО 05.2:
     name: Диференціальні рівняння. Частина 2
+    syllabus_url: https://drive.google.com/file/d/1RSyhou5P7ScX8Fcbj7zpawCKqMJpMzIq/view?usp=sharing
     credits: 4.0
     control: Екзамен
     prerequisites:
@@ -211,7 +212,7 @@ disciplines:
     online_resources: https://do.ipo.kpi.ua/enrol/index.php?id=1988
     lecturer_id: ivanova_vv
     discipline_id: optics
-    syllabus_url: https://drive.google.com/file/d/11L0aEtu2ifzBJC0NlEgz_mUc0w7BajZ5/view?usp=sharing
+    syllabus_url: https://sergiokapone.github.io/LabOpt/A_Documents/Syllabus_Optics/Syllabus_Optics_2024.pdf
 
   ЗО 08:
     name: Атомна фізика
@@ -390,7 +391,7 @@ disciplines:
       - optics
       - stat_phys
       - electrodynamics
-    syllabus_url: https://drive.google.com/file/d/1krJtTPtjaey_3BkQzzRn-TO24Ylc6q6e/view
+    syllabus_url: https://drive.google.com/file/d/1KMuAPWKw-xweyUIRwTNrs7V6g-dwFNgO/view?usp=sharing
     lecturer_id: nakaznoy_po
     discipline_id: tensor_analisys
 
@@ -403,6 +404,7 @@ disciplines:
     postrequisites:
       - ПО 06
       - ПО 08
+    syllabus_url: https://drive.google.com/file/d/1BMh9Pherew1SgssGWuVQEq3JrW-W_YVw/view?usp=sharing
 
   ПО 05:
     name: Класична механіка
@@ -418,7 +420,7 @@ disciplines:
       - oscillations_and_waves
       - stat_phys
       - electrodynamics
-    syllabus_url: https://drive.google.com/file/d/1krZIzImw2_e_mb-kKi-BSArnIuAQMma1/view
+    syllabus_url: https://drive.google.com/file/d/1eLAD3oalc3ek-IQSYA8Jicatqw7XP02J/view?usp=sharing
     lecturer_id: nakaznoy_po
     discipline_id: classmech
 
@@ -529,7 +531,7 @@ disciplines:
     postrequisites:
       - lab_research_pract
       - stat_phys
-    syllabus_url: https://drive.google.com/file/d/1jmbTrWoa3cqZP0cx9Aqz0K7HVjPg1lmK/view
+    syllabus_url: https://drive.google.com/file/d/1gYqMb-bkKrNZDUTA5EYePNZ7gv2G_ciO/view?usp=sharing
     discipline_id: quantum_mechanics
 
   ПО 14:
@@ -1235,7 +1237,7 @@ elevative_disciplines:
     name: Термодинаміка газового потоку
     credits: 4.0
     control: Залік
-    syllabus_url: https://drive.google.com/file/d/1xRw_nd2z_9TLQ957B9m5ATwJZT8bjfO6/view
+    syllabus_url: https://drive.google.com/file/d/1wIwaDVWGjbi4K7EkTxr_EhIl5BEfSFWG/view?usp=sharing
     lecturer_id: gilchuk_av
     discipline_id: gas_flow
 
@@ -1243,7 +1245,7 @@ elevative_disciplines:
     name: Основи метрології в прикладній фізиці
     credits: 4.0
     control: Залік
-    syllabus_url: https://drive.google.com/file/d/18z37kCN3tNr9tmy54B9yOl6cAAZUv0AS/view
+    syllabus_url: https://drive.google.com/file/d/1QMn23xCXeACw6U8FSbnhqC4xyODKSVU6/view?usp=sharing
     lecturer_id: negriiko_am
     discipline_id: metrology
 
@@ -1251,6 +1253,7 @@ elevative_disciplines:
     name: Органічна хімія живих систем
     credits: 4.0
     control: Залік
+    syllabus_url: https://drive.google.com/file/d/1_LML-q9wvTc63Jk8se96wFwA--Eg-cYC/view?usp=sharing
 
   ПВ 02.1:
     name: Основи теплової енергетики
@@ -1261,11 +1264,6 @@ elevative_disciplines:
     discipline_id: heat_energetics
 
   ПВ 02.2:
-    name: Основи нанобіотехнологій
-    credits: 4.0
-    control: Залік
-
-  ПВ 02.3:
     name: Фізика сучасних технологій та технологій майбутнього
     credits: 4.0
     control: Залік
@@ -1273,12 +1271,28 @@ elevative_disciplines:
     lecturer_id: monastyrsky_ge
     discipline_id: physics_modern_future_tech
 
-  ПВ 03.1:
-    name: Основи електроніки
+  ПВ 02.3:
+    name: Основи нанобіотехнологій
     credits: 4.0
     control: Залік
 
+  ПВ 03.1:
+    name: Теорія теплопровідності
+    credits: 4.0
+    control: Залік
+    syllabus_url: https://drive.google.com/file/d/1RvPtEKjgCisd9B9DCc2ijST_GXq-em4K/view
+    lecturer_id: gilchuk_av
+    discipline_id: thermal_conductivity
+
   ПВ 03.2:
+    name: Основи загальної біології
+    credits: 4.0
+    control: Залік
+    syllabus_url: https://drive.google.com/file/d/1K5FZ97Zil_2JqPjQsY2F3A5A-goH3cHc/view
+    lecturer_id: purnyn_oe
+    discipline_id: gen_biology
+
+  ПВ 03.3:
     name: "Електроніка: елементна база та ключові схеми"
     credits: 4.0
     control: Залік
@@ -1289,20 +1303,9 @@ elevative_disciplines:
     control: Залік
 
   ПВ 04.2:
-    name: Теорія теплопровідності
+    name: "Основи електроніки"
     credits: 4.0
     control: Залік
-    syllabus_url: https://drive.google.com/file/d/1RvPtEKjgCisd9B9DCc2ijST_GXq-em4K/view
-    lecturer_id: gilchuk_av
-    discipline_id: thermal_conductivity
-
-  ПВ 04.3:
-    name: Основи загальної біології
-    credits: 4.0
-    control: Залік
-    syllabus_url: https://drive.google.com/file/d/1K5FZ97Zil_2JqPjQsY2F3A5A-goH3cHc/view
-    lecturer_id: purnyn_oe
-    discipline_id: gen_biology
 
   ПВ 05.1:
     name: Гідродинаміка
@@ -1375,12 +1378,12 @@ elevative_disciplines:
     discipline_id: energy_sources
 
   ПВ 08.2:
-    name: Оптоелектроніка
+    name: Фізика напівпровідникових приладів
     credits: 4.0
     control: Залік
-    syllabus_url: https://drive.google.com/file/d/1kEBpSxZPTRNAY9pw4MQGa3RqI19wdnnd/view
-    lecturer_id: ivanova_vv
-    discipline_id: optoelectronics
+    syllabus_url: https://docs.google.com/document/d/12gAbs6xXLvdDsFE_Du8lzaKH41mKZINI/edit
+    lecturer_id: gilchuk_av
+    discipline_id: semicond_devices
 
   ПВ 09.1:
     name: Воднева енергетика
@@ -1391,12 +1394,12 @@ elevative_disciplines:
     discipline_id: hydrogen_energetics
 
   ПВ 09.2:
-    name: Фізика напівпровідникових приладів
+    name: Оптоелектроніка
     credits: 4.0
     control: Залік
-    syllabus_url: https://docs.google.com/document/d/12gAbs6xXLvdDsFE_Du8lzaKH41mKZINI/edit
-    lecturer_id: gilchuk_av
-    discipline_id: semicond_devices
+    syllabus_url: https://drive.google.com/file/d/1kEBpSxZPTRNAY9pw4MQGa3RqI19wdnnd/view
+    lecturer_id: ivanova_vv
+    discipline_id: optoelectronics
 
   ПВ 09.3:
     name: Наукові основи біосенсорики
@@ -1430,16 +1433,16 @@ elevative_disciplines:
     discipline_id: comp_modelling_cont_media
 
   ПВ 11.2:
-    name: Комп'ютерне моделювання біофізичних систем
-    credits: 4.0
-    control: Залік
-    syllabus_url: https://drive.google.com/file/d/1wihJdrCOrduOSxEBPLR1_m3Lc7YReqh9/view
-
-  ПВ 11.3:
     name: Методи машинного навчання
     credits: 4.0
     control: Залік
     syllabus_url: https://drive.google.com/file/d/1tGHp7DxmMIK1gPRjdOO1WD00h5nFp79p/view
+
+  ПВ 11.3:
+    name: Комп'ютерне моделювання біофізичних систем
+    credits: 4.0
+    control: Залік
+    syllabus_url: https://drive.google.com/file/d/1wihJdrCOrduOSxEBPLR1_m3Lc7YReqh9/view
 
   ПВ 12.1:
     name: Фізика металів та сплавів
@@ -1450,6 +1453,11 @@ elevative_disciplines:
     discipline_id: metall_phys
 
   ПВ 12.2:
+    name: Біофізика складних систем. Частина 2.
+    credits: 4.0
+    control: Залік
+
+  ПВ 12.3:
     name: Термодинаміка циклів
     credits: 4.0
     control: Залік
@@ -1457,13 +1465,8 @@ elevative_disciplines:
     lecturer_id: dolgoshey_vb
     discipline_id: cycles_thermod
 
-  ПВ 12.3:
-    name: Біофізика складних систем. Частина 2.
-    credits: 4.0
-    control: Залік
-
   ПВ 13.1:
-    name: Основи фотовольтаїки
+    name: Теорія гідродинамічної стійкості
     credits: 4.0
     control: Залік
 
@@ -1481,7 +1484,7 @@ elevative_disciplines:
     control: Залік
 
   ПВ 14.1:
-    name: Теорія гідродинамічної стійкості
+    name: Основи фотовольтаїки
     credits: 4.0
     control: Залік
 

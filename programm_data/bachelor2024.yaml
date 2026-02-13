@@ -465,6 +465,7 @@ disciplines:
 
   ПО 09:
     name: Математичне моделювання та відкриті пакети прикладних програм
+    credits: 3.0
     syllabus_url: https://drive.google.com/file/d/1xJKPh99iPAuKX95r7G0Hx0QdImZ5aVoL/view?usp=sharing
     control: Залік
     prerequisites:

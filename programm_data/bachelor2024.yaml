@@ -284,41 +284,41 @@ disciplines:
 
   ЗО 15:
     name: Основи економіки
+    syllabus_url: https://drive.google.com/file/d/111VUVlpdbeTyGocZjSMZUc3BfLZ5Xpfi/view?usp=sharing
     credits: 2.0
     control: Залік
-    syllabus_url: https://drive.google.com/file/d/111VUVlpdbeTyGocZjSMZUc3BfLZ5Xpfi/view?usp=sharing
 
   ЗО 16.1:
     name: Практичний курс іноземної мови професійного спрямування. Частина 1
+    syllabus_url: https://drive.google.com/file/d/1qgJS51T4AnQTad6nREnnD8bzuDbOnyry/view?usp=sharing
     credits: 3.0
     control: Залік
     prerequisites:
       - ЗО 12.2
     postrequisites:
       - ЗО 16.2
-    syllabus_url: https://drive.google.com/file/d/1qgJS51T4AnQTad6nREnnD8bzuDbOnyry/view?usp=sharing
 
   ЗО 16.2:
     name: Практичний курс іноземної мови професійного спрямування. Частина 2
+    syllabus_url: https://drive.google.com/file/d/19Zryp2I8lIAjJE3W1PVMG34f0bYz1bzT/view?usp=sharing
     credits: 3.0
     control: Екзамен
     prerequisites:
       - ЗО 16.1
     postrequisites:
       - ЗО 16.1
-    syllabus_url: https://drive.google.com/file/d/19Zryp2I8lIAjJE3W1PVMG34f0bYz1bzT/view?usp=sharing
 
   ЗО 17:
     name: Безпека життєдіяльності та цивільний захист
+    syllabus_url: https://drive.google.com/file/d/1HebOUr2Iamya7s0FNcotOI9zxk558HCY/view?usp=sharing
     credits: 2.0
     control: Залік
-    syllabus_url: https://drive.google.com/file/d/1HebOUr2Iamya7s0FNcotOI9zxk558HCY/view?usp=sharing
 
   ЗО 18:
     name: Права і свободи людини
+    syllabus_url: https://drive.google.com/file/d/1n23maEcHnLes4dO8kmYSUnkWglmpeP1J/view?usp=sharing
     credits: 2.0
     control: Залік
-    syllabus_url: https://drive.google.com/file/d/1n23maEcHnLes4dO8kmYSUnkWglmpeP1J/view?usp=sharing
 
   ЗО 19:
     name: Хімія
@@ -372,6 +372,7 @@ disciplines:
 
   ПО 02:
     name: Введення в спеціальність
+    syllabus_url: https://drive.google.com/file/d/1gsjaIO-LAvyPsRLmPmS8Fv1iChHAtWwg/view?usp=sharing
     credits: 3.0
     control: Залік
     prerequisites: []
@@ -379,10 +380,10 @@ disciplines:
       - diploma_proecting
       - interdiscipline_course_work
     discipline_id: intro
-    syllabus_url: https://drive.google.com/file/d/1gsjaIO-LAvyPsRLmPmS8Fv1iChHAtWwg/view?usp=sharing
 
   ПО 03:
     name: Тензорний аналіз
+    syllabus_url: https://drive.google.com/file/d/1KMuAPWKw-xweyUIRwTNrs7V6g-dwFNgO/view?usp=sharing
     credits: 3.0
     control: Залік
     prerequisites:
@@ -394,12 +395,12 @@ disciplines:
       - optics
       - stat_phys
       - electrodynamics
-    syllabus_url: https://drive.google.com/file/d/1KMuAPWKw-xweyUIRwTNrs7V6g-dwFNgO/view?usp=sharing
     lecturer_id: nakaznoy_po
     discipline_id: tensor_analisys
 
   ПО 04:
     name: Програмування С++
+    syllabus_url: https://drive.google.com/file/d/1BMh9Pherew1SgssGWuVQEq3JrW-W_YVw/view?usp=sharing
     credits: 3.0
     control: Залік
     prerequisites:
@@ -407,10 +408,10 @@ disciplines:
     postrequisites:
       - ПО 06
       - ПО 08
-    syllabus_url: https://drive.google.com/file/d/1BMh9Pherew1SgssGWuVQEq3JrW-W_YVw/view?usp=sharing
 
   ПО 05:
     name: Класична механіка
+    syllabus_url: https://drive.google.com/file/d/1eLAD3oalc3ek-IQSYA8Jicatqw7XP02J/view?usp=sharing
     credits: 4.0
     control: Залік
     prerequisites:
@@ -423,12 +424,12 @@ disciplines:
       - oscillations_and_waves
       - stat_phys
       - electrodynamics
-    syllabus_url: https://drive.google.com/file/d/1eLAD3oalc3ek-IQSYA8Jicatqw7XP02J/view?usp=sharing
     lecturer_id: nakaznoy_po
     discipline_id: classmech
 
   ПО 06:
     name: Комп'ютерні пакети для представлення наукових результатів (Origin, LaTeX, Gnuplot)
+    syllabus_url: https://drive.google.com/file/d/1_Mr4ZrD2nrpxc67Gg1vTHKEb8c94kC95/view?usp=sharing
     credits: 3.0
     control: Залік
     prerequisites:
@@ -436,10 +437,10 @@ disciplines:
       - ПО 04
     postrequisites:
       - ПО 09
-    syllabus_url: https://drive.google.com/file/d/1_Mr4ZrD2nrpxc67Gg1vTHKEb8c94kC95/view?usp=sharing
 
   ПО 07:
     name: Рівняння математичної фізики
+    syllabus_url: https://drive.google.com/file/d/1MiRnsSO-mWrG9KFUsR6QhltFD8-eSSrc/view?usp=sharing
     credits: 3.0
     control: Залік
     prerequisites:
@@ -448,12 +449,12 @@ disciplines:
     postrequisites:
       - ess
       - stochastic_processes
-    syllabus_url: https://drive.google.com/file/d/1MiRnsSO-mWrG9KFUsR6QhltFD8-eSSrc/view?usp=sharing
     lecturer_id: zhdanov_vi
     discipline_id: math_pys
 
   ПО 08:
     name: Обчислювальні методи
+    syllabus_url: https://drive.google.com/file/d/1jzu-eeR9kCbFyl7kisKY9SZPs5U_ZSuD/view?usp=sharing
     credits: 3.0
     control: Залік
     prerequisites:
@@ -461,12 +462,11 @@ disciplines:
       - ПО 04
     postrequisites:
       - ПО 09
-    syllabus_url: https://drive.google.com/file/d/1jzu-eeR9kCbFyl7kisKY9SZPs5U_ZSuD/view?usp=sharing
 
   ПО 09:
     name: Математичне моделювання та відкриті пакети прикладних програм
-    credits: 3.0
     syllabus_url: https://drive.google.com/file/d/1xJKPh99iPAuKX95r7G0Hx0QdImZ5aVoL/view?usp=sharing
+    credits: 3.0
     control: Залік
     prerequisites:
       - ПО 06
@@ -477,6 +477,7 @@ disciplines:
 
   ПО 10:
     name: Теорія поля
+    syllabus_url: https://drive.google.com/file/d/1rFAO35eluj3TprlNIWkyWLCDLREaCHKw/view?usp=sharing
     credits: 4.0
     control: Екзамен
     prerequisites:
@@ -487,12 +488,12 @@ disciplines:
       - tensor_analisys
     postrequisites:
       - ess
-    syllabus_url: https://drive.google.com/file/d/1rFAO35eluj3TprlNIWkyWLCDLREaCHKw/view?usp=sharing
     lecturer_id: zhdanov_vi
     discipline_id: electrodynamics
 
   ПО 11:
     name: Електродинаміка суцільних середовищ
+    syllabus_url: https://drive.google.com/file/d/1NS97gD-59Gj7T12m2D_1NrboXX9GILyZ/view?usp=sharing
     credits: 4.0
     control: Екзамен
     prerequisites:
@@ -505,12 +506,12 @@ disciplines:
       - tensor_analisys
       - electrodynamics
     postrequisites: []
-    syllabus_url: https://drive.google.com/file/d/1NS97gD-59Gj7T12m2D_1NrboXX9GILyZ/view?usp=sharing
     lecturer_id: zhdanov_vi
     discipline_id: ess
 
   ПО 12:
     name: Коливання та хвилі
+    syllabus_url: https://drive.google.com/file/d/1dxS1pzZ2KoWMRXZqpk6Ih-r_ekbAF3TJ/view?usp=sharing
     credits: 4.0
     control: Залік
     prerequisites:
@@ -519,12 +520,12 @@ disciplines:
       - ЗО 01.4
     postrequisites:
       - ess
-    syllabus_url: https://drive.google.com/file/d/1dxS1pzZ2KoWMRXZqpk6Ih-r_ekbAF3TJ/view?usp=sharing
     lecturer_id: monastyrsky_ge
     discipline_id: oscillations_and_waves
 
   ПО 13:
     name: Квантова механіка
+    syllabus_url: https://drive.google.com/file/d/1gYqMb-bkKrNZDUTA5EYePNZ7gv2G_ciO/view?usp=sharing
     credits: 5.0
     control: Екзамен
     prerequisites:
@@ -535,7 +536,6 @@ disciplines:
     postrequisites:
       - lab_research_pract
       - stat_phys
-    syllabus_url: https://drive.google.com/file/d/1gYqMb-bkKrNZDUTA5EYePNZ7gv2G_ciO/view?usp=sharing
     discipline_id: quantum_mechanics
 
   ПО 14:
@@ -555,17 +555,18 @@ disciplines:
 
   ПО 15:
     name: Статистична радіофізика та оптика
+    syllabus_url: https://drive.google.com/file/d/1eG93DFZF8WmLm_zCwjOGuOGK4jWprjKm/view?usp=sharing
     credits: 4.0
     control: Екзамен
     prerequisites:
       - optics
       - math_pys
     postrequisites: []
-    syllabus_url: https://drive.google.com/file/d/1eG93DFZF8WmLm_zCwjOGuOGK4jWprjKm/view?usp=sharing
     lecturer_id: monastyrsky_ge
     discipline_id: stochastic_processes
 
   ПО 16:
+    syllabus_url: https://drive.google.com/file/d/1xYei-L3cZTLLg6XsdQM0Gdf5kmF0nMN8/view?usp=sharing
     name: Лабораторно-дослідницький практикум
     credits: 2.0
     control: Залік
@@ -574,12 +575,12 @@ disciplines:
       - ПО 09
     postrequisites:
       - interdiscipline_course_work
-    syllabus_url: https://drive.google.com/file/d/1xYei-L3cZTLLg6XsdQM0Gdf5kmF0nMN8/view?usp=sharing
     lecturer_id: voronov_so
     discipline_id: lab_research_pract
 
   ПО 17:
     name: "Фундаментально-прикладні аспекти фізики: Міждисциплінарна курсова робота"
+    syllabus_url: https://drive.google.com/file/d/1FzIryNnKmNBASMU45dcWTc5bPXwTS33u/view?usp=sharing
     control: Залік
     credits: 2.0
     prerequisites:
@@ -588,7 +589,6 @@ disciplines:
     postrequisites:
       - diploma_proecting
     discipline_id: interdiscipline_course_work
-    syllabus_url: https://drive.google.com/file/d/1FzIryNnKmNBASMU45dcWTc5bPXwTS33u/view?usp=sharing
 
   ПО 18:
     name: Основи наукових досліджень
@@ -603,6 +603,7 @@ disciplines:
 
   ПО 19:
     name: Переддипломна практика
+    syllabus_url: https://drive.google.com/file/d/1-phulkDMU-30T7m9cur9Y4jjvdZwSaH2/view?usp=sharing
     credits: 6.0
     control: Залік
     prerequisites:
@@ -1268,7 +1269,7 @@ elevative_disciplines:
     name: Основи теплової енергетики
     credits: 4.0
     control: Залік
-    syllabus_url: https://drive.google.com/file/d/18yTXqOJyE5yhKSPpdG8CYmekgCWJAbbT/view
+    syllabus_url: https://drive.google.com/file/d/1j2XkVvNJce9M27cQ7G0mOdSOb6jp5x94/view?usp=sharing
     lecturer_id: donyk_tv
     discipline_id: heat_energetics
 
@@ -1276,12 +1277,13 @@ elevative_disciplines:
     name: Фізика сучасних технологій та технологій майбутнього
     credits: 4.0
     control: Залік
-    syllabus_url: https://drive.google.com/file/d/1O-5jv5dTjipTlG2nJ9QcKA-jGLNwJJhk/view
+    syllabus_url: https://drive.google.com/file/d/1K-CXJ6jnwtQDUmQYcjRe2Dh534rExxTC/view?usp=sharing
     lecturer_id: monastyrsky_ge
     discipline_id: physics_modern_future_tech
 
   ПВ 02.3:
     name: Основи нанобіотехнологій
+    syllabus_url: https://drive.google.com/file/d/1IwVM2kaZVruYocFcNCQurTYp2-t9DXJy/view?usp=sharing
     credits: 4.0
     control: Залік
 
@@ -1289,7 +1291,7 @@ elevative_disciplines:
     name: Теорія теплопровідності
     credits: 4.0
     control: Залік
-    syllabus_url: https://drive.google.com/file/d/1RvPtEKjgCisd9B9DCc2ijST_GXq-em4K/view
+    syllabus_url: https://drive.google.com/file/d/1Tk6qyUk6QZScN_nPRmZ_0Z9oOq2SNyxf/view?usp=sharing
     lecturer_id: gilchuk_av
     discipline_id: thermal_conductivity
 
@@ -1297,22 +1299,25 @@ elevative_disciplines:
     name: Основи загальної біології
     credits: 4.0
     control: Залік
-    syllabus_url: https://drive.google.com/file/d/1K5FZ97Zil_2JqPjQsY2F3A5A-goH3cHc/view
+    syllabus_url: https://drive.google.com/file/d/1zPY-klNPBlkpvexZu8dTLxNRIgL_3juH/view?usp=sharing
     lecturer_id: purnyn_oe
     discipline_id: gen_biology
 
   ПВ 03.3:
     name: "Електроніка: елементна база та ключові схеми"
+    syllabus_url: https://drive.google.com/file/d/1zPY-klNPBlkpvexZu8dTLxNRIgL_3juH/view?usp=sharing
     credits: 4.0
     control: Залік
 
   ПВ 04.1:
     name: Моделювання та аналіз даних у фізиці
+    syllabus_url: https://drive.google.com/file/d/1d-_L_gtFDDnuWxd8CpAMCXCHYLxsqMXR/view?usp=sharing
     credits: 4.0
     control: Залік
 
   ПВ 04.2:
     name: "Основи електроніки"
+    syllabus_url: https://drive.google.com/file/d/15etYwUEbqH0n3aCWucrmD6rrWFjPoDoz/view?usp=sharing
     credits: 4.0
     control: Залік
 
@@ -1320,7 +1325,7 @@ elevative_disciplines:
     name: Гідродинаміка
     credits: 4.0
     control: Залік
-    syllabus_url: https://drive.google.com/file/d/1in87dK6tDaTME-N8VKuel3-y9Ri95sm6/view
+    syllabus_url: https://drive.google.com/file/d/1PWZnx2eO37ZET2_BSneEHNe0lHztHNKL/view?usp=sharing
     lecturer_id: dolgoshey_vb
     discipline_id: hydrodynamics
 
@@ -1328,11 +1333,12 @@ elevative_disciplines:
     name: Цифрова схемотехніка
     credits: 4.0
     control: Залік
-    syllabus_url: https://drive.google.com/drive/u/4/folders/1DQ-JoZLoyE4PYdFJIeo_w4lgTfsod_HD
+    syllabus_url: https://drive.google.com/file/d/1c6AdrtdsvI192qQIjT4mVsf7SmukrqIS/view?usp=sharing
     discipline_id: digital_circuitry
 
   ПВ 05.3:
     name: Електроніка для електрофізичних досліджень
+    syllabus_url: https://drive.google.com/file/d/16OE9Um_H2Q8LVsKOjrFJxtjpR6QEGAL3/view?usp=sharing
     credits: 4.0
     control: Залік
 
@@ -1340,7 +1346,7 @@ elevative_disciplines:
     name: Основи конвективного теплообміну
     credits: 4.0
     control: Залік
-    syllabus_url: https://drive.google.com/file/d/1iGEM4qNs-R8TB3sgQkkX_1Vr8LJRsfmT/view
+    syllabus_url: https://drive.google.com/file/d/1aCd0ypcBO_ZWg8BrVBttUazDzqU-d56S/view?usp=sharing
     lecturer_id: xalatov_aa
     discipline_id: convective_heat_exchange
 
@@ -1348,17 +1354,19 @@ elevative_disciplines:
     name: Рентгенівські методи досліджень
     credits: 4.0
     control: Залік
-    syllabus_url: https://drive.google.com/file/d/1Hd2zdlLSQHdmqskQTLlCEXZm2dgOQW8n/view
+    syllabus_url: https://drive.google.com/file/d/14a7W9g_-on2eLGSREYlgB21JXQU6gpo6/view?usp=sharing
     lecturer_id: zagorodniy_vv
     discipline_id: xray_methods
 
   ПВ 06.3:
     name: Основи біохімії
+    syllabus_url: https://drive.google.com/file/d/1SP6MX0ZiiraCxu_-pDpIlmxK3wuVNoeN/view?usp=sharing
     credits: 4.0
     control: Залік
 
   ПВ 07.1:
     name: Фізика ядерної та термоядерної енергетики
+    syllabus_url: https://drive.google.com/file/d/1f1pmZzZRzSyFkEGFOztbeR9FxKXWxLcs/view?usp=sharing
     credits: 4.0
     control: Залік
 
@@ -1366,7 +1374,7 @@ elevative_disciplines:
     name: Основи фізичного матеріалознавства
     credits: 4.0
     control: Залік
-    syllabus_url: https://docs.google.com/document/d/1uEUjbjj7ldTwZJQ7SJdTUUqhryQ-oktO/edit
+    syllabus_url: https://drive.google.com/file/d/1pI5QY1rPFNKTtrQoY2T-v1yLXFgbFNfA/view?usp=sharing
     lecturer_id: voronov_so
     discipline_id: phys_matherial_science
 
@@ -1374,7 +1382,7 @@ elevative_disciplines:
     name: Основи біофізики
     credits: 4.0
     control: Залік
-    syllabus_url: https://drive.google.com/file/d/1IWTzsLL2JHPMN5IdOSZiAvHs_iL5KwuG/view
+    syllabus_url: https://drive.google.com/file/d/15EWkkapPyVaJhB4xgnOLlxNte4Btsm7W/view?usp=sharing
     lecturer_id: veselovsky_ms
     discipline_id: biophys
 
@@ -1382,7 +1390,7 @@ elevative_disciplines:
     name: Відновлювальні і альтернативні джерела енергії
     credits: 4.0
     control: Залік
-    syllabus_url: https://drive.google.com/file/d/1t6-tyO1vj55oAIRxkfPI_1sagu5RwRlb/view
+    syllabus_url: https://drive.google.com/file/d/1FLGjD6zHm4VD3U6Y9GtCFBwjKicqOUhj/view?usp=sharing
     lecturer_id: donyk_tv
     discipline_id: energy_sources
 
@@ -1390,7 +1398,7 @@ elevative_disciplines:
     name: Фізика напівпровідникових приладів
     credits: 4.0
     control: Залік
-    syllabus_url: https://docs.google.com/document/d/12gAbs6xXLvdDsFE_Du8lzaKH41mKZINI/edit
+    syllabus_url: https://drive.google.com/file/d/1-d3ZSvULXEqaQ25MsahwJN5ESrL0rRS1/view?usp=sharing
     lecturer_id: gilchuk_av
     discipline_id: semicond_devices
 
@@ -1398,7 +1406,7 @@ elevative_disciplines:
     name: Воднева енергетика
     credits: 4.0
     control: Залік
-    syllabus_url: https://drive.google.com/file/d/1FYUrahgRrhGIyQG37cktsEKWzuOUxEHZ/view
+    syllabus_url: https://drive.google.com/file/d/1Z40dTFOyzhTURlJJOBkFzdjFnpNkh_u7/view?usp=sharing
     lecturer_id: gilchuk_av
     discipline_id: hydrogen_energetics
 
@@ -1406,12 +1414,13 @@ elevative_disciplines:
     name: Оптоелектроніка
     credits: 4.0
     control: Залік
-    syllabus_url: https://drive.google.com/file/d/1kEBpSxZPTRNAY9pw4MQGa3RqI19wdnnd/view
+    syllabus_url: https://drive.google.com/file/d/1Z40dTFOyzhTURlJJOBkFzdjFnpNkh_u7/view?usp=sharing
     lecturer_id: ivanova_vv
     discipline_id: optoelectronics
 
   ПВ 09.3:
     name: Наукові основи біосенсорики
+    syllabus_url: https://drive.google.com/file/d/1NKtEA4IEzgAVOxhvQANiCHWi3Enrq5sl/view?usp=sharing
     credits: 4.0
     control: Залік
 
@@ -1419,17 +1428,19 @@ elevative_disciplines:
     name: Термодинаміка складних систем
     credits: 4.0
     control: Залік
-    syllabus_url: https://drive.google.com/file/d/1a5m5h8Ae4VO0f7QyUqa2Nan66qpXTUxD/view
+    syllabus_url: https://drive.google.com/file/d/1Y_oNywLTseoikow0IO4HHaRl7Pf4dx9V/view?usp=sharing
     lecturer_id: dolgoshey_vb
     discipline_id: thermodyn_complex_sys
 
   ПВ 10.2:
     name: Квантова електроніка
+    syllabus_url: https://drive.google.com/file/d/1YwR9ks9XFnqXuoP9tRUk3kTwGXlYsEoR/view?usp=sharing
     credits: 4.0
     control: Залік
 
   ПВ 10.3:
     name: Біофізика складних систем. Частина 1
+    syllabus_url: https://drive.google.com/file/d/1N3p1d1lTCa91-FS_nfcpk7URumBM9yx6/view?usp=sharing
     credits: 4.0
     control: Залік
 
@@ -1437,7 +1448,7 @@ elevative_disciplines:
     name: Комп'ютерне моделювання механіки суцільних середовищ
     credits: 4.0
     control: Залік
-    syllabus_url: https://drive.google.com/file/d/1r4qDF6k8r8GmPUe984cHmAoOXPUHf3tv/view
+    syllabus_url: https://drive.google.com/file/d/1uD38XxdPUgtXJGR8icdsjWblSKf7oIBf/view?usp=sharing
     lecturer_id: dymytriieva_nf
     discipline_id: comp_modelling_cont_media
 
@@ -1445,24 +1456,25 @@ elevative_disciplines:
     name: Методи машинного навчання
     credits: 4.0
     control: Залік
-    syllabus_url: https://drive.google.com/file/d/1tGHp7DxmMIK1gPRjdOO1WD00h5nFp79p/view
+    syllabus_url: https://drive.google.com/file/d/1_0AL90YpWGNCWWPUiCG0a3drARazXe-5/view?usp=sharing
 
   ПВ 11.3:
     name: Комп'ютерне моделювання біофізичних систем
     credits: 4.0
     control: Залік
-    syllabus_url: https://drive.google.com/file/d/1wihJdrCOrduOSxEBPLR1_m3Lc7YReqh9/view
+    syllabus_url: https://drive.google.com/file/d/1rhGCwuIGMUi1vqstZ0fmGCVAJVZnnkMy/view?usp=sharing
 
   ПВ 12.1:
     name: Фізика металів та сплавів
     credits: 4.0
     control: Залік
-    syllabus_url: https://drive.google.com/file/d/1MnI-DIQP4yslyXPwcGhKwcCbqfjmXDvk/view
+    syllabus_url: https://drive.google.com/file/d/1KY3I1xe_bBvCban-sUdb5cNep-TeSSLL/view?usp=sharing
     lecturer_id: monastyrsky_ge
     discipline_id: metall_phys
 
   ПВ 12.2:
     name: Біофізика складних систем. Частина 2.
+    syllabus_url: https://drive.google.com/file/d/1KY3I1xe_bBvCban-sUdb5cNep-TeSSLL/view?usp=sharing
     credits: 4.0
     control: Залік
 
@@ -1470,18 +1482,19 @@ elevative_disciplines:
     name: Термодинаміка циклів
     credits: 4.0
     control: Залік
-    syllabus_url: https://drive.google.com/file/d/1G24k-zoRE0w76sQJATWtarSht4AQi6lc/view
+    syllabus_url: https://drive.google.com/file/d/1qYI0nxcv6ib38c-acGjjH3yi27TGAw09/view?usp=sharing
     lecturer_id: dolgoshey_vb
     discipline_id: cycles_thermod
 
   ПВ 13.1:
     name: Теорія гідродинамічної стійкості
+    syllabus_url: https://drive.google.com/file/d/1BWxTI1c4fYiV6uIUKi5LCUdFn_JPSS6s/view?usp=sharing
     credits: 4.0
     control: Залік
 
   ПВ 13.2:
     name: Сучасні теоретичні методи у фізиці твердого тіла
-    syllabus_url: https://drive.google.com/file/d/1RZA7bJWcxifg3iSJqHUyAdNnklRarD3Q/view
+    syllabus_url: https://drive.google.com/file/d/1BWxTI1c4fYiV6uIUKi5LCUdFn_JPSS6s/view?usp=sharing
     credits: 4.0
     control: Залік
     lecturer_id: krivenko_yad
@@ -1489,11 +1502,13 @@ elevative_disciplines:
 
   ПВ 13.3:
     name: Оптичні методи дослідження живих систем
+    syllabus_url: https://drive.google.com/file/d/1fwig16z-VztmB-vx9uog6QS_BMWLO05_/view?usp=sharing
     credits: 4.0
     control: Залік
 
   ПВ 14.1:
     name: Основи фотовольтаїки
+    syllabus_url:
     credits: 4.0
     control: Залік
 
@@ -1501,7 +1516,7 @@ elevative_disciplines:
     name: Симетрія в фізиці
     credits: 4.0
     control: Залік
-    syllabus_url: https://drive.google.com/file/d/1cmw7Ip2WFmour8gH-cT8WpVdv2HJ2fO2/view
+    syllabus_url: https://drive.google.com/file/d/1fN_9Pu6R4QQcoNsP81olVZ3IU6Wr-qIK/view?usp=sharing
     lecturer_id: zagorodniy_vv
     discipline_id: symmetry_in_phys
 
@@ -1509,5 +1524,5 @@ elevative_disciplines:
     name: Статистичні методи в фізиці живих систем
     credits: 4.0
     control: Залік
-    syllabus_url: https://drive.google.com/file/d/1TK5EAL9Svd_tcxLx9EZbh9Cvrnd4O7g1/view
+    syllabus_url: https://drive.google.com/file/d/15mnB7q0SUA-alpEe0KJYBcTFs3J9F4rQ/view?usp=sharing
     discipline_id: stat_meth_in_live_phys_sys

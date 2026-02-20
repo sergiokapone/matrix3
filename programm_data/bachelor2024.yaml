@@ -143,7 +143,7 @@ disciplines:
       - mechanics
     postrequisites:
       - stat_phys
-    syllabus_url: https://drive.google.com/file/d/1EB5aI4AsKt8Nwyfmq0I-jZSbrrRZLw48/view?usp=sharing
+    syllabus_url: https://drive.google.com/file/d/1Gb6igUzUmKY9mo2p62GH8a2vU7AUPujC/view?usp=sharing
     lecturer_id: monastyrsky_ge
     discipline_id: thermodynamics
 
@@ -251,7 +251,7 @@ disciplines:
     syllabus_url: https://drive.google.com/file/d/1jZtaNW7__xAHO7cjSFs6_IWjml571pNS/view?usp=sharing
 
   ЗО 12.1:
-    name: Частина 1
+    name: Практичний курс іноземної мови. Частина 1
     credits: 3.0
     control: Залік
     postrequisites:
@@ -259,7 +259,7 @@ disciplines:
     syllabus_url: https://osvita.kpi.ua/sites/default/files/files/Prakt_kurs_inoz_movy_English_1_Klaster_2_denna_24-25.pdf
 
   ЗО 12.2:
-    name: Частина 2
+    name: Практичний курс іноземної мови. Частина 2
     credits: 3.0
     control: Залік
     prerequisites:
@@ -337,7 +337,7 @@ disciplines:
       - ЗО 01.3
     postrequisites:
       - stat_phys
-    syllabus_url: https://drive.google.com/file/d/1IXUYpi9Ch0-d9_VnVIG0osIqzv2wgewL/view?usp=sharing
+    syllabus_url: https://drive.google.com/file/d/1207tVqK-1Q2WZuFbLF4oKxTgKTAZekXs/view?usp=sharing
     discipline_id: prob_theory
 
   ЗО 21:
@@ -400,7 +400,7 @@ disciplines:
 
   ПО 04:
     name: Програмування С++
-    syllabus_url: https://drive.google.com/file/d/1BMh9Pherew1SgssGWuVQEq3JrW-W_YVw/view?usp=sharing
+    syllabus_url: https://drive.google.com/file/d/1CiFhCwRcg_c1PCZKbWO_Oll-e5mGrntS/view?usp=sharing
     credits: 3.0
     control: Залік
     prerequisites:
@@ -454,7 +454,7 @@ disciplines:
 
   ПО 08:
     name: Обчислювальні методи
-    syllabus_url: https://drive.google.com/file/d/1jzu-eeR9kCbFyl7kisKY9SZPs5U_ZSuD/view?usp=sharing
+    syllabus_url: https://drive.google.com/file/d/1VS_UdRyi_-a7Q94ZdpqzugfQw3og98X2/view?usp=sharing
     credits: 3.0
     control: Залік
     prerequisites:
@@ -511,7 +511,7 @@ disciplines:
 
   ПО 12:
     name: Коливання та хвилі
-    syllabus_url: https://drive.google.com/file/d/1dxS1pzZ2KoWMRXZqpk6Ih-r_ekbAF3TJ/view?usp=sharing
+    syllabus_url: https://drive.google.com/file/d/1bg0xxAZPbRCnJPzcM3dwPVATjGjyMy_h/view?usp=sharing
     credits: 4.0
     control: Залік
     prerequisites:
@@ -525,7 +525,7 @@ disciplines:
 
   ПО 13:
     name: Квантова механіка
-    syllabus_url: https://drive.google.com/file/d/1gYqMb-bkKrNZDUTA5EYePNZ7gv2G_ciO/view?usp=sharing
+    syllabus_url: https://drive.google.com/file/d/15w_aSUKFNtKlGYlMT5LAQeRa0W5JcdEg/view?usp=sharing
     credits: 5.0
     control: Екзамен
     prerequisites:
@@ -1305,7 +1305,7 @@ elevative_disciplines:
 
   ПВ 03.3:
     name: "Електроніка: елементна база та ключові схеми"
-    syllabus_url: https://drive.google.com/file/d/1zPY-klNPBlkpvexZu8dTLxNRIgL_3juH/view?usp=sharing
+    syllabus_url: https://drive.google.com/file/d/1667uVJ-ABdEaBWUaWvhZAe7N8xHDxOth/view?usp=sharing
     credits: 4.0
     control: Залік
 
@@ -1414,7 +1414,7 @@ elevative_disciplines:
     name: Оптоелектроніка
     credits: 4.0
     control: Залік
-    syllabus_url: https://drive.google.com/file/d/1Z40dTFOyzhTURlJJOBkFzdjFnpNkh_u7/view?usp=sharing
+    syllabus_url: https://drive.google.com/file/d/13Pd8V_H3NnOZ4KlqnDExiEm6bLKC4_CH/view?usp=sharing
     lecturer_id: ivanova_vv
     discipline_id: optoelectronics
 
@@ -1474,7 +1474,7 @@ elevative_disciplines:
 
   ПВ 12.2:
     name: Біофізика складних систем. Частина 2.
-    syllabus_url: https://drive.google.com/file/d/1KY3I1xe_bBvCban-sUdb5cNep-TeSSLL/view?usp=sharing
+    syllabus_url: https://drive.google.com/file/d/1wNhRXpxZI16yFWHOkNys521Y_Mh4T5Ug/view?usp=sharing
     credits: 4.0
     control: Залік
 
@@ -1494,7 +1494,7 @@ elevative_disciplines:
 
   ПВ 13.2:
     name: Сучасні теоретичні методи у фізиці твердого тіла
-    syllabus_url: https://drive.google.com/file/d/1BWxTI1c4fYiV6uIUKi5LCUdFn_JPSS6s/view?usp=sharing
+    syllabus_url: https://drive.google.com/file/d/1c1KYnyU2rGL-TbCX9_Bqdf0c9SITwxOt/view?usp=sharing
     credits: 4.0
     control: Залік
     lecturer_id: krivenko_yad

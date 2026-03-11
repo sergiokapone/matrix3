@@ -5,9 +5,8 @@
 Приклад: python pipeline.py ua 2025
 """
 
-import sys
 import subprocess
-import os
+import sys
 from pathlib import Path
 
 # ===== НАЛАШТУВАННЯ ЗА ЗАМОВЧУВАННЯМ =====

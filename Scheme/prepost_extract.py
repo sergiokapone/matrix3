@@ -76,7 +76,7 @@ def main():
     """Головна функція"""
     year = DEFAULT_YEAR
     lang = DEFAULT_LANG
-    
+
     # Парсинг аргументів
     if len(sys.argv) > 1:
         try:
@@ -86,7 +86,7 @@ def main():
             print("Usage: python prepost_extract.py [year] [lang]")
             print("Example: python prepost_extract.py 2025 ua")
             sys.exit(1)
-    
+
     if len(sys.argv) > 2:
         lang = sys.argv[2].lower()
         if lang not in ["ua", "en"]:
@@ -94,7 +94,7 @@ def main():
             print("Usage: python prepost_extract.py [year] [lang]")
             print("Example: python prepost_extract.py 2025 ua")
             sys.exit(1)
-    
+
     # Формуємо імена файлів
     input_file = f"diagramm_bak_{year}_{lang}.gv"
     output_file = f"prerequisites_{year}.json"

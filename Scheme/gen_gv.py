@@ -4,8 +4,8 @@
 Приклад: python gen_gv.py ua 2025
 """
 
-import sys
 import importlib
+import sys
 
 # ===== НАЛАШТУВАННЯ ЗА ЗАМОВЧУВАННЯМ =====
 DEFAULT_YEAR = 2025
@@ -37,7 +37,7 @@ def get_edge_color(source_id, disciplines):
 
 def generate_header():
     """Генерирует заголовок диаграммы"""
-    return '''digraph Curriculum {
+    return """digraph Curriculum {
     rankdir="LR";
     splines="ortho";
     nodesep=0.5;
@@ -45,7 +45,7 @@ def generate_header():
     newrank="true";
     node [shape="box", style="rounded,filled", fontsize=14, width=3, height=1, fontname="Arial Bold"];
     edge [color="#666666", penwidth=1.5];
-'''
+"""
 
 
 def generate_semester_cluster(semester, lang, disciplines):
@@ -63,11 +63,11 @@ def generate_semester_cluster(semester, lang, disciplines):
         return ""
 
     lines = [
-        f'    subgraph cluster_{semester} {{',
-        f'        style="filled";',
+        f"    subgraph cluster_{semester} {{",
+        '        style="filled";',
         f'        label="{semester_label}";',
-        f'        color="#E8F4F8";',
-        f'        rank="same";'
+        '        color="#E8F4F8";',
+        '        rank="same";'
     ]
 
     # Добавляем дисциплины
@@ -76,14 +76,14 @@ def generate_semester_cluster(semester, lang, disciplines):
         color = COLORS.get(disc_data["type"], "#CCCCCC")
         lines.append(f'        {disc_id} [label="{label}", fillcolor="{color}"];')
 
-    lines.append('    }')
-    return '\n'.join(lines)
+    lines.append("    }")
+    return "\n".join(lines)
 
 
 def generate_final_cluster(lang, disciplines):
     """Генерирует финальный кластер для практики и диплома"""
     lines = [
-        '    subgraph cluster_9 {',
+        "    subgraph cluster_9 {",
         '        style="filled";',
         '        color="#E8F4F8";',
         '        rank="same";'
@@ -97,10 +97,10 @@ def generate_final_cluster(lang, disciplines):
         f'        S8_Practice [label="{practice_label}", fillcolor="{COLORS["pract"]}"];',
         '        _dummy1 [label="", shape=point, width=0, height=0];',
         f'        S8_Diploma [label="{diploma_label}", fillcolor="{COLORS["pract"]}"];',
-        '    }'
+        "    }"
     ])
 
-    return '\n'.join(lines)
+    return "\n".join(lines)
 
 
 def generate_edges(disciplines, edges):
@@ -126,13 +126,13 @@ def generate_edges(disciplines, edges):
 
     for edge_type in ["math", "physics", "comp", "general", "pract"]:
         if edge_type in edges_by_type:
-            lines.append(f' // {type_comments[edge_type]}')
+            lines.append(f" // {type_comments[edge_type]}")
             for source, target in edges_by_type[edge_type]:
                 color = get_edge_color(source, disciplines)
                 lines.append(f'{source}     -> {target}        [color="{color}", penwidth=2];')
-            lines.append('')
+            lines.append("")
 
-    return '\n'.join(lines)
+    return "\n".join(lines)
 
 
 def generate_diagram(lang, disciplines, edges):
@@ -155,9 +155,9 @@ def generate_diagram(lang, disciplines, edges):
     parts.append(generate_edges(disciplines, edges))
 
     # Закрываем диаграмму
-    parts.append('}')
+    parts.append("}")
 
-    return '\n'.join(parts)
+    return "\n".join(parts)
 
 
 def main():
@@ -165,7 +165,7 @@ def main():
     # Определяем язык из аргументов командной строки
     lang = "ua"
     year = DEFAULT_YEAR
-    
+
     if len(sys.argv) > 1:
         lang = sys.argv[1].lower()
         if lang not in ["ua", "en"]:
@@ -173,7 +173,7 @@ def main():
             print("Usage: python gen_gv.py [ua|en] [year]")
             print("Example: python gen_gv.py ua 2025")
             sys.exit(1)
-    
+
     if len(sys.argv) > 2:
         try:
             year = int(sys.argv[2])
@@ -203,7 +203,7 @@ def main():
     output_file = f"diagramm_bak_{year}_{lang}.gv"
 
     # Сохраняем в файл
-    with open(output_file, 'w', encoding='utf-8') as f:
+    with open(output_file, "w", encoding="utf-8") as f:
         f.write(diagram)
 
     print(f"Diagram generated successfully: {output_file}")

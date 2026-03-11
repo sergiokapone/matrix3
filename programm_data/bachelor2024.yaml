@@ -465,6 +465,8 @@ disciplines:
 
   ПО 09:
     name: Математичне моделювання та відкриті пакети прикладних програм
+    lecturer_id: dymytriieva_nf
+    discipline_id: math_model_open_source
     syllabus_url: https://drive.google.com/file/d/1xJKPh99iPAuKX95r7G0Hx0QdImZ5aVoL/view?usp=sharing
     credits: 3.0
     control: Залік
@@ -1508,9 +1510,11 @@ elevative_disciplines:
 
   ПВ 14.1:
     name: Основи фотовольтаїки
-    syllabus_url:
+    syllabus_url: https://drive.google.com/file/d/1L0X2Jhibhzn22FASidf7wxR4cjfoccC7/view?usp=sharing
     credits: 4.0
     control: Залік
+    lecturer_id: ivanova_vv
+    discipline_id: photovoltaics
 
   ПВ 14.2:
     name: Симетрія в фізиці

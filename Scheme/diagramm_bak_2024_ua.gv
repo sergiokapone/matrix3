@@ -14,7 +14,7 @@ digraph Curriculum {
         rank="same";
         S1_Alg1 [label="Алгебра та геометрія 1", fillcolor="#4A90E2"];
         S1_Econ [label="Основи економіки", fillcolor="#B8B8B8"];
-        S1_EngPract [label="Практичний курс
+        S1_EngPract [label="Практичний курс 
  іноземної мови", fillcolor="#B8B8B8"];
         S1_Health [label="Основи здорового
  способу життя", fillcolor="#B8B8B8"];
@@ -31,8 +31,7 @@ digraph Curriculum {
         color="#E8F4F8";
         rank="same";
         S2_Alg2 [label="Алгебра та геометрія 2", fillcolor="#4A90E2"];
-        S2_BZhD [label="Безпека життєдіяльності та
- цивільній захист", fillcolor="#B8B8B8"];
+        S2_BZhD [label="Безпека життєдіяльності", fillcolor="#B8B8B8"];
         S2_Chem [label="Хімія", fillcolor="#E85D75"];
         S2_EngPract [label="Практичний курс
  іноземної мови", fillcolor="#B8B8B8"];
@@ -75,7 +74,7 @@ digraph Curriculum {
         S4_Optics [label="Оптика", fillcolor="#E85D75"];
         S4_Philos [label="Філософські основи
  наукового пізнання", fillcolor="#B8B8B8"];
-        S4_TFKZ [label="Математичний аналіз 4", fillcolor="#4A90E2"];
+        S4_TFKZ [label="ТФКЗ", fillcolor="#7ED321"];
     }
     subgraph cluster_5 {
         style="filled";
@@ -105,9 +104,7 @@ digraph Curriculum {
         S6_F5 [label="Ф5 (Вибіркова)", fillcolor="#F5A623"];
         S6_F6 [label="Ф6 (Вибіркова)", fillcolor="#F5A623"];
         S6_F7 [label="Ф7 (Вибіркова)", fillcolor="#F5A623"];
-        S6_MathModel [label="Математичне моделювання та
- відкриті пакети
- прикладних програм", fillcolor="#7ED321"];
+        S6_MathModel [label="Математичне моделювання", fillcolor="#7ED321"];
         S6_ProbStat [label="Теорія ймовірності та
  математична статистика", fillcolor="#4A90E2"];
         S6_QMech [label="Квантова механіка", fillcolor="#E85D75"];
@@ -180,14 +177,9 @@ S4_DiffEq2     -> S5_OscWaves        [color="#4A90E2", penwidth=2];
 S4_DiffEq2     -> S6_ESS        [color="#4A90E2", penwidth=2];
 S4_DiffEq2     -> S6_QMech        [color="#4A90E2", penwidth=2];
 S4_DiffEq2     -> S7_StatPhys        [color="#4A90E2", penwidth=2];
-S4_TFKZ     -> S5_FieldTheory        [color="#4A90E2", penwidth=2];
-S4_TFKZ     -> S5_OscWaves        [color="#4A90E2", penwidth=2];
-S4_TFKZ     -> S6_ESS        [color="#4A90E2", penwidth=2];
-S4_TFKZ     -> S6_QMech        [color="#4A90E2", penwidth=2];
 S5_MathPhys3     -> S6_ESS        [color="#4A90E2", penwidth=2];
 S5_MathPhys3     -> S7_StatRadio        [color="#4A90E2", penwidth=2];
 S6_ProbStat     -> S7_StatPhys        [color="#4A90E2", penwidth=2];
-S4_TFKZ     -> S6_MathModel        [color="#4A90E2", penwidth=2];
 
  // ПРЕРЕКВІЗИТИ — Фізика
 S1_Mech     -> S2_Thermo        [color="#E85D75", penwidth=2];
@@ -212,6 +204,10 @@ S6_QMech     -> S7_StatPhys        [color="#E85D75", penwidth=2];
 S6_QMech     -> S7_Lab        [color="#E85D75", penwidth=2];
 
  // ПРЕРЕКВІЗИТИ — Програмування та обчислення
+S4_TFKZ     -> S5_FieldTheory        [color="#7ED321", penwidth=2];
+S4_TFKZ     -> S5_OscWaves        [color="#7ED321", penwidth=2];
+S4_TFKZ     -> S6_ESS        [color="#7ED321", penwidth=2];
+S4_TFKZ     -> S6_QMech        [color="#7ED321", penwidth=2];
 S2_Graph     -> S4_CompSoft        [color="#7ED321", penwidth=2];
 S1_Prog     -> S2_Prog        [color="#7ED321", penwidth=2];
 S2_Prog     -> S3_cpp        [color="#7ED321", penwidth=2];
@@ -220,6 +216,7 @@ S3_cpp     -> S4_CompMeth        [color="#7ED321", penwidth=2];
 S3_cpp     -> S4_CompSoft        [color="#7ED321", penwidth=2];
 S4_CompMeth     -> S6_MathModel        [color="#7ED321", penwidth=2];
 S4_CompSoft     -> S6_MathModel        [color="#7ED321", penwidth=2];
+S4_TFKZ     -> S6_MathModel        [color="#7ED321", penwidth=2];
 S6_MathModel     -> S7_Lab        [color="#7ED321", penwidth=2];
 
  // ПРЕРЕКВІЗИТИ — Іноземна мова

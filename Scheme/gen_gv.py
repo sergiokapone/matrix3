@@ -8,7 +8,7 @@ import importlib
 import sys
 
 # ===== НАЛАШТУВАННЯ ЗА ЗАМОВЧУВАННЯМ =====
-DEFAULT_YEAR = 2025
+DEFAULT_YEAR = 2026
 
 # Цвета для разных типов дисциплин
 COLORS = {

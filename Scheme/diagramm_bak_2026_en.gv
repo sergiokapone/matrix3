@@ -34,7 +34,12 @@ digraph Curriculum {
         S2_Chem [label="Chemistry", fillcolor="#E85D75"];
         S2_Eng [label="English Language", fillcolor="#B8B8B8"];
         S2_Graph [label="Computer Graphics", fillcolor="#7ED321"];
-        S2_History [label="History of Science and Technology", fillcolor="#B8B8B8"];
+        S2_HistPhil_1 [label="Historical and Philosophical
+ Foundations of Social
+ Development (module 1)", fillcolor="#B8B8B8"];
+        S2_HistPhil_2 [label="Historical and Philosophical
+ Foundations of Social
+ Development (module 2)", fillcolor="#B8B8B8"];
         S2_MatAn [label="Mathematical Analysis", fillcolor="#4A90E2"];
         S2_Prog [label="Programming", fillcolor="#7ED321"];
         S2_Thermo [label="Thermodynamics
@@ -53,7 +58,8 @@ digraph Curriculum {
         S3_EngProf [label="English for professional purposes", fillcolor="#B8B8B8"];
         S3_MatAn [label="Mathematical Analysis", fillcolor="#4A90E2"];
         S3_MathPhys [label="Methods of Mathematical Physics 1", fillcolor="#4A90E2"];
-        S3_Military [label="Basic general military training", fillcolor="#B8B8B8"];
+        S3_Military [label="Fundamentals of
+ National Resistance", fillcolor="#B8B8B8"];
     }
     subgraph cluster_4 {
         style="filled";
@@ -67,10 +73,9 @@ digraph Curriculum {
         S4_EngPract [label="Practical Course in Foreign Language", fillcolor="#B8B8B8"];
         S4_F1 [label="Elective F1", fillcolor="#F5A623"];
         S4_MathPhys [label="Methods of Mathematical Physics", fillcolor="#4A90E2"];
-        S4_Military [label="Basic general military training", fillcolor="#B8B8B8"];
+        S4_Military [label="Fundamentals of
+ National Resistance", fillcolor="#B8B8B8"];
         S4_Optics [label="Optics", fillcolor="#E85D75"];
-        S4_Philos [label="Philosophical Foundations
- of Scientific Knowledge", fillcolor="#B8B8B8"];
     }
     subgraph cluster_5 {
         style="filled";
@@ -195,8 +200,9 @@ S6_QMech     -> S7_Lab        [color="#E85D75", penwidth=2];
 
  // ПРЕРЕКВІЗИТИ — Програмування та обчислення
 S1_Prog     -> S2_Prog        [color="#7ED321", penwidth=2];
-S2_Prog     -> S4_CompMeth        [color="#7ED321", penwidth=2];
-S2_Graph     -> S4_CompMeth        [color="#7ED321", penwidth=2];
+S2_Prog     -> S3_CompMeth        [color="#7ED321", penwidth=2];
+S2_Graph     -> S3_CompMeth        [color="#7ED321", penwidth=2];
+S3_CompMeth     -> S4_CompMeth        [color="#7ED321", penwidth=2];
 S4_CompMeth     -> S6_MathModel        [color="#7ED321", penwidth=2];
 S6_MathModel     -> S7_Lab        [color="#7ED321", penwidth=2];
 
@@ -206,7 +212,6 @@ S2_Eng     -> S3_EngProf        [color="#B8B8B8", penwidth=2];
 S3_EngProf     -> S4_EngPract        [color="#B8B8B8", penwidth=2];
 S3_Military     -> S4_Military        [color="#B8B8B8", penwidth=2];
 S4_EngPract     -> S7_Course        [color="#B8B8B8", penwidth=2];
-S4_Philos     -> S8_Research        [color="#B8B8B8", penwidth=2];
 
  // ПРЕРЕКВІЗИТИ — Практика та дослідження
 S1_Intro     -> S7_Course        [color="#9013FE", penwidth=2];

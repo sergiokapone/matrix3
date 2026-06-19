@@ -16,7 +16,7 @@
 
 ## 📁 Базові команди
 
-```
+```bash
 # Генерація однієї дисципліни
 pipenv run python cli.py bachelor2024.yaml generate -d "ПО 01"
 

@@ -25,9 +25,9 @@ DISCIPLINES = {
     },
     "S1_Prog": {
         "semester": 1,
-        "type": "comp",
-        "ua": "Програмування",
-        "en": "Programming",
+        "type": "general",
+        "ua": "Основи національного\n спротиву",
+        "en": "Fundamentals of\n National Resistance",
     },
     "S1_Econ": {
         "semester": 1,
@@ -79,9 +79,9 @@ DISCIPLINES = {
     },
     "S2_Prog": {
         "semester": 2,
-        "type": "comp",
-        "ua": "Програмування",
-        "en": "Programming",
+        "type": "general",
+        "ua": "Основи національного\n спротиву",
+        "en": "Fundamentals of\n National Resistance",
     },
     "S2_Graph": {
         "semester": 2,
@@ -151,9 +151,9 @@ DISCIPLINES = {
     },
     "S3_Military": {
         "semester": 3,
-        "type": "general",
-        "ua": "Основи національного\n спротиву",
-        "en": "Fundamentals of\n National Resistance",
+        "type": "comp",
+        "ua": "Програмування",
+        "en": "Programming",
     },
     "S4_DiffEq": {
         "semester": 4,
@@ -205,9 +205,9 @@ DISCIPLINES = {
     },
     "S4_Military": {
         "semester": 4,
-        "type": "general",
-        "ua": "Основи національного\n спротиву",
-        "en": "Fundamentals of\n National Resistance",
+        "type": "comp",
+        "ua": "Програмування",
+        "en": "Programming",
     },
     "S5_MathPhys": {
         "semester": 5,

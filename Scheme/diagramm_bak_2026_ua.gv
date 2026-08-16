@@ -20,7 +20,8 @@ digraph Curriculum {
         S1_Intro [label="Введення в спеціальність", fillcolor="#D4A5FF"];
         S1_MatAn [label="Математичний аналіз", fillcolor="#4A90E2"];
         S1_Mech [label="Механіка", fillcolor="#E85D75"];
-        S1_Prog [label="Програмування", fillcolor="#7ED321"];
+        S1_Prog [label="Основи національного
+ спротиву", fillcolor="#B8B8B8"];
         S1_Ukr [label="Українська мова
  за проф. спрямуванням", fillcolor="#B8B8B8"];
     }
@@ -40,7 +41,8 @@ digraph Curriculum {
  суспільного розвитку
  (модуль 2)", fillcolor="#B8B8B8"];
         S2_MatAn [label="Математичний аналіз", fillcolor="#4A90E2"];
-        S2_Prog [label="Програмування", fillcolor="#7ED321"];
+        S2_Prog [label="Основи національного
+ спротиву", fillcolor="#B8B8B8"];
         S2_Thermo [label="Термодинаміка
  та молекулярна фізика", fillcolor="#E85D75"];
     }
@@ -58,8 +60,7 @@ digraph Curriculum {
  професійного спрямування", fillcolor="#B8B8B8"];
         S3_MatAn [label="Математичний аналіз", fillcolor="#4A90E2"];
         S3_MathPhys [label="Методи математичної фізики 1", fillcolor="#4A90E2"];
-        S3_Military [label="Основи національного
- спротиву", fillcolor="#B8B8B8"];
+        S3_Military [label="Програмування", fillcolor="#7ED321"];
     }
     subgraph cluster_4 {
         style="filled";
@@ -73,8 +74,7 @@ digraph Curriculum {
         S4_EngPract [label="Практичний курс іноземної мови", fillcolor="#B8B8B8"];
         S4_F1 [label="Ф1 (Вибіркова)", fillcolor="#F5A623"];
         S4_MathPhys [label="Методи математичної фізики", fillcolor="#4A90E2"];
-        S4_Military [label="Основи національного
- спротиву", fillcolor="#B8B8B8"];
+        S4_Military [label="Програмування", fillcolor="#7ED321"];
         S4_Optics [label="Оптика", fillcolor="#E85D75"];
     }
     subgraph cluster_5 {
@@ -199,18 +199,18 @@ S6_QMech     -> S7_StatPhys        [color="#E85D75", penwidth=2];
 S6_QMech     -> S7_Lab        [color="#E85D75", penwidth=2];
 
  // ПРЕРЕКВІЗИТИ — Програмування та обчислення
-S1_Prog     -> S2_Prog        [color="#7ED321", penwidth=2];
-S2_Prog     -> S3_CompMeth        [color="#7ED321", penwidth=2];
 S2_Graph     -> S3_CompMeth        [color="#7ED321", penwidth=2];
 S3_CompMeth     -> S4_CompMeth        [color="#7ED321", penwidth=2];
+S3_Military     -> S4_Military        [color="#7ED321", penwidth=2];
 S4_CompMeth     -> S6_MathModel        [color="#7ED321", penwidth=2];
 S6_MathModel     -> S7_Lab        [color="#7ED321", penwidth=2];
 
  // ПРЕРЕКВІЗИТИ — Іноземна мова
+S1_Prog     -> S2_Prog        [color="#B8B8B8", penwidth=2];
 S1_Eng     -> S2_Eng        [color="#B8B8B8", penwidth=2];
+S2_Prog     -> S3_CompMeth        [color="#B8B8B8", penwidth=2];
 S2_Eng     -> S3_EngProf        [color="#B8B8B8", penwidth=2];
 S3_EngProf     -> S4_EngPract        [color="#B8B8B8", penwidth=2];
-S3_Military     -> S4_Military        [color="#B8B8B8", penwidth=2];
 S4_EngPract     -> S7_Course        [color="#B8B8B8", penwidth=2];
 
  // ПРЕРЕКВІЗИТИ — Практика та дослідження

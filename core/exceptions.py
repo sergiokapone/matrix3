@@ -29,6 +29,12 @@ class YAMLValidationError(DisciplineGeneratorError):
     pass
 
 
+class YAMLLoadError(DisciplineGeneratorError):
+    """Ошибка читання/парсингу YAML файлу"""
+
+    pass
+
+
 class ParrentIdError(Exception):
     """Не существует parrent id"""
 

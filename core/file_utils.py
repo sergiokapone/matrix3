@@ -1,9 +1,8 @@
-import sys
 from pathlib import Path
 
 import yaml
 
-from core.exceptions import ParrentIdError
+from core.exceptions import ParrentIdError, YAMLLoadError
 from core.logging_config import get_logger
 
 logger = get_logger(__name__)
@@ -28,14 +27,14 @@ def save_html_file(content: str, output_file: str | Path) -> None:
         raise
 
 
-def load_yaml_data(yaml_path: Path) -> dict | None:
+def load_yaml_data(yaml_path: Path) -> dict:
     """Завантаження YAML файлу"""
     try:
         with open(yaml_path, encoding="utf-8") as f:
             return yaml.safe_load(f)
     except Exception as e:
-        logger.error(f"Помилка читання YAML файлу: {e}")
-        sys.exit(1)
+        logger.error(f"Помилка читання YAML файлу {yaml_path}: {e}")
+        raise YAMLLoadError(f"Не вдалося завантажити {yaml_path}: {e}") from e
 
 
 def get_discipline_parent_id(yaml_data: dict) -> int:

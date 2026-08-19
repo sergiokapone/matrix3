@@ -1,0 +1,50 @@
+diff --git a/core/exceptions.py b/core/exceptions.py
+index 1944da8..6e117a6 100644
+--- a/core/exceptions.py
++++ b/core/exceptions.py
+@@ -29,6 +29,12 @@ class YAMLValidationError(DisciplineGeneratorError):
+     pass
+ 
+ 
++class YAMLLoadError(DisciplineGeneratorError):
++    """Ошибка читання/парсингу YAML файлу"""
++
++    pass
++
++
+ class ParrentIdError(Exception):
+     """Не существует parrent id"""
+ 
+diff --git a/core/file_utils.py b/core/file_utils.py
+index a218d0b..1420904 100644
+--- a/core/file_utils.py
++++ b/core/file_utils.py
+@@ -1,9 +1,8 @@
+-import sys
+ from pathlib import Path
+ 
+ import yaml
+ 
+-from core.exceptions import ParrentIdError
++from core.exceptions import ParrentIdError, YAMLLoadError
+ from core.logging_config import get_logger
+ 
+ logger = get_logger(__name__)
+@@ -28,14 +27,14 @@ def save_html_file(content: str, output_file: str | Path) -> None:
+         raise
+ 
+ 
+-def load_yaml_data(yaml_path: Path) -> dict | None:
++def load_yaml_data(yaml_path: Path) -> dict:
+     """Завантаження YAML файлу"""
+     try:
+         with open(yaml_path, encoding="utf-8") as f:
+             return yaml.safe_load(f)
+     except Exception as e:
+-        logger.error(f"Помилка читання YAML файлу: {e}")
+-        sys.exit(1)
++        logger.error(f"Помилка читання YAML файлу {yaml_path}: {e}")
++        raise YAMLLoadError(f"Не вдалося завантажити {yaml_path}: {e}") from e
+ 
+ 
+ def get_discipline_parent_id(yaml_data: dict) -> int:

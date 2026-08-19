@@ -62,7 +62,7 @@ disciplines:
     semester: 1
     credits: 7.0
     control: Екзамен
-    syllabus_url: https://drive.google.com/file/d/1TGoXMap3sfTUrJFLd2swdUC8aiyK1gsf/view
+    syllabus_url: https://drive.google.com/file/d/1VP1e_AkIc6IW7aLMdnVZzGQHhSl3h1tO/view
     lecturer_id: zagorodniy_vv
     discipline_id: mechanics
   ЗО 04:
@@ -70,7 +70,7 @@ disciplines:
     semester: 2
     credits: 7.0
     control: Екзамен
-    syllabus_url: https://drive.google.com/file/d/1fTIfrWdd0VvrK_fTGHuWGGwWRMMY4d3K/view
+    syllabus_url: https://drive.google.com/file/d/1mc6wd8rYKp9X1KRgsui24mNHeorCCwWJ/view
     lecturer_id: monastyrsky_ge
     discipline_id: thermodynamics
   ЗО 05.1:
@@ -99,7 +99,7 @@ disciplines:
     semester: 4
     credits: 7.0
     control: Екзамен
-    syllabus_url: https://drive.google.com/file/d/1NW7ehu03xvhOb9zBxwjOY_Kj-LuOYLO0/view?usp=sharing
+    syllabus_url: https://drive.google.com/file/d/1QhDCqyvtf33bIMrZcm4TNcO13-PeGiG9/view
     online_resources: https://do.ipo.kpi.ua/enrol/index.php?id=1988
     lecturer_id: ivanova_vv
     discipline_id: optics
@@ -236,7 +236,7 @@ disciplines:
     semester: 5
     credits: 3.0
     control: Залік
-    syllabus_url: https://drive.google.com/file/d/1mb5lwm8raz9hajvLuhigkMINTk-51Evl/view
+    syllabus_url: https://drive.google.com/file/d/1l_1nsg32ltAEYDsI0wXA13VVhwPjd3GA/view
     lecturer_id: zhdanov_vi
     discipline_id: math_pys
   ПО 03:
@@ -258,7 +258,7 @@ disciplines:
     semester: 5
     credits: 4.0
     control: Екзамен
-    syllabus_url: https://drive.google.com/file/d/1PniXet07U8aZaX-D8ZvE8Lo5uuXZjF8O/view
+    syllabus_url: https://drive.google.com/file/d/1_QViDLfq8VucG1QxZdvmdDn3vd-BW9Vv/view
     lecturer_id: zhdanov_vi
     discipline_id: electrodynamics
   ПО 06:
@@ -266,7 +266,7 @@ disciplines:
     semester: 5
     credits: 4.0
     control: Екзамен
-    syllabus_url: https://drive.google.com/file/d/1T0aPVmTh91Pl1DXbXV95ukwPSuPmewbK/view
+    syllabus_url: https://drive.google.com/file/d/1TCkTMoLZkaQkoQWGvhs86mTv4ot3jkY3/view
     lecturer_id: monastyrsky_ge
     discipline_id: oscillations_and_waves
   ПО 07:
@@ -274,7 +274,7 @@ disciplines:
     semester: 6
     credits: 4.0
     control: Екзамен
-    syllabus_url: https://drive.google.com/file/d/14ohDpHhQ0lazL3pYtWZ4xVF6suG3Q1TU/view
+    syllabus_url: https://drive.google.com/file/d/17edc7OkVCzfHDTdgGu9zjuTq9TbPQ7jh/view
     lecturer_id: zhdanov_vi
     discipline_id: ess
   ПО 08:
@@ -296,6 +296,7 @@ disciplines:
     semester: 6
     credits: 4.0
     control: Залік
+    syllabus_url: https://drive.google.com/file/d/1DldXa6I4Hvhi70ep486uhz-E8QEGSh7I/view
   ПО 11:
     name: Статистична радіофізика та оптика
     semester: 7
@@ -309,7 +310,7 @@ disciplines:
     semester: 7
     credits: 3.0
     control: Залік
-    syllabus_url: https://drive.google.com/file/d/1C-Hq56Tt-E8-8M05kq-CKkU_x3CmQuSs/view
+    syllabus_url: https://drive.google.com/file/d/1ZVGTEGPHKTT8-NCnyUTLLxctuoE_e5o9/view
     lecturer_id: voronov_so
     discipline_id: lab_research_pract
   ПО 13:
@@ -323,19 +324,103 @@ disciplines:
     semester: 8
     credits: 5.0
     control: Залік
+    syllabus_url: https://drive.google.com/file/d/15DjhYDkC3P12BK5C1ezgTMAUl-tPH7MZ/view
     discipline_id: ond
   ПО 15:
     name: Переддипломна практика
     semester: 9
     credits: 6.0
     control: Залік
+    syllabus_url: https://drive.google.com/file/d/18TAhW4YtpKSQ4SVtS3H3Hlx7Jh6Lnagp/view
     discipline_id: pre_diploma_practic
   ПО 16:
     name: Дипломне проектування
     semester: 9
     credits: 6.0
     control: Захист
+    syllabus_url: https://drive.google.com/file/d/1rVe_8WKTdy2e_WxuvonuSegJb8IWukBX/view
     discipline_id: diploma_proecting
+  ПВ 8:
+    name: Відновлювані і альтернативні джерела енергії
+    semester: 4
+    credits: 4.0
+    control: Залік
+    syllabus_url: https://drive.google.com/file/d/1i8s3zaEhhi-ynSRz85hDw961MkK9OsMq/view
+    lecturer_id: donyk_tv
+  # Нижче — коди ПВ підтверджені лише для ПВ 8 (номер вказаний прямо в
+  # тексті силабусу). Для решти реальний номер з Ф-каталогу невідомий —
+  # присвоєно послідовно як TODO, треба звірити з офіційним каталогом.
+  ПВ 1:
+    name: Комп'ютерне моделювання механіки суцільних середовищ
+    semester: 7
+    credits: 4.0
+    control: Залік
+    syllabus_url: https://drive.google.com/file/d/1jTSiAJvcH15NaHUVIYDtqnH9r9Qcfpvo/view
+    lecturer_id: dymytriieva_nf
+  ПВ 2:
+    name: Воднева енергетика
+    semester: 7
+    credits: 4.0
+    control: Залік
+    syllabus_url: https://drive.google.com/file/d/1GQzoQLgGqdvev9KMFLMCBr9oKoksTKWE/view
+    lecturer_id: gilchuk_av
+  ПВ 3:
+    name: Фізика напівпровідникових приладів
+    semester: 7
+    credits: 4.0
+    control: Залік
+    syllabus_url: https://drive.google.com/file/d/1SZDi6Lf2Wer-o5PhMq9XaR493v_qjOdI/view
+    lecturer_id: gilchuk_av
+    note: "У самому силабусі рівень вищої освіти вказано як «Другий (магістерський)» — перевірити, чи не магістерський файл потрапив не в ту теку"
+  ПВ 4:
+    name: Основи конвективного теплообміну
+    semester: 6
+    credits: 4.0
+    control: Залік
+    syllabus_url: https://drive.google.com/file/d/1gIkazQAWK5UvV9V_dnqxMEQrZt_Vwlr_/view
+    lecturer_id: khalatov_aa
+  ПВ 5:
+    name: Основи фізичного матеріалознавства
+    semester: 6
+    credits: 4.0
+    control: Залік
+    syllabus_url: https://drive.google.com/file/d/156lF9gZux3zXmjHTucSylnJpJYaDnfzj/view
+    lecturer_id: voronov_so
+  ПВ 6:
+    name: Моделювання та аналіз даних у фізиці
+    semester: 5
+    credits: 4.0
+    control: Залік
+    syllabus_url: https://drive.google.com/file/d/1B0r1kiZvywHN9ocw7KDn4V7BGbsIhgAY/view
+    lecturer_id: gordiyko_no
+  ПВ 7:
+    name: Методи машинного навчання
+    semester: 8
+    credits: 4.0
+    control: Залік
+    syllabus_url: https://drive.google.com/file/d/1GrhlKbdFOOSVm-2LUldhP72GSaB2FEGE/view
+    lecturer_id: gordiyko_no
+  ПВ 9:
+    name: Рентгенівські методи досліджень
+    semester: 6
+    credits: 4.0
+    control: Залік
+    syllabus_url: https://drive.google.com/file/d/1RBw_A1vexwRdhntU3RbkLX45OMh8IV0Y/view
+    lecturer_id: zagorodniy_vv
+  ПВ 10:
+    name: Симетрія в фізиці
+    semester: 8
+    credits: 4.0
+    control: Залік
+    syllabus_url: https://drive.google.com/file/d/1nItRFig7IFxzXeamq5UCvL5OPw90ZQJ9/view
+    lecturer_id: zagorodniy_vv
+  ПВ 11:
+    name: Фізика металів та сплавів
+    semester: 8
+    credits: 4.0
+    control: Залік
+    syllabus_url: https://drive.google.com/file/d/1JlAcvXWhbPyhjrmo1yMdO-EUw3d4YBMR/view
+    lecturer_id: monastyrsky_ge
 
 competencies:
   ЗК 1: Здатність застосовувати знання у практичних ситуаціях.

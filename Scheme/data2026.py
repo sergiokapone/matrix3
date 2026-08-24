@@ -23,7 +23,7 @@ DISCIPLINES = {
         "ua": "Введення в спеціальність",
         "en": "Introduction to Specialty",
     },
-    "S1_Prog": {
+    "S1_Military": {
         "semester": 1,
         "type": "general",
         "ua": "Основи національного\n спротиву",
@@ -77,7 +77,7 @@ DISCIPLINES = {
         "ua": "Хімія",
         "en": "Chemistry",
     },
-    "S2_Prog": {
+    "S2_Military": {
         "semester": 2,
         "type": "general",
         "ua": "Основи національного\n спротиву",
@@ -89,17 +89,11 @@ DISCIPLINES = {
         "ua": "Комп'ютерна графіка",
         "en": "Computer Graphics",
     },
-    "S2_HistPhil_1": {
+    "S2_HistPhil": {
         "semester": 2,
         "type": "general",
-        "ua": "Історико-філософські засади\n суспільного розвитку\n (модуль 1)",
-        "en": "Historical and Philosophical\n Foundations of Social\n Development (module 1)",
-    },
-    "S2_HistPhil_2": {
-        "semester": 2,
-        "type": "general",
-        "ua": "Історико-філософські засади\n суспільного розвитку\n (модуль 2)",
-        "en": "Historical and Philosophical\n Foundations of Social\n Development (module 2)",
+        "ua": "Історико-філософські засади\n суспільного розвитку",
+        "en": "Historical and Philosophical\n Foundations of Social\n Development",
     },
     "S2_Eng": {
         "semester": 2,
@@ -123,13 +117,13 @@ DISCIPLINES = {
         "semester": 3,
         "type": "math",
         "ua": "Диференціальні рівняння",
-        "en": "Differential Equations 1",
+        "en": "Differential Equations",
     },
     "S3_MathPhys": {
         "semester": 3,
         "type": "math",
-        "ua": "Методи математичної фізики 1",
-        "en": "Methods of Mathematical Physics 1",
+        "ua": "Методи математичної фізики",
+        "en": "Methods of Mathematical Physics",
     },
     "S3_CompMeth": {
         "semester": 3,
@@ -149,7 +143,7 @@ DISCIPLINES = {
         "ua": "Англійська мова\n професійного спрямування",
         "en": "English for professional purposes",
     },
-    "S3_Military": {
+    "S3_Prog": {
         "semester": 3,
         "type": "comp",
         "ua": "Програмування",
@@ -203,7 +197,7 @@ DISCIPLINES = {
         "ua": "Практичний курс іноземної мови",
         "en": "Practical Course in Foreign Language",
     },
-    "S4_Military": {
+    "S4_Prog": {
         "semester": 4,
         "type": "comp",
         "ua": "Програмування",
@@ -397,39 +391,34 @@ EDGES = [
     # ───────────────────────────────────────────────
     ("S1_Alg",       "S2_Alg"),
     ("S1_Alg",       "S2_MatAn"),
-    ("S1_Alg",       "S3_DiffEq"),
-    ("S1_Alg",       "S3_MathPhys"),
-    ("S1_Alg",       "S4_ClassMech"),
+
 
     ("S1_MatAn",     "S2_MatAn"),
-    ("S1_MatAn",     "S3_DiffEq"),
-    ("S1_MatAn",     "S3_MathPhys"),
-    ("S1_MatAn",     "S4_ClassMech"),
 
     ("S1_Mech",      "S2_Thermo"),
     ("S1_Mech",      "S4_ClassMech"),
     ("S1_Mech",      "S3_ElMag"),
-
-    ("S1_Prog",      "S2_Prog"),
 
     ("S1_Intro",     "S7_Course"),
     ("S1_Intro",     "S8_Diploma"),      # або S8_Practice — але в коді було саме Diploma
 
     ("S1_Eng",       "S2_Eng"),
 
+    ("S1_Military",  "S2_Military"),
+
 
     # ───────────────────────────────────────────────
     # Семестр 2 → пізніші
     # ───────────────────────────────────────────────
+    ("S2_Alg",       "S3_DiffEq"),
     ("S2_Alg",       "S3_MathPhys"),
+    ("S2_Alg",       "S4_ClassMech"),
 
-    ("S2_MatAn",     "S3_DiffEq"),
-    ("S2_MatAn",   "S3_MatAn"),
+    ("S2_MatAn", "S3_DiffEq"),
+    ("S2_MatAn", "S3_MatAn"),
+    ("S2_MatAn", "S3_MathPhys"),
 
     ("S2_Thermo",    "S7_StatPhys"),
-
-    ("S2_Prog",      "S3_CompMeth"),
-
     ("S2_Graph",     "S3_CompMeth"),
 
     ("S2_Chem", "S5_Atomic"),
@@ -440,47 +429,39 @@ EDGES = [
     # Семестр 3 → пізніші
     # ───────────────────────────────────────────────
     ("S3_DiffEq",    "S4_DiffEq"),
-
-    ("S3_MathPhys",  "S5_MathPhys"),
-
+    ("S3_DiffEq", "S4_ClassMech"),
+    ("S3_MathPhys",  "S4_MathPhys"),
     ("S3_CompMeth",  "S4_CompMeth"),
 
-    ("S3_MatAn", "S4_Optics"),
-    ("S3_MatAn", "S5_FieldTheory"),
-    ("S3_MatAn", "S6_ESS"),
-    ("S3_MatAn", "S7_StatPhys"),
+    ("S3_Prog", "S4_Prog"),
+    ("S3_Prog", "S4_CompMeth"),
+
+
     ("S3_MatAn", "S4_MathPhys"),
+    ("S3_MatAn",  "S6_ProbStat"),
 
     ("S4_ClassMech", "S5_FieldTheory"),
     ("S4_ClassMech", "S5_OscWaves"),
-    ("S4_ClassMech", "S6_ESS"),
     ("S4_ClassMech", "S6_QMech"),
-    ("S4_ClassMech", "S7_StatPhys"),
 
     ("S3_ElMag",     "S4_Optics"),
     ("S3_ElMag",     "S5_FieldTheory"),
     ("S3_ElMag",     "S6_ESS"),
+    
     ("S3_EngProf",   "S4_EngPract"),
-    ("S3_Military",   "S4_Military"),
 
 
     # ───────────────────────────────────────────────
     # Семестр 4 → пізніші
     # ───────────────────────────────────────────────
+    ("S4_Prog", "S6_MathModel"),
     ("S4_DiffEq",    "S5_MathPhys"),
     ("S4_DiffEq",    "S5_FieldTheory"),
     ("S4_DiffEq",    "S5_OscWaves"),
-    ("S4_DiffEq",    "S6_ESS"),
-    ("S4_DiffEq",    "S6_QMech"),
-    ("S4_DiffEq",    "S7_StatPhys"),
-
     ("S4_MathPhys",  "S5_MathPhys"),
-
     ("S4_Optics",    "S5_Atomic"),
     ("S4_Optics",    "S7_StatRadio"),
-
     ("S4_CompMeth",  "S6_MathModel"),
-
     ("S4_EngPract",  "S7_Course"),
 
 
@@ -489,21 +470,15 @@ EDGES = [
     # ───────────────────────────────────────────────
     ("S5_MathPhys",  "S6_ESS"),
     ("S5_MathPhys",  "S7_StatRadio"),
-
     ("S5_Atomic",    "S6_QMech"),
-
     ("S5_FieldTheory","S6_ESS"),
-
     ("S5_OscWaves",  "S6_ESS"),
-    ("S3_MatAn" ,"S6_ProbStat"),
 
     # ───────────────────────────────────────────────
     # Семестр 6 → пізніші
     # ───────────────────────────────────────────────
     ("S6_ProbStat",  "S7_StatPhys"),
     ("S6_QMech",     "S7_StatPhys"),
-    ("S6_QMech",     "S7_Lab"),
-
     ("S6_MathModel", "S7_Lab"),
 
 
@@ -512,7 +487,6 @@ EDGES = [
     # ───────────────────────────────────────────────
     ("S7_Lab",       "S8_Practice"),
     ("S7_Lab",       "S8_Diploma"),
-
     ("S7_Course",    "S8_Diploma"),
 
     # ───────────────────────────────────────────────

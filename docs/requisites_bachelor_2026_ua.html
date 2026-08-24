@@ -1,0 +1,1472 @@
+<!DOCTYPE html>
+<html lang="ua">
+<head>
+<meta charset="UTF-8">
+<title>Пре- та постреквізити дисциплін</title>
+<style>
+  :root {
+    --bg: #f7f9fc;
+    --card: #ffffff;
+    --border: #e1e6ee;
+    --text: #1a1a1a;
+    --muted: #667085;
+  }
+  * { box-sizing: border-box; }
+  body {
+    font-family: -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    margin: 0;
+    padding: 2rem;
+  }
+  h1 {
+    font-size: 1.5rem;
+    margin: 0 0 0.25rem 0;
+  }
+  .subtitle {
+    color: var(--muted);
+    margin: 0 0 1.5rem 0;
+    font-size: 0.9rem;
+  }
+  .search {
+    width: 100%;
+    max-width: 420px;
+    padding: 0.6rem 0.9rem;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    font-size: 0.95rem;
+    margin-bottom: 1.5rem;
+  }
+  .semester-group {
+    margin-bottom: 2rem;
+  }
+  .semester-title {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--muted);
+    margin-bottom: 0.6rem;
+    padding-bottom: 0.3rem;
+    border-bottom: 2px solid var(--border);
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 0.9rem;
+  }
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-left: 5px solid var(--course-color, #999);
+    border-radius: 10px;
+    padding: 0.9rem 1rem;
+    box-shadow: 0 1px 2px rgba(16, 24, 40, 0.04);
+  }
+  .card-name {
+    font-weight: 700;
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+  }
+  .rel-block { margin-top: 0.5rem; }
+  .rel-label {
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--muted);
+    font-weight: 700;
+  }
+  .rel-list {
+    margin: 0.25rem 0 0 0;
+    padding: 0;
+    list-style: none;
+    font-size: 0.87rem;
+  }
+  .rel-list li {
+    padding: 0.1rem 0;
+  }
+  .rel-empty {
+    color: var(--muted);
+    font-size: 0.85rem;
+    font-style: italic;
+  }
+  .card[data-hidden="true"] { display: none; }
+</style>
+</head>
+<body>
+
+<h1>Пре- та постреквізити дисциплін</h1>
+<p class="subtitle">64 дисциплін(и) · згенеровано з data2026.py</p>
+
+<input class="search" id="search" type="text" placeholder="Пошук за назвою дисципліни...">
+
+
+<div class="semester-group">
+  <div class="semester-title">Семестр 1</div>
+  <div class="grid">
+    
+    <div class="card" style="--course-color: #4A90E2" data-search="алгебра та геометрія">
+      <div class="card-name">Алгебра та геометрія</div>
+
+      <div class="rel-block">
+        <div class="rel-label">Пререквізити (0)</div>
+        
+        <div class="rel-empty">немає</div>
+        
+      </div>
+
+      <div class="rel-block">
+        <div class="rel-label">Постреквізити (2)</div>
+        
+        <ul class="rel-list">
+          <li>&rarr; Алгебра та геометрія</li><li>&rarr; Математичний аналіз</li>
+        </ul>
+        
+      </div>
+    </div>
+    
+    <div class="card" style="--course-color: #B8B8B8" data-search="англійська мова">
+      <div class="card-name">Англійська мова</div>
+
+      <div class="rel-block">
+        <div class="rel-label">Пререквізити (0)</div>
+        
+        <div class="rel-empty">немає</div>
+        
+      </div>
+
+      <div class="rel-block">
+        <div class="rel-label">Постреквізити (1)</div>
+        
+        <ul class="rel-list">
+          <li>&rarr; Англійська мова</li>
+        </ul>
+        
+      </div>
+    </div>
+    
+    <div class="card" style="--course-color: #D4A5FF" data-search="введення в спеціальність">
+      <div class="card-name">Введення в спеціальність</div>
+
+      <div class="rel-block">
+        <div class="rel-label">Пререквізити (0)</div>
+        
+        <div class="rel-empty">немає</div>
+        
+      </div>
+
+      <div class="rel-block">
+        <div class="rel-label">Постреквізити (2)</div>
+        
+        <ul class="rel-list">
+          <li>&rarr; Дипломне проектування</li><li>&rarr; Міждисциплінарна курсова робота</li>
+        </ul>
+        
+      </div>
+    </div>
+    
+    <div class="card" style="--course-color: #4A90E2" data-search="математичний аналіз">
+      <div class="card-name">Математичний аналіз</div>
+
+      <div class="rel-block">
+        <div class="rel-label">Пререквізити (0)</div>
+        
+        <div class="rel-empty">немає</div>
+        
+      </div>
+
+      <div class="rel-block">
+        <div class="rel-label">Постреквізити (1)</div>
+        
+        <ul class="rel-list">
+          <li>&rarr; Математичний аналіз</li>
+        </ul>
+        
+      </div>
+    </div>
+    
+    <div class="card" style="--course-color: #E85D75" data-search="механіка">
+      <div class="card-name">Механіка</div>
+
+      <div class="rel-block">
+        <div class="rel-label">Пререквізити (0)</div>
+        
+        <div class="rel-empty">немає</div>
+        
+      </div>
+
+      <div class="rel-block">
+        <div class="rel-label">Постреквізити (3)</div>
+        
+        <ul class="rel-list">
+          <li>&rarr; Електрика та магнетизм</li><li>&rarr; Класична механіка</li><li>&rarr; Термодинаміка та молекулярна фізика</li>
+        </ul>
+        
+      </div>
+    </div>
+    
+    <div class="card" style="--course-color: #B8B8B8" data-search="основи економіки">
+      <div class="card-name">Основи економіки</div>
+
+      <div class="rel-block">
+        <div class="rel-label">Пререквізити (0)</div>
+        
+        <div class="rel-empty">немає</div>
+        
+      </div>
+
+      <div class="rel-block">
+        <div class="rel-label">Постреквізити (0)</div>
+        
+        <div class="rel-empty">немає</div>
+        
+      </div>
+    </div>
+    
+    <div class="card" style="--course-color: #B8B8B8" data-search="основи здорового способу життя">
+      <div class="card-name">Основи здорового способу життя</div>
+
+      <div class="rel-block">
+        <div class="rel-label">Пререквізити (0)</div>
+        
+        <div class="rel-empty">немає</div>
+        
+      </div>
+
+      <div class="rel-block">
+        <div class="rel-label">Постреквізити (0)</div>
+        
+        <div class="rel-empty">немає</div>
+        
+      </div>
+    </div>
+    
+    <div class="card" style="--course-color: #B8B8B8" data-search="основи національного спротиву">
+      <div class="card-name">Основи національного спротиву</div>
+
+      <div class="rel-block">
+        <div class="rel-label">Пререквізити (0)</div>
+        
+        <div class="rel-empty">немає</div>
+        
+      </div>
+
+      <div class="rel-block">
+        <div class="rel-label">Постреквізити (1)</div>
+        
+        <ul class="rel-list">
+          <li>&rarr; Основи національного спротиву</li>
+        </ul>
+        
+      </div>
+    </div>
+    
+    <div class="card" style="--course-color: #B8B8B8" data-search="українська мова за проф. спрямуванням">
+      <div class="card-name">Українська мова за проф. спрямуванням</div>
+
+      <div class="rel-block">
+        <div class="rel-label">Пререквізити (0)</div>
+        
+        <div class="rel-empty">немає</div>
+        
+      </div>
+
+      <div class="rel-block">
+        <div class="rel-label">Постреквізити (0)</div>
+        
+        <div class="rel-empty">немає</div>
+        
+      </div>
+    </div>
+    
+  </div>
+</div>
+
+<div class="semester-group">
+  <div class="semester-title">Семестр 2</div>
+  <div class="grid">
+    
+    <div class="card" style="--course-color: #B8B8B8" data-search="історико-філософські засади суспільного розвитку">
+      <div class="card-name">Історико-філософські засади суспільного розвитку</div>
+
+      <div class="rel-block">
+        <div class="rel-label">Пререквізити (0)</div>
+        
+        <div class="rel-empty">немає</div>
+        
+      </div>
+
+      <div class="rel-block">
+        <div class="rel-label">Постреквізити (0)</div>
+        
+        <div class="rel-empty">немає</div>
+        
+      </div>
+    </div>
+    
+    <div class="card" style="--course-color: #4A90E2" data-search="алгебра та геометрія">
+      <div class="card-name">Алгебра та геометрія</div>
+
+      <div class="rel-block">
+        <div class="rel-label">Пререквізити (1)</div>
+        
+        <ul class="rel-list">
+          <li>&larr; Алгебра та геометрія</li>
+        </ul>
+        
+      </div>
+
+      <div class="rel-block">
+        <div class="rel-label">Постреквізити (3)</div>
+        
+        <ul class="rel-list">
+          <li>&rarr; Диференціальні рівняння</li><li>&rarr; Класична механіка</li><li>&rarr; Методи математичної фізики</li>
+        </ul>
+        
+      </div>
+    </div>
+    
+    <div class="card" style="--course-color: #B8B8B8" data-search="англійська мова">
+      <div class="card-name">Англійська мова</div>
+
+      <div class="rel-block">
+        <div class="rel-label">Пререквізити (1)</div>
+        
+        <ul class="rel-list">
+          <li>&larr; Англійська мова</li>
+        </ul>
+        
+      </div>
+
+      <div class="rel-block">
+        <div class="rel-label">Постреквізити (1)</div>
+        
+        <ul class="rel-list">
+          <li>&rarr; Англійська мова професійного спрямування</li>
+        </ul>
+        
+      </div>
+    </div>
+    
+    <div class="card" style="--course-color: #7ED321" data-search="комп'ютерна графіка">
+      <div class="card-name">Комп'ютерна графіка</div>
+
+      <div class="rel-block">
+        <div class="rel-label">Пререквізити (0)</div>
+        
+        <div class="rel-empty">немає</div>
+        
+      </div>
+
+      <div class="rel-block">
+        <div class="rel-label">Постреквізити (1)</div>
+        
+        <ul class="rel-list">
+          <li>&rarr; Обчислювальні методи та компютерні пакети</li>
+        </ul>
+        
+      </div>
+    </div>
+    
+    <div class="card" style="--course-color: #4A90E2" data-search="математичний аналіз">
+      <div class="card-name">Математичний аналіз</div>
+
+      <div class="rel-block">
+        <div class="rel-label">Пререквізити (2)</div>
+        
+        <ul class="rel-list">
+          <li>&larr; Алгебра та геометрія</li><li>&larr; Математичний аналіз</li>
+        </ul>
+        
+      </div>
+
+      <div class="rel-block">
+        <div class="rel-label">Постреквізити (3)</div>
+        
+        <ul class="rel-list">
+          <li>&rarr; Диференціальні рівняння</li><li>&rarr; Математичний аналіз</li><li>&rarr; Методи математичної фізики</li>
+        </ul>
+        
+      </div>
+    </div>
+    
+    <div class="card" style="--course-color: #B8B8B8" data-search="основи національного спротиву">
+      <div class="card-name">Основи національного спротиву</div>
+
+      <div class="rel-block">
+        <div class="rel-label">Пререквізити (1)</div>
+        
+        <ul class="rel-list">
+          <li>&larr; Основи національного спротиву</li>
+        </ul>
+        
+      </div>
+
+      <div class="rel-block">
+        <div class="rel-label">Постреквізити (0)</div>
+        
+        <div class="rel-empty">немає</div>
+        
+      </div>
+    </div>
+    
+    <div class="card" style="--course-color: #E85D75" data-search="термодинаміка та молекулярна фізика">
+      <div class="card-name">Термодинаміка та молекулярна фізика</div>
+
+      <div class="rel-block">
+        <div class="rel-label">Пререквізити (1)</div>
+        
+        <ul class="rel-list">
+          <li>&larr; Механіка</li>
+        </ul>
+        
+      </div>
+
+      <div class="rel-block">
+        <div class="rel-label">Постреквізити (1)</div>
+        
+        <ul class="rel-list">
+          <li>&rarr; Стат. фіз. та основи ФТТ</li>
+        </ul>
+        
+      </div>
+    </div>
+    
+    <div class="card" style="--course-color: #E85D75" data-search="хімія">
+      <div class="card-name">Хімія</div>
+
+      <div class="rel-block">
+        <div class="rel-label">Пререквізити (0)</div>
+        
+        <div class="rel-empty">немає</div>
+        
+      </div>
+
+      <div class="rel-block">
+        <div class="rel-label">Постреквізити (1)</div>
+        
+        <ul class="rel-list">
+          <li>&rarr; Атомна фізика</li>
+        </ul>
+        
+      </div>
+    </div>
+    
+  </div>
+</div>
+
+<div class="semester-group">
+  <div class="semester-title">Семестр 3</div>
+  <div class="grid">
+    
+    <div class="card" style="--course-color: #B8B8B8" data-search="англійська мова професійного спрямування">
+      <div class="card-name">Англійська мова професійного спрямування</div>
+
+      <div class="rel-block">
+        <div class="rel-label">Пререквізити (1)</div>
+        
+        <ul class="rel-list">
+          <li>&larr; Англійська мова</li>
+        </ul>
+        
+      </div>
+
+      <div class="rel-block">
+        <div class="rel-label">Постреквізити (1)</div>
+        
+        <ul class="rel-list">
+          <li>&rarr; Практичний курс іноземної мови</li>
+        </ul>
+        
+      </div>
+    </div>
+    
+    <div class="card" style="--course-color: #4A90E2" data-search="диференціальні рівняння">
+      <div class="card-name">Диференціальні рівняння</div>
+
+      <div class="rel-block">
+        <div class="rel-label">Пререквізити (2)</div>
+        
+        <ul class="rel-list">
+          <li>&larr; Алгебра та геометрія</li><li>&larr; Математичний аналіз</li>
+        </ul>
+        
+      </div>
+
+      <div class="rel-block">
+        <div class="rel-label">Постреквізити (1)</div>
+        
+        <ul class="rel-list">
+          <li>&rarr; Диференціальні рівняння</li>
+        </ul>
+        
+      </div>
+    </div>
+    
+    <div class="card" style="--course-color: #E85D75" data-search="електрика та магнетизм">
+      <div class="card-name">Електрика та магнетизм</div>
+
+      <div class="rel-block">
+        <div class="rel-label">Пререквізити (1)</div>
+        
+        <ul class="rel-list">
+          <li>&larr; Механіка</li>
+        </ul>
+        
+      </div>
+
+      <div class="rel-block">
+        <div class="rel-label">Постреквізити (3)</div>
+        
+        <ul class="rel-list">
+          <li>&rarr; Електродинаміка суцільних середовищ</li><li>&rarr; Оптика</li><li>&rarr; Теорія поля</li>
+        </ul>
+        
+      </div>
+    </div>
+    
+    <div class="card" style="--course-color: #F5A623" data-search="зу-каталог">
+      <div class="card-name">ЗУ-Каталог</div>
+
+      <div class="rel-block">
+        <div class="rel-label">Пререквізити (0)</div>
+        
+        <div class="rel-empty">немає</div>
+        
+      </div>
+
+      <div class="rel-block">
+        <div class="rel-label">Постреквізити (0)</div>
+        
+        <div class="rel-empty">немає</div>
+        
+      </div>
+    </div>
+    
+    <div class="card" style="--course-color: #4A90E2" data-search="математичний аналіз">
+      <div class="card-name">Математичний аналіз</div>
+
+      <div class="rel-block">
+        <div class="rel-label">Пререквізити (1)</div>
+        
+        <ul class="rel-list">
+          <li>&larr; Математичний аналіз</li>
+        </ul>
+        
+      </div>
+
+      <div class="rel-block">
+        <div class="rel-label">Постреквізити (4)</div>
+        
+        <ul class="rel-list">
+          <li>&rarr; Класична механіка</li><li>&rarr; Методи математичної фізики</li><li>&rarr; Оптика</li><li>&rarr; Теорія ймовірності та математична статистика</li>
+        </ul>
+        
+      </div>
+    </div>
+    
+    <div class="card" style="--course-color: #4A90E2" data-search="методи математичної фізики">
+      <div class="card-name">Методи математичної фізики</div>
+
+      <div class="rel-block">
+        <div class="rel-label">Пререквізити (2)</div>
+        
+        <ul class="rel-list">
+          <li>&larr; Алгебра та геометрія</li><li>&larr; Математичний аналіз</li>
+        </ul>
+        
+      </div>
+
+      <div class="rel-block">
+        <div class="rel-label">Постреквізити (1)</div>
+        
+        <ul class="rel-list">
+          <li>&rarr; Методи математичної фізики</li>
+        </ul>
+        
+      </div>
+    </div>
+    
+    <div class="card" style="--course-color: #7ED321" data-search="обчислювальні методи та компютерні пакети">
+      <div class="card-name">Обчислювальні методи та компютерні пакети</div>
+
+      <div class="rel-block">
+        <div class="rel-label">Пререквізити (1)</div>
+        
+        <ul class="rel-list">
+          <li>&larr; Комп'ютерна графіка</li>
+        </ul>
+        
+      </div>
+
+      <div class="rel-block">
+        <div class="rel-label">Постреквізити (1)</div>
+        
+        <ul class="rel-list">
+          <li>&rarr; Обчислювальні методи та компютерні пакети</li>
+        </ul>
+        
+      </div>
+    </div>
+    
+    <div class="card" style="--course-color: #7ED321" data-search="програмування">
+      <div class="card-name">Програмування</div>
+
+      <div class="rel-block">
+        <div class="rel-label">Пререквізити (0)</div>
+        
+        <div class="rel-empty">немає</div>
+        
+      </div>
+
+      <div class="rel-block">
+        <div class="rel-label">Постреквізити (2)</div>
+        
+        <ul class="rel-list">
+          <li>&rarr; Обчислювальні методи та компютерні пакети</li><li>&rarr; Програмування</li>
+        </ul>
+        
+      </div>
+    </div>
+    
+  </div>
+</div>
+
+<div class="semester-group">
+  <div class="semester-title">Семестр 4</div>
+  <div class="grid">
+    
+    <div class="card" style="--course-color: #4A90E2" data-search="диференціальні рівняння">
+      <div class="card-name">Диференціальні рівняння</div>
+
+      <div class="rel-block">
+        <div class="rel-label">Пререквізити (1)</div>
+        
+        <ul class="rel-list">
+          <li>&larr; Диференціальні рівняння</li>
+        </ul>
+        
+      </div>
+
+      <div class="rel-block">
+        <div class="rel-label">Постреквізити (3)</div>
+        
+        <ul class="rel-list">
+          <li>&rarr; Коливання та хвилі</li><li>&rarr; Методи математичної фізики</li><li>&rarr; Теорія поля</li>
+        </ul>
+        
+      </div>
+    </div>
+    
+    <div class="card" style="--course-color: #F5A623" data-search="зу-каталог">
+      <div class="card-name">ЗУ-Каталог</div>
+
+      <div class="rel-block">
+        <div class="rel-label">Пререквізити (0)</div>
+        
+        <div class="rel-empty">немає</div>
+        
+      </div>
+
+      <div class="rel-block">
+        <div class="rel-label">Постреквізити (0)</div>
+        
+        <div class="rel-empty">немає</div>
+        
+      </div>
+    </div>
+    
+    <div class="card" style="--course-color: #E85D75" data-search="класична механіка">
+      <div class="card-name">Класична механіка</div>
+
+      <div class="rel-block">
+        <div class="rel-label">Пререквізити (3)</div>
+        
+        <ul class="rel-list">
+          <li>&larr; Алгебра та геометрія</li><li>&larr; Математичний аналіз</li><li>&larr; Механіка</li>
+        </ul>
+        
+      </div>
+
+      <div class="rel-block">
+        <div class="rel-label">Постреквізити (3)</div>
+        
+        <ul class="rel-list">
+          <li>&rarr; Квантова механіка</li><li>&rarr; Коливання та хвилі</li><li>&rarr; Теорія поля</li>
+        </ul>
+        
+      </div>
+    </div>
+    
+    <div class="card" style="--course-color: #4A90E2" data-search="методи математичної фізики">
+      <div class="card-name">Методи математичної фізики</div>
+
+      <div class="rel-block">
+        <div class="rel-label">Пререквізити (2)</div>
+        
+        <ul class="rel-list">
+          <li>&larr; Математичний аналіз</li><li>&larr; Методи математичної фізики</li>
+        </ul>
+        
+      </div>
+
+      <div class="rel-block">
+        <div class="rel-label">Постреквізити (1)</div>
+        
+        <ul class="rel-list">
+          <li>&rarr; Методи математичної фізики</li>
+        </ul>
+        
+      </div>
+    </div>
+    
+    <div class="card" style="--course-color: #7ED321" data-search="обчислювальні методи та компютерні пакети">
+      <div class="card-name">Обчислювальні методи та компютерні пакети</div>
+
+      <div class="rel-block">
+        <div class="rel-label">Пререквізити (2)</div>
+        
+        <ul class="rel-list">
+          <li>&larr; Обчислювальні методи та компютерні пакети</li><li>&larr; Програмування</li>
+        </ul>
+        
+      </div>
+
+      <div class="rel-block">
+        <div class="rel-label">Постреквізити (1)</div>
+        
+        <ul class="rel-list">
+          <li>&rarr; Математичне моделювання та відкриті пакети прикладних програм</li>
+        </ul>
+        
+      </div>
+    </div>
+    
+    <div class="card" style="--course-color: #E85D75" data-search="оптика">
+      <div class="card-name">Оптика</div>
+
+      <div class="rel-block">
+        <div class="rel-label">Пререквізити (2)</div>
+        
+        <ul class="rel-list">
+          <li>&larr; Електрика та магнетизм</li><li>&larr; Математичний аналіз</li>
+        </ul>
+        
+      </div>
+
+      <div class="rel-block">
+        <div class="rel-label">Постреквізити (2)</div>
+        
+        <ul class="rel-list">
+          <li>&rarr; Атомна фізика</li><li>&rarr; Статистична радіофізика та оптика</li>
+        </ul>
+        
+      </div>
+    </div>
+    
+    <div class="card" style="--course-color: #B8B8B8" data-search="практичний курс іноземної мови">
+      <div class="card-name">Практичний курс іноземної мови</div>
+
+      <div class="rel-block">
+        <div class="rel-label">Пререквізити (1)</div>
+        
+        <ul class="rel-list">
+          <li>&larr; Англійська мова професійного спрямування</li>
+        </ul>
+        
+      </div>
+
+      <div class="rel-block">
+        <div class="rel-label">Постреквізити (1)</div>
+        
+        <ul class="rel-list">
+          <li>&rarr; Міждисциплінарна курсова робота</li>
+        </ul>
+        
+      </div>
+    </div>
+    
+    <div class="card" style="--course-color: #7ED321" data-search="програмування">
+      <div class="card-name">Програмування</div>
+
+      <div class="rel-block">
+        <div class="rel-label">Пререквізити (1)</div>
+        
+        <ul class="rel-list">
+          <li>&larr; Програмування</li>
+        </ul>
+        
+      </div>
+
+      <div class="rel-block">
+        <div class="rel-label">Постреквізити (1)</div>
+        
+        <ul class="rel-list">
+          <li>&rarr; Математичне моделювання та відкриті пакети прикладних програм</li>
+        </ul>
+        
+      </div>
+    </div>
+    
+    <div class="card" style="--course-color: #F5A623" data-search="ф1 (вибіркова)">
+      <div class="card-name">Ф1 (Вибіркова)</div>
+
+      <div class="rel-block">
+        <div class="rel-label">Пререквізити (0)</div>
+        
+        <div class="rel-empty">немає</div>
+        
+      </div>
+
+      <div class="rel-block">
+        <div class="rel-label">Постреквізити (0)</div>
+        
+        <div class="rel-empty">немає</div>
+        
+      </div>
+    </div>
+    
+  </div>
+</div>
+
+<div class="semester-group">
+  <div class="semester-title">Семестр 5</div>
+  <div class="grid">
+    
+    <div class="card" style="--course-color: #E85D75" data-search="атомна фізика">
+      <div class="card-name">Атомна фізика</div>
+
+      <div class="rel-block">
+        <div class="rel-label">Пререквізити (2)</div>
+        
+        <ul class="rel-list">
+          <li>&larr; Оптика</li><li>&larr; Хімія</li>
+        </ul>
+        
+      </div>
+
+      <div class="rel-block">
+        <div class="rel-label">Постреквізити (1)</div>
+        
+        <ul class="rel-list">
+          <li>&rarr; Квантова механіка</li>
+        </ul>
+        
+      </div>
+    </div>
+    
+    <div class="card" style="--course-color: #B8B8B8" data-search="екологія">
+      <div class="card-name">Екологія</div>
+
+      <div class="rel-block">
+        <div class="rel-label">Пререквізити (0)</div>
+        
+        <div class="rel-empty">немає</div>
+        
+      </div>
+
+      <div class="rel-block">
+        <div class="rel-label">Постреквізити (0)</div>
+        
+        <div class="rel-empty">немає</div>
+        
+      </div>
+    </div>
+    
+    <div class="card" style="--course-color: #E85D75" data-search="коливання та хвилі">
+      <div class="card-name">Коливання та хвилі</div>
+
+      <div class="rel-block">
+        <div class="rel-label">Пререквізити (2)</div>
+        
+        <ul class="rel-list">
+          <li>&larr; Диференціальні рівняння</li><li>&larr; Класична механіка</li>
+        </ul>
+        
+      </div>
+
+      <div class="rel-block">
+        <div class="rel-label">Постреквізити (1)</div>
+        
+        <ul class="rel-list">
+          <li>&rarr; Електродинаміка суцільних середовищ</li>
+        </ul>
+        
+      </div>
+    </div>
+    
+    <div class="card" style="--course-color: #4A90E2" data-search="методи математичної фізики">
+      <div class="card-name">Методи математичної фізики</div>
+
+      <div class="rel-block">
+        <div class="rel-label">Пререквізити (2)</div>
+        
+        <ul class="rel-list">
+          <li>&larr; Диференціальні рівняння</li><li>&larr; Методи математичної фізики</li>
+        </ul>
+        
+      </div>
+
+      <div class="rel-block">
+        <div class="rel-label">Постреквізити (2)</div>
+        
+        <ul class="rel-list">
+          <li>&rarr; Електродинаміка суцільних середовищ</li><li>&rarr; Статистична радіофізика та оптика</li>
+        </ul>
+        
+      </div>
+    </div>
+    
+    <div class="card" style="--course-color: #E85D75" data-search="теорія поля">
+      <div class="card-name">Теорія поля</div>
+
+      <div class="rel-block">
+        <div class="rel-label">Пререквізити (3)</div>
+        
+        <ul class="rel-list">
+          <li>&larr; Диференціальні рівняння</li><li>&larr; Електрика та магнетизм</li><li>&larr; Класична механіка</li>
+        </ul>
+        
+      </div>
+
+      <div class="rel-block">
+        <div class="rel-label">Постреквізити (1)</div>
+        
+        <ul class="rel-list">
+          <li>&rarr; Електродинаміка суцільних середовищ</li>
+        </ul>
+        
+      </div>
+    </div>
+    
+    <div class="card" style="--course-color: #F5A623" data-search="ф2 (вибіркова)">
+      <div class="card-name">Ф2 (Вибіркова)</div>
+
+      <div class="rel-block">
+        <div class="rel-label">Пререквізити (0)</div>
+        
+        <div class="rel-empty">немає</div>
+        
+      </div>
+
+      <div class="rel-block">
+        <div class="rel-label">Постреквізити (0)</div>
+        
+        <div class="rel-empty">немає</div>
+        
+      </div>
+    </div>
+    
+    <div class="card" style="--course-color: #F5A623" data-search="ф3 (вибіркова)">
+      <div class="card-name">Ф3 (Вибіркова)</div>
+
+      <div class="rel-block">
+        <div class="rel-label">Пререквізити (0)</div>
+        
+        <div class="rel-empty">немає</div>
+        
+      </div>
+
+      <div class="rel-block">
+        <div class="rel-label">Постреквізити (0)</div>
+        
+        <div class="rel-empty">немає</div>
+        
+      </div>
+    </div>
+    
+    <div class="card" style="--course-color: #F5A623" data-search="ф4 (вибіркова)">
+      <div class="card-name">Ф4 (Вибіркова)</div>
+
+      <div class="rel-block">
+        <div class="rel-label">Пререквізити (0)</div>
+        
+        <div class="rel-empty">немає</div>
+        
+      </div>
+
+      <div class="rel-block">
+        <div class="rel-label">Постреквізити (0)</div>
+        
+        <div class="rel-empty">немає</div>
+        
+      </div>
+    </div>
+    
+  </div>
+</div>
+
+<div class="semester-group">
+  <div class="semester-title">Семестр 6</div>
+  <div class="grid">
+    
+    <div class="card" style="--course-color: #E85D75" data-search="електродинаміка суцільних середовищ">
+      <div class="card-name">Електродинаміка суцільних середовищ</div>
+
+      <div class="rel-block">
+        <div class="rel-label">Пререквізити (4)</div>
+        
+        <ul class="rel-list">
+          <li>&larr; Електрика та магнетизм</li><li>&larr; Коливання та хвилі</li><li>&larr; Методи математичної фізики</li><li>&larr; Теорія поля</li>
+        </ul>
+        
+      </div>
+
+      <div class="rel-block">
+        <div class="rel-label">Постреквізити (0)</div>
+        
+        <div class="rel-empty">немає</div>
+        
+      </div>
+    </div>
+    
+    <div class="card" style="--course-color: #E85D75" data-search="квантова механіка">
+      <div class="card-name">Квантова механіка</div>
+
+      <div class="rel-block">
+        <div class="rel-label">Пререквізити (2)</div>
+        
+        <ul class="rel-list">
+          <li>&larr; Атомна фізика</li><li>&larr; Класична механіка</li>
+        </ul>
+        
+      </div>
+
+      <div class="rel-block">
+        <div class="rel-label">Постреквізити (2)</div>
+        
+        <ul class="rel-list">
+          <li>&rarr; Лабораторно-дослідницький практикум</li><li>&rarr; Стат. фіз. та основи ФТТ</li>
+        </ul>
+        
+      </div>
+    </div>
+    
+    <div class="card" style="--course-color: #7ED321" data-search="математичне моделювання та відкриті пакети прикладних програм">
+      <div class="card-name">Математичне моделювання та відкриті пакети прикладних програм</div>
+
+      <div class="rel-block">
+        <div class="rel-label">Пререквізити (2)</div>
+        
+        <ul class="rel-list">
+          <li>&larr; Обчислювальні методи та компютерні пакети</li><li>&larr; Програмування</li>
+        </ul>
+        
+      </div>
+
+      <div class="rel-block">
+        <div class="rel-label">Постреквізити (1)</div>
+        
+        <ul class="rel-list">
+          <li>&rarr; Лабораторно-дослідницький практикум</li>
+        </ul>
+        
+      </div>
+    </div>
+    
+    <div class="card" style="--course-color: #B8B8B8" data-search="права і свободи людини">
+      <div class="card-name">Права і свободи людини</div>
+
+      <div class="rel-block">
+        <div class="rel-label">Пререквізити (0)</div>
+        
+        <div class="rel-empty">немає</div>
+        
+      </div>
+
+      <div class="rel-block">
+        <div class="rel-label">Постреквізити (0)</div>
+        
+        <div class="rel-empty">немає</div>
+        
+      </div>
+    </div>
+    
+    <div class="card" style="--course-color: #4A90E2" data-search="теорія ймовірності та математична статистика">
+      <div class="card-name">Теорія ймовірності та математична статистика</div>
+
+      <div class="rel-block">
+        <div class="rel-label">Пререквізити (1)</div>
+        
+        <ul class="rel-list">
+          <li>&larr; Математичний аналіз</li>
+        </ul>
+        
+      </div>
+
+      <div class="rel-block">
+        <div class="rel-label">Постреквізити (1)</div>
+        
+        <ul class="rel-list">
+          <li>&rarr; Стат. фіз. та основи ФТТ</li>
+        </ul>
+        
+      </div>
+    </div>
+    
+    <div class="card" style="--course-color: #F5A623" data-search="ф5 (вибіркова)">
+      <div class="card-name">Ф5 (Вибіркова)</div>
+
+      <div class="rel-block">
+        <div class="rel-label">Пререквізити (0)</div>
+        
+        <div class="rel-empty">немає</div>
+        
+      </div>
+
+      <div class="rel-block">
+        <div class="rel-label">Постреквізити (0)</div>
+        
+        <div class="rel-empty">немає</div>
+        
+      </div>
+    </div>
+    
+    <div class="card" style="--course-color: #F5A623" data-search="ф6 (вибіркова)">
+      <div class="card-name">Ф6 (Вибіркова)</div>
+
+      <div class="rel-block">
+        <div class="rel-label">Пререквізити (0)</div>
+        
+        <div class="rel-empty">немає</div>
+        
+      </div>
+
+      <div class="rel-block">
+        <div class="rel-label">Постреквізити (0)</div>
+        
+        <div class="rel-empty">немає</div>
+        
+      </div>
+    </div>
+    
+    <div class="card" style="--course-color: #F5A623" data-search="ф7 (вибіркова)">
+      <div class="card-name">Ф7 (Вибіркова)</div>
+
+      <div class="rel-block">
+        <div class="rel-label">Пререквізити (0)</div>
+        
+        <div class="rel-empty">немає</div>
+        
+      </div>
+
+      <div class="rel-block">
+        <div class="rel-label">Постреквізити (0)</div>
+        
+        <div class="rel-empty">немає</div>
+        
+      </div>
+    </div>
+    
+  </div>
+</div>
+
+<div class="semester-group">
+  <div class="semester-title">Семестр 7</div>
+  <div class="grid">
+    
+    <div class="card" style="--course-color: #D4A5FF" data-search="лабораторно-дослідницький практикум">
+      <div class="card-name">Лабораторно-дослідницький практикум</div>
+
+      <div class="rel-block">
+        <div class="rel-label">Пререквізити (2)</div>
+        
+        <ul class="rel-list">
+          <li>&larr; Квантова механіка</li><li>&larr; Математичне моделювання та відкриті пакети прикладних програм</li>
+        </ul>
+        
+      </div>
+
+      <div class="rel-block">
+        <div class="rel-label">Постреквізити (2)</div>
+        
+        <ul class="rel-list">
+          <li>&rarr; Дипломне проектування</li><li>&rarr; Переддипломна практика</li>
+        </ul>
+        
+      </div>
+    </div>
+    
+    <div class="card" style="--course-color: #D4A5FF" data-search="міждисциплінарна курсова робота">
+      <div class="card-name">Міждисциплінарна курсова робота</div>
+
+      <div class="rel-block">
+        <div class="rel-label">Пререквізити (2)</div>
+        
+        <ul class="rel-list">
+          <li>&larr; Введення в спеціальність</li><li>&larr; Практичний курс іноземної мови</li>
+        </ul>
+        
+      </div>
+
+      <div class="rel-block">
+        <div class="rel-label">Постреквізити (1)</div>
+        
+        <ul class="rel-list">
+          <li>&rarr; Дипломне проектування</li>
+        </ul>
+        
+      </div>
+    </div>
+    
+    <div class="card" style="--course-color: #E85D75" data-search="стат. фіз. та основи фтт">
+      <div class="card-name">Стат. фіз. та основи ФТТ</div>
+
+      <div class="rel-block">
+        <div class="rel-label">Пререквізити (3)</div>
+        
+        <ul class="rel-list">
+          <li>&larr; Квантова механіка</li><li>&larr; Теорія ймовірності та математична статистика</li><li>&larr; Термодинаміка та молекулярна фізика</li>
+        </ul>
+        
+      </div>
+
+      <div class="rel-block">
+        <div class="rel-label">Постреквізити (0)</div>
+        
+        <div class="rel-empty">немає</div>
+        
+      </div>
+    </div>
+    
+    <div class="card" style="--course-color: #E85D75" data-search="статистична радіофізика та оптика">
+      <div class="card-name">Статистична радіофізика та оптика</div>
+
+      <div class="rel-block">
+        <div class="rel-label">Пререквізити (2)</div>
+        
+        <ul class="rel-list">
+          <li>&larr; Методи математичної фізики</li><li>&larr; Оптика</li>
+        </ul>
+        
+      </div>
+
+      <div class="rel-block">
+        <div class="rel-label">Постреквізити (0)</div>
+        
+        <div class="rel-empty">немає</div>
+        
+      </div>
+    </div>
+    
+    <div class="card" style="--course-color: #F5A623" data-search="ф10 (вибіркова)">
+      <div class="card-name">Ф10 (Вибіркова)</div>
+
+      <div class="rel-block">
+        <div class="rel-label">Пререквізити (0)</div>
+        
+        <div class="rel-empty">немає</div>
+        
+      </div>
+
+      <div class="rel-block">
+        <div class="rel-label">Постреквізити (0)</div>
+        
+        <div class="rel-empty">немає</div>
+        
+      </div>
+    </div>
+    
+    <div class="card" style="--course-color: #F5A623" data-search="ф11 (вибіркова)">
+      <div class="card-name">Ф11 (Вибіркова)</div>
+
+      <div class="rel-block">
+        <div class="rel-label">Пререквізити (0)</div>
+        
+        <div class="rel-empty">немає</div>
+        
+      </div>
+
+      <div class="rel-block">
+        <div class="rel-label">Постреквізити (0)</div>
+        
+        <div class="rel-empty">немає</div>
+        
+      </div>
+    </div>
+    
+    <div class="card" style="--course-color: #F5A623" data-search="ф8 (вибіркова)">
+      <div class="card-name">Ф8 (Вибіркова)</div>
+
+      <div class="rel-block">
+        <div class="rel-label">Пререквізити (0)</div>
+        
+        <div class="rel-empty">немає</div>
+        
+      </div>
+
+      <div class="rel-block">
+        <div class="rel-label">Постреквізити (0)</div>
+        
+        <div class="rel-empty">немає</div>
+        
+      </div>
+    </div>
+    
+    <div class="card" style="--course-color: #F5A623" data-search="ф9 (вибіркова)">
+      <div class="card-name">Ф9 (Вибіркова)</div>
+
+      <div class="rel-block">
+        <div class="rel-label">Пререквізити (0)</div>
+        
+        <div class="rel-empty">немає</div>
+        
+      </div>
+
+      <div class="rel-block">
+        <div class="rel-label">Постреквізити (0)</div>
+        
+        <div class="rel-empty">немає</div>
+        
+      </div>
+    </div>
+    
+  </div>
+</div>
+
+<div class="semester-group">
+  <div class="semester-title">Семестр 8</div>
+  <div class="grid">
+    
+    <div class="card" style="--course-color: #D4A5FF" data-search="основи наукових досліджень">
+      <div class="card-name">Основи наукових досліджень</div>
+
+      <div class="rel-block">
+        <div class="rel-label">Пререквізити (0)</div>
+        
+        <div class="rel-empty">немає</div>
+        
+      </div>
+
+      <div class="rel-block">
+        <div class="rel-label">Постреквізити (1)</div>
+        
+        <ul class="rel-list">
+          <li>&rarr; Переддипломна практика</li>
+        </ul>
+        
+      </div>
+    </div>
+    
+    <div class="card" style="--course-color: #F5A623" data-search="ф12 (вибіркова)">
+      <div class="card-name">Ф12 (Вибіркова)</div>
+
+      <div class="rel-block">
+        <div class="rel-label">Пререквізити (0)</div>
+        
+        <div class="rel-empty">немає</div>
+        
+      </div>
+
+      <div class="rel-block">
+        <div class="rel-label">Постреквізити (0)</div>
+        
+        <div class="rel-empty">немає</div>
+        
+      </div>
+    </div>
+    
+    <div class="card" style="--course-color: #F5A623" data-search="ф13 (вибіркова)">
+      <div class="card-name">Ф13 (Вибіркова)</div>
+
+      <div class="rel-block">
+        <div class="rel-label">Пререквізити (0)</div>
+        
+        <div class="rel-empty">немає</div>
+        
+      </div>
+
+      <div class="rel-block">
+        <div class="rel-label">Постреквізити (0)</div>
+        
+        <div class="rel-empty">немає</div>
+        
+      </div>
+    </div>
+    
+    <div class="card" style="--course-color: #F5A623" data-search="ф14 (вибіркова)">
+      <div class="card-name">Ф14 (Вибіркова)</div>
+
+      <div class="rel-block">
+        <div class="rel-label">Пререквізити (0)</div>
+        
+        <div class="rel-empty">немає</div>
+        
+      </div>
+
+      <div class="rel-block">
+        <div class="rel-label">Постреквізити (0)</div>
+        
+        <div class="rel-empty">немає</div>
+        
+      </div>
+    </div>
+    
+  </div>
+</div>
+
+<div class="semester-group">
+  <div class="semester-title">Семестр 9</div>
+  <div class="grid">
+    
+    <div class="card" style="--course-color: #D4A5FF" data-search="дипломне проектування">
+      <div class="card-name">Дипломне проектування</div>
+
+      <div class="rel-block">
+        <div class="rel-label">Пререквізити (4)</div>
+        
+        <ul class="rel-list">
+          <li>&larr; Введення в спеціальність</li><li>&larr; Лабораторно-дослідницький практикум</li><li>&larr; Міждисциплінарна курсова робота</li><li>&larr; Переддипломна практика</li>
+        </ul>
+        
+      </div>
+
+      <div class="rel-block">
+        <div class="rel-label">Постреквізити (0)</div>
+        
+        <div class="rel-empty">немає</div>
+        
+      </div>
+    </div>
+    
+    <div class="card" style="--course-color: #D4A5FF" data-search="переддипломна практика">
+      <div class="card-name">Переддипломна практика</div>
+
+      <div class="rel-block">
+        <div class="rel-label">Пререквізити (2)</div>
+        
+        <ul class="rel-list">
+          <li>&larr; Лабораторно-дослідницький практикум</li><li>&larr; Основи наукових досліджень</li>
+        </ul>
+        
+      </div>
+
+      <div class="rel-block">
+        <div class="rel-label">Постреквізити (1)</div>
+        
+        <ul class="rel-list">
+          <li>&rarr; Дипломне проектування</li>
+        </ul>
+        
+      </div>
+    </div>
+    
+  </div>
+</div>
+
+
+<script>
+  document.getElementById('search').addEventListener('input', function (e) {
+    var q = e.target.value.trim().toLowerCase();
+    document.querySelectorAll('.card').forEach(function (card) {
+      var hay = card.getAttribute('data-search');
+      card.dataset.hidden = q && hay.indexOf(q) === -1 ? "true" : "false";
+    });
+    document.querySelectorAll('.semester-group').forEach(function (group) {
+      var anyVisible = Array.from(group.querySelectorAll('.card'))
+        .some(function (c) { return c.dataset.hidden !== "true"; });
+      group.style.display = anyVisible ? "" : "none";
+    });
+  });
+</script>
+
+</body>
+</html>

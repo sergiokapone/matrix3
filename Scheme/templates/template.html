@@ -1,303 +1,152 @@
 <!DOCTYPE html>
-<html lang="uk">
+<html lang="{{ lang }}">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Пререквізити навчального плану</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            padding: 20px;
-        }
-
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-            overflow: hidden;
-        }
-
-        .header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 30px;
-            text-align: center;
-        }
-
-        .header h1 {
-            font-size: 2.5em;
-            margin-bottom: 10px;
-        }
-
-        .header p {
-            font-size: 1.1em;
-            opacity: 0.9;
-        }
-
-        .search-container {
-            padding: 20px 30px;
-            background: #f8f9fa;
-            border-bottom: 2px solid #e9ecef;
-        }
-
-        .search-box {
-            width: 100%;
-            padding: 15px 20px;
-            font-size: 16px;
-            border: 2px solid #dee2e6;
-            border-radius: 8px;
-            transition: all 0.3s;
-        }
-
-        .search-box:focus {
-            outline: none;
-            border-color: #667eea;
-            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
-        }
-
-        .stats {
-            padding: 20px 30px;
-            background: #f8f9fa;
-            display: flex;
-            gap: 30px;
-            flex-wrap: wrap;
-            justify-content: center;
-            border-bottom: 2px solid #e9ecef;
-        }
-
-        .stat-item {
-            text-align: center;
-        }
-
-        .stat-number {
-            font-size: 2em;
-            font-weight: bold;
-            color: #667eea;
-        }
-
-        .stat-label {
-            color: #6c757d;
-            font-size: 0.9em;
-            margin-top: 5px;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-
-        thead {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            position: sticky;
-            top: 0;
-            z-index: 10;
-        }
-
-        th {
-            padding: 18px 15px;
-            text-align: left;
-            font-weight: 600;
-            font-size: 0.95em;
-            letter-spacing: 0.5px;
-            text-transform: uppercase;
-        }
-
-        tbody tr {
-            border-bottom: 1px solid #e9ecef;
-            transition: all 0.2s;
-        }
-
-        tbody tr:hover {
-            background: #f8f9fa;
-            transform: scale(1.01);
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-        }
-
-        tbody tr.hidden {
-            display: none;
-        }
-
-        td {
-            padding: 15px;
-            vertical-align: top;
-        }
-
-        .course-name {
-            font-weight: 600;
-            color: #2c3e50;
-            font-size: 1.05em;
-            margin-bottom: 5px;
-        }
-
-        .course-id {
-            color: #6c757d;
-            font-size: 0.85em;
-            font-family: 'Courier New', monospace;
-            background: #e9ecef;
-            padding: 2px 8px;
-            border-radius: 4px;
-            display: inline-block;
-        }
-
-        .list-items {
-            list-style: none;
-            padding: 0;
-        }
-
-        .list-items li {
-            padding: 8px 12px;
-            margin: 5px 0;
-            background: #f8f9fa;
-            border-radius: 6px;
-            border-left: 3px solid #667eea;
-            transition: all 0.2s;
-        }
-
-        .list-items li:hover {
-            background: #e9ecef;
-            border-left-color: #764ba2;
-            transform: translateX(5px);
-        }
-
-        .empty-list {
-            color: #adb5bd;
-            font-style: italic;
-            padding: 10px;
-        }
-
-        .count {
-            display: inline-block;
-            background: #667eea;
-            color: white;
-            padding: 2px 8px;
-            border-radius: 12px;
-            font-size: 0.85em;
-            font-weight: bold;
-            margin-left: 8px;
-        }
-
-        @media (max-width: 768px) {
-            .header h1 {
-                font-size: 1.8em;
-            }
-
-            table {
-                font-size: 0.9em;
-            }
-
-            th, td {
-                padding: 10px;
-            }
-        }
-    </style>
+<meta charset="UTF-8">
+<title>{{ page_title }}</title>
+<style>
+  :root {
+    --bg: #f7f9fc;
+    --card: #ffffff;
+    --border: #e1e6ee;
+    --text: #1a1a1a;
+    --muted: #667085;
+  }
+  * { box-sizing: border-box; }
+  body {
+    font-family: -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    margin: 0;
+    padding: 2rem;
+  }
+  h1 {
+    font-size: 1.5rem;
+    margin: 0 0 0.25rem 0;
+  }
+  .subtitle {
+    color: var(--muted);
+    margin: 0 0 1.5rem 0;
+    font-size: 0.9rem;
+  }
+  .search {
+    width: 100%;
+    max-width: 420px;
+    padding: 0.6rem 0.9rem;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    font-size: 0.95rem;
+    margin-bottom: 1.5rem;
+  }
+  .semester-group {
+    margin-bottom: 2rem;
+  }
+  .semester-title {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--muted);
+    margin-bottom: 0.6rem;
+    padding-bottom: 0.3rem;
+    border-bottom: 2px solid var(--border);
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 0.9rem;
+  }
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-left: 5px solid var(--course-color, #999);
+    border-radius: 10px;
+    padding: 0.9rem 1rem;
+    box-shadow: 0 1px 2px rgba(16, 24, 40, 0.04);
+  }
+  .card-name {
+    font-weight: 700;
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+  }
+  .rel-block { margin-top: 0.5rem; }
+  .rel-label {
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--muted);
+    font-weight: 700;
+  }
+  .rel-list {
+    margin: 0.25rem 0 0 0;
+    padding: 0;
+    list-style: none;
+    font-size: 0.87rem;
+  }
+  .rel-list li {
+    padding: 0.1rem 0;
+  }
+  .rel-empty {
+    color: var(--muted);
+    font-size: 0.85rem;
+    font-style: italic;
+  }
+  .card[data-hidden="true"] { display: none; }
+</style>
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <h1>🎓 Пререквізити навчального плану</h1>
-            <p>Прикладна фізика та наноматеріали</p>
-        </div>
 
-        <div class="search-container">
-            <input type="text" class="search-box" id="searchInput" placeholder="🔍 Пошук дисципліни...">
-        </div>
+<h1>{{ page_title }}</h1>
+<p class="subtitle">{{ total_courses }} дисциплін(и) · {{ generated_note }}</p>
 
-        <div class="stats">
-            <div class="stat-item">
-                <div class="stat-number" id="totalCourses">{{ total_courses }}</div>
-                <div class="stat-label">Всього дисциплін</div>
-            </div>
-            <div class="stat-item">
-                <div class="stat-number" id="visibleCourses">{{ total_courses }}</div>
-                <div class="stat-label">Показано</div>
-            </div>
-        </div>
+<input class="search" id="search" type="text" placeholder="Пошук за назвою дисципліни...">
 
-        <table>
-            <thead>
-                <tr>
-                    <th style="width: 25%;">Дисципліна</th>
-                    <th style="width: 37.5%;">Пререквізити</th>
-                    <th style="width: 37.5%;">Пострерквізити</th>
-                </tr>
-            </thead>
-            <tbody id="tableBody">
-                {% for course_id in courses|sort %}
-                {% set course = courses[course_id] %}
-                <tr>
-                    <td>
-                        <div class="course-name">{{ course.name }}</div>
-                        <span class="course-id">{{ course_id }}</span>
-                    </td>
-                    <td>
-                        {% if course.prerequisites %}
-                        <ul class="list-items">
-                            {% for prereq in course.prerequisites %}
-                            <li>{{ prereq }}</li>
-                            {% endfor %}
-                        </ul>
-                        {% else %}
-                        <div class="empty-list">Немає пререквізитів</div>
-                        {% endif %}
-                        <span class="count">{{ course.prerequisites|length }}</span>
-                    </td>
-                    <td>
-                        {% if course.postrequisites %}
-                        <ul class="list-items">
-                            {% for postreq in course.postrequisites %}
-                            <li>{{ postreq }}</li>
-                            {% endfor %}
-                        </ul>
-                        {% else %}
-                        <div class="empty-list">Немає пострерквізитів</div>
-                        {% endif %}
-                        <span class="count">{{ course.postrequisites|length }}</span>
-                    </td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
+{% for semester in semesters %}
+<div class="semester-group">
+  <div class="semester-title">{{ semester_label }} {{ semester }}</div>
+  <div class="grid">
+    {% for course in courses_by_semester[semester] %}
+    <div class="card" style="--course-color: {{ course.color }}" data-search="{{ course.name|lower }}">
+      <div class="card-name">{{ course.name }}</div>
+
+      <div class="rel-block">
+        <div class="rel-label">{{ prereq_label }} ({{ course.prerequisites|length }})</div>
+        {% if course.prerequisites %}
+        <ul class="rel-list">
+          {% for p in course.prerequisites %}<li>&larr; {{ p.name }}</li>{% endfor %}
+        </ul>
+        {% else %}
+        <div class="rel-empty">{{ none_label }}</div>
+        {% endif %}
+      </div>
+
+      <div class="rel-block">
+        <div class="rel-label">{{ postreq_label }} ({{ course.postrequisites|length }})</div>
+        {% if course.postrequisites %}
+        <ul class="rel-list">
+          {% for p in course.postrequisites %}<li>&rarr; {{ p.name }}</li>{% endfor %}
+        </ul>
+        {% else %}
+        <div class="rel-empty">{{ none_label }}</div>
+        {% endif %}
+      </div>
     </div>
+    {% endfor %}
+  </div>
+</div>
+{% endfor %}
 
-    <script>
-        // Підрахунок статистики
-        const totalRows = document.querySelectorAll('#tableBody tr').length;
-        document.getElementById('totalCourses').textContent = totalRows;
-        document.getElementById('visibleCourses').textContent = totalRows;
+<script>
+  document.getElementById('search').addEventListener('input', function (e) {
+    var q = e.target.value.trim().toLowerCase();
+    document.querySelectorAll('.card').forEach(function (card) {
+      var hay = card.getAttribute('data-search');
+      card.dataset.hidden = q && hay.indexOf(q) === -1 ? "true" : "false";
+    });
+    document.querySelectorAll('.semester-group').forEach(function (group) {
+      var anyVisible = Array.from(group.querySelectorAll('.card'))
+        .some(function (c) { return c.dataset.hidden !== "true"; });
+      group.style.display = anyVisible ? "" : "none";
+    });
+  });
+</script>
 
-        // Пошук
-        const searchInput = document.getElementById('searchInput');
-        const tableBody = document.getElementById('tableBody');
-        const rows = tableBody.querySelectorAll('tr');
-
-        searchInput.addEventListener('input', function() {
-            const searchTerm = this.value.toLowerCase();
-            let visibleCount = 0;
-
-            rows.forEach(row => {
-                const text = row.textContent.toLowerCase();
-                if (text.includes(searchTerm)) {
-                    row.classList.remove('hidden');
-                    visibleCount++;
-                } else {
-                    row.classList.add('hidden');
-                }
-            });
-
-            document.getElementById('visibleCourses').textContent = visibleCount;
-        });
-    </script>
 </body>
 </html>
-

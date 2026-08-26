@@ -47,7 +47,7 @@ from collections import defaultdict
 import heapq
 
 
-def compute_layout(node_info, edges, cfg):
+def compute_layout(node_info, edges, cfg, forced_bands=None):
     normal_ids = [nid for nid, info in node_info.items()
                   if info["semester_start"] == info["semester_end"]]
     wide_ids = [nid for nid, info in node_info.items()
@@ -68,96 +68,78 @@ def compute_layout(node_info, edges, cfg):
     def row_y(r):
         return -r * cfg.YSTEP
 
-    # ---- розподіл розтягнутих вузлів по "смугах" (band-rows) ----
-    # Інтервали (start_idx, end_idx), відсортовані за початком; кожному
-    # інтервалу — найнижчий вільний рядок, чий останній зайнятий кінець
-    # менший за початок поточного (класичне жадібне розфарбування
-    # інтервального графа).
-    intervals = []
-    for nid in wide_ids:
-        info = node_info[nid]
-        s_idx = col_of_sem[info["semester_start"]]
-        e_idx = col_of_sem[info["semester_end"]]
-        intervals.append((s_idx, e_idx, nid))
-    intervals.sort(key=lambda t: (t[0], t[1]))
+    # ---- єдине розміщення по рядках: розтягнутий вузол - це просто
+    #      один рядок, як і звичайний, тільки той самий номер рядка
+    #      резервується в усіх колонках, які він охоплює. Порядок
+    #      визначається порядком появи в data2026.py (через node_info,
+    #      який успадковує цей порядок від merge.py) - ніякого окремого
+    #      "поверху зверху для розтягнутих": хочеш іншого порядку -
+    #      перестав рядки в даних, або постав config.FORCE_BAND.
+    rank_of = {nid: i for i, nid in enumerate(node_info)}
+    home_col = {}       # nid -> індекс колонки, де вузол "вперше" з'являється
+    span_end_col = {}    # nid -> індекс колонки, де вузол востаннє видно
+    for nid, info in node_info.items():
+        home_col[nid] = col_of_sem[info["semester_start"]]
+        span_end_col[nid] = col_of_sem[info["semester_end"]]
 
-    band_row_of = {}
-    band_last_end = []  # band_last_end[i] = останній end_idx, зайнятий у смузі i
-    for s_idx, e_idx, nid in intervals:
-        placed = False
-        for band_i, last_end in enumerate(band_last_end):
-            if last_end < s_idx:
-                band_row_of[nid] = band_i
-                band_last_end[band_i] = e_idx
-                placed = True
-                break
-        if not placed:
-            band_row_of[nid] = len(band_last_end)
-            band_last_end.append(e_idx)
-    band_rows_count = len(band_last_end)  # 0, якщо розтягнутих вузлів немає
+    forced_rows = forced_bands or {}
 
-    # ---- локальний відступ ЗВЕРХУ для кожної колонки окремо ----
-    # Глобальний band_rows_count - це відступ, потрібний лише в колонках,
-    # де смуги дійсно накопичуються (напр. семестри 1-2, де перетинаються
-    # Алгебра/Англійська/Матаналіз). Колонка, крізь яку не проходить
-    # жоден розтягнутий блок (або проходить лише один), не повинна мати
-    # такий самий великий відступ - інакше звичайні дисципліни в ній
-    # висітимуть з порожнім місцем зверху. Тому для кожної колонки
-    # рахуємо ОКРЕМО, скільки смуг реально перетинають саме її.
-    col_band_offset = defaultdict(int)
-    for s_idx, e_idx, nid in intervals:
-        top = band_row_of[nid] + 1
-        for idx in range(s_idx, e_idx + 1):
-            if top > col_band_offset[idx]:
-                col_band_offset[idx] = top
+    home_in_col = defaultdict(list)
+    for nid in node_info:
+        home_in_col[home_col[nid]].append(nid)
+    for idx in home_in_col:
+        home_in_col[idx].sort(key=lambda n: rank_of[n])
 
-    # ---- звичайні вузли: групування по колонках, з відступом під смуги ----
-    by_sem = defaultdict(list)
-    for nid in normal_ids:
-        by_sem[node_info[nid]["semester_start"]].append(nid)
+    row_of = {}
+    occupied = defaultdict(set)  # idx -> зайняті рядки ("проїзні" розтягнуті блоки)
+    for idx in range(max_idx + 1):
+        for nid in home_in_col.get(idx, []):
+            if nid in forced_rows:
+                r = forced_rows[nid]
+            else:
+                r = 0
+                while r in occupied[idx]:
+                    r += 1
+            row_of[nid] = r
+            occupied[idx].add(r)
+            for future_idx in range(idx + 1, span_end_col[nid] + 1):
+                occupied[future_idx].add(r)
 
+    # ---- координати ----
     pos = {}            # nid -> (x, y, w, h)
-    col_extent = {}      # idx -> (x, y_top, y_bottom)
+    col_extent = {}       # idx -> (x, y_top, y_bottom)
     col_x_of_idx = {}
-    for s in semesters:
-        idx = col_of_sem[s]
+    visible_in_col = defaultdict(list)  # idx -> [nid, ...] (домашні + "проїзні")
+    for nid in node_info:
+        for idx in range(home_col[nid], span_end_col[nid] + 1):
+            visible_in_col[idx].append(nid)
+
+    for idx in range(max_idx + 1):
         x = col_x(idx)
         col_x_of_idx[idx] = x
-        nodes = by_sem.get(s, [])
-        offset = col_band_offset[idx]
-        for i, nid in enumerate(nodes):
-            pos[nid] = (x, row_y(i + offset), cfg.BOX_W, cfg.BOX_H)
-        y_top = row_y(offset) + cfg.BOX_H / 2
-        if nodes:
-            y_bottom = row_y(len(nodes) - 1 + offset) - cfg.BOX_H / 2
+        rows_here = [row_of[nid] for nid in visible_in_col.get(idx, [])]
+        if rows_here:
+            y_top = row_y(min(rows_here)) + cfg.BOX_H / 2
+            y_bottom = row_y(max(rows_here)) - cfg.BOX_H / 2
         else:
-            y_bottom = y_top - cfg.BOX_H  # порожня колонка - мінімальна заглушка
+            y_top = cfg.BOX_H / 2
+            y_bottom = y_top - cfg.BOX_H
         col_extent[idx] = (x, y_top, y_bottom)
 
-    # ---- розтягнуті вузли: широкий блок у своїй смузі ----
-    for nid in wide_ids:
-        info = node_info[nid]
-        s_idx = col_of_sem[info["semester_start"]]
-        e_idx = col_of_sem[info["semester_end"]]
-        x = (col_x(s_idx) + col_x(e_idx)) / 2
-        y = row_y(band_row_of[nid])
-        w = (col_x(e_idx) - col_x(s_idx)) + cfg.BOX_W
-        pos[nid] = (x, y, w, cfg.BOX_H)
+    for nid, info in node_info.items():
+        s_idx, e_idx = home_col[nid], span_end_col[nid]
+        y = row_y(row_of[nid])
+        if s_idx == e_idx:
+            pos[nid] = (col_x(s_idx), y, cfg.BOX_W, cfg.BOX_H)
+        else:
+            x = (col_x(s_idx) + col_x(e_idx)) / 2
+            w = (col_x(e_idx) - col_x(s_idx)) + cfg.BOX_W
+            pos[nid] = (x, y, w, cfg.BOX_H)
 
     # ---- індекс колонки для кожного вузла (для маршрутизації: скільки
-    #      коридорів перестрибує ребро) - для звичайного вузла старт=кінець,
-    #      для розтягнутого - діапазон його семестрів ----
-    node_col_start = {}
-    node_col_end = {}
-    for s in semesters:
-        idx = col_of_sem[s]
-        for nid in by_sem.get(s, []):
-            node_col_start[nid] = idx
-            node_col_end[nid] = idx
-    for nid in wide_ids:
-        info = node_info[nid]
-        node_col_start[nid] = col_of_sem[info["semester_start"]]
-        node_col_end[nid] = col_of_sem[info["semester_end"]]
+    #      коридорів перестрибує ребро) ----
+    node_col_start = home_col
+    node_col_end = span_end_col
 
     # ---- перешкоди (усі блоки, звичайні й розтягнуті, трохи "роздуті") ----
     obstacles = {}
@@ -167,7 +149,10 @@ def compute_layout(node_info, edges, cfg):
 
     # ---- координати коридорів (між колонками) і каналів (між рядками) ----
     corridors = sorted(col_x_of_idx[i] + cfg.XSTEP / 2 for i in range(max_idx))
-    max_rows = max((len(v) for v in by_sem.values()), default=0) + band_rows_count
+    # найбільший зайнятий номер рядка по всіх колонках (row_of уже враховує
+    # і звичайні, і розтягнуті блоки, і forced_bands - рахований вище)
+    max_rows = max(row_of.values(), default=0)
+    band_rows_count = max_rows + 1
     channels = sorted(row_y(k) + cfg.YSTEP / 2 for k in range(-1, max_rows + 2))
 
     def corridor_after(x):

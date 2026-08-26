@@ -91,8 +91,8 @@ def render(lang, node_info, layout_result):
     # ---- підписи колонок (семестрів) ----
     label_y = 0 + cfg.YSTEP * 0.55
     for idx, x in col_x_of_idx.items():
-        if idx == max_idx and not cfg.LAST_COLUMN_HAS_LABEL:
-            continue
+        # if idx == max_idx and not cfg.LAST_COLUMN_HAS_LABEL:
+        #     continue
         sem_num = semesters[idx]
         label = cfg.COLUMN_LABEL_TEMPLATE[lang].format(n=sem_num)
         ax.text(x, label_y, label, ha="center", va="bottom",
@@ -169,7 +169,10 @@ if __name__ == "__main__":
 
     # злиття дисциплін, що йдуть кілька семестрів підряд, і побудова
     # розкладки - від мови не залежать, рахуємо один раз
-    node_info, merged_edges = build_merged_graph(DISCIPLINES, EDGES, cfg.NEVER_MERGE)
-    layout_result = compute_layout(node_info, merged_edges, cfg)
+    node_info, merged_edges, merge_map = build_merged_graph(DISCIPLINES, EDGES, cfg.NEVER_MERGE)
+    # config.FORCE_BAND заданий в ОРИГІНАЛЬНИХ id (як і NEVER_MERGE) -
+    # переводимо їх у id об'єднаного блоку, яким реально оперує layout.py
+    forced_bands = {merge_map.get(nid, nid): band for nid, band in cfg.FORCE_BAND.items()}
+    layout_result = compute_layout(node_info, merged_edges, cfg, forced_bands)
     for lang in cfg.LANGUAGES:
         render(lang, node_info, layout_result)

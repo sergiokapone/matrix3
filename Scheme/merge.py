@@ -8,25 +8,20 @@
 Критерій злиття двох вузлів a (семестр n) і b (семестр n+1):
   1. однаковий "type";
   2. однаковий текст "ua" і "en" (після нормалізації пробілів/\\n);
-  3. існує ребро a -> b у EDGES (тобто це справді "продовження",
-     а не випадковий збіг назви);
+  3. (ОПЦІОНАЛЬНО) існує ребро a -> b у EDGES (як підтвердження,
+     що це справді "продовження");
   4. жоден з вузлів ланцюжка не входить у never_merge (config.NEVER_MERGE) -
      явний виняток, коли розтягування небажане навіть за виконання
-     умов 1-3 (напр. якщо хочеться бачити Алгебру окремим блоком у
-     кожному семестрі). Досить вказати ОДИН id з ланцюжка - виняток
-     стосується всього ланцюжка цілком, не розриває його посередині.
+     умов 1-2.
 
-Ланцюжки такого виду можуть бути довільної довжини (наприклад,
-3 семестри підряд) — вони згортаються в ОДИН блок, що охоплює весь
-діапазон від першого до останнього семестру.
-
-Результат — уніфікований опис вузлів (як "звичайних", так і
-"розтягнутих") з полями semester_start/semester_end, та список ребер,
-де посилання на злиті вузли замінені на id об'єднаного блоку.
-Далі з цим працює layout.py, не знаючи взагалі, що якісь вузли
-колись були кількома окремими записами.
+Якщо умову 3 вимкнути (через REQUIRE_EDGE_FOR_MERGE = False),
+то зливаються ВСІ однакові дисципліни в сусідніх семестрах,
+навіть без ребра-продовження.
 """
 from collections import defaultdict
+
+# ---- НАЛАШТУВАННЯ ----
+REQUIRE_EDGE_FOR_MERGE = False  # True - потрібне ребро, False - зливати за назвою
 
 
 def _normalize(text):
@@ -38,14 +33,23 @@ def build_merged_graph(disciplines, edges, never_merge=frozenset()):
     #         однакові тип і текст) ----
     cont_next = {}   # src -> dst
     cont_prev = {}   # dst -> src
-    for a, b in edges:
-        da, db = disciplines[a], disciplines[b]
-        if (da["type"] == db["type"]
-                and _normalize(da["ua"]) == _normalize(db["ua"])
-                and _normalize(da["en"]) == _normalize(db["en"])
-                and db["semester"] == da["semester"] + 1):
-            cont_next[a] = b
-            cont_prev[b] = a
+
+    edge_set = set(edges)
+
+    for nid, info in disciplines.items():
+        # Шукаємо кандидатів у наступному семестрі
+        for other_id, other_info in disciplines.items():
+            if (other_info["semester"] == info["semester"] + 1
+                    and info["type"] == other_info["type"]
+                    and _normalize(info["ua"]) == _normalize(other_info["ua"])
+                    and _normalize(info["en"]) == _normalize(other_info["en"])):
+
+                # Перевіряємо умову наявності ребра (якщо ввімкнено)
+                if REQUIRE_EDGE_FOR_MERGE and (nid, other_id) not in edge_set:
+                    continue
+
+                cont_next[nid] = other_id
+                cont_prev[other_id] = nid
 
     # ---- 2) зібрати ланцюжки: починаємо з вузлів, які самі не є
     #         "продовженням" когось іншого, і йдемо вперед ----
@@ -114,4 +118,4 @@ def build_merged_graph(disciplines, edges, never_merge=frozenset()):
         seen.add((na, nb))
         new_edges.append((na, nb))
 
-    return node_info, new_edges
+    return node_info, new_edges, merge_map

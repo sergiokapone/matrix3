@@ -65,17 +65,17 @@ DISCIPLINES = {
         "ua": "Алгебра та геометрія",
         "en": "Algebra and Geometry",
     },
-    "S2_Thermo": {
-        "semester": 2,
-        "type": "physics",
-        "ua": "Термодинаміка\n та молекулярна фізика",
-        "en": "Thermodynamics\n and Molecular Physics",
-    },
     "S2_Chem": {
         "semester": 2,
         "type": "physics",
         "ua": "Хімія",
         "en": "Chemistry",
+    },
+    "S2_Thermo": {
+        "semester": 2,
+        "type": "physics",
+        "ua": "Термодинаміка\n та молекулярна фізика",
+        "en": "Thermodynamics\n and Molecular Physics",
     },
     "S2_Graph": {
         "semester": 2,
@@ -454,7 +454,7 @@ EDGES = [
     ("S4_Optics",    "S5_Atomic"),
     ("S4_Optics",    "S7_StatRadio"),
     ("S4_CompMeth",  "S6_MathModel"),
-    ("S4_EngPract",  "S7_Course"),
+    # ("S4_EngPract",  "S7_Course"),
 
 
     # ───────────────────────────────────────────────

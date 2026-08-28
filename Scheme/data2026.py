@@ -101,6 +101,12 @@ DISCIPLINES = {
         "ua": "Англійська мова",
         "en": "English Language",
     },
+    "S3_MatAn": {
+        "semester": 3,
+        "type": "math",
+        "ua": "Математичний аналіз",
+        "en": "Mathematical Analysis",
+    },
     "S3_MathPhys": {
         "semester": 3,
         "type": "math",
@@ -112,12 +118,6 @@ DISCIPLINES = {
         "type": "math",
         "ua": "Диференціальні рівняння",
         "en": "Differential Equations",
-    },
-    "S3_MatAn": {
-        "semester": 3,
-        "type": "math",
-        "ua": "Математичний аналіз",
-        "en": "Mathematical Analysis",
     },
     "S3_ElMag": {
         "semester": 3,
@@ -185,12 +185,18 @@ DISCIPLINES = {
         "ua": "Обчислювальні методи та компютерні пакети",
         "en": "Numerical Methods and computer Software",
     },
-    "S4_EngPract": {
+    "S4_EngProf": {
         "semester": 4,
         "type": "general",
-        "ua": "Практичний курс іноземної мови",
-        "en": "Practical Course in Foreign Language",
+        "ua": "Англійська мова\n професійного спрямування",
+        "en": "English for professional purposes",
     },
+    # "S4_EngPract": {
+    #     "semester": 4,
+    #     "type": "general",
+    #     "ua": "Практичний курс іноземної мови",
+    #     "en": "Practical Course in Foreign Language",
+    # },
     "S4_Catalog": {
         "semester": 4,
         "type": "zu",
@@ -390,9 +396,9 @@ EDGES = [
     # ───────────────────────────────────────────────
     # Семестр 1 → пізніші семестри
     # ───────────────────────────────────────────────
-    # ("S1_Alg",       "S2_Alg"),
+    ("S1_Alg",       "S2_Alg"),
     ("S1_Alg",       "S2_MatAn"),
-    # ("S1_MatAn",     "S2_MatAn"),
+    ("S1_MatAn",     "S2_MatAn"),
 
     ("S1_Mech",      "S2_Thermo"),
     ("S1_Mech",      "S4_ClassMech"),
@@ -408,10 +414,10 @@ EDGES = [
     # ───────────────────────────────────────────────
     # Семестр 2 → пізніші
     # ───────────────────────────────────────────────
-    # ("S2_Alg",       "S3_DiffEq"),
-    # ("S2_Alg",       "S3_MathPhys"),
+    ("S2_Alg",       "S3_DiffEq"),
+    ("S2_Alg",       "S3_MathPhys"),
     ("S2_MatAn", "S3_DiffEq"),
-    # ("S2_MatAn", "S3_MatAn"),
+    ("S2_MatAn", "S3_MatAn"),
     ("S2_MatAn", "S3_MathPhys"),
 
     ("S2_Thermo",    "S7_StatPhys"),
@@ -435,9 +441,9 @@ EDGES = [
 
     ("S3_MatAn", "S4_MathPhys"),
 
-     ("S3_ElMag",     "S4_Optics"),
+    ("S3_ElMag",     "S4_Optics"),
     ("S3_ElMag",     "S5_FieldTheory"),
-    ("S3_EngProf",   "S4_EngPract"),
+    ("S3_EngProf",   "S4_EngProf"),
 
 
     # ───────────────────────────────────────────────

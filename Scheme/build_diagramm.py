@@ -77,27 +77,59 @@ def render(lang, node_info, layout_result):
     fig_h = (max(ys) - min(ys)) / 1.6 + 3
     fig, ax = plt.subplots(figsize=(fig_w, fig_h))
 
+    orientation = layout_result.get("orientation", "vertical")
+    col_box_size = layout_result["col_axis_box_size"]   # розмір блоку вздовж осі семестрів
+    row_box_size = layout_result["row_axis_box_size"]   # розмір блоку вздовж осі елементів семестру
+    row_step = layout_result["row_axis_step"]
+
     # ---- фонові прямокутники семестрів (кластери) ----
-    top_with_band = 0 + cfg.BOX_H / 2 + cfg.CLUSTER_PAD_Y  # рядок 0 однаковий для всіх колонок
-    for _idx, (x, _y_top, y_bottom) in col_extent.items():
-        rect = FancyBboxPatch(
-            (x - cfg.BOX_W / 2 - cfg.CLUSTER_PAD_X, y_bottom - cfg.CLUSTER_PAD_Y),
-            cfg.BOX_W + 2 * cfg.CLUSTER_PAD_X,
-            (top_with_band - (y_bottom - cfg.CLUSTER_PAD_Y)),
-            boxstyle="round,pad=0,rounding_size=0.12",
-            linewidth=0, facecolor=cfg.CLUSTER_FACECOLOR, zorder=0)
-        ax.add_patch(rect)
+    if orientation == "vertical":
+        top_with_band = 0 + row_box_size / 2 + cfg.CLUSTER_PAD_Y  # рядок 0 однаковий для всіх колонок
+        for _idx, (x, _y_top, y_bottom) in col_extent.items():
+            rect = FancyBboxPatch(
+                (x - col_box_size / 2 - cfg.CLUSTER_PAD_X, y_bottom - cfg.CLUSTER_PAD_Y),
+                col_box_size + 2 * cfg.CLUSTER_PAD_X,
+                (top_with_band - (y_bottom - cfg.CLUSTER_PAD_Y)),
+                boxstyle="round,pad=0,rounding_size=0.12",
+                linewidth=0, facecolor=cfg.CLUSTER_FACECOLOR, zorder=0)
+            ax.add_patch(rect)
+    else:
+        # горизонтальна орієнтація: "колонка" (семестр) - тепер
+        # горизонтальна смуга вздовж Y; ліва межа - дзеркальний відповідник
+        # top_with_band (та сама формула, той самий сенс "перед елементом
+        # №0"), права межа - за найдальшим елементом у рядку
+        left_with_band = 0 - (row_box_size / 2 + cfg.CLUSTER_PAD_Y)
+        for _idx, (y, ext_a, ext_b) in col_extent.items():
+            x_far = max(ext_a, ext_b) + cfg.CLUSTER_PAD_Y
+            rect = FancyBboxPatch(
+                (left_with_band, y - col_box_size / 2 - cfg.CLUSTER_PAD_X),
+                x_far - left_with_band,
+                col_box_size + 2 * cfg.CLUSTER_PAD_X,
+                boxstyle="round,pad=0,rounding_size=0.12",
+                linewidth=0, facecolor=cfg.CLUSTER_FACECOLOR, zorder=0)
+            ax.add_patch(rect)
 
     # ---- підписи колонок (семестрів) ----
-    label_y = 0 + cfg.YSTEP * 0.55
-    for idx, x in col_x_of_idx.items():
-        # if idx == max_idx and not cfg.LAST_COLUMN_HAS_LABEL:
-        #     continue
-        sem_num = semesters[idx]
-        label = cfg.COLUMN_LABEL_TEMPLATE[lang].format(n=sem_num)
-        ax.text(x, label_y, label, ha="center", va="bottom",
-                fontsize=cfg.COL_LABEL_FONTSIZE, fontweight="bold",
-                color=cfg.COL_LABEL_COLOR)
+    if orientation == "vertical":
+        label_pos = 0 + row_step * 0.55
+        for idx, x in col_x_of_idx.items():
+            # if idx == max_idx and not cfg.LAST_COLUMN_HAS_LABEL:
+            #     continue
+            sem_num = semesters[idx]
+            label = cfg.COLUMN_LABEL_TEMPLATE[lang].format(n=sem_num)
+            ax.text(x, label_pos, label, ha="center", va="bottom",
+                    fontsize=cfg.COL_LABEL_FONTSIZE, fontweight="bold",
+                    color=cfg.COL_LABEL_COLOR)
+    else:
+        label_pos = -(row_step * 0.55)
+        for idx, y in col_x_of_idx.items():
+            # if idx == max_idx and not cfg.LAST_COLUMN_HAS_LABEL:
+            #     continue
+            sem_num = semesters[idx]
+            label = cfg.COLUMN_LABEL_TEMPLATE[lang].format(n=sem_num)
+            ax.text(label_pos, y, label, ha="right", va="center",
+                    fontsize=cfg.COL_LABEL_FONTSIZE, fontweight="bold",
+                    color=cfg.COL_LABEL_COLOR)
 
     # ---- ребра (лінії - під блоками, блоки малюємо пізніше зверху) ----
     for e in edge_paths:
@@ -157,7 +189,7 @@ def render(lang, node_info, layout_result):
     out_pdf = f"{cfg.OUTPUT_BASENAME}_{lang}.pdf"
     out_png = f"{cfg.OUTPUT_BASENAME}_{lang}.png"
     plt.savefig(out_pdf, bbox_inches="tight")
-    plt.savefig(out_png, dpi=150, bbox_inches="tight")
+    plt.savefig(out_png, dpi=300, bbox_inches="tight")
     plt.close(fig)
     print(f"saved {out_png}, {out_pdf}")
 

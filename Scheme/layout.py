@@ -45,9 +45,26 @@
 """
 from collections import defaultdict
 import heapq
+import numpy as np
 
 
 def compute_layout(node_info, edges, cfg, forced_bands=None):
+    # ---- орієнтація визначається ЗАЗДАЛЕГІДЬ: блок завжди фізично
+    #      BOX_W x BOX_H (не обертається), тому крок сітки вздовж
+    #      "осі семестрів" (u) і "осі елементів у семестрі" (v) мають
+    #      спиратись на ту сторону блоку, яка після повороту (у кінці
+    #      функції) стане відповідною фізичною віссю:
+    #      vertical:   u -> x (потрібна ширина блоку BOX_W), v -> y (BOX_H)
+    #      horizontal: u -> y (потрібна ширина блоку по y це BOX_H),
+    #                  v -> x (потрібна ширина блоку по x це BOX_W)
+    orientation = getattr(cfg, "ORIENTATION", "vertical")
+    if orientation == "horizontal":
+        U_SIZE, V_SIZE = cfg.BOX_H, cfg.BOX_W
+    else:
+        U_SIZE, V_SIZE = cfg.BOX_W, cfg.BOX_H
+    U_STEP = U_SIZE + cfg.COL_GAP
+    V_STEP = V_SIZE + cfg.ROW_GAP
+
     normal_ids = [nid for nid, info in node_info.items()
                   if info["semester_start"] == info["semester_end"]]
     wide_ids = [nid for nid, info in node_info.items()
@@ -63,10 +80,10 @@ def compute_layout(node_info, edges, cfg, forced_bands=None):
     max_idx = len(semesters) - 1
 
     def col_x(idx):
-        return idx * cfg.XSTEP
+        return idx * U_STEP
 
     def row_y(r):
-        return -r * cfg.YSTEP
+        return -r * V_STEP
 
     # ---- єдине розміщення по рядках: розтягнутий вузол - це просто
     #      один рядок, як і звичайний, тільки той самий номер рядка
@@ -119,22 +136,22 @@ def compute_layout(node_info, edges, cfg, forced_bands=None):
         col_x_of_idx[idx] = x
         rows_here = [row_of[nid] for nid in visible_in_col.get(idx, [])]
         if rows_here:
-            y_top = row_y(min(rows_here)) + cfg.BOX_H / 2
-            y_bottom = row_y(max(rows_here)) - cfg.BOX_H / 2
+            y_top = row_y(min(rows_here)) + V_SIZE / 2
+            y_bottom = row_y(max(rows_here)) - V_SIZE / 2
         else:
-            y_top = cfg.BOX_H / 2
-            y_bottom = y_top - cfg.BOX_H
+            y_top = V_SIZE / 2
+            y_bottom = y_top - V_SIZE
         col_extent[idx] = (x, y_top, y_bottom)
 
     for nid, info in node_info.items():
         s_idx, e_idx = home_col[nid], span_end_col[nid]
         y = row_y(row_of[nid])
         if s_idx == e_idx:
-            pos[nid] = (col_x(s_idx), y, cfg.BOX_W, cfg.BOX_H)
+            pos[nid] = (col_x(s_idx), y, U_SIZE, V_SIZE)
         else:
             x = (col_x(s_idx) + col_x(e_idx)) / 2
-            w = (col_x(e_idx) - col_x(s_idx)) + cfg.BOX_W
-            pos[nid] = (x, y, w, cfg.BOX_H)
+            w = (col_x(e_idx) - col_x(s_idx)) + U_SIZE
+            pos[nid] = (x, y, w, V_SIZE)
 
     # ---- індекс колонки для кожного вузла (для маршрутизації: скільки
     #      коридорів перестрибує ребро) ----
@@ -148,12 +165,12 @@ def compute_layout(node_info, edges, cfg, forced_bands=None):
                            y - h / 2 - cfg.OBST_PAD, y + h / 2 + cfg.OBST_PAD)
 
     # ---- координати коридорів (між колонками) і каналів (між рядками) ----
-    corridors = sorted(col_x_of_idx[i] + cfg.XSTEP / 2 for i in range(max_idx))
+    corridors = sorted(col_x_of_idx[i] + U_STEP / 2 for i in range(max_idx))
     # найбільший зайнятий номер рядка по всіх колонках (row_of уже враховує
     # і звичайні, і розтягнуті блоки, і forced_bands - рахований вище)
     max_rows = max(row_of.values(), default=0)
     band_rows_count = max_rows + 1
-    channels = sorted(row_y(k) + cfg.YSTEP / 2 for k in range(-1, max_rows + 2))
+    channels = sorted(row_y(k) + V_STEP / 2 for k in range(-1, max_rows + 2))
 
     def corridor_after(x):
         cands = [c for c in corridors if c > x + cfg.EPS]
@@ -314,6 +331,7 @@ def compute_layout(node_info, edges, cfg, forced_bands=None):
 
     trunk_y = pack_lanes(multi_edges, barycenter, trunk_interval, trunk_candidates, trunk_is_free)
 
+
     # ---- крок Б: вертикальні "перетини" всередині кожного коридору ----
     # ключ items: ('adj', e) для сусідніх ребер, ('in', e)/('out', e) для
     # входу/виходу стовбурних ребер у межах їхнього першого/останнього
@@ -380,7 +398,7 @@ def compute_layout(node_info, edges, cfg, forced_bands=None):
     #      призначена смуга виявилась заблокованою (рідкісний край) ----
     fallback_usage = defaultdict(int)
 
-    def grid_fallback_route(x1, y1, x2, y2, exclude):
+    def grid_fallback_route(x1, y1, x2, y2, exclude, final_kind):
         wx = sorted(set(corridors) | {x1, x2})
         wy = sorted(set(channels) | {y1, y2})
         xi = {v: i for i, v in enumerate(wx)}
@@ -412,7 +430,28 @@ def compute_layout(node_info, edges, cfg, forced_bands=None):
                 bend = 0.0 if (d is None or d == kind) else cfg.BEND_PENALTY
                 gkey = seg_key((ix, iy), (nix, niy))
                 cong = cfg.CONGESTION_WEIGHT * fallback_usage.get(gkey, 0)
-                res.append(((nix, niy, kind), dist + bend + cong, gkey))
+                # штраф за проїзд УЗДОВЖ власної грані блоку (x=x2 або
+                # y=y2) - ці лінії додані в сітку (wx/wy нижче) лише щоб
+                # гарантувати, що ціль ВЗАГАЛІ досяжна, а не як звичайний
+                # наскрізний коридор. Без штрафу Дейкстра іноді знаходить
+                # "дешевшим" виїхати на грань блоку заздалегідь і потім
+                # довго ковзати вздовж неї до порту, замість короткого
+                # перпендикулярного заходу в останній момент - саме це і
+                # виглядає як "стрілка входить по дотичній". Штраф не
+                # діє на сам фінальний крок до цілі.
+                # штраф за НЕПРАВИЛЬНИЙ НАПРЯМОК фінального кроку в ціль:
+                # порт на лівій/правій грані блоку (LR) вимагає, щоб
+                # ОСТАННІЙ відрізок шляху був ГОРИЗОНТАЛЬНИМ (заходимо
+                # збоку, впритул); порт на верхній/нижній грані (TB) -
+                # ВЕРТИКАЛЬНИМ. Якщо фінальний крок не того типу, шлях
+                # спершу виїжджає точно на лінію x2 (чи y2) ЗАЗДАЛЕГІДЬ,
+                # а потім ковзає вздовж неї до порту - лінія тоді
+                # буквально збігається з гранню блоку замість
+                # перпендикулярного заходу в останній момент.
+                hug = 0.0
+                if (nix, niy) == goal_xy and kind != final_kind:
+                    hug += 10000.0
+                res.append(((nix, niy, kind), dist + bend + cong + hug, gkey))
             return res
 
         dist_map, prev, pq, visited = {start: 0.0}, {}, [(0.0, start)], set()
@@ -466,36 +505,110 @@ def compute_layout(node_info, edges, cfg, forced_bands=None):
         dx, dy, dw, dh = pos[dst]
         ov_lo = max(sx - sw / 2, dx - dw / 2)
         ov_hi = min(sx + sw / 2, dx + dw / 2)
-        cx = (ov_lo + ov_hi) / 2 if ov_hi > ov_lo else (sx + dx) / 2
         if sy > dy:
             y1, y2 = sy - sh / 2, dy + dh / 2   # src знизу -> dst зверху
         else:
             y1, y2 = sy + sh / 2, dy - dh / 2   # src зверху -> dst знизу
         exclude = {src, dst}
-        chosen_x = cx
-        for cand_x in make_x_candidates(cx):
-            if seg_free(('v', cand_x, y1, y2), exclude):
-                chosen_x = cand_x
-                break
-        endpoints_cache[e] = (chosen_x, y1, chosen_x, y2)
-        edge_paths[e] = [(chosen_x, y1), (chosen_x, y2)]
 
+        if ov_hi > ov_lo:
+            # блоки перетинаються по X - є спільна смуга, де ОДНА пряма
+            # вертикальна лінія влучає в обидва блоки по нормалі
+            cx = (ov_lo + ov_hi) / 2
+            chosen_x = cx
+            for cand_x in make_x_candidates(cx):
+                if seg_free(('v', cand_x, y1, y2), exclude):
+                    chosen_x = cand_x
+                    break
+            endpoints_cache[e] = (chosen_x, y1, chosen_x, y2)
+            edge_paths[e] = [(chosen_x, y1), (chosen_x, y2)]
+        else:
+            # перетину немає - пряма вертикаль на "середині" (sx+dx)/2
+            # фізично промахується повз ширину цільового (а часто й
+            # вихідного) блоку - лінія б впиралась збоку, а не по
+            # нормалі в грань. Замість цього: вертикальний вихід рівно
+            # з ЦЕНТРУ джерела, горизонтальна перемичка на проміжному
+            # рівні, і вертикальний вхід рівно в ЦЕНТР цілі - обидва
+            # порти гарантовано в межах "своїх" блоків.
+            mid_y = (y1 + y2) / 2
+            endpoints_cache[e] = (sx, y1, dx, y2)
+            edge_paths[e] = simplify(
+                [(sx, y1), (sx, mid_y), (dx, mid_y), (dx, y2)])
+
+    vertical_edges_set = set(vertical_edges)
     for e in edges:
         src, dst = e
         exclude = {src, dst}
         if not path_free(edge_paths[e], exclude):
             x1, y1, x2, y2 = endpoints_cache[e]
-            fb = grid_fallback_route(x1, y1, x2, y2, exclude)
+            final_kind = 'v' if e in vertical_edges_set else 'h'
+            fb = grid_fallback_route(x1, y1, x2, y2, exclude, final_kind)
             if fb is not None:
                 edge_paths[e] = fb
 
+    # =====================================================================
+    # ОРІЄНТАЦІЯ: усе вище рахувалось у "логічних" осях (u = вісь семестрів,
+    # v = вісь порядку в семестрі), а розміри блоків (U_SIZE/V_SIZE) вже
+    # ЗАЗДАЛЕГІДЬ підібрані так, щоб після повороту фізичний блок лишався
+    # BOX_W x BOX_H в обох орієнтаціях (сам блок не обертається - лише
+    # координати). "vertical" (за замовчуванням): u йде вправо (x), v -
+    # вниз (y), як і було завжди. "horizontal": u йде вниз (y), v -
+    # вправо (x), тобто дисципліни одного семестру йдуть в один рядок
+    # ліворуч->праворуч, а самі семестри - зверху вниз.
+    #
+    # Це поворот на 90° - (x, y) -> (-y, -x) - застосований ПОСТФАКТУМ до
+    # вже готової геометрії: сам алгоритм пакування смуг і маршрутизації
+    # вище рахує все як завжди і не знає про орієнтацію.
+    # =====================================================================
+    if orientation == "horizontal":
+        # (x, y) -> (-y, -x): один numpy-оператор на всі координати одразу -
+        # rotate() нижче і є тим самим місцем, де "легко робиться інверсія":
+        # для дзеркальної/іншої трансформації досить переписати саме цю
+        # функцію, решта коду (алгоритм пакування смуг вище, build_diagramm.py
+        # нижче) її не знає.
+        def rotate(points):
+            arr = np.asarray(points, dtype=float).reshape(-1, 2)
+            return (arr[:, ::-1] * -1.0)
+
+        pos_ids = list(pos.keys())
+        xy = rotate([(x, y) for x, y, _w, _h in pos.values()])
+        # розміри теж міняються місцями (без знаку!) - "довга" вздовж
+        # старої u-осі сторона розтягнутого блоку (w) стає його висотою
+        # (h) після повороту, і навпаки. Це НЕЗАЛЕЖНО від U_SIZE/V_SIZE
+        # вище: той свап відповідав за те, ЯКЕ число піде в w/h ще ДО
+        # повороту (щоб після свапу вийшло рівно BOX_W x BOX_H для
+        # звичайного блоку), а цей swap - за те, на яку вісь це число
+        # ляже на полотні.
+        pos = {nid: (xy[i, 0], xy[i, 1], pos[nid][3], pos[nid][2])
+               for i, nid in enumerate(pos_ids)}
+
+        ext_ids = list(col_extent.keys())
+        # три числа на колонку - це НЕ одна точка (x,y), а перпендикулярна
+        # координата + два кінці екстенту; трансформуємо як три незалежні
+        # "x"-значення через ту саму rotate(), підставляючи фіктивний 0
+        ext_arr = np.array([col_extent[i] for i in ext_ids], dtype=float)  # (N, 3)
+        ext_new = -ext_arr
+        col_extent = {ext_ids[i]: tuple(ext_new[i]) for i in range(len(ext_ids))}
+
+        idx_ids = list(col_x_of_idx.keys())
+        idx_vals = -np.array([col_x_of_idx[i] for i in idx_ids], dtype=float)
+        col_x_of_idx = {idx_ids[i]: idx_vals[i] for i in range(len(idx_ids))}
+
+        for e in list(edge_paths.keys()):
+            pts = rotate(edge_paths[e])
+            edge_paths[e] = [tuple(p) for p in pts]
+
     return {
         "pos": pos,                     # nid -> (x, y, w, h)
-        "col_extent": col_extent,         # idx -> (x, y_top, y_bottom)
-        "col_x_of_idx": col_x_of_idx,     # idx -> x
+        "col_extent": col_extent,         # idx -> (перп.координата, екстент_a, екстент_b)
+        "col_x_of_idx": col_x_of_idx,     # idx -> координата колонки на її "власній" осі
         "semesters": semesters,           # відсортований список номерів семестрів
         "col_of_sem": col_of_sem,         # semester -> idx
         "max_col_idx": max_idx,
         "band_rows_count": band_rows_count,
         "edge_paths": edge_paths,         # edge -> [(x,y), ...]
+        "orientation": orientation,       # "vertical" | "horizontal" - для build_diagramm.py
+        "col_axis_box_size": U_SIZE,      # фізичний розмір блоку вздовж осі семестрів
+        "row_axis_box_size": V_SIZE,      # фізичний розмір блоку вздовж осі елементів семестру
+        "row_axis_step": V_STEP,          # крок сітки вздовж осі елементів семестру
     }

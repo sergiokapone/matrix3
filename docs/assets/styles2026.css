@@ -112,3 +112,10 @@
     box-shadow: 0 0 0 3px #4A90E2, 0 4px 10px rgba(16, 24, 40, 0.15);
     transition: box-shadow 0.12s ease;
   }
+  @keyframes flash-target {
+    0%, 100% { box-shadow: 0 1px 2px rgba(16, 24, 40, 0.04); }
+    30% { box-shadow: 0 0 0 4px #4A90E2, 0 4px 14px rgba(16, 24, 40, 0.2); }
+  }
+  .card.flash-target {
+    animation: flash-target 0.9s ease;
+  }

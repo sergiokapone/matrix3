@@ -75,5 +75,34 @@
         target.classList.add('hl-target');
       });
       li.addEventListener('mouseleave', clearArrow);
+
+      li.addEventListener('click', function () {
+        var target = cardsById[li.getAttribute('data-target')];
+        if (!target) return;
+
+        // якщо ціль зараз прихована пошуковим фільтром - без цього клік
+        // мовчки нічого не робив би: скидаємо пошук, щоб картка знову
+        // стала видимою, перш ніж до неї скролити
+        if (target.dataset.hidden === "true") {
+          var search = document.getElementById('search');
+          search.value = "";
+          search.dispatchEvent(new Event('input'));
+        }
+
+        clearArrow();
+        target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+        // коротке підсвічування-спалах, щоб було видно, куди саме
+        // перейшли, навіть якщо картка вже й так була у в'юпорті
+        target.classList.remove('flash-target');
+        // reflow, щоб перезапустити CSS-анімацію при повторному кліку
+        // на той самий пререквізит/постреквізит
+        void target.offsetWidth;
+        target.classList.add('flash-target');
+        target.addEventListener('animationend', function handler() {
+          target.classList.remove('flash-target');
+          target.removeEventListener('animationend', handler);
+        });
+      });
     });
   })();

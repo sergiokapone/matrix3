@@ -105,8 +105,10 @@
     margin: 0 -0.3rem;
     transition: background 0.12s ease;
   }
-  .rel-list li[data-target]:hover {
-    background: #eef3fb;
+  @media (hover: hover) {
+    .rel-list li[data-target]:hover {
+      background: #eef3fb;
+    }
   }
   .card.hl-target {
     box-shadow: 0 0 0 3px #4A90E2, 0 4px 10px rgba(16, 24, 40, 0.15);
@@ -118,4 +120,23 @@
   }
   .card.flash-target {
     animation: flash-target 0.9s ease;
+  }
+
+  /* ---- телефони: менше повітря, більші тап-зони ---- */
+  @media (max-width: 640px) {
+    body { padding: 1rem; }
+    h1 { font-size: 1.3rem; }
+    .subtitle { font-size: 0.82rem; }
+    .search { max-width: 100%; font-size: 1rem; }  /* 16px - інакше iOS Safari сам зумить при фокусі */
+    .grid { gap: 0.7rem; }
+    .card { padding: 0.8rem 0.9rem; }
+    .semester-title { font-size: 0.95rem; }
+    /* рядки пре-/постреквізитів клікабельні - на телефоні їм треба
+       реальну висоту пальця (мінімум ~44px рекомендація Apple/Google),
+       а не той самий вузький рядок, що зручний для миші */
+    .rel-list li[data-target] {
+      padding: 0.55rem 0.4rem;
+      margin: 0 -0.4rem;
+      min-height: 1.3rem;
+    }
   }

@@ -1,14 +1,21 @@
 # -*- coding: utf-8 -*-
 """
 Рендер графа навчального плану через matplotlib.
-Тільки малювання: дані беруться з data2026.py, дисципліни, що
-повторюються в кількох семестрах підряд, згортаються в один блок
-(merge.py), геометрія/кольори — з config.py, розкладка й
-маршрутизація ребер — з layout.py.
+Дані беруться з data<рік>.py (обирається аргументом командного рядка,
+див. data_registry.py) - build_diagramm.py сам по собі не прив'язаний
+до жодного конкретного року. Дисципліни, що повторюються в кількох
+семестрах підряд, згортаються в один блок (merge.py), геометрія/кольори
+— з config.py, розкладка й маршрутизація ребер — з layout.py.
 
 Будує ОБИДВІ мовні версії (ua/en) з одних і тих самих даних —
 відрізняється лише те, яке поле ("ua"/"en") береться як підпис
 блоку та який шаблон використовується для заголовків колонок.
+
+Запуск:
+  python3 build_diagramm.py            - усі роки, для яких є data<рік>.py
+  python3 build_diagramm.py 2026       - лише 2026
+  python3 build_diagramm.py 2025 2026  - кілька конкретних років
+  python3 build_diagramm.py all        - те саме, що без аргументів
 """
 import textwrap
 
@@ -20,7 +27,7 @@ from matplotlib.path import Path
 import matplotlib.patches as mpatches
 
 import config as cfg
-from data2026 import DISCIPLINES, EDGES
+from data_registry import resolve_requested_years, load_year
 from merge import build_merged_graph
 from layout import compute_layout
 
@@ -53,7 +60,7 @@ def fit_label(text, box_w, box_h):
     return wrapped, fontsize
 
 
-def render(lang, node_info, layout_result):
+def render(lang, node_info, layout_result, output_basename):
     pos = layout_result["pos"]
     col_extent = layout_result["col_extent"]
     col_x_of_idx = layout_result["col_x_of_idx"]
@@ -186,8 +193,8 @@ def render(lang, node_info, layout_result):
     ax.set_aspect("equal")
     plt.tight_layout()
 
-    out_pdf = f"{cfg.OUTPUT_BASENAME}_{lang}.pdf"
-    out_png = f"{cfg.OUTPUT_BASENAME}_{lang}.png"
+    out_pdf = f"{output_basename}_{lang}.pdf"
+    out_png = f"{output_basename}_{lang}.png"
     plt.savefig(out_pdf, bbox_inches="tight")
     plt.savefig(out_png, dpi=300, bbox_inches="tight")
     plt.close(fig)
@@ -195,16 +202,31 @@ def render(lang, node_info, layout_result):
 
 
 if __name__ == "__main__":
+    import sys
     import validate_data
-    if validate_data.main() != 0:
-        raise SystemExit("Дані не пройшли валідацію (validate_data.py) - виправте помилки вище.")
 
-    # злиття дисциплін, що йдуть кілька семестрів підряд, і побудова
-    # розкладки - від мови не залежать, рахуємо один раз
-    node_info, merged_edges, merge_map = build_merged_graph(DISCIPLINES, EDGES, cfg.NEVER_MERGE)
-    # config.FORCE_BAND заданий в ОРИГІНАЛЬНИХ id (як і NEVER_MERGE) -
-    # переводимо їх у id об'єднаного блоку, яким реально оперує layout.py
-    forced_bands = {merge_map.get(nid, nid): band for nid, band in cfg.FORCE_BAND.items()}
-    layout_result = compute_layout(node_info, merged_edges, cfg, forced_bands)
-    for lang in cfg.LANGUAGES:
-        render(lang, node_info, layout_result)
+    years = resolve_requested_years(sys.argv[1:])
+    print(f"Побудова для року(ів): {years}\n")
+
+    for year in years:
+        DISCIPLINES, EDGES, NEVER_MERGE, FORCE_BAND = load_year(year)
+
+        print(f"=== {year} ===")
+        if validate_data.main(DISCIPLINES, EDGES) != 0:
+            raise SystemExit(
+                f"Дані data{year}.py не пройшли валідацію (validate_data.py) - "
+                f"виправте помилки вище."
+            )
+
+        # злиття дисциплін, що йдуть кілька семестрів підряд, і побудова
+        # розкладки - від мови не залежать, рахуємо один раз
+        node_info, merged_edges, merge_map, spine_edges = build_merged_graph(
+            DISCIPLINES, EDGES, NEVER_MERGE)
+        # FORCE_BAND заданий в ОРИГІНАЛЬНИХ id (як і NEVER_MERGE) -
+        # переводимо їх у id об'єднаного блоку, яким реально оперує layout.py
+        forced_bands = {merge_map.get(nid, nid): band for nid, band in FORCE_BAND.items()}
+        layout_result = compute_layout(node_info, merged_edges, cfg, forced_bands, spine_edges)
+        output_basename = f"diagramm_{year}"
+        for lang in cfg.LANGUAGES:
+            render(lang, node_info, layout_result, output_basename)
+        print()

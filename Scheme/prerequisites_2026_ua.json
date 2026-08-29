@@ -1,0 +1,1037 @@
+{
+  "S1_Military": {
+    "id": "S1_Military",
+    "name": "Основи національного спротиву",
+    "semester": 1,
+    "type": "general",
+    "color": "#B8B8B8",
+    "prerequisites": [],
+    "postrequisites": [
+      {
+        "id": "S2_Military",
+        "name": "Основи національного спротиву"
+      }
+    ]
+  },
+  "S1_Eng": {
+    "id": "S1_Eng",
+    "name": "Англійська мова",
+    "semester": 1,
+    "type": "general",
+    "color": "#B8B8B8",
+    "prerequisites": [],
+    "postrequisites": [
+      {
+        "id": "S2_Eng",
+        "name": "Англійська мова"
+      }
+    ]
+  },
+  "S1_MatAn": {
+    "id": "S1_MatAn",
+    "name": "Математичний аналіз",
+    "semester": 1,
+    "type": "math",
+    "color": "#4A90E2",
+    "prerequisites": [],
+    "postrequisites": [
+      {
+        "id": "S2_MatAn",
+        "name": "Математичний аналіз"
+      }
+    ]
+  },
+  "S1_Alg": {
+    "id": "S1_Alg",
+    "name": "Алгебра та геометрія",
+    "semester": 1,
+    "type": "math",
+    "color": "#4A90E2",
+    "prerequisites": [],
+    "postrequisites": [
+      {
+        "id": "S2_Alg",
+        "name": "Алгебра та геометрія"
+      },
+      {
+        "id": "S2_MatAn",
+        "name": "Математичний аналіз"
+      }
+    ]
+  },
+  "S1_Intro": {
+    "id": "S1_Intro",
+    "name": "Введення в спеціальність",
+    "semester": 1,
+    "type": "pract",
+    "color": "#D4A5FF",
+    "prerequisites": [],
+    "postrequisites": [
+      {
+        "id": "S7_Course",
+        "name": "Міждисциплінарна курсова робота"
+      }
+    ]
+  },
+  "S1_Mech": {
+    "id": "S1_Mech",
+    "name": "Механіка",
+    "semester": 1,
+    "type": "physics",
+    "color": "#E85D75",
+    "prerequisites": [],
+    "postrequisites": [
+      {
+        "id": "S3_ElMag",
+        "name": "Електрика та магнетизм"
+      },
+      {
+        "id": "S4_ClassMech",
+        "name": "Класична механіка"
+      },
+      {
+        "id": "S2_Thermo",
+        "name": "Термодинаміка та молекулярна фізика"
+      }
+    ]
+  },
+  "S1_Econ": {
+    "id": "S1_Econ",
+    "name": "Основи економіки",
+    "semester": 1,
+    "type": "general",
+    "color": "#B8B8B8",
+    "prerequisites": [],
+    "postrequisites": []
+  },
+  "S1_Ukr": {
+    "id": "S1_Ukr",
+    "name": "Українська мова за проф. спрямуванням",
+    "semester": 1,
+    "type": "general",
+    "color": "#B8B8B8",
+    "prerequisites": [],
+    "postrequisites": []
+  },
+  "S1_Health": {
+    "id": "S1_Health",
+    "name": "Основи здорового способу життя",
+    "semester": 1,
+    "type": "general",
+    "color": "#B8B8B8",
+    "prerequisites": [],
+    "postrequisites": []
+  },
+  "S2_MatAn": {
+    "id": "S2_MatAn",
+    "name": "Математичний аналіз",
+    "semester": 2,
+    "type": "math",
+    "color": "#4A90E2",
+    "prerequisites": [
+      {
+        "id": "S1_Alg",
+        "name": "Алгебра та геометрія"
+      },
+      {
+        "id": "S1_MatAn",
+        "name": "Математичний аналіз"
+      }
+    ],
+    "postrequisites": [
+      {
+        "id": "S3_DiffEq",
+        "name": "Диференціальні рівняння"
+      },
+      {
+        "id": "S3_MatAn",
+        "name": "Математичний аналіз"
+      },
+      {
+        "id": "S3_MathPhys",
+        "name": "Методи математичної фізики"
+      }
+    ]
+  },
+  "S2_Alg": {
+    "id": "S2_Alg",
+    "name": "Алгебра та геометрія",
+    "semester": 2,
+    "type": "math",
+    "color": "#4A90E2",
+    "prerequisites": [
+      {
+        "id": "S1_Alg",
+        "name": "Алгебра та геометрія"
+      }
+    ],
+    "postrequisites": [
+      {
+        "id": "S3_DiffEq",
+        "name": "Диференціальні рівняння"
+      },
+      {
+        "id": "S3_MathPhys",
+        "name": "Методи математичної фізики"
+      }
+    ]
+  },
+  "S2_Chem": {
+    "id": "S2_Chem",
+    "name": "Хімія",
+    "semester": 2,
+    "type": "physics",
+    "color": "#E85D75",
+    "prerequisites": [],
+    "postrequisites": [
+      {
+        "id": "S5_Atomic",
+        "name": "Атомна фізика"
+      }
+    ]
+  },
+  "S2_Thermo": {
+    "id": "S2_Thermo",
+    "name": "Термодинаміка та молекулярна фізика",
+    "semester": 2,
+    "type": "physics",
+    "color": "#E85D75",
+    "prerequisites": [
+      {
+        "id": "S1_Mech",
+        "name": "Механіка"
+      }
+    ],
+    "postrequisites": [
+      {
+        "id": "S7_StatPhys",
+        "name": "Стат. фіз. та основи ФТТ"
+      }
+    ]
+  },
+  "S2_Graph": {
+    "id": "S2_Graph",
+    "name": "Комп'ютерна графіка",
+    "semester": 2,
+    "type": "comp",
+    "color": "#7ED321",
+    "prerequisites": [],
+    "postrequisites": [
+      {
+        "id": "S3_CompMeth",
+        "name": "Обчислювальні методи та компютерні пакети"
+      }
+    ]
+  },
+  "S2_HistPhil": {
+    "id": "S2_HistPhil",
+    "name": "Історико-філософські засади суспільного розвитку",
+    "semester": 2,
+    "type": "general",
+    "color": "#B8B8B8",
+    "prerequisites": [],
+    "postrequisites": []
+  },
+  "S2_Military": {
+    "id": "S2_Military",
+    "name": "Основи національного спротиву",
+    "semester": 2,
+    "type": "general",
+    "color": "#B8B8B8",
+    "prerequisites": [
+      {
+        "id": "S1_Military",
+        "name": "Основи національного спротиву"
+      }
+    ],
+    "postrequisites": []
+  },
+  "S2_Eng": {
+    "id": "S2_Eng",
+    "name": "Англійська мова",
+    "semester": 2,
+    "type": "general",
+    "color": "#B8B8B8",
+    "prerequisites": [
+      {
+        "id": "S1_Eng",
+        "name": "Англійська мова"
+      }
+    ],
+    "postrequisites": [
+      {
+        "id": "S3_EngProf",
+        "name": "Англійська мова професійного спрямування"
+      }
+    ]
+  },
+  "S3_MatAn": {
+    "id": "S3_MatAn",
+    "name": "Математичний аналіз",
+    "semester": 3,
+    "type": "math",
+    "color": "#4A90E2",
+    "prerequisites": [
+      {
+        "id": "S2_MatAn",
+        "name": "Математичний аналіз"
+      }
+    ],
+    "postrequisites": [
+      {
+        "id": "S4_MathPhys",
+        "name": "Методи математичної фізики"
+      }
+    ]
+  },
+  "S3_MathPhys": {
+    "id": "S3_MathPhys",
+    "name": "Методи математичної фізики",
+    "semester": 3,
+    "type": "math",
+    "color": "#4A90E2",
+    "prerequisites": [
+      {
+        "id": "S2_Alg",
+        "name": "Алгебра та геометрія"
+      },
+      {
+        "id": "S2_MatAn",
+        "name": "Математичний аналіз"
+      }
+    ],
+    "postrequisites": [
+      {
+        "id": "S4_MathPhys",
+        "name": "Методи математичної фізики"
+      }
+    ]
+  },
+  "S3_DiffEq": {
+    "id": "S3_DiffEq",
+    "name": "Диференціальні рівняння",
+    "semester": 3,
+    "type": "math",
+    "color": "#4A90E2",
+    "prerequisites": [
+      {
+        "id": "S2_Alg",
+        "name": "Алгебра та геометрія"
+      },
+      {
+        "id": "S2_MatAn",
+        "name": "Математичний аналіз"
+      }
+    ],
+    "postrequisites": [
+      {
+        "id": "S4_ClassMech",
+        "name": "Класична механіка"
+      }
+    ]
+  },
+  "S3_ElMag": {
+    "id": "S3_ElMag",
+    "name": "Електрика та магнетизм",
+    "semester": 3,
+    "type": "physics",
+    "color": "#E85D75",
+    "prerequisites": [
+      {
+        "id": "S1_Mech",
+        "name": "Механіка"
+      }
+    ],
+    "postrequisites": [
+      {
+        "id": "S4_Optics",
+        "name": "Оптика"
+      },
+      {
+        "id": "S5_FieldTheory",
+        "name": "Теорія поля"
+      }
+    ]
+  },
+  "S3_Prog": {
+    "id": "S3_Prog",
+    "name": "Програмування",
+    "semester": 3,
+    "type": "comp",
+    "color": "#7ED321",
+    "prerequisites": [],
+    "postrequisites": [
+      {
+        "id": "S4_CompMeth",
+        "name": "Обчислювальні методи та компютерні пакети"
+      },
+      {
+        "id": "S4_Prog",
+        "name": "Програмування"
+      }
+    ]
+  },
+  "S3_CompMeth": {
+    "id": "S3_CompMeth",
+    "name": "Обчислювальні методи та компютерні пакети",
+    "semester": 3,
+    "type": "comp",
+    "color": "#7ED321",
+    "prerequisites": [
+      {
+        "id": "S2_Graph",
+        "name": "Комп'ютерна графіка"
+      }
+    ],
+    "postrequisites": [
+      {
+        "id": "S4_CompMeth",
+        "name": "Обчислювальні методи та компютерні пакети"
+      }
+    ]
+  },
+  "S3_EngProf": {
+    "id": "S3_EngProf",
+    "name": "Англійська мова професійного спрямування",
+    "semester": 3,
+    "type": "general",
+    "color": "#B8B8B8",
+    "prerequisites": [
+      {
+        "id": "S2_Eng",
+        "name": "Англійська мова"
+      }
+    ],
+    "postrequisites": [
+      {
+        "id": "S4_EngProf",
+        "name": "Англійська мова професійного спрямування"
+      }
+    ]
+  },
+  "S3_Catalog": {
+    "id": "S3_Catalog",
+    "name": "ЗУ-Каталог",
+    "semester": 3,
+    "type": "zu",
+    "color": "#F074D1",
+    "prerequisites": [],
+    "postrequisites": []
+  },
+  "S4_MathPhys": {
+    "id": "S4_MathPhys",
+    "name": "Методи математичної фізики",
+    "semester": 4,
+    "type": "math",
+    "color": "#4A90E2",
+    "prerequisites": [
+      {
+        "id": "S3_MatAn",
+        "name": "Математичний аналіз"
+      },
+      {
+        "id": "S3_MathPhys",
+        "name": "Методи математичної фізики"
+      }
+    ],
+    "postrequisites": [
+      {
+        "id": "S5_MathPhys",
+        "name": "Методи математичної фізики"
+      }
+    ]
+  },
+  "S4_DiffEq": {
+    "id": "S4_DiffEq",
+    "name": "Диференціальні рівняння",
+    "semester": 4,
+    "type": "math",
+    "color": "#4A90E2",
+    "prerequisites": [],
+    "postrequisites": [
+      {
+        "id": "S5_OscWaves",
+        "name": "Коливання та хвилі"
+      },
+      {
+        "id": "S5_MathPhys",
+        "name": "Методи математичної фізики"
+      },
+      {
+        "id": "S5_FieldTheory",
+        "name": "Теорія поля"
+      }
+    ]
+  },
+  "S4_ClassMech": {
+    "id": "S4_ClassMech",
+    "name": "Класична механіка",
+    "semester": 4,
+    "type": "physics",
+    "color": "#E85D75",
+    "prerequisites": [
+      {
+        "id": "S3_DiffEq",
+        "name": "Диференціальні рівняння"
+      },
+      {
+        "id": "S1_Mech",
+        "name": "Механіка"
+      }
+    ],
+    "postrequisites": [
+      {
+        "id": "S6_QMech",
+        "name": "Квантова механіка"
+      },
+      {
+        "id": "S5_OscWaves",
+        "name": "Коливання та хвилі"
+      }
+    ]
+  },
+  "S4_Optics": {
+    "id": "S4_Optics",
+    "name": "Оптика",
+    "semester": 4,
+    "type": "physics",
+    "color": "#E85D75",
+    "prerequisites": [
+      {
+        "id": "S3_ElMag",
+        "name": "Електрика та магнетизм"
+      }
+    ],
+    "postrequisites": [
+      {
+        "id": "S5_Atomic",
+        "name": "Атомна фізика"
+      },
+      {
+        "id": "S7_StatRadio",
+        "name": "Статистична радіофізика та оптика"
+      }
+    ]
+  },
+  "S4_Prog": {
+    "id": "S4_Prog",
+    "name": "Програмування",
+    "semester": 4,
+    "type": "comp",
+    "color": "#7ED321",
+    "prerequisites": [
+      {
+        "id": "S3_Prog",
+        "name": "Програмування"
+      }
+    ],
+    "postrequisites": [
+      {
+        "id": "S6_MathModel",
+        "name": "Математичне моделювання та відкриті пакети прикладних програм"
+      }
+    ]
+  },
+  "S4_CompMeth": {
+    "id": "S4_CompMeth",
+    "name": "Обчислювальні методи та компютерні пакети",
+    "semester": 4,
+    "type": "comp",
+    "color": "#7ED321",
+    "prerequisites": [
+      {
+        "id": "S3_CompMeth",
+        "name": "Обчислювальні методи та компютерні пакети"
+      },
+      {
+        "id": "S3_Prog",
+        "name": "Програмування"
+      }
+    ],
+    "postrequisites": [
+      {
+        "id": "S6_MathModel",
+        "name": "Математичне моделювання та відкриті пакети прикладних програм"
+      }
+    ]
+  },
+  "S4_EngProf": {
+    "id": "S4_EngProf",
+    "name": "Англійська мова професійного спрямування",
+    "semester": 4,
+    "type": "general",
+    "color": "#B8B8B8",
+    "prerequisites": [
+      {
+        "id": "S3_EngProf",
+        "name": "Англійська мова професійного спрямування"
+      }
+    ],
+    "postrequisites": []
+  },
+  "S4_Catalog": {
+    "id": "S4_Catalog",
+    "name": "ЗУ-Каталог",
+    "semester": 4,
+    "type": "zu",
+    "color": "#F074D1",
+    "prerequisites": [],
+    "postrequisites": []
+  },
+  "S4_F1": {
+    "id": "S4_F1",
+    "name": "Ф1 (Вибіркова)",
+    "semester": 4,
+    "type": "elective",
+    "color": "#F5A623",
+    "prerequisites": [],
+    "postrequisites": []
+  },
+  "S5_MathPhys": {
+    "id": "S5_MathPhys",
+    "name": "Методи математичної фізики",
+    "semester": 5,
+    "type": "math",
+    "color": "#4A90E2",
+    "prerequisites": [
+      {
+        "id": "S4_DiffEq",
+        "name": "Диференціальні рівняння"
+      },
+      {
+        "id": "S4_MathPhys",
+        "name": "Методи математичної фізики"
+      }
+    ],
+    "postrequisites": [
+      {
+        "id": "S6_ESS",
+        "name": "Електродинаміка суцільних середовищ"
+      },
+      {
+        "id": "S6_ProbStat",
+        "name": "Теорія ймовірності та математична статистика"
+      }
+    ]
+  },
+  "S5_Atomic": {
+    "id": "S5_Atomic",
+    "name": "Атомна фізика",
+    "semester": 5,
+    "type": "physics",
+    "color": "#E85D75",
+    "prerequisites": [
+      {
+        "id": "S4_Optics",
+        "name": "Оптика"
+      },
+      {
+        "id": "S2_Chem",
+        "name": "Хімія"
+      }
+    ],
+    "postrequisites": [
+      {
+        "id": "S6_QMech",
+        "name": "Квантова механіка"
+      }
+    ]
+  },
+  "S5_FieldTheory": {
+    "id": "S5_FieldTheory",
+    "name": "Теорія поля",
+    "semester": 5,
+    "type": "physics",
+    "color": "#E85D75",
+    "prerequisites": [
+      {
+        "id": "S4_DiffEq",
+        "name": "Диференціальні рівняння"
+      },
+      {
+        "id": "S3_ElMag",
+        "name": "Електрика та магнетизм"
+      }
+    ],
+    "postrequisites": [
+      {
+        "id": "S6_ESS",
+        "name": "Електродинаміка суцільних середовищ"
+      }
+    ]
+  },
+  "S5_OscWaves": {
+    "id": "S5_OscWaves",
+    "name": "Коливання та хвилі",
+    "semester": 5,
+    "type": "physics",
+    "color": "#E85D75",
+    "prerequisites": [
+      {
+        "id": "S4_DiffEq",
+        "name": "Диференціальні рівняння"
+      },
+      {
+        "id": "S4_ClassMech",
+        "name": "Класична механіка"
+      }
+    ],
+    "postrequisites": [
+      {
+        "id": "S6_ESS",
+        "name": "Електродинаміка суцільних середовищ"
+      }
+    ]
+  },
+  "S5_Ecology": {
+    "id": "S5_Ecology",
+    "name": "Екологія",
+    "semester": 5,
+    "type": "general",
+    "color": "#B8B8B8",
+    "prerequisites": [],
+    "postrequisites": []
+  },
+  "S5_F2": {
+    "id": "S5_F2",
+    "name": "Ф2 (Вибіркова)",
+    "semester": 5,
+    "type": "elective",
+    "color": "#F5A623",
+    "prerequisites": [],
+    "postrequisites": []
+  },
+  "S5_F3": {
+    "id": "S5_F3",
+    "name": "Ф3 (Вибіркова)",
+    "semester": 5,
+    "type": "elective",
+    "color": "#F5A623",
+    "prerequisites": [],
+    "postrequisites": []
+  },
+  "S5_F4": {
+    "id": "S5_F4",
+    "name": "Ф4 (Вибіркова)",
+    "semester": 5,
+    "type": "elective",
+    "color": "#F5A623",
+    "prerequisites": [],
+    "postrequisites": []
+  },
+  "S6_ProbStat": {
+    "id": "S6_ProbStat",
+    "name": "Теорія ймовірності та математична статистика",
+    "semester": 6,
+    "type": "math",
+    "color": "#4A90E2",
+    "prerequisites": [
+      {
+        "id": "S5_MathPhys",
+        "name": "Методи математичної фізики"
+      }
+    ],
+    "postrequisites": [
+      {
+        "id": "S7_StatPhys",
+        "name": "Стат. фіз. та основи ФТТ"
+      }
+    ]
+  },
+  "S6_QMech": {
+    "id": "S6_QMech",
+    "name": "Квантова механіка",
+    "semester": 6,
+    "type": "physics",
+    "color": "#E85D75",
+    "prerequisites": [
+      {
+        "id": "S5_Atomic",
+        "name": "Атомна фізика"
+      },
+      {
+        "id": "S4_ClassMech",
+        "name": "Класична механіка"
+      }
+    ],
+    "postrequisites": [
+      {
+        "id": "S7_StatPhys",
+        "name": "Стат. фіз. та основи ФТТ"
+      }
+    ]
+  },
+  "S6_ESS": {
+    "id": "S6_ESS",
+    "name": "Електродинаміка суцільних середовищ",
+    "semester": 6,
+    "type": "physics",
+    "color": "#E85D75",
+    "prerequisites": [
+      {
+        "id": "S5_OscWaves",
+        "name": "Коливання та хвилі"
+      },
+      {
+        "id": "S5_MathPhys",
+        "name": "Методи математичної фізики"
+      },
+      {
+        "id": "S5_FieldTheory",
+        "name": "Теорія поля"
+      }
+    ],
+    "postrequisites": []
+  },
+  "S6_MathModel": {
+    "id": "S6_MathModel",
+    "name": "Математичне моделювання та відкриті пакети прикладних програм",
+    "semester": 6,
+    "type": "comp",
+    "color": "#7ED321",
+    "prerequisites": [
+      {
+        "id": "S4_CompMeth",
+        "name": "Обчислювальні методи та компютерні пакети"
+      },
+      {
+        "id": "S4_Prog",
+        "name": "Програмування"
+      }
+    ],
+    "postrequisites": [
+      {
+        "id": "S7_Lab",
+        "name": "Лабораторно-дослідницький практикум"
+      }
+    ]
+  },
+  "S6_Rights": {
+    "id": "S6_Rights",
+    "name": "Права і свободи людини",
+    "semester": 6,
+    "type": "general",
+    "color": "#B8B8B8",
+    "prerequisites": [],
+    "postrequisites": []
+  },
+  "S6_F5": {
+    "id": "S6_F5",
+    "name": "Ф5 (Вибіркова)",
+    "semester": 6,
+    "type": "elective",
+    "color": "#F5A623",
+    "prerequisites": [],
+    "postrequisites": []
+  },
+  "S6_F6": {
+    "id": "S6_F6",
+    "name": "Ф6 (Вибіркова)",
+    "semester": 6,
+    "type": "elective",
+    "color": "#F5A623",
+    "prerequisites": [],
+    "postrequisites": []
+  },
+  "S6_F7": {
+    "id": "S6_F7",
+    "name": "Ф7 (Вибіркова)",
+    "semester": 6,
+    "type": "elective",
+    "color": "#F5A623",
+    "prerequisites": [],
+    "postrequisites": []
+  },
+  "S7_Course": {
+    "id": "S7_Course",
+    "name": "Міждисциплінарна курсова робота",
+    "semester": 7,
+    "type": "pract",
+    "color": "#D4A5FF",
+    "prerequisites": [
+      {
+        "id": "S1_Intro",
+        "name": "Введення в спеціальність"
+      }
+    ],
+    "postrequisites": [
+      {
+        "id": "S8_Diploma",
+        "name": "Дипломне проектування"
+      }
+    ]
+  },
+  "S7_StatPhys": {
+    "id": "S7_StatPhys",
+    "name": "Стат. фіз. та основи ФТТ",
+    "semester": 7,
+    "type": "physics",
+    "color": "#E85D75",
+    "prerequisites": [
+      {
+        "id": "S6_QMech",
+        "name": "Квантова механіка"
+      },
+      {
+        "id": "S6_ProbStat",
+        "name": "Теорія ймовірності та математична статистика"
+      },
+      {
+        "id": "S2_Thermo",
+        "name": "Термодинаміка та молекулярна фізика"
+      }
+    ],
+    "postrequisites": []
+  },
+  "S7_StatRadio": {
+    "id": "S7_StatRadio",
+    "name": "Статистична радіофізика та оптика",
+    "semester": 7,
+    "type": "physics",
+    "color": "#E85D75",
+    "prerequisites": [
+      {
+        "id": "S4_Optics",
+        "name": "Оптика"
+      }
+    ],
+    "postrequisites": []
+  },
+  "S7_Lab": {
+    "id": "S7_Lab",
+    "name": "Лабораторно-дослідницький практикум",
+    "semester": 7,
+    "type": "pract",
+    "color": "#D4A5FF",
+    "prerequisites": [
+      {
+        "id": "S6_MathModel",
+        "name": "Математичне моделювання та відкриті пакети прикладних програм"
+      }
+    ],
+    "postrequisites": [
+      {
+        "id": "S8_Practice",
+        "name": "Переддипломна практика"
+      }
+    ]
+  },
+  "S7_F8": {
+    "id": "S7_F8",
+    "name": "Ф8 (Вибіркова)",
+    "semester": 7,
+    "type": "elective",
+    "color": "#F5A623",
+    "prerequisites": [],
+    "postrequisites": []
+  },
+  "S7_F9": {
+    "id": "S7_F9",
+    "name": "Ф9 (Вибіркова)",
+    "semester": 7,
+    "type": "elective",
+    "color": "#F5A623",
+    "prerequisites": [],
+    "postrequisites": []
+  },
+  "S7_F10": {
+    "id": "S7_F10",
+    "name": "Ф10 (Вибіркова)",
+    "semester": 7,
+    "type": "elective",
+    "color": "#F5A623",
+    "prerequisites": [],
+    "postrequisites": []
+  },
+  "S7_F11": {
+    "id": "S7_F11",
+    "name": "Ф11 (Вибіркова)",
+    "semester": 7,
+    "type": "elective",
+    "color": "#F5A623",
+    "prerequisites": [],
+    "postrequisites": []
+  },
+  "S8_Research": {
+    "id": "S8_Research",
+    "name": "Основи наукових досліджень",
+    "semester": 8,
+    "type": "pract",
+    "color": "#D4A5FF",
+    "prerequisites": [],
+    "postrequisites": [
+      {
+        "id": "S8_Practice",
+        "name": "Переддипломна практика"
+      }
+    ]
+  },
+  "S8_Practice": {
+    "id": "S8_Practice",
+    "name": "Переддипломна практика",
+    "semester": 8,
+    "type": "pract",
+    "color": "#D4A5FF",
+    "prerequisites": [
+      {
+        "id": "S7_Lab",
+        "name": "Лабораторно-дослідницький практикум"
+      },
+      {
+        "id": "S8_Research",
+        "name": "Основи наукових досліджень"
+      }
+    ],
+    "postrequisites": [
+      {
+        "id": "S8_Diploma",
+        "name": "Дипломне проектування"
+      }
+    ]
+  },
+  "S8_Diploma": {
+    "id": "S8_Diploma",
+    "name": "Дипломне проектування",
+    "semester": 8,
+    "type": "pract",
+    "color": "#D4A5FF",
+    "prerequisites": [
+      {
+        "id": "S7_Course",
+        "name": "Міждисциплінарна курсова робота"
+      },
+      {
+        "id": "S8_Practice",
+        "name": "Переддипломна практика"
+      }
+    ],
+    "postrequisites": []
+  },
+  "S8_F12": {
+    "id": "S8_F12",
+    "name": "Ф12 (Вибіркова)",
+    "semester": 8,
+    "type": "elective",
+    "color": "#F5A623",
+    "prerequisites": [],
+    "postrequisites": []
+  },
+  "S8_F13": {
+    "id": "S8_F13",
+    "name": "Ф13 (Вибіркова)",
+    "semester": 8,
+    "type": "elective",
+    "color": "#F5A623",
+    "prerequisites": [],
+    "postrequisites": []
+  },
+  "S8_F14": {
+    "id": "S8_F14",
+    "name": "Ф14 (Вибіркова)",
+    "semester": 8,
+    "type": "elective",
+    "color": "#F5A623",
+    "prerequisites": [],
+    "postrequisites": []
+  }
+}

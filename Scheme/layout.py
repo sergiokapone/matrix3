@@ -48,7 +48,7 @@ import heapq
 import numpy as np
 
 
-def compute_layout(node_info, edges, cfg, forced_bands=None):
+def compute_layout(node_info, edges, cfg, forced_bands=None, spine_edges=None):
     # ---- орієнтація визначається ЗАЗДАЛЕГІДЬ: блок завжди фізично
     #      BOX_W x BOX_H (не обертається), тому крок сітки вздовж
     #      "осі семестрів" (u) і "осі елементів у семестрі" (v) мають
@@ -233,19 +233,43 @@ def compute_layout(node_info, edges, cfg, forced_bands=None):
             return [0.0]
         return [-cfg.PORT_SPREAD / 2 + cfg.PORT_SPREAD * i / (n - 1) for i in range(n)]
 
+    spine = spine_edges or set()
+
+    def offsets_with_spine_priority(es_sorted):
+        """Як spread_offsets, але якщо серед ребер є "хребтове" (продовження
+        тієї самої дисципліни, розрізненої через NEVER_MERGE) - воно завжди
+        отримує РІВНО центральний порт (0.0), а решта розводяться навколо
+        нього. Без цього хребтове ребро ділить розкид порту нарівні з усіма
+        іншими і в результаті "зайво звивається" навіть тоді, коли джерело й
+        ціль стоять рівно одне під одним і воно фізично могло б іти прямою
+        лінією (симетричний розкид на n≥2 ребер ніколи не дає рівно 0.0)."""
+        n = len(es_sorted)
+        spine_e = next((e for e in es_sorted if e in spine), None)
+        if spine_e is None or n == 1:
+            return dict(zip(es_sorted, spread_offsets(n)))
+        others = [e for e in es_sorted if e != spine_e]
+        offs = spread_offsets(len(others) + 1)
+        drop_i = min(range(len(offs)), key=lambda i: abs(offs[i]))
+        other_offs = [o for i, o in enumerate(offs) if i != drop_i]
+        result = {spine_e: 0.0}
+        result.update(zip(others, other_offs))
+        return result
+
     port_y_out = {}
     for node, es in out_edges.items():
         _, y, _, h = pos[node]
         es_sorted = sorted(es, key=lambda e: pos[e[1]][1])
-        for e, off in zip(es_sorted, spread_offsets(len(es_sorted))):
-            port_y_out[e] = y + off * h
+        offs = offsets_with_spine_priority(es_sorted)
+        for e in es_sorted:
+            port_y_out[e] = y + offs[e] * h
 
     port_y_in = {}
     for node, es in in_edges.items():
         _, y, _, h = pos[node]
         es_sorted = sorted(es, key=lambda e: pos[e[0]][1])
-        for e, off in zip(es_sorted, spread_offsets(len(es_sorted))):
-            port_y_in[e] = y + off * h
+        offs = offsets_with_spine_priority(es_sorted)
+        for e in es_sorted:
+            port_y_in[e] = y + offs[e] * h
 
     def edge_endpoints(e):
         src, dst = e

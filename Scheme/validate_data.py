@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 """
-Валідатор data2026.py. Ловить автоматично те, що раніше доводилось
-шукати вручну по скріншотах:
+Валідатор data<рік>.py (за замовчуванням - усі знайдені, або конкретний
+рік аргументом: python validate_data.py 2026). Ловить автоматично те, що
+раніше доводилось шукати вручну по скріншотах:
 
   1. Побите посилання в EDGES (id, якого немає в DISCIPLINES).
   2. Дублікати ребер.
@@ -26,8 +27,6 @@
 """
 import sys
 from collections import defaultdict
-
-from data2026 import DISCIPLINES, EDGES
 
 
 def normalize(text):
@@ -146,21 +145,30 @@ def find_wide_to_wide(disciplines, edges):
     return result
 
 
-def main():
+def main(disciplines=None, edges=None):
+    """disciplines/edges не задані - для запуску як окремого скрипта
+    (python3 validate_data.py [рік]) підвантажуємо через data_registry;
+    коли викликається з build_diagramm.py - дані вже передані напряму,
+    без жодного імпорту конкретного data<рік>.py тут."""
+    if disciplines is None or edges is None:
+        from data_registry import load_year, resolve_requested_years
+        year = resolve_requested_years(sys.argv[1:])[0]
+        disciplines, edges, _never_merge, _force_band = load_year(year)
+
     errors = []
     warnings = []
 
-    errors += check_broken_refs(DISCIPLINES, EDGES)
-    dups = check_duplicate_edges(EDGES)
+    errors += check_broken_refs(disciplines, edges)
+    dups = check_duplicate_edges(edges)
     if dups:
         errors += [f"дублікат ребра: {e}" for e in dups]
 
     if not errors:
-        silent_gaps, semester_skips = check_broken_chains(DISCIPLINES, EDGES)
+        silent_gaps, semester_skips = check_broken_chains(disciplines, edges)
         for a, b, key in silent_gaps:
             warnings.append(
-                f"'{key[1]}' [{a}] (сем.{DISCIPLINES[a]['semester']}) і [{b}] "
-                f"(сем.{DISCIPLINES[b]['semester']}) - однаковий текст, сусідні "
+                f"'{key[1]}' [{a}] (сем.{disciplines[a]['semester']}) і [{b}] "
+                f"(сем.{disciplines[b]['semester']}) - однаковий текст, сусідні "
                 f"семестри, але немає ребра {a}->{b}. Блок НЕ розтягнеться."
             )
         for a, b, sa, sb, key in semester_skips:
@@ -169,11 +177,11 @@ def main():
                 f"{sb - sa - 1} семестр(и). Ланцюжок злиття розірветься тут."
             )
 
-        cycles = check_cycles(EDGES)
+        cycles = check_cycles(edges)
         for c in cycles:
             errors.append("цикл у пререквізитах: " + " -> ".join(c))
 
-        wide_pairs = find_wide_to_wide(DISCIPLINES, EDGES)
+        wide_pairs = find_wide_to_wide(disciplines, edges)
         if wide_pairs:
             warnings.append(
                 f"{len(wide_pairs)} ребро(а) з'єднують два розтягнутих блоки "

@@ -83,3 +83,32 @@
     font-style: italic;
   }
   .card[data-hidden="true"] { display: none; }
+
+  /* стрілки пре-/постреквізитів при наведенні */
+  #rel-arrows {
+    position: absolute;
+    top: 0;
+    left: 0;
+    pointer-events: none;   /* лежить поверх сторінки, але не заважає кліками */
+    z-index: 500;
+    overflow: visible;
+  }
+  .rel-arrow {
+    fill: none;
+    stroke-width: 2;
+    opacity: 0.85;
+  }
+  .rel-list li[data-target] {
+    cursor: pointer;
+    border-radius: 4px;
+    padding: 0.1rem 0.3rem;
+    margin: 0 -0.3rem;
+    transition: background 0.12s ease;
+  }
+  .rel-list li[data-target]:hover {
+    background: #eef3fb;
+  }
+  .card.hl-target {
+    box-shadow: 0 0 0 3px #4A90E2, 0 4px 10px rgba(16, 24, 40, 0.15);
+    transition: box-shadow 0.12s ease;
+  }

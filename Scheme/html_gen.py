@@ -5,18 +5,36 @@ prereq_extract.py.
 
 Використання: python html_gen.py [year] [lang]
 Приклад: python html_gen.py 2026 ua
+Без аргументів - береться найновіший рік, для якого є data<рік>.py.
 """
 
 import json
+import shutil
 import sys
 from pathlib import Path
 
 from jinja2 import Environment, FileSystemLoader
 
-DEFAULT_YEAR = 2026
+from data_registry import discover_years
+
+SCRIPT_DIR = Path(__file__).resolve().parent  # шляхи нижче рахуються
+                                                 # від розташування самого
+                                                 # скрипта, а не від того,
+                                                 # звідки його запустили -
+                                                 # інакше "python html_gen.py"
+                                                 # з іншої теки або з IDE
+                                                 # тихо не знаходить ані
+                                                 # templates/, ані JSON
+
 DEFAULT_LANG = "ua"
-TEMPLATE_DIR = "templates"
+TEMPLATE_DIR = SCRIPT_DIR / "templates"
 TEMPLATE_FILE = "template.html"
+# CSS і JS раніше жили і тут, і всередині template.html одночасно
+# (inline) - тепер лише тут; template.html підключає їх через
+# <link>/<script src>, а generate_html() копіює обидва поруч з готовим
+# HTML, у ту саму підпапку assets/, куди веде відносний шлях у шаблоні
+STYLESHEET_FILE = SCRIPT_DIR / "styles2026.css"
+SCRIPT_ASSET_FILE = SCRIPT_DIR / "rel-arrows.js"
 
 UI_STRINGS = {
     "ua": {
@@ -25,7 +43,7 @@ UI_STRINGS = {
         "prereq_label": "Пререквізити",
         "postreq_label": "Постреквізити",
         "none_label": "немає",
-        "generated_note": "згенеровано з data2026.py",
+        "generated_note_template": "згенеровано з data{year}.py",
     },
     "en": {
         "page_title": "Course Prerequisites & Postrequisites",
@@ -33,13 +51,13 @@ UI_STRINGS = {
         "prereq_label": "Prerequisites",
         "postreq_label": "Postrequisites",
         "none_label": "none",
-        "generated_note": "generated from data2026.py",
+        "generated_note_template": "generated from data{year}.py",
     },
 }
 
 
-def generate_html(json_filename: Path, output_html: Path, lang: str,
-                   template_dir: str = TEMPLATE_DIR) -> None:
+def generate_html(json_filename: Path, output_html: Path, lang: str, year: int,
+                   template_dir: Path = TEMPLATE_DIR) -> None:
     with open(json_filename, "r", encoding="utf-8") as f:
         courses = json.load(f)
 
@@ -50,9 +68,10 @@ def generate_html(json_filename: Path, output_html: Path, lang: str,
         courses_by_semester[sem].sort(key=lambda c: c["name"])
     semesters = sorted(courses_by_semester.keys())
 
-    strings = UI_STRINGS.get(lang, UI_STRINGS[DEFAULT_LANG])
+    strings = dict(UI_STRINGS.get(lang, UI_STRINGS[DEFAULT_LANG]))
+    strings["generated_note"] = strings.pop("generated_note_template").format(year=year)
 
-    env = Environment(loader=FileSystemLoader(template_dir))
+    env = Environment(loader=FileSystemLoader(str(template_dir)))
     template = env.get_template(TEMPLATE_FILE)
 
     context = {
@@ -67,12 +86,28 @@ def generate_html(json_filename: Path, output_html: Path, lang: str,
     with open(output_html, "w", encoding="utf-8") as f:
         f.write(html_content)
 
+    # HTML посилається на "./assets/styles2026.css" і "./assets/rel-arrows.js"
+    # відносними шляхами - копіюємо обидва саме в docs/assets/, а не в
+    # корінь docs/, інакше посилання в браузері ведуть у нікуди
+    assets_dir = output_html.parent / "assets"
+    assets_dir.mkdir(parents=True, exist_ok=True)
+    for asset in (STYLESHEET_FILE, SCRIPT_ASSET_FILE):
+        if asset.exists():
+            shutil.copy(asset, assets_dir / asset.name)
+
     print(f"[OK] HTML сторінка створена: {output_html}")
     print(f"[INFO] Всього дисциплін: {len(courses)}")
 
 
+def default_year():
+    years = discover_years()
+    if not years:
+        raise SystemExit("У поточній папці не знайдено жодного data<рік>.py")
+    return years[-1]  # найновіший - а не захардкоджене число, яке з часом застаріє
+
+
 def main() -> None:
-    year = DEFAULT_YEAR
+    year = default_year()
     lang = DEFAULT_LANG
 
     if len(sys.argv) > 1:
@@ -90,8 +125,8 @@ def main() -> None:
             print(f"Error: Language must be one of {list(UI_STRINGS)}")
             sys.exit(1)
 
-    json_file = Path(f"prerequisites_{year}_{lang}.json")
-    docs_dir = Path("..") / "docs"
+    json_file = SCRIPT_DIR / f"prerequisites_{year}_{lang}.json"
+    docs_dir = SCRIPT_DIR.parent / "docs"
     docs_dir.mkdir(parents=True, exist_ok=True)
     html_file = docs_dir / f"requisites_bachelor_{year}_{lang}.html"
 
@@ -100,15 +135,15 @@ def main() -> None:
         print(f"Спершу згенеруйте його: python prereq_extract.py {year} {lang}")
         sys.exit(1)
 
-    template_path = Path(TEMPLATE_DIR)
-    if not template_path.exists():
+    if not TEMPLATE_DIR.exists():
         print(f"Error: Template directory '{TEMPLATE_DIR}' not found!")
         sys.exit(1)
-    if not (template_path / TEMPLATE_FILE).exists():
+    if not (TEMPLATE_DIR / TEMPLATE_FILE).exists():
         print(f"Error: Template file '{TEMPLATE_FILE}' not found in '{TEMPLATE_DIR}'!")
         sys.exit(1)
 
-    generate_html(json_file, html_file, lang)
+
+    generate_html(json_file, html_file, lang, year)
     print(f"Year: {year}, Language: {lang}")
 
 

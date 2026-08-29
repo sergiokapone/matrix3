@@ -1,14 +1,17 @@
 # -*- coding: utf-8 -*-
 """
-Витягування пре- та постреквізитів напряму з data2026.py.
+Витягування пре- та постреквізитів напряму з data<рік>.py.
 
 Стара версія (prepost_extract.py) спершу генерувала Graphviz .gv файл
 (gen_gv.py), а тоді парсила його назад regex'ом, щоб дістати список
 курсів і зв'язків. Це зайва й крихка ланка: .gv - лише текстове
 представлення для картинки, і regex-парсер легко ламається на
 екранованих символах, зміні формату fillcolor тощо. Ми вже маємо
-структуровані дані в data2026.py (ті самі, що використовує
-build_matplotlib.py для діаграми) - беремо їх напряму.
+структуровані дані в data<рік>.py (ті самі, що використовує
+build_diagramm.py для діаграми) - беремо їх напряму, через
+data_registry.py (той самий механізм вибору року, що й у
+build_diagramm.py - жодного захардкодженого "data2026" тут більше
+немає).
 
 ВАЖЛИВО: тут НЕМАЄ логіки злиття дисциплін у розтягнуті блоки
 (merge.py) - для таблиці пре/постреквізитів кожна дисципліна кожного
@@ -20,15 +23,21 @@ build_matplotlib.py для діаграми) - беремо їх напряму.
 
 Використання: python prereq_extract.py [year] [lang]
 Приклад: python prereq_extract.py 2026 ua
+Без аргументів - береться найновіший рік, для якого є data<рік>.py.
 """
 import json
 import sys
-from collections import defaultdict
+from pathlib import Path
 
 import config as cfg
-from data2026 import DISCIPLINES, EDGES
+from data_registry import discover_years, load_year
+import validate_data
 
-DEFAULT_YEAR = 2026
+SCRIPT_DIR = Path(__file__).resolve().parent  # вихідний JSON завжди поруч
+                                                 # зі скриптом, незалежно
+                                                 # від того, звідки його
+                                                 # запустили - html_gen.py
+                                                 # шукає його саме тут
 DEFAULT_LANG = "ua"
 
 
@@ -51,7 +60,13 @@ def build_prerequisite_dict(disciplines: dict, edges: list, lang: str) -> dict:
             "postrequisites": [],
         }
 
+    # дублікати ребер (якщо раптом є) не повинні давати дубльований
+    # запис у списку пре-/постреквізитів однієї дисципліни
+    seen = set()
     for a, b in edges:
+        if (a, b) in seen:
+            continue
+        seen.add((a, b))
         # a - пререквізит для b; b - постреквізит для a
         result[b]["prerequisites"].append({"id": a, "name": result[a]["name"]})
         result[a]["postrequisites"].append({"id": b, "name": result[b]["name"]})
@@ -63,8 +78,15 @@ def build_prerequisite_dict(disciplines: dict, edges: list, lang: str) -> dict:
     return result
 
 
+def default_year():
+    years = discover_years()
+    if not years:
+        raise SystemExit("У поточній папці не знайдено жодного data<рік>.py")
+    return years[-1]  # найновіший - а не захардкоджене число, яке з часом застаріє
+
+
 def main():
-    year = DEFAULT_YEAR
+    year = default_year()
     lang = DEFAULT_LANG
 
     if len(sys.argv) > 1:
@@ -82,9 +104,23 @@ def main():
             print(f"Error: Language must be one of {cfg.LANGUAGES}")
             sys.exit(1)
 
+    # рік підвантажується ТУТ, після розбору argv - на відміну від
+    # попередньої версії, де `from data2026 import ...` виконувався на
+    # рівні модуля ще до того, як рік узагалі був відомий, і аргумент
+    # року впливав лише на ІМ'Я вихідного файлу, а не на те, які дані
+    # в нього насправді потрапляли (мовчки писало дані 2026-го під
+    # будь-якою назвою року)
+    DISCIPLINES, EDGES, _never_merge, _force_band = load_year(year)
+
+    if validate_data.main(DISCIPLINES, EDGES) != 0:
+        raise SystemExit(
+            f"Дані data{year}.py не пройшли валідацію (validate_data.py) - "
+            f"виправте помилки вище."
+        )
+
     prerequisite_dict = build_prerequisite_dict(DISCIPLINES, EDGES, lang)
 
-    print(f"Завантажено {len(DISCIPLINES)} курсів та {len(EDGES)} зв'язків\n")
+    print(f"Завантажено {len(DISCIPLINES)} курсів та {len(EDGES)} зв'язків (data{year}.py)\n")
     for i, course_id in enumerate(sorted(prerequisite_dict.keys())):
         if i >= 3:
             print("...")
@@ -98,7 +134,7 @@ def main():
         print(f"  Постреквізити ({len(post)}): {post}")
         print()
 
-    output_file = f"prerequisites_{year}_{lang}.json"
+    output_file = SCRIPT_DIR / f"prerequisites_{year}_{lang}.json"
     with open(output_file, "w", encoding="utf-8") as f:
         json.dump(prerequisite_dict, f, ensure_ascii=False, indent=2)
 

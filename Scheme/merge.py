@@ -118,4 +118,16 @@ def build_merged_graph(disciplines, edges, never_merge=frozenset()):
         seen.add((na, nb))
         new_edges.append((na, nb))
 
-    return node_info, new_edges, merge_map
+    # ---- "хребтові" ребра: продовження дисципліни (той самий критерій,
+    #      що й для злиття), яке лишилось окремим через never_merge -
+    #      обидва кінці й далі окремі вузли, ребро (a,b) саме таке, як
+    #      було в EDGES. Позначаємо це для layout.py: такому ребру варто
+    #      віддавати центральний порт при розведенні кількох ліній з
+    #      одного блоку (див. compute_layout), інакше воно "зайво
+    #      звивається" навіть коли фізично могло б іти прямою лінією ----
+    spine_edges = set()
+    for a, b in cont_next.items():
+        if a not in merge_map and b not in merge_map and (a, b) in seen:
+            spine_edges.add((a, b))
+
+    return node_info, new_edges, merge_map, spine_edges

@@ -14,25 +14,32 @@
 <header class="hero"><h1>Віртуальні лабораторні роботи</h1><p>Загальна фізика · для студентів очної та заочної форм навчання</p></header>
 <main>
   <div class="tabs" id="tabs"></div>
+  <div class="sec-head" id="sechead"></div>
   <div class="grid" id="grid"></div>
 </main>
 <script src="labs.js"></script>
 <script>
-const tabs=document.getElementById('tabs'), grid=document.getElementById('grid');
+const tabs=document.getElementById('tabs'), grid=document.getElementById('grid'), head=document.getElementById('sechead');
 let cur=location.hash.slice(1)||LABS[0].id;
+function plural(n){const m=n%10,c=n%100;return n+(m===1&&c!==11?' лабораторна':(m>=2&&m<=4&&(c<12||c>14))?' лабораторні':' лабораторних')}
+function esc(s){return String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]))}
 function render(){
   tabs.innerHTML='';
-  LABS.forEach(s=>{const b=document.createElement('button');b.className='tab'+(s.id===cur?' active':'');
-    b.textContent=s.icon+' '+s.title+' ('+s.items.length+')';
-    b.onclick=()=>{cur=s.id;location.hash=cur;render()};tabs.appendChild(b)});
+  LABS.forEach(s=>{const b=document.createElement('button');
+    b.className='tab'+(s.id===cur?' active':'')+(s.items.length?'':' zero');
+    b.innerHTML=s.icon+' '+esc(s.title)+' <span class="cnt">'+s.items.length+'</span>';
+    b.onclick=()=>{cur=s.id;history.replaceState(null,'','#'+cur);render()};tabs.appendChild(b)});
   const sec=LABS.find(s=>s.id===cur)||LABS[0]; grid.innerHTML='';
-  if(!sec.items.length){grid.innerHTML='<p class="empty">Лабораторні цього розділу з\'являться найближчим часом.</p>';return}
+  head.innerHTML='<div class="ico">'+sec.icon+'</div><div><h2>'+esc(sec.title)+'</h2><small>'+(sec.items.length?plural(sec.items.length):'Розділ наповнюється')+'</small></div>';
+  if(!sec.items.length){grid.innerHTML='<div class="empty" style="grid-column:1/-1"><b>🛠️</b>Лабораторні цього розділу з\'являться найближчим часом.</div>';return}
   sec.items.forEach(it=>{const a=document.createElement('a');a.className='card';
     a.href='lab.html?s='+sec.id+'&id='+it.id;
-    a.innerHTML=it.title+'<span>'+(it.desc||'')+'</span>'+(it.format||[]).map(f=>'<em class="badge">'+f+'</em>').join('');
+    a.innerHTML='<h3>'+esc(it.title)+'</h3><p>'+esc(it.desc||'')+'</p><div class="foot"><span>'+
+      (it.format||[]).map(f=>'<em class="badge">'+esc(f)+'</em>').join('')+'</span><span class="go">Відкрити →</span></div>';
     grid.appendChild(a)});
 }
 render();
 </script>
+<script src="embed.js"></script>
 </body>
 </html>

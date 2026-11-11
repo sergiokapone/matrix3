@@ -12,7 +12,13 @@
   <a href="index.html" class="active">Лабораторні (online)</a>
 </nav>
 <main>
-  <a class="back" id="back" href="index.html">← До списку лабораторних</a>
+  <div class="toolbar">
+    <a class="back" id="back" href="index.html">← До списку лабораторних</a>
+    <span class="actions">
+      <a class="btn" id="newtab" target="_blank" rel="noopener">↗ Відкрити на окремій сторінці</a>
+      <button class="btn" id="fs" type="button">⛶ На весь екран</button>
+    </span>
+  </div>
   <h2 id="title"></h2>
   <iframe class="applet" id="frame" title="Аплет лабораторної роботи"></iframe>
 </main>
@@ -21,8 +27,12 @@
 const q=new URLSearchParams(location.search);
 const sec=LABS.find(s=>s.id===q.get('s')), it=sec&&sec.items.find(i=>i.id===q.get('id'));
 if(it){document.title=it.title;document.getElementById('title').textContent=sec.title+' — '+it.title;
-  document.getElementById('frame').src=it.file;document.getElementById('back').href='index.html#'+sec.id}
-else document.getElementById('title').textContent='Лабораторну роботу не знайдено';
+  document.getElementById('frame').src=it.file;document.getElementById('newtab').href=it.file;document.getElementById('back').href='index.html#'+sec.id}
+else document.querySelector('.actions').style.display='none',document.getElementById('title').textContent='Лабораторну роботу не знайдено';
+</script>
+<script>
+document.getElementById('fs').onclick=function(){var f=document.getElementById('frame');
+  if(f.requestFullscreen)f.requestFullscreen();else if(f.webkitRequestFullscreen)f.webkitRequestFullscreen();else window.open(f.src,'_blank')};
 </script>
 <script src="embed.js"></script>
 </body>

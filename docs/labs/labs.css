@@ -44,3 +44,10 @@ main h2#title{margin:4px 0 14px;font-size:20px}
 .embed main{margin:0 auto;padding:0}
 .embed iframe.applet{height:820px}
 @media(max-width:600px){main{padding:0 12px}.embed iframe.applet{height:700px}}
+.toolbar{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px;margin-bottom:6px}
+.toolbar .back{margin:0}
+.actions{display:flex;flex-wrap:wrap;gap:8px}
+.btn{display:inline-flex;align-items:center;gap:6px;padding:8px 14px;border-radius:999px;border:1px solid var(--accent);background:var(--accent);color:#fff;font:inherit;font-size:14px;font-weight:600;text-decoration:none;cursor:pointer;transition:.15s}
+.btn:hover{background:#c9731f;border-color:#c9731f}
+.btn#fs{background:#fff;color:var(--accent)}
+.btn#fs:hover{background:var(--accent-soft)}

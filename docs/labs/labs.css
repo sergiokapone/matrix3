@@ -54,3 +54,7 @@ main h2#title{margin:4px 0 14px;font-size:20px}
 main.wide{max-width:none;margin:16px auto;padding:0 16px}
 main.wide iframe.applet{height:calc(100vh - 190px);min-height:560px}
 .embed main.wide iframe.applet{height:820px}
+.card .badges{margin:0 0 14px}
+.card .foot{flex-wrap:wrap}
+.alt{font-size:13px;color:var(--muted)}
+.alt:hover{color:var(--accent)}

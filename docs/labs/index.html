@@ -32,11 +32,12 @@ function render(){
   const sec=LABS.find(s=>s.id===cur)||LABS[0]; grid.innerHTML='';
   head.innerHTML='<div class="ico">'+sec.icon+'</div><div><h2>'+esc(sec.title)+'</h2><small>'+(sec.items.length?plural(sec.items.length):'Розділ наповнюється')+'</small></div>';
   if(!sec.items.length){grid.innerHTML='<div class="empty" style="grid-column:1/-1"><b>🛠️</b>Лабораторні цього розділу з\'являться найближчим часом.</div>';return}
-  sec.items.forEach(it=>{const a=document.createElement('a');a.className='card';
-    a.href='lab.html?s='+sec.id+'&id='+it.id;
-    a.innerHTML='<h3>'+esc(it.title)+'</h3><p>'+esc(it.desc||'')+'</p><div class="foot"><span>'+
-      (it.format||[]).map(f=>'<em class="badge">'+esc(f)+'</em>').join('')+'</span><span class="go">Відкрити →</span></div>';
-    grid.appendChild(a)});
+  sec.items.forEach(it=>{const d=document.createElement('div');d.className='card';
+    d.innerHTML='<h3>'+esc(it.title)+'</h3><p>'+esc(it.desc||'')+'</p><div class="badges">'+
+      (it.format||[]).map(f=>'<em class="badge">'+esc(f)+'</em>').join('')+'</div>'+
+      '<div class="foot"><a class="btn" target="_blank" rel="noopener" href="'+esc(it.file)+'">⛶ Відкрити на весь екран</a>'+
+      '<a class="alt" href="lab.html?s='+sec.id+'&id='+it.id+'">переглянути тут</a></div>';
+    grid.appendChild(d)});
 }
 render();
 </script>

@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Віртуальні лабораторні роботи з фізики</title>
+<link rel="stylesheet" href="labs.css">
+</head>
+<body>
+<script>if(window.self!==window.top)document.documentElement.classList.add('embed');</script>
+<nav class="topnav">
+  <a href="../index.html">Матриці та реквізити</a>
+  <a href="index.html" class="active">Лабораторні (online)</a>
+</nav>
+<header class="hero"><h1>Віртуальні лабораторні роботи</h1><p>Загальна фізика · для студентів очної та заочної форм навчання</p></header>
+<main>
+  <div class="tabs" id="tabs"></div>
+  <div class="grid" id="grid"></div>
+</main>
+<script src="labs.js"></script>
+<script>
+const tabs=document.getElementById('tabs'), grid=document.getElementById('grid');
+let cur=location.hash.slice(1)||LABS[0].id;
+function render(){
+  tabs.innerHTML='';
+  LABS.forEach(s=>{const b=document.createElement('button');b.className='tab'+(s.id===cur?' active':'');
+    b.textContent=s.icon+' '+s.title+' ('+s.items.length+')';
+    b.onclick=()=>{cur=s.id;location.hash=cur;render()};tabs.appendChild(b)});
+  const sec=LABS.find(s=>s.id===cur)||LABS[0]; grid.innerHTML='';
+  if(!sec.items.length){grid.innerHTML='<p class="empty">Лабораторні цього розділу з\'являться найближчим часом.</p>';return}
+  sec.items.forEach(it=>{const a=document.createElement('a');a.className='card';
+    a.href='lab.html?s='+sec.id+'&id='+it.id;
+    a.innerHTML=it.title+'<span>'+(it.desc||'')+'</span>'+(it.format||[]).map(f=>'<em class="badge">'+f+'</em>').join('');
+    grid.appendChild(a)});
+}
+render();
+</script>
+</body>
+</html>

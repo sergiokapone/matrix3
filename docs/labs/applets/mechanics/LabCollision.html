@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Лабораторна: зіткнення куль</title>
+<style>
+:root{
+  --bg:#f4f5f7; --card:#ffffff; --fg:#1b2130; --muted:#5a6375; --line:#dde1e8; --grid:#0000001a; --axis:#555;
+  --accent:#1f5fd6; --valbg:#eef3fd;
+  --cu:#1f6fb5; --ci:#2e8b57; --cp:#c0392b; --true:#888; --wire:#2a3242;
+}
+:root[data-theme="dark"]{
+  --bg:#0e1117; --card:#161a22; --fg:#e4e8ef; --muted:#9aa3b3; --line:#283040; --grid:#ffffff1a; --axis:#aaa;
+  --accent:#6ea2ff; --valbg:#18233a;
+  --cu:#6ea2ff; --ci:#4fd18b; --cp:#ff7a6e; --true:#9aa3b3; --wire:#cfd6e2;
+}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]):not([data-theme="dark"]){
+  --bg:#0e1117; --card:#161a22; --fg:#e4e8ef; --muted:#9aa3b3; --line:#283040; --grid:#ffffff1a; --axis:#aaa;
+  --accent:#6ea2ff; --valbg:#18233a;
+  --cu:#6ea2ff; --ci:#4fd18b; --cp:#ff7a6e; --true:#9aa3b3; --wire:#cfd6e2;}}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{font:15px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;background:var(--bg);color:var(--fg);-webkit-text-size-adjust:100%}
+header.top{position:sticky;top:0;z-index:30;background:var(--card);border-bottom:1px solid var(--line);padding:8px 16px;padding-right:64px}
+header h1{font-size:15px;margin:0;font-weight:650;line-height:1.25}
+header h1 small{display:block;font-weight:400;color:var(--muted);font-size:12px}
+#themeBtn{position:fixed;top:8px;right:12px;z-index:40;width:36px;height:36px;border-radius:50%;border:1px solid var(--line);background:var(--card);color:var(--fg);font-size:17px;cursor:pointer}
+main{padding:14px;max-width:1560px;margin:0 auto}
+.layout{display:grid;grid-template-columns:300px minmax(0,1fr);gap:14px;align-items:start}
+aside.params{position:sticky;top:62px;max-height:calc(100vh - 74px);overflow:auto}
+.card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin-bottom:14px}
+.card>h3,.card>summary{font-size:15px;font-weight:650;margin:0 0 8px}
+.card>summary{cursor:pointer;list-style:none;display:flex;align-items:center;gap:8px;margin:0}
+.card>summary::-webkit-details-marker{display:none}
+.card>summary::before{content:"▸";transition:transform .2s;color:var(--muted)}
+details[open]>summary::before{transform:rotate(90deg)}
+details[open]>summary{margin-bottom:8px}
+.hint{font-size:12.5px;color:var(--muted);margin:6px 0}
+label.f{display:block;margin-top:10px;font-size:13px}
+select,input[type=text]{width:100%;margin:3px 0 0;font:inherit;font-size:13px;padding:4px 6px;border-radius:6px;border:1px solid var(--line);background:var(--bg);color:var(--fg)}
+option{background:var(--card);color:var(--fg)}
+.pgroup{border-top:1px solid var(--line);margin-top:12px;padding-top:6px}
+.pgroup b{font-size:12px;text-transform:uppercase;letter-spacing:.4px;color:var(--muted);font-weight:600}
+.btn{font:inherit;font-size:13px;border:1px solid var(--line);background:var(--bg);color:var(--fg);padding:5px 10px;border-radius:7px;cursor:pointer}
+.btn:hover{border-color:var(--accent)}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:#fff}
+.btns{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+.val{font:12.5px/1.6 ui-monospace,Consolas,monospace;background:var(--valbg);border-left:3px solid var(--accent);padding:5px 9px;margin:6px 0;border-radius:0 5px 5px 0}
+.val sub{font-size:.8em}
+.chk{display:flex;align-items:flex-start;gap:6px;font-size:13px;margin-top:8px;cursor:pointer}
+.chk input{margin-top:3px}
+.msg-ok{color:#1b7f3b}.msg-bad{color:var(--cp)}
+[hidden]{display:none !important}
+
+/* ---------- стенд ---------- */
+.row{display:flex;gap:16px;flex-wrap:wrap;align-items:flex-start}
+.schem-wrap{flex:1 1 470px;min-width:0}
+.schem-wrap canvas{display:block;width:100%;height:340px;touch-action:pan-y}
+.panel{flex:0 1 340px;background:linear-gradient(180deg,#d6d8d2 0%,#c2c5be 45%,#b1b4ac 100%);border:1px solid #858881;border-radius:6px;
+  box-shadow:inset 0 1px 0 #f1f2ee, inset 0 -3px 6px rgba(0,0,0,.16), 0 3px 8px rgba(0,0,0,.28);
+  padding:12px 16px;color:#1d1d1b;position:relative;font-family:"Arial Narrow","Roboto Condensed",Arial,sans-serif;max-width:100%;min-width:270px}
+:root[data-theme="dark"] .panel{filter:brightness(.86)}
+.panel::before,.panel::after{content:"";position:absolute;top:6px;width:9px;height:9px;border-radius:50%;
+  background:radial-gradient(circle at 35% 35%,#f4f4f4,#8a8a8a 70%,#555);box-shadow:0 0 0 1px #6c6c6c}
+.panel::before{left:6px}.panel::after{right:6px}
+.plate{display:flex;justify-content:space-between;align-items:baseline;gap:14px;border-bottom:1px solid #8b8e87;margin:0 10px 8px;padding-bottom:3px}
+.plate b{font-size:16px;letter-spacing:1.5px}
+.plate span{font-size:10px;letter-spacing:.6px;text-transform:uppercase;color:#3a3a36}
+.disp{display:flex;align-items:center;gap:10px;margin:6px 0}
+.disp i{font:normal 10px Arial,sans-serif;text-transform:uppercase;letter-spacing:.5px;width:92px;color:#26261f;line-height:1.15}
+.led{flex:1;background:#140606;padding:4px 12px 3px;border-radius:4px;box-shadow:inset 0 0 10px #000;display:flex;align-items:baseline;justify-content:flex-end;gap:8px}
+.led b{font:bold 26px ui-monospace,Consolas,monospace;color:#ff5236;text-shadow:0 0 6px #ff3a1a;letter-spacing:2px}
+.led u{text-decoration:none;font:bold 13px Arial;color:#ff5236;text-shadow:0 0 6px #ff3a1a;width:22px}
+.rh{margin-top:12px;border:1px solid #8b8e87;border-radius:5px;padding:9px 9px 6px;position:relative}
+.rh>i{position:absolute;top:-7px;left:8px;background:#c4c6bf;padding:0 4px;font:normal 9.5px Arial,sans-serif;text-transform:uppercase;letter-spacing:.6px;color:#2b2b26}
+.rh input[type=range]{width:100%;accent-color:#3c3c36;margin:2px 0}
+.rh .v{font:11px ui-monospace,Consolas,monospace;color:#111;text-align:center}
+.btn-sov{background:linear-gradient(#f4f4f0,#c8c9c3);border:1px solid #6f716b;border-radius:3px;font:10.5px Arial,sans-serif;padding:5px 8px;cursor:pointer;color:#111;
+  box-shadow:inset 0 1px 0 #fff,0 1px 2px rgba(0,0,0,.35);text-transform:uppercase;letter-spacing:.3px}
+.btn-sov:active{box-shadow:inset 0 2px 3px rgba(0,0,0,.45)}
+.btn-sov:disabled{opacity:.45;cursor:default}
+.btn-sov.red{background:linear-gradient(#f6c9c3,#d9877c);border-color:#7d2c22}
+.sovbtns{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px;justify-content:center}
+.panel .hint{color:#3b3b36;font-size:10.5px;margin:8px 0 0}
+.panel .warn{color:#a3160d;font:bold 11px Arial,sans-serif;margin:6px 0 0;min-height:14px}
+.quick{display:flex;gap:5px;justify-content:center;margin-top:4px}
+.quick button{font:10.5px Arial,sans-serif;padding:2px 8px;border:1px solid #6f716b;background:#d8d9d3;border-radius:3px;cursor:pointer;color:#111}
+
+/* ---------- теорія, таблиці, графіки ---------- */
+.th{font-size:14.5px}
+.th h4{margin:16px 0 4px;font-size:14.5px;color:var(--accent)}
+.th p{margin:6px 0}
+.th ol,.th ul{margin:6px 0;padding-left:22px}
+.th table{margin:8px 0;font-size:13px}
+.th .warn{border-left:3px solid #c27100;background:rgba(194,113,0,.12);padding:7px 10px;margin:10px 0;border-radius:0 6px 6px 0;font-size:14px}
+mjx-container[display="true"]{overflow-x:auto;overflow-y:hidden;margin:6px 0 !important;padding:2px 0}
+table{border-collapse:collapse;width:100%;font-size:13px}
+th,td{border:1px solid var(--line);padding:2px 7px;text-align:center;white-space:nowrap}
+th{background:var(--valbg)}
+tr.cur td{background:var(--valbg)}
+.tw{max-height:320px;overflow:auto}
+.tw.big{max-height:none}
+.graphs{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(440px,100%),1fr));gap:12px}
+.g{border:1px solid var(--line);border-radius:8px;padding:4px;min-width:0}
+.g canvas{display:block;width:100%;height:330px}
+.gbar{display:flex;flex-wrap:wrap;gap:4px 18px;align-items:center;justify-content:space-between;margin:0 0 6px}
+.gbar .hint,.gbar .chk{margin:0}
+textarea{width:100%;margin-top:8px;font:12px ui-monospace,Consolas,monospace;background:transparent;color:inherit;border:1px solid var(--line);border-radius:4px}
+.xbtn{border:1px solid var(--line);background:var(--bg);color:var(--fg);border-radius:5px;cursor:pointer;padding:0 6px}
+.prog{height:8px;border-radius:4px;background:var(--line);overflow:hidden;margin:4px 0}
+.prog>div{height:100%;background:var(--ci);width:0}
+@media (max-width:920px){
+  .layout{grid-template-columns:minmax(0,1fr)}
+  .content{display:contents}
+  .content>.card{margin-bottom:0}
+  .c-th{order:1}.c-stand{order:2}
+  aside.params{order:3;position:static;max-height:none}
+  .content>details:not(.c-th):not(.c-stand){order:4}
+  .layout{gap:14px}
+  header.top{position:static}
+  .panel{flex:1 1 100%}
+}
+@media (max-width:520px){main{padding:8px}.card{padding:10px}}
+</style>
+<script>
+(function(){var K='labcollision-theme',r=document.documentElement;try{var t=localStorage.getItem(K);if(t==='dark'||t==='light')r.setAttribute('data-theme',t)}catch(e){}})();
+window.MathJax = {
+  tex: { inlineMath: [['\\(', '\\)']], displayMath: [['\\[', '\\]']] },
+  chtml: { scale: 0.98 },
+  options: { skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code', 'svg', 'canvas'] }
+};
+</script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+</head>
+<body>
+<button id="themeBtn" title="Тема" aria-label="Перемкнути тему">☾</button>
+<header class="top">
+  <h1>Механіка. Закони збереження<small>Віртуальний практикум · лабораторна №3 «Закони збереження енергії та імпульсу при зіткненні куль»</small></h1>
+</header>
+
+<main>
+<div class="layout">
+ <aside class="params card">
+  <h3>Параметри досліду</h3>
+  <label class="f">Пара куль
+    <select id="pair"></select>
+  </label>
+  <label class="chk"><input type="checkbox" id="swap"><span>Поміняти кулі місцями (відхиляти іншу кулю пари)</span></label>
+  <div class="val" id="pinfo"></div>
+
+  <div class="pgroup"><b>Зважування (терези, ціна поділки 0,01 г)</b>
+    <div class="btns"><button class="btn primary" id="weigh">Зважити кулі</button><button class="btn" id="unweigh">Скинути</button></div>
+    <div class="val" id="winfo"></div>
+    <div class="hint">Кожне натискання — нове зважування; середнє й похибка накопичуються.</div>
+  </div>
+
+  <div class="pgroup"><b>Шкали кутів 3 і 4</b>
+    <div class="btns"><button class="btn" id="zero">Зняти відлік нуля шкал</button></div>
+    <div class="val" id="zinfo">Нуль не визначено.</div>
+    <div class="hint">Коли кулі висять у рівновазі, шкали можуть показувати не 0°. Це систематична похибка.</div>
+  </div>
+
+  <div class="pgroup"><b>Модель стенда</b>
+    <label class="chk"><input type="checkbox" id="drag" checked><span>Враховувати опір повітря й тертя у підвісі (~0,15 % швидкості)</span></label>
+    <label class="f">Швидкість анімації
+      <select id="speed"><option value="1">1× (реальний час)</option><option value="0.5" selected>0,5×</option><option value="0.2">0,2×</option></select>
+    </label>
+    <div class="hint">Довжина підвісу l = 0,600 м, g = 9,81 м/с². Для пар «ідеальних» куль див. розділ «Теорія».</div>
+  </div>
+
+  <div class="pgroup"><b>Хід роботи</b>
+    <div class="hint" id="progTxt"></div>
+    <div class="prog"><div id="progBar"></div></div>
+  </div>
+  <label class="chk"><input type="checkbox" id="teach"><span>Показати еталонні значення (для самоперевірки)</span></label>
+  <div class="val" id="tinfo" hidden></div>
+ </aside>
+
+ <div class="content">
+  <details class="card th c-th">
+   <summary>Теорія й опис моделі</summary>
+   <h4>Закони збереження при центральному ударі</h4>
+   <p>Куля 2 (маса \(m_2\)) відхиляється на кут \(\alpha_0\), відпускається й у положенні рівноваги вдаряє нерухому кулю 1 (маса \(m_1\)). Швидкість кулі 2 перед ударом — із закону збереження енергії маятника:
+   \[ v_{20}=2\sqrt{gl}\,\sin\frac{\alpha_0}{2},\qquad v_1=2\sqrt{gl}\,\sin\frac{\alpha_1}{2},\qquad v_2=2\sqrt{gl}\,\sin\frac{\alpha_2}{2}, \]
+   де \(\alpha_1\), \(\alpha_2\) — найбільші кути відхилення куль після удару (шкали 3 і 4). Отже, відношення швидкостей виражається через кути:
+   \[ R=\frac{v_1}{v_{20}}=\frac{\sin(\alpha_1/2)}{\sin(\alpha_0/2)}. \]</p>
+   <p>Імпульс зберігається в будь-якому ударі, а механічна енергія — лише в пружному. Для вимірюваних величин (проєкції на напрям руху кулі 2, \(v_2<0\), якщо куля відскочила):
+   \[ m_2v_{20}=m_1v_1+m_2v_2,\qquad (1-\beta)\,m_2v_{20}^2=m_1v_1^2+m_2v_2^2 . \]</p>
+
+   <h4>Коефіцієнт розсіювання енергії β</h4>
+   \[ \beta=\frac{E_\text{поч}-E_\text{кін}}{E_\text{поч}}. \]
+   <p>Для <b>однакових куль</b> \(m_1=m_2\), \(v_{20}\) і \(v_1\) визначаються з кутів, а \(v_2\) виключається з двох рівнянь:
+   \[ \beta=\frac{2v_1(v_{20}-v_1)}{v_{20}^2}=2R(1-R). \]
+   Для куль <b>різної маси</b> (\(x=m_1/m_2\)) те саме виключення дає
+   \[ \beta=xR\bigl(2-R(1+x)\bigr),\qquad\text{що при }x=1\text{ переходить у }2R(1-R). \]</p>
+
+   <h4>Відношення мас за відомим β</h4>
+   \[ \frac{m_1}{m_2}=\frac{2-R\pm\sqrt{(2-R)^2-4\beta}}{2R}. \]
+   <p>Два корені дають два можливі відношення мас; правильний вибирають зіставленням зі зважуванням. З іншого боку, якщо виміряно й \(\alpha_2\), то відношення мас випливає з одного закону збереження імпульсу: \(m_1/m_2=(v_{20}-v_2)/v_1\) (без терезів).</p>
+   <div class="warn"><b>Не плутайте.</b> Формула \(\beta=2R(1-R)\) справедлива <u>тільки</u> для однакових куль. Для пар із різними масами користуйтеся загальною формулою з \(x=m_1/m_2\).</div>
+
+   <h4>Що враховує модель стенда</h4>
+   <ul>
+     <li><b>Пружність матеріалів.</b> Коефіцієнт відновлення \(e\) залежить від пари матеріалів (сталь, латунь, алюміній) і трохи спадає зі зростанням швидкості: \(1-e\propto v^{1/5}\). Тоді \(\beta=(1-e^2)\,m_1/(m_1+m_2)\).</li>
+     <li><b>Тривалість контакту.</b> Секундомір показує час замикання кола, обчислений за теорією Герца (порядку 10²&nbsp;мкс).</li>
+     <li><b>Систематичні похибки.</b> Нулі шкал зсунуті (кратно 0,25°), нитки й повітря забирають частку швидкості.</li>
+     <li><b>Випадкові похибки.</b> Шкала має поділки по 0,5°, відлік округлюється до 0,25° із розкидом ≈0,12° (паралакс, момент максимуму). Кут відпускання коливається на ≈0,08°.</li>
+   </ul>
+
+   <h4>Обробка результатів</h4>
+   <p>Для кожної групи (пара, \(\alpha_0\)) беруть середнє \(\bar\alpha_1\), вибіркове стандартне відхилення \(s\), стандартну похибку середнього \(s/\sqrt n\) і поєднують її з приладовою складовою \(0{,}25^\circ/\sqrt3\):
+   \[ u(\bar\alpha_1)=\sqrt{\frac{s^2}{n}+\frac{(0{,}25^\circ)^2}{3}}. \]
+   Похибки \(R\), \(\beta\) та інших величин розраховуються додаванням у квадратурах внесків від \(\alpha_0,\alpha_1,\alpha_2,m_1,m_2\) (чисельні частинні похідні). Підсумок за парою — зважене середнє по кутах \(\alpha_0\) із вагами \(1/u^2\).</p>
+   <p>Варто спостерігати: при малих кутах (5°) відносна похибка \(\beta\) велика, бо \(1-R\) мале, а крок шкали порівнянний з відхиленням. Нулі шкал при цьому дають <b>систематичний</b> зсув, який не зменшується зі збільшенням \(n\).</p>
+
+   <h4>Порядок роботи</h4>
+   <ol>
+     <li>Оберіть пару куль, зважте їх (кілька разів), зніміть відлік нуля шкал.</li>
+     <li>Виставте \(\alpha_0\) (5°, 10°, 15°), натисніть <b>Reset</b>, коли куля завершить рух — <b>Записати вимір</b>. Повторіть щонайменше 10 разів (кнопка «×10 серія» робить це автоматично).</li>
+     <li>Зробіть те саме для трьох кутів і шести пар (три пари однакових куль, три пари різних).</li>
+     <li>У розділі «Обробка» знайдіть \(R\), \(\beta\), перевірте збереження імпульсу й енергії, порівняйте розв’язки формули для \(m_1/m_2\) із зважуванням.</li>
+     <li>Увімкніть/вимкніть поправку на нулі шкал і порівняйте результати. Це допоможе відрізнити систематичну похибку від випадкової.</li>
+   </ol>
+  </details>
+
+  <details class="card c-stand" open>
+   <summary>Стенд і прилади</summary>
+   <div class="row">
+    <div class="schem-wrap"><canvas id="cStand"></canvas></div>
+    <div class="panel">
+     <div class="plate"><b>ВИМІРЮВАННЯ</b><span>шкали 3, 4 · секундомір</span></div>
+     <div class="disp"><i>α₀ відпускання<br>(шкала 4)</i><div class="led"><b id="dA0">0,00</b><u>°</u></div></div>
+     <div class="disp"><i>α₁ куля 1<br>(шкала 3)</i><div class="led"><b id="dA1">—</b><u>°</u></div></div>
+     <div class="disp"><i>α₂ куля 2<br>(шкала 4)</i><div class="led"><b id="dA2">—</b><u>°</u></div></div>
+     <div class="disp"><i>контакт τ<br>секундомір</i><div class="led"><b id="dT">—</b><u>мкс</u></div></div>
+     <div class="warn" id="warn"></div>
+     <div class="rh"><i>електромагніт: відлік α₀</i>
+       <input type="range" id="a0" min="2" max="20" step="0.5" value="10" aria-label="Кут відпускання">
+       <div class="v" id="la0"></div>
+       <div class="quick"><button data-a="5">5°</button><button data-a="10">10°</button><button data-a="15">15°</button></div>
+     </div>
+     <div class="sovbtns">
+       <button class="btn-sov red" id="reset">Reset (відпустити)</button>
+       <button class="btn-sov" id="rec" disabled>Записати вимір</button>
+       <button class="btn-sov" id="back">Повернути кулю</button>
+       <button class="btn-sov" id="auto">×10 серія</button>
+     </div>
+     <div class="hint">Між дослідами електромагніт бажано вимикати: «Повернути кулю» повертає кулю 2 до магніту.</div>
+    </div>
+   </div>
+  </details>
+
+  <details class="card" open>
+   <summary>Таблиця вимірювань</summary>
+   <div class="tw"><table id="tbl"><thead><tr><th>№</th><th>пара</th><th>куля 1 / куля 2</th><th>α₀, °</th><th>α₁, °</th><th>α₂, °</th><th>τ, мкс</th><th></th></tr></thead><tbody></tbody></table></div>
+   <div class="btns"><button class="btn" id="cp">Копіювати таблицю</button><button class="btn" id="csv">Завантажити CSV</button><button class="btn" id="clr">Очистити все</button></div>
+   <div class="hint">Сирі відліки шкал (разом із нулями шкал). Дані зберігаються у браузері.</div>
+  </details>
+
+  <details class="card" open>
+   <summary>Обробка: результати за групами</summary>
+   <div class="gbar">
+     <label class="chk"><input type="checkbox" id="zc" checked><span>Враховувати відліки нуля шкал</span></label>
+     <div class="hint" id="zcNote"></div>
+   </div>
+   <div class="tw big"><table id="gtbl"></table></div>
+   <div class="btns"><button class="btn" id="gcsv">Завантажити CSV</button><button class="btn" id="gtex">Таблиця для LaTeX</button></div>
+   <textarea id="latex" rows="5" readonly hidden></textarea>
+  </details>
+
+  <details class="card" open>
+   <summary>Обробка: підсумок за парами куль</summary>
+   <div class="tw big"><table id="stbl"></table></div>
+   <div class="hint">
+     <b>β</b> — коефіцієнт розсіювання (за загальною формулою із зважених мас); <b>β<sub>E</sub></b> — за балансом енергії з трьох кутів; <b>p′/p</b> і <b>E′/E</b> — відношення імпульсу й енергії після удару до початкових;
+     <b>x<sub>імп</sub></b> — m₁/m₂ тільки з імпульсу; <b>x<sub>±</sub></b> — корені формули для m₁/m₂ при виміряних R й β<sub>E</sub>.
+   </div>
+  </details>
+
+  <details class="card" open>
+   <summary>Графіки</summary>
+   <div class="gbar">
+     <div class="hint">Графіки відповідають парі куль, вибраній ліворуч (з урахуванням «поміняти місцями»).</div>
+     <label class="f" style="margin:0">Розподіл α₁ для групи
+       <select id="hsel" style="min-width:200px"></select>
+     </label>
+   </div>
+   <div class="graphs">
+     <div class="g"><canvas id="cV"></canvas></div>
+     <div class="g"><canvas id="cB"></canvas></div>
+     <div class="g"><canvas id="cC"></canvas></div>
+     <div class="g"><canvas id="cH"></canvas></div>
+   </div>
+  </details>
+ </div>
+</div>
+</main>
+
+<script>
+const $=id=>document.getElementById(id);
+const D2R=Math.PI/180;
+const G=9.81, L=0.600, KV=2*Math.sqrt(G*L);          // KV·sin(α/2) = швидкість маятника в нижній точці
+const sinh2=a=>Math.sin(a*D2R/2);                     // sin(α/2), α у градусах
+const ang=s=>2*Math.asin(Math.min(1,Math.max(-1,s)))/D2R;
+const fmt=(v,d=2)=>isFinite(v)?v.toFixed(d).replace('.',',').replace('-','−'):'—';
+function fmtU(v,u){
+  if(!isFinite(v))return '—';
+  if(!isFinite(u)||u<=0)return fmt(v,3);
+  const e=Math.floor(Math.log10(u)),lead=u/Math.pow(10,e),dec=Math.min(6,Math.max(0,-e+(lead<2?1:0)));
+  return fmt(v,dec)+' ± '+fmt(u,dec);
+}
+function gauss(){let u=0,v=0;while(!u)u=Math.random();while(!v)v=Math.random();return Math.sqrt(-2*Math.log(u))*Math.cos(2*Math.PI*v)}
+
+/* ---------- кулі, матеріали, пари ---------- */
+const MAT={st:{n:'сталь',e0:0.965,E:200e9,nu:0.30},br:{n:'латунь',e0:0.90,E:100e9,nu:0.34},al:{n:'алюміній',e0:0.88,E:70e9,nu:0.35}};
+const BALLS={
+  1:{m:'st',d:25,mass:66.04},2:{m:'st',d:25,mass:66.11},
+  3:{m:'st',d:20,mass:33.81},4:{m:'st',d:20,mass:33.78},
+  5:{m:'st',d:30,mass:113.92},6:{m:'st',d:30,mass:114.05},
+  7:{m:'al',d:25,mass:22.18},8:{m:'br',d:25,mass:70.12}
+};
+const PAIRS=[
+  {rest:1,rel:2,name:'сталь 25 мм + сталь 25 мм (однакові)'},
+  {rest:3,rel:4,name:'сталь 20 мм + сталь 20 мм (однакові)'},
+  {rest:5,rel:6,name:'сталь 30 мм + сталь 30 мм (однакові)'},
+  {rest:7,rel:2,name:'алюміній 25 мм + сталь 25 мм (різні)'},
+  {rest:8,rel:3,name:'латунь 25 мм + сталь 20 мм (різні)'},
+  {rest:6,rel:7,name:'сталь 30 мм + алюміній 25 мм (різні)'}
+];
+const ballName=id=>'№'+id+' ('+MAT[BALLS[id].m].n+', Ø'+BALLS[id].d+' мм)';
+const e0Of=(A,B)=>(MAT[A.m].e0+MAT[B.m].e0)/2;
+const eOf=(e0,v)=>1-(1-e0)*Math.pow(Math.max(v,0.02)/0.4,0.2);
+function hertz(B1,B2,v){          // час контакту за Герцем, мкс
+  const r1=B1.d/2e3,r2=B2.d/2e3,m1=B1.mass/1e3,m2=B2.mass/1e3,A=MAT[B1.m],B=MAT[B2.m];
+  const Es=1/((1-A.nu*A.nu)/A.E+(1-B.nu*B.nu)/B.E),Rs=r1*r2/(r1+r2),ms=m1*m2/(m1+m2);
+  return 2.87*Math.pow(ms*ms/(Rs*Es*Es*Math.max(v,0.02)),0.2)*1e6;
+}
+
+/* ---------- стан і збереження ---------- */
+const LS='labcollision-v1';
+const rq=()=>(Math.floor(Math.random()*5)-2)*0.25;
+let DB={rows:[],weigh:{},zm:{z1:null,z2:null},zero:null};
+try{const j=JSON.parse(localStorage.getItem(LS));if(j&&Array.isArray(j.rows))DB=Object.assign(DB,j)}catch(e){}
+if(!DB.zero)DB.zero={z1:rq(),z2:rq()};      // справжні нулі шкал (приховані), °
+function save(){try{localStorage.setItem(LS,JSON.stringify(DB))}catch(e){}}
+const P=new URLSearchParams(location.search);
+const S={pair:1,swap:false,a0:10};
+function cfgOf(key){const pair=parseInt(key),swap=/b$/.test(key),p=PAIRS[pair-1];return{key,pair,swap,rest:swap?p.rel:p.rest,rel:swap?p.rest:p.rel}}
+const cfg=()=>cfgOf(S.pair+(S.swap?'b':'a'));
+
+/* ---------- фізика досліду ---------- */
+const rd25=x=>Math.round(x/0.25)*0.25;
+function physics(c,a0set,real=true){
+  const B1=BALLS[c.rest],B2=BALLS[c.rel],m1=B1.mass,m2=B2.mass;
+  const dragOn=real&&$('drag').checked;
+  const dl=()=>dragOn?Math.max(0,0.0015*(1+0.35*gauss())):0;
+  const a0t=a0set-DB.zero.z2+(real?gauss()*0.08:0);
+  const v20=KV*sinh2(a0t)*(1-dl());
+  const e=eOf(e0Of(B1,B2),v20);
+  const v1=(1+e)*m2/(m1+m2)*v20,v2=(m2-e*m1)/(m1+m2)*v20;
+  const a1t=ang(v1*(1-dl())/KV),a2t=ang(Math.abs(v2)*(1-dl())/KV),back=v2<0;
+  return{a0t,v20,e,v1,v2,a1t,a2t,back,
+    a1:rd25(a1t+DB.zero.z1+(real?gauss()*0.12:0)),
+    a2:rd25((back?1:-1)*a2t+DB.zero.z2+(real?gauss()*0.12:0)),
+    tau:hertz(B1,B2,v20)*(1+(real?0.03*gauss():0)),
+    beta:(1-e*e)*m1/(m1+m2)};
+}
+
+/* ---------- маси ---------- */
+function massOf(id){
+  const w=DB.weigh[id];if(!w||!w.length)return null;
+  const n=w.length,m=w.reduce((s,x)=>s+x,0)/n;
+  const s=n>1?Math.sqrt(w.reduce((a,x)=>a+(x-m)*(x-m),0)/(n-1)):0;
+  return{m,u:Math.hypot(s/Math.sqrt(n),0.01/Math.sqrt(3)),n};
+}
+function weighOnce(){
+  const c=cfg();
+  for(const id of [c.rest,c.rel]){(DB.weigh[id]=DB.weigh[id]||[]).push(Math.round((BALLS[id].mass+gauss()*0.012)*100)/100)}
+  save();renderInfo();renderAll();
+}
+
+/* ---------- стенд: стан анімації ---------- */
+const CV={stand:$('cStand'),v:$('cV'),b:$('cB'),c:$('cC'),h:$('cH')};
+let BG,INK,AX,GR,C_U,C_I,C_P,C_TRUE;
+function colors(){
+  const s=getComputedStyle(document.documentElement),v=n=>s.getPropertyValue(n).trim();
+  BG=v('--card');INK=v('--fg');AX=v('--axis');GR=v('--grid');C_U=v('--cu');C_I=v('--ci');C_P=v('--cp');C_TRUE=v('--true');
+}
+function prep(cv){
+  const dpr=window.devicePixelRatio||1,r=cv.getBoundingClientRect(),w=Math.max(10,r.width),h=Math.max(10,r.height);
+  if(cv.width!==Math.round(w*dpr)||cv.height!==Math.round(h*dpr)){cv.width=Math.round(w*dpr);cv.height=Math.round(h*dpr)}
+  const g=cv.getContext('2d');g.setTransform(dpr,0,0,dpr,0,0);g.clearRect(0,0,w,h);return{g,w,h};
+}
+const sim={phase:'hold',t1:0,w1:0,t2:0,w2:0,d1:0,d2:0,f1:false,f2:false,out:null};
+function toHold(){
+  sim.phase='hold';sim.t1=0;sim.w1=0;sim.out=null;sim.f1=sim.f2=false;
+  sim.t2=Math.max(0,S.a0-DB.zero.z2)*D2R;sim.w2=0;
+  $('rec').disabled=true;$('reset').disabled=false;
+}
+function showReadings(o){
+  $('dA1').textContent=o?fmt(o.a1):'—';$('dA2').textContent=o?fmt(o.a2):'—';$('dT').textContent=o?fmt(o.tau,0):'—';
+}
+function startRun(){
+  if(sim.phase!=='hold')return;
+  sim.out=physics(cfg(),S.a0);
+  sim.t2=sim.out.a0t*D2R;sim.w2=0;sim.t1=0;sim.w1=0;sim.f1=sim.f2=false;
+  sim.phase='fall';$('reset').disabled=true;showReadings(null);$('warn').textContent='';
+}
+function advance(h){
+  const k=G/L,o=sim.out;
+  if(sim.phase==='fall'){
+    sim.w2-=k*Math.sin(sim.t2)*h;sim.t2+=sim.w2*h;
+    if(sim.t2<=0){
+      sim.t2=0;sim.t1=0;sim.w1=-o.v1/L;sim.w2=-o.v2/L;
+      sim.d1=Math.sign(sim.w1);sim.d2=Math.sign(sim.w2);
+      sim.f1=false;sim.f2=Math.abs(sim.w2)<1e-6;sim.phase='after';
+    }
+  }else if(sim.phase==='after'){
+    if(!sim.f1){sim.w1-=k*Math.sin(sim.t1)*h;sim.t1+=sim.w1*h;if(sim.w1*sim.d1<=0){sim.f1=true;sim.t1=-o.a1t*D2R}}
+    if(!sim.f2){sim.w2-=k*Math.sin(sim.t2)*h;sim.t2+=sim.w2*h;if(sim.w2*sim.d2<=0){sim.f2=true;sim.t2=(o.back?1:-1)*o.a2t*D2R}}
+    if(sim.f2&&Math.abs(o.v2)<1e-6)sim.t2=0;
+    if(sim.f1&&sim.f2){sim.phase='done';showReadings(o);$('rec').disabled=false;$('warn').textContent='Відлік зроблено. Запишіть вимір.'}
+  }
+}
+let lastTs=0;
+function tick(ts){
+  const dt=Math.min(0.05,(ts-lastTs)/1000)*(+$('speed').value);lastTs=ts;
+  if(sim.phase==='fall'||sim.phase==='after'){const n=Math.max(1,Math.ceil(dt/0.0005)),h=dt/n;for(let i=0;i<n;i++)advance(h)}
+  drawStand();requestAnimationFrame(tick);
+}
+function drawStand(){
+  colors();
+  const{g,w,h}=prep(CV.stand);
+  const r=Math.max(7,Math.min(10,w*0.018)),Lp=Math.min(h-110,w*0.46),cx=w/2,top=34;
+  const p1={x:cx-r,y:top},p2={x:cx+r,y:top},z=DB.zero;
+  g.lineJoin='round';
+  /* стійка й балка */
+  g.fillStyle=AX;g.fillRect(cx-70,top-10,140,8);
+  g.strokeStyle=INK;g.lineWidth=2;g.beginPath();g.moveTo(cx,top-10);g.lineTo(cx,top-24);g.stroke();
+  /* шкали */
+  const R0=Lp+r+16;
+  function scale(p,sgn,zz,label){
+    g.strokeStyle=AX;g.lineWidth=1.2;g.beginPath();
+    for(let a=0;a<=21;a+=0.5){const th=sgn*(a-zz)*D2R,x=p.x+R0*Math.sin(th),y=p.y+R0*Math.cos(th);a?g.lineTo(x,y):g.moveTo(x,y)}
+    g.stroke();
+    g.font='11px system-ui,sans-serif';g.textAlign='center';
+    for(let a=0;a<=20;a++){
+      const th=sgn*(a-zz)*D2R,s=Math.sin(th),c=Math.cos(th),len=a%5===0?9:4.5;
+      g.beginPath();g.moveTo(p.x+R0*s,p.y+R0*c);g.lineTo(p.x+(R0+len)*s,p.y+(R0+len)*c);g.stroke();
+      if(a%5===0&&a>0){g.fillStyle=AX;g.fillText(a+'°',p.x+(R0+22)*s,p.y+(R0+22)*c+4)}
+    }
+    g.fillStyle=INK;g.font='12px system-ui,sans-serif';g.fillText(label,p.x+(R0+44)*Math.sin(sgn*10*D2R),p.y+(R0+44)*Math.cos(sgn*10*D2R)+4);
+  }
+  scale(p1,-1,z.z1,'шкала 3');scale(p2,1,z.z2,'шкала 4');
+  /* кулі */
+  const pos=(p,t)=>({x:p.x+Lp*Math.sin(t),y:p.y+Lp*Math.cos(t)});
+  const b1=pos(p1,sim.t1),b2=pos(p2,sim.t2);
+  function ball(b,p,col,lab){
+    g.strokeStyle=INK;g.lineWidth=1.3;g.beginPath();g.moveTo(p.x,p.y);g.lineTo(b.x,b.y);g.stroke();
+    const gr=g.createRadialGradient(b.x-r*0.35,b.y-r*0.35,r*0.1,b.x,b.y,r);
+    gr.addColorStop(0,'#fff');gr.addColorStop(0.35,col);gr.addColorStop(1,'#333');
+    g.fillStyle=gr;g.beginPath();g.arc(b.x,b.y,r,0,2*Math.PI);g.fill();g.strokeStyle='#222';g.lineWidth=1;g.stroke();
+    g.fillStyle=INK;g.font='11px system-ui,sans-serif';g.textAlign='center';g.fillText(lab,b.x,b.y+r+13);
+  }
+  const c=cfg(),col=id=>({st:'#9aa3ae',br:'#c9a44a',al:'#cfd5dc'})[BALLS[id].m];
+  ball(b1,p1,col(c.rest),'1');ball(b2,p2,col(c.rel),'2');
+  /* електромагніт */
+  if(sim.phase==='hold'){
+    const t=sim.t2,mx=b2.x+(r+7)*Math.cos(t),my=b2.y-(r+7)*Math.sin(t);
+    g.save();g.translate(mx,my);g.rotate(-t);g.fillStyle=C_P;g.fillRect(-4,-11,8,22);g.strokeStyle='#222';g.strokeRect(-4,-11,8,22);g.restore();
+    g.fillStyle=C_P;g.font='11px system-ui,sans-serif';g.textAlign='left';g.fillText('магніт 5',mx+8,my-12);
+  }
+  /* маркери максимумів на шкалах */
+  if(sim.phase==='done'&&sim.out){
+    const o=sim.out;
+    function mark(p,sgn,a,colr){
+      const th=sgn*a*D2R,s=Math.sin(th),cc=Math.cos(th),x=p.x+(R0-3)*s,y=p.y+(R0-3)*cc;
+      g.fillStyle=colr;g.beginPath();g.moveTo(x,y);g.lineTo(x-5*cc-6*s,y+5*s-6*cc);g.lineTo(x+5*cc-6*s,y-5*s-6*cc);g.closePath();g.fill();
+    }
+    mark(p1,-1,o.a1t,C_I);
+    if(o.a2t>0.05)mark(o.back?p2:p1,o.back?1:-1,o.a2t,C_U);
+  }
+  g.fillStyle=AX;g.font='12px system-ui,sans-serif';g.textAlign='left';
+  g.fillText('куля 1 — нерухома: '+ballName(c.rest),8,h-22);g.fillText('куля 2 — відхиляється: '+ballName(c.rel),8,h-6);
+}
+
+/* ---------- запис вимірів ---------- */
+function record(o,c){DB.rows.push({k:c.key,a0:S.a0,a1:o.a1,a2:o.a2,tau:Math.round(o.tau*10)/10})}
+function recOne(){
+  if(sim.phase!=='done')return;
+  record(sim.out,cfg());save();toHold();renderAll();
+  $('warn').textContent='Записано (всього '+DB.rows.length+').';
+}
+function autoRun(n){
+  const c=cfg();let o;
+  for(let i=0;i<n;i++){o=physics(c,S.a0);record(o,c)}
+  save();toHold();showReadings(o);renderAll();
+  $('warn').textContent='Записано '+n+' вимірів автоматично.';
+}
+
+/* ---------- інформація зліва ---------- */
+function renderInfo(){
+  const c=cfg(),B1=BALLS[c.rest],B2=BALLS[c.rel];
+  $('pinfo').innerHTML='куля 1 (нерухома): '+ballName(c.rest)+'<br>куля 2 (відхиляється): '+ballName(c.rel);
+  const w=id=>{const m=massOf(id);return m?fmtU(m.m,m.u)+' г (n='+m.n+')':'не зважено'};
+  $('winfo').innerHTML='m<sub>1</sub>: '+w(c.rest)+'<br>m<sub>2</sub>: '+w(c.rel);
+  const zm=DB.zm;
+  $('zinfo').innerHTML=zm.z1==null?'Нуль не визначено.':'шкала 3: '+fmt(zm.z1)+'°<br>шкала 4: '+fmt(zm.z2)+'°';
+  $('la0').textContent='α₀ = '+fmt(S.a0,1)+'° на шкалі 4';
+  $('dA0').textContent=fmt(S.a0);
+  const r0=physics(c,S.a0,false);
+  $('tinfo').innerHTML='e(v<sub>20</sub>) = '+fmt(r0.e,3)+'; β = '+fmt(r0.beta,4)+' (для α₀ = '+fmt(S.a0,1)+'°)<br>m<sub>1</sub>/m<sub>2</sub> = '+fmt(B1.mass/B2.mass,3)+'; справжні нулі: '+fmt(DB.zero.z1)+'°, '+fmt(DB.zero.z2)+'°';
+  $('tinfo').hidden=!($('teach').checked||P.has('teacher'));
+}
+
+/* ---------- обробка ---------- */
+const UI_ANG=0.25/Math.sqrt(3), U_A0=0.15;
+function calc(a0,a1,a2,m1,m2){
+  const v20=KV*sinh2(a0),v1=KV*sinh2(a1),v2=-KV*sinh2(a2),R=v1/v20;
+  const o={v20,v1,v2,R,b18:2*R*(1-R),xm:(v20-v2)/v1};
+  if(m1>0&&m2>0){const x=m1/m2;o.x=x;o.beta=x*R*(2-R*(1+x));o.pr=(m1*v1+m2*v2)/(m2*v20);o.Er=(m1*v1*v1+m2*v2*v2)/(m2*v20*v20);o.bE=1-o.Er}
+  return o;
+}
+function prop(vals,us,fn){
+  const base=fn(vals),u={};for(const k in base)u[k]=0;
+  us.forEach((ui,i)=>{
+    if(!(ui>0))return;
+    const h=ui*0.5,p=vals.slice(),q=vals.slice();p[i]+=h;q[i]-=h;
+    const fp=fn(p),fq=fn(q);
+    for(const k in base){const d=(fp[k]-fq[k])/(2*h);if(isFinite(d))u[k]+=(d*ui)*(d*ui)}
+  });
+  for(const k in u)u[k]=Math.sqrt(u[k]);
+  return{v:base,u};
+}
+const mean=a=>a.reduce((s,x)=>s+x,0)/a.length;
+const sdev=a=>{if(a.length<2)return NaN;const m=mean(a);return Math.sqrt(a.reduce((s,x)=>s+(x-m)*(x-m),0)/(a.length-1))};
+function zcOn(){return $('zc').checked&&DB.zm.z1!=null&&DB.zm.z2!=null}
+function groups(){
+  const zc=zcOn(),z1=zc?DB.zm.z1:0,z2=zc?DB.zm.z2:0,map=new Map();
+  for(const r of DB.rows){const key=r.k+'|'+r.a0;if(!map.has(key))map.set(key,{key,k:r.k,a0:r.a0,rs:[]});map.get(key).rs.push(r)}
+  const out=[];
+  for(const g of map.values()){
+    const c=cfgOf(g.k),n=g.rs.length;
+    g.c=c;g.n=n;g.A1=g.rs.map(r=>r.a1-z1);g.A2=g.rs.map(r=>r.a2-z2);
+    g.a0c=g.a0-z2;g.a1=mean(g.A1);g.s1=sdev(g.A1);g.a2=mean(g.A2);g.s2=sdev(g.A2);g.tau=mean(g.rs.map(r=>r.tau));
+    const u1=Math.hypot(isFinite(g.s1)?g.s1/Math.sqrt(n):0,UI_ANG),u2=Math.hypot(isFinite(g.s2)?g.s2/Math.sqrt(n):0,UI_ANG);
+    const M1=massOf(c.rest),M2=massOf(c.rel);
+    g.M1=M1;g.M2=M2;
+    const vals=[g.a0c,g.a1,g.a2,M1?M1.m:0,M2?M2.m:0],us=[U_A0,u1,u2,M1?M1.u:0,M2?M2.u:0];
+    const r=prop(vals,us,v=>calc(v[0],v[1],v[2],v[3],v[4]));
+    g.v=r.v;g.u=r.u;g.u1=u1;
+    g.useB18=!M1||!M2||Math.abs(g.v.x-1)<0.06;
+    out.push(g);
+  }
+  out.sort((a,b)=>a.c.pair-b.c.pair||(a.c.swap-b.c.swap)||a.a0-b.a0);
+  return out;
+}
+const gName=c=>'№'+c.pair+(c.swap?' ⇄':'');
+function renderTable(){
+  const tb=$('tbl').tBodies[0],cur=cfg().key;
+  tb.innerHTML=DB.rows.map((r,i)=>{
+    const c=cfgOf(r.k);
+    return '<tr'+(r.k===cur?' class="cur"':'')+'><td>'+(i+1)+'</td><td>'+gName(c)+'</td><td>'+c.rest+' / '+c.rel+'</td><td>'+fmt(r.a0)+'</td><td>'+fmt(r.a1)+'</td><td>'+fmt(r.a2)+'</td><td>'+fmt(r.tau,0)+'</td><td><button class="xbtn" data-i="'+i+'" title="Видалити">×</button></td></tr>';
+  }).join('');
+  const sc=$('tbl').parentElement;sc.scrollTop=sc.scrollHeight;
+}
+let GR_CACHE=[];
+function renderGroups(){
+  const gs=GR_CACHE,T=($('teach').checked||P.has('teacher'));
+  $('zcNote').textContent=$('zc').checked?(DB.zm.z1==null?'Нуль шкал ще не знято: поправка не застосовується.':'Від відліків віднято нулі шкал (шкала 3: '+fmt(DB.zm.z1)+'°, шкала 4: '+fmt(DB.zm.z2)+'°).'):'Поправку на нулі вимкнено.';
+  let h='<thead><tr><th>пара</th><th>α₀, °</th><th>n</th><th>ᾱ₁, °</th><th>s(α₁), °</th><th>ᾱ₂, °</th><th>R</th><th>β (ф.18)</th><th>β (з мас)</th><th>p′/p</th><th>E′/E</th>'+(T?'<th>β еталон</th>':'')+'</tr></thead><tbody>';
+  if(!gs.length)h+='<tr><td colspan="'+(T?12:11)+'">Даних ще немає: зніміть виміри на стенді.</td></tr>';
+  for(const g of gs){
+    const v=g.v,u=g.u;
+    const b18=g.useB18?fmtU(v.b18,u.b18):'—';
+    h+='<tr'+(g.c.key===cfg().key?' class="cur"':'')+'><td>'+gName(g.c)+'</td><td>'+fmt(g.a0c)+'</td><td>'+g.n+'</td><td>'+fmtU(g.a1,g.u1)+'</td><td>'+fmt(g.s1,2)+'</td><td>'+fmt(g.a2)+'</td><td>'+fmtU(v.R,u.R)+'</td><td>'+b18+'</td><td>'+(v.beta!=null?fmtU(v.beta,u.beta):'—')+'</td><td>'+(v.pr!=null?fmtU(v.pr,u.pr):'—')+'</td><td>'+(v.Er!=null?fmtU(v.Er,u.Er):'—')+'</td>'+(T?'<td>'+fmt(physics(g.c,g.a0,false).beta,4)+'</td>':'')+'</tr>';
+  }
+  $('gtbl').innerHTML=h+'</tbody>';
+}
+/* зважене середнє по групах однієї пари */
+function wmean(items,key,ukey){
+  let sw=0,sx=0,n=0;const a=[];
+  for(const g of items){const x=g.v[key],u=g.u[ukey||key];if(isFinite(x)&&u>0){const w=1/(u*u);sw+=w;sx+=w*x;a.push([x,w]);n++}}
+  if(!n)return null;
+  const m=sx/sw;let ue=Math.sqrt(1/sw);
+  if(n>1){const sc=Math.sqrt(a.reduce((s,[x,w])=>s+w*(x-m)*(x-m),0)/(n-1)/sw);ue=Math.max(ue,sc)}
+  return{m,u:ue,n};
+}
+function renderSummary(){
+  const by={};for(const g of GR_CACHE)(by[g.c.key]=by[g.c.key]||[]).push(g);
+  let h='<thead><tr><th>пара</th><th>m₁, г</th><th>m₂, г</th><th>x = m₁/m₂</th><th>R̄</th><th>β</th><th>β<sub>E</sub></th><th>p′/p</th><th>E′/E</th><th>x<sub>імп</sub></th><th>x₊ ; x₋ (ф. 19)</th></tr></thead><tbody>';
+  const keys=Object.keys(by).sort((a,b)=>parseInt(a)-parseInt(b)||a.localeCompare(b));
+  if(!keys.length)h+='<tr><td colspan="11">Даних ще немає.</td></tr>';
+  for(const k of keys){
+    const items=by[k],c=items[0].c,M1=items[0].M1,M2=items[0].M2;
+    const R=wmean(items,'R'),b=wmean(items,'beta'),bE=wmean(items,'bE'),pr=wmean(items,'pr'),Er=wmean(items,'Er'),xm=wmean(items,'xm');
+    let xs='—';
+    if(R&&bE){
+      const r=prop([R.m,bE.m],[R.u,bE.u],v=>{const d=(2-v[0])*(2-v[0])-4*v[1];const s=d>=0?Math.sqrt(d):NaN;return{p:(2-v[0]+s)/(2*v[0]),m:(2-v[0]-s)/(2*v[0])}});
+      if(isFinite(r.v.p)){
+        const xw=(M1&&M2)?M1.m/M2.m:null,close=a=>xw!=null&&Math.abs(a-xw)===Math.min(Math.abs(r.v.p-xw),Math.abs(r.v.m-xw));
+        const f=(a,u)=>'<span'+(close(a)?' style="font-weight:700;color:var(--ci)"':'')+'>'+fmtU(a,u)+'</span>';
+        xs=f(r.v.p,r.u.p)+' ; '+f(r.v.m,r.u.m);
+      }
+    }
+    h+='<tr'+(k===cfg().key?' class="cur"':'')+'><td>'+gName(c)+'</td><td>'+(M1?fmt(M1.m):'—')+'</td><td>'+(M2?fmt(M2.m):'—')+'</td><td>'+(M1&&M2?fmt(M1.m/M2.m,3):'—')+'</td><td>'+(R?fmtU(R.m,R.u):'—')+'</td><td>'+(b?fmtU(b.m,b.u):'—')+'</td><td>'+(bE?fmtU(bE.m,bE.u):'—')+'</td><td>'+(pr?fmtU(pr.m,pr.u):'—')+'</td><td>'+(Er?fmtU(Er.m,Er.u):'—')+'</td><td>'+(xm?fmtU(xm.m,xm.u):'—')+'</td><td>'+xs+'</td></tr>';
+  }
+  $('stbl').innerHTML=h+'</tbody>';
+}
+function renderProgress(){
+  const tot=new Map();
+  for(const g of GR_CACHE){const k=g.c.pair+'|'+g.a0;if(!tot.has(k)||tot.get(k)<g.n)tot.set(k,g.n)}
+  const ok=[...tot.values()].filter(n=>n>=10).length,pairs=new Set([...tot.keys()].map(k=>k.split('|')[0])).size;
+  $('progTxt').textContent='Груп із n ≥ 10: '+ok+' з 18 (6 пар × 3 кути). Пар із даними: '+pairs+' з 6. Усього вимірів: '+DB.rows.length+'.';
+  $('progBar').style.width=Math.min(100,ok/18*100)+'%';
+}
+
+/* ---------- графіки ---------- */
+function niceTicks(a,b,n=5){
+  const range=b-a,raw=range/n,p=Math.pow(10,Math.floor(Math.log10(raw))),st=[1,2,2.5,5,10].map(m=>m*p).find(v=>v>=raw);
+  const t=[];for(let v=Math.ceil(a/st-1e-9)*st;v<=b+st*1e-6;v+=st)t.push(+v.toFixed(8));return{t,st};
+}
+function frame(g,w,h,xr,yr,xlab,ylab,title,xTicks){
+  const x0=58,x1=w-14,y0=h-38,y1=40;
+  const X=v=>x0+(v-xr[0])/(xr[1]-xr[0])*(x1-x0),Y=v=>y0-(v-yr[0])/(yr[1]-yr[0])*(y0-y1);
+  const xt=xTicks||niceTicks(xr[0],xr[1]),yt=niceTicks(yr[0],yr[1]);
+  const dx=Math.max(0,-Math.floor(Math.log10(xt.st))),dy=Math.max(0,-Math.floor(Math.log10(yt.st)));
+  g.font='13px system-ui,"Segoe UI",sans-serif';g.textBaseline='alphabetic';g.fillStyle=INK;g.textAlign='left';g.fillText(title,6,16);
+  g.strokeStyle=GR;g.lineWidth=1;
+  xt.t.forEach(v=>{g.beginPath();g.moveTo(X(v),y1);g.lineTo(X(v),y0);g.stroke();g.fillStyle=AX;g.textAlign='center';g.fillText(fmt(v,dx),X(v),y0+15)});
+  yt.t.forEach(v=>{g.beginPath();g.moveTo(x0,Y(v));g.lineTo(x1,Y(v));g.stroke();g.fillStyle=AX;g.textAlign='right';g.fillText(fmt(v,dy),x0-6,Y(v)+4)});
+  g.strokeStyle=AX;g.lineWidth=1.2;g.beginPath();g.moveTo(x0,y1);g.lineTo(x0,y0);g.lineTo(x1,y0);g.stroke();
+  g.fillStyle=INK;g.textAlign='right';g.fillText(xlab,x1,y0+30);g.textAlign='left';g.fillText(ylab,x0+4,y1-8);
+  return{X,Y,x0,x1,y0,y1};
+}
+function dot(g,x,y,col,r=3.8){g.fillStyle=col;g.beginPath();g.arc(x,y,r,0,2*Math.PI);g.fill()}
+function bars(g,A,x,y,ux,uy,col){
+  g.strokeStyle=col;g.lineWidth=1.3;g.beginPath();
+  if(uy>0){g.moveTo(A.X(x),A.Y(y-uy));g.lineTo(A.X(x),A.Y(y+uy))}
+  if(ux>0){g.moveTo(A.X(x-ux),A.Y(y));g.lineTo(A.X(x+ux),A.Y(y))}
+  g.stroke();
+}
+function line(g,A,pts,col,w=1.6,dash){g.strokeStyle=col;g.lineWidth=w;g.setLineDash(dash||[]);g.beginPath();pts.forEach((p,i)=>i?g.lineTo(A.X(p[0]),A.Y(p[1])):g.moveTo(A.X(p[0]),A.Y(p[1])));g.stroke();g.setLineDash([])}
+function legend(g,items,x,y){g.font='12px system-ui,sans-serif';g.textAlign='left';items.forEach((it,i)=>{const yy=y+i*15;if(it.dash||it.line){g.strokeStyle=it.c;g.lineWidth=1.8;g.setLineDash(it.dash||[]);g.beginPath();g.moveTo(x,yy-4);g.lineTo(x+16,yy-4);g.stroke();g.setLineDash([])}else dot(g,x+8,yy-4,it.c,3.5);g.fillStyle=INK;g.fillText(it.t,x+22,yy)})}
+function empty(g,w,h,title,msg){g.font='13px system-ui,sans-serif';g.fillStyle=INK;g.textAlign='left';g.fillText(title,6,16);g.fillStyle=AX;g.textAlign='center';g.fillText(msg,w/2,h/2)}
+const curGroups=()=>GR_CACHE.filter(g=>g.c.key===cfg().key);
+
+function drawV(){
+  const{g,w,h}=prep(CV.v),gs=curGroups(),title='Швидкості: v₁ від v₂₀';
+  if(!gs.length){empty(g,w,h,title,'Немає даних для цієї пари');return}
+  const c=cfg(),M1=massOf(c.rest),M2=massOf(c.rel);
+  const xmax=Math.max(...gs.map(q=>q.v.v20+q.u.v20))*1.12;
+  const kel=M1&&M2?2*M2.m/(M1.m+M2.m):1,kin=M1&&M2?M2.m/(M1.m+M2.m):0.5;
+  const ymax=Math.max(...gs.map(q=>q.v.v1+q.u.v1),xmax*Math.max(kel,0.3))*1.08;
+  const A=frame(g,w,h,[0,xmax],[0,ymax],'v₂₀, м/с','v₁, м/с',title);
+  line(g,A,[[0,0],[xmax,kel*xmax]],C_TRUE,1.4,[6,4]);
+  line(g,A,[[0,0],[xmax,kin*xmax]],C_TRUE,1.4,[2,3]);
+  let sw=0,sxy=0,sxx=0;
+  for(const q of gs){const wt=1/(q.u.v1*q.u.v1);sxy+=wt*q.v.v20*q.v.v1;sxx+=wt*q.v.v20*q.v.v20;sw+=wt}
+  const kf=sxy/sxx;
+  line(g,A,[[0,0],[xmax,kf*xmax]],C_P,1.8);
+  for(const q of gs){bars(g,A,q.v.v20,q.v.v1,q.u.v20,q.u.v1,C_U);dot(g,A.X(q.v.v20),A.Y(q.v.v1),C_U)}
+  legend(g,[{t:'вимірювання (середні за групою)',c:C_U},{t:'лінійна апроксимація: R = '+fmt(kf,3),c:C_P,line:1},{t:'пружний удар: '+fmt(kel,3),c:C_TRUE,dash:[6,4]},{t:'непружний: '+fmt(kin,3),c:C_TRUE,dash:[2,3]}],A.x0+10,A.y1+14);
+}
+function drawB(){
+  const{g,w,h}=prep(CV.b),gs=curGroups(),title='Розсіювання енергії β від v₂₀',T=($('teach').checked||P.has('teacher'));
+  const pts=gs.map(q=>({x:q.v.v20,ux:q.u.v20,y:q.v.beta!=null?q.v.beta:(q.useB18?q.v.b18:NaN),uy:q.v.beta!=null?q.u.beta:q.u.b18})).filter(p=>isFinite(p.y));
+  if(!pts.length){empty(g,w,h,title,'Немає даних для цієї пари');return}
+  const c=cfg();
+  const xmax=Math.max(...pts.map(p=>p.x+p.ux),KV*sinh2(20)*0.55)*1.1;
+  let lo=Math.min(0,...pts.map(p=>p.y-p.uy)),hi=Math.max(...pts.map(p=>p.y+p.uy));
+  if(T){for(let a=3;a<=20;a+=1){hi=Math.max(hi,physics(c,a+DB.zero.z2,false).beta*1.1)}}
+  hi=Math.max(hi,0.02);
+  const A=frame(g,w,h,[0,xmax],[lo,hi*1.1],'v₂₀, м/с','β',title);
+  if(T){line(g,A,Array.from({length:40},(_,i)=>{const a=2+i*0.5,o=physics(c,a+DB.zero.z2,false);return[o.v20,o.beta]}),C_TRUE,1.5,[5,4])}
+  for(const p of pts){bars(g,A,p.x,p.y,p.ux,p.uy,C_P);dot(g,A.X(p.x),A.Y(p.y),C_P)}
+  legend(g,[{t:'β з вимірювань (±u)',c:C_P}].concat(T?[{t:'еталон моделі',c:C_TRUE,dash:[5,4]}]:[]),A.x0+10,A.y1+14);
+}
+function drawC(){
+  const{g,w,h}=prep(CV.c),gs=curGroups().filter(q=>q.v.pr!=null),title='Збереження імпульсу й енергії';
+  if(!gs.length){empty(g,w,h,title,'Потрібні зважування та дані');return}
+  const lo=Math.min(0.8,...gs.flatMap(q=>[q.v.Er-q.u.Er,q.v.pr-q.u.pr]))-0.02,hi=Math.max(1.04,...gs.flatMap(q=>[q.v.pr+q.u.pr,q.v.Er+q.u.Er]))+0.02;
+  const N=gs.length,xt={t:gs.map((_,i)=>i+1),st:1};
+  const A=frame(g,w,h,[0.4,N+0.6],[lo,hi],'група №','відношення після/до',title,xt);
+  line(g,A,[[0.4,1],[N+0.6,1]],C_TRUE,1.4,[6,4]);
+  gs.forEach((q,i)=>{
+    bars(g,A,i+1-0.08,q.v.pr,0,q.u.pr,C_U);dot(g,A.X(i+1-0.08),A.Y(q.v.pr),C_U);
+    bars(g,A,i+1+0.08,q.v.Er,0,q.u.Er,C_P);dot(g,A.X(i+1+0.08),A.Y(q.v.Er),C_P);
+  });
+  g.fillStyle=AX;g.font='11px system-ui,sans-serif';g.textAlign='center';
+  gs.forEach((q,i)=>g.fillText(fmt(q.a0c,1)+'°',A.X(i+1),A.y0+27));
+  legend(g,[{t:'p′/p (імпульс)',c:C_U},{t:'E′/E (енергія)',c:C_P},{t:'1 = збереження',c:C_TRUE,dash:[6,4]}],A.x0+10,A.y1+14);
+}
+function drawH(){
+  const{g,w,h}=prep(CV.h),title='Розкид відліків α₁ в одній групі',gs=curGroups();
+  const sel=$('hsel'),idx=+sel.value,q=gs[idx];
+  if(!q||q.n<2){empty(g,w,h,title,'Оберіть групу з n ≥ 2');return}
+  const bw=0.25,lo=Math.floor((Math.min(...q.A1)-bw)/bw)*bw,hi=Math.ceil((Math.max(...q.A1)+bw)/bw)*bw,nb=Math.round((hi-lo)/bw);
+  const cnt=new Array(nb).fill(0);q.A1.forEach(x=>{cnt[Math.min(nb-1,Math.max(0,Math.floor((x-lo)/bw+1e-9)))]++});
+  const ymax=Math.max(...cnt,q.n*bw/(q.s1*Math.sqrt(2*Math.PI)))*1.2;
+  const A=frame(g,w,h,[lo,hi],[0,Math.max(2,ymax)],'α₁, °','кількість відліків',title);
+  g.fillStyle=C_U;g.globalAlpha=0.55;
+  cnt.forEach((n,i)=>{if(n)g.fillRect(A.X(lo+i*bw)+1,A.Y(n),A.X(lo+(i+1)*bw)-A.X(lo+i*bw)-2,A.y0-A.Y(n))});
+  g.globalAlpha=1;
+  if(q.s1>0){
+    line(g,A,Array.from({length:81},(_,i)=>{const x=lo+(hi-lo)*i/80;return[x,q.n*bw*Math.exp(-0.5*((x-q.a1)/q.s1)**2)/(q.s1*Math.sqrt(2*Math.PI))]}),C_P,1.8);
+  }
+  line(g,A,[[q.a1,0],[q.a1,Math.max(2,ymax)]],C_I,1.6,[5,4]);
+  legend(g,[{t:'ᾱ₁ = '+fmt(q.a1)+'°, s = '+fmt(q.s1)+'°, n = '+q.n,c:C_I,dash:[5,4]},{t:'нормальний розподіл із тими ж ᾱ, s',c:C_P,line:1}],A.x0+10,A.y1+14);
+}
+function fillHsel(){
+  const gs=curGroups(),sel=$('hsel'),old=sel.value;
+  sel.innerHTML=gs.map((q,i)=>'<option value="'+i+'">α₀ = '+fmt(q.a0c,1)+'° (n = '+q.n+')</option>').join('')||'<option value="0">—</option>';
+  if(old&&+old<gs.length)sel.value=old;
+}
+
+function renderAll(){
+  GR_CACHE=groups();
+  renderInfo();renderTable();renderGroups();renderSummary();renderProgress();fillHsel();drawCharts();
+}
+function drawCharts(){colors();drawV();drawB();drawC();drawH()}
+
+/* ---------- обробники ---------- */
+function initPairs(){
+  $('pair').innerHTML=PAIRS.map((p,i)=>'<option value="'+(i+1)+'">№'+(i+1)+': '+p.name+'</option>').join('');
+}
+function resetStand(){toHold();showReadings(null);$('warn').textContent='';renderAll()}
+$('pair').onchange=()=>{S.pair=+$('pair').value;resetStand()};
+$('swap').onchange=()=>{S.swap=$('swap').checked;resetStand()};
+$('a0').oninput=()=>{S.a0=+$('a0').value;toHold();renderInfo()};
+document.querySelectorAll('.quick button').forEach(b=>b.onclick=()=>{S.a0=+b.dataset.a;$('a0').value=S.a0;toHold();renderInfo()});
+$('reset').onclick=startRun;
+$('rec').onclick=recOne;
+$('back').onclick=()=>{toHold();showReadings(null);$('warn').textContent=''};
+$('auto').onclick=()=>autoRun(10);
+$('weigh').onclick=weighOnce;
+$('unweigh').onclick=()=>{const c=cfg();delete DB.weigh[c.rest];delete DB.weigh[c.rel];save();renderAll()};
+$('zero').onclick=()=>{DB.zm={z1:DB.zero.z1,z2:DB.zero.z2};save();renderAll()};
+$('zc').onchange=renderAll;
+$('teach').onchange=()=>renderAll();
+$('hsel').onchange=drawH;
+$('speed').onchange=()=>{};
+$('drag').onchange=renderInfo;
+$('clr').onclick=()=>{if(!DB.rows.length||confirm('Видалити всі виміри?')){DB.rows=[];save();renderAll()}};
+$('tbl').addEventListener('click',e=>{const b=e.target.closest('button[data-i]');if(!b)return;DB.rows.splice(+b.dataset.i,1);save();renderAll()});
+
+function rawRows(sep){
+  const head=['№','пара','куля 1','куля 2','α0, °','α1, °','α2, °','τ, мкс'];
+  return [head].concat(DB.rows.map((r,i)=>{const c=cfgOf(r.k);return[i+1,c.pair,c.rest,c.rel,fmt(r.a0),fmt(r.a1),fmt(r.a2),fmt(r.tau,1)]})).map(r=>r.join(sep)).join('\n');
+}
+function dl(name,text){
+  const a=document.createElement('a');a.href=URL.createObjectURL(new Blob(['﻿'+text],{type:'text/csv;charset=utf-8'}));
+  a.download=name;document.body.appendChild(a);a.click();a.remove();
+}
+$('csv').onclick=()=>dl('zitknennya_kul_vymiry.csv',rawRows(';'));
+$('cp').onclick=()=>{
+  const t=rawRows('\t'),done=()=>{$('cp').textContent='Скопійовано ✓';setTimeout(()=>$('cp').textContent='Копіювати таблицю',1500)};
+  if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(t).then(done,()=>{$('latex').hidden=false;$('latex').value=t;$('latex').select()});
+  else{$('latex').hidden=false;$('latex').value=t;$('latex').select();try{document.execCommand('copy');done()}catch(e){}}
+};
+function groupRows(sep){
+  const head=['пара','α0, °','n','α1, °','s, °','R','R, u','beta','beta, u'];
+  return [head].concat(GR_CACHE.map(q=>[gName(q.c),fmt(q.a0c),q.n,fmt(q.a1),fmt(q.s1),fmt(q.v.R,3),fmt(q.u.R,3),fmt(q.v.beta!=null?q.v.beta:q.v.b18,4),fmt(q.v.beta!=null?q.u.beta:q.u.b18,4)])).map(r=>r.join(sep)).join('\n');
+}
+$('gcsv').onclick=()=>dl('zitknennya_kul_obrobka.csv',groupRows(';'));
+$('gtex').onclick=()=>{
+  $('latex').hidden=false;
+  $('latex').value=GR_CACHE.map(q=>[q.c.pair,fmt(q.a0c,1),q.n,fmt(q.a1,2),fmt(q.s1,2),fmtU(q.v.R,q.u.R),q.v.beta!=null?fmtU(q.v.beta,q.u.beta):fmtU(q.v.b18,q.u.b18)].join(' & ')+' \\\\').join('\n');
+};
+
+/* тема */
+(function(){
+  const b=$('themeBtn'),r=document.documentElement;
+  const dark=()=>{const t=r.getAttribute('data-theme');return t?t==='dark':matchMedia('(prefers-color-scheme: dark)').matches};
+  const lab=()=>{b.textContent=dark()?'☀':'☾'};
+  b.onclick=()=>{const t=dark()?'light':'dark';r.setAttribute('data-theme',t);try{localStorage.setItem('labcollision-theme',t)}catch(e){}lab();drawCharts()};
+  lab();
+})();
+
+const ro=new ResizeObserver(()=>{drawCharts()});
+[CV.v,CV.b,CV.c,CV.h].forEach(c=>ro.observe(c));
+new MutationObserver(()=>drawCharts()).observe(document.documentElement,{attributes:true,attributeFilter:['data-theme']});
+
+initPairs();
+if(P.has('pair')&&PAIRS[+P.get('pair')-1]){S.pair=+P.get('pair');$('pair').value=S.pair}
+toHold();renderAll();requestAnimationFrame(tick);
+</script>
+</body>
+</html>

@@ -1,0 +1,1029 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Лабораторна: ВАХ джерела ЕРС</title>
+<style>
+:root{
+  --bg:#f4f5f7; --card:#ffffff; --fg:#1b2130; --muted:#5a6375; --line:#dde1e8; --grid:#0000001a; --axis:#555;
+  --accent:#1f5fd6; --valbg:#eef3fd;
+  --cu:#1f6fb5; --ci:#2e8b57; --cp:#c0392b; --true:#888; --wire:#2a3242;
+}
+:root[data-theme="dark"]{
+  --bg:#0e1117; --card:#161a22; --fg:#e4e8ef; --muted:#9aa3b3; --line:#283040; --grid:#ffffff1a; --axis:#aaa;
+  --accent:#6ea2ff; --valbg:#18233a;
+  --cu:#6ea2ff; --ci:#4fd18b; --cp:#ff7a6e; --true:#9aa3b3; --wire:#cfd6e2;
+}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]):not([data-theme="dark"]){
+  --bg:#0e1117; --card:#161a22; --fg:#e4e8ef; --muted:#9aa3b3; --line:#283040; --grid:#ffffff1a; --axis:#aaa;
+  --accent:#6ea2ff; --valbg:#18233a;
+  --cu:#6ea2ff; --ci:#4fd18b; --cp:#ff7a6e; --true:#9aa3b3; --wire:#cfd6e2;}}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{font:15px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;background:var(--bg);color:var(--fg);-webkit-text-size-adjust:100%}
+header.top{position:sticky;top:0;z-index:30;background:var(--card);border-bottom:1px solid var(--line);padding:8px 16px;padding-right:64px}
+header h1{font-size:15px;margin:0;font-weight:650;line-height:1.25}
+header h1 small{display:block;font-weight:400;color:var(--muted);font-size:12px}
+main{padding:14px;max-width:1560px;margin:0 auto}
+.layout{display:grid;grid-template-columns:290px minmax(0,1fr);gap:14px;align-items:start}
+aside.params{position:sticky;top:62px;max-height:calc(100vh - 74px);overflow:auto}
+.card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin-bottom:14px}
+.card>h3,.card>summary{font-size:15px;font-weight:650;margin:0 0 8px}
+.card>summary{cursor:pointer;list-style:none;display:flex;align-items:center;gap:8px;margin:0}
+.card>summary::-webkit-details-marker{display:none}
+.card>summary::before{content:"▸";transition:transform .2s;color:var(--muted)}
+details[open]>summary::before{transform:rotate(90deg)}
+details[open]>summary{margin-bottom:8px}
+.hint{font-size:12.5px;color:var(--muted);margin:6px 0}
+label.f{display:block;margin-top:10px;font-size:13px}
+select{width:100%;margin:3px 0 0;font:inherit;font-size:13px;padding:4px 6px;border-radius:6px;border:1px solid var(--line);background:var(--bg);color:var(--fg)}
+option{background:var(--card);color:var(--fg)}
+.pgroup{border-top:1px solid var(--line);margin-top:12px;padding-top:6px}
+.pgroup b{font-size:12px;text-transform:uppercase;letter-spacing:.4px;color:var(--muted);font-weight:600}
+.btn{font:inherit;font-size:13px;border:1px solid var(--line);background:var(--bg);color:var(--fg);padding:5px 10px;border-radius:7px;cursor:pointer}
+.btn:hover{border-color:var(--accent)}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:#fff}
+.btns{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+.val{font:12.5px/1.6 ui-monospace,Consolas,monospace;background:var(--valbg);border-left:3px solid var(--accent);padding:5px 9px;margin:6px 0;border-radius:0 5px 5px 0}
+.val sub{font-size:.8em}
+#teach{font-size:12px;color:var(--cp)}
+
+/* ---------- стенд ---------- */
+.row{display:flex;gap:16px;flex-wrap:wrap;align-items:flex-start}
+.schem-wrap{flex:1 1 470px;min-width:0}
+.schem-wrap canvas{display:block;width:100%;height:270px;touch-action:pan-y}
+/* прилади: вимірювальна панель у стилі приладів практикуму змінного струму */
+.panel{flex:0 1 330px;background:linear-gradient(180deg,#d6d8d2 0%,#c2c5be 45%,#b1b4ac 100%);border:1px solid #858881;border-radius:6px;
+  box-shadow:inset 0 1px 0 #f1f2ee, inset 0 -3px 6px rgba(0,0,0,.16), 0 3px 8px rgba(0,0,0,.28);
+  padding:12px 16px;color:#1d1d1b;position:relative;font-family:"Arial Narrow","Roboto Condensed",Arial,sans-serif;max-width:100%;min-width:260px}
+:root[data-theme="dark"] .panel{filter:brightness(.86)}
+.panel::before,.panel::after{content:"";position:absolute;top:6px;width:9px;height:9px;border-radius:50%;
+  background:radial-gradient(circle at 35% 35%,#f4f4f4,#8a8a8a 70%,#555);box-shadow:0 0 0 1px #6c6c6c}
+.panel::before{left:6px}.panel::after{right:6px}
+.plate{display:flex;justify-content:space-between;align-items:baseline;gap:14px;border-bottom:1px solid #8b8e87;margin:0 10px 8px;padding-bottom:3px}
+.plate b{font-size:16px;letter-spacing:1.5px}
+.plate span{font-size:10px;letter-spacing:.6px;text-transform:uppercase;color:#3a3a36}
+.disp{display:flex;align-items:center;gap:10px;margin:8px 0}
+.disp i{font:normal 10px Arial,sans-serif;text-transform:uppercase;letter-spacing:.5px;width:78px;color:#26261f;line-height:1.15}
+.led{flex:1;background:#140606;padding:6px 12px 4px;border-radius:4px;box-shadow:inset 0 0 10px #000;display:flex;align-items:baseline;justify-content:flex-end;gap:8px}
+.led b{font:bold 30px ui-monospace,Consolas,monospace;color:#ff5236;text-shadow:0 0 6px #ff3a1a;letter-spacing:2px}
+.led u{text-decoration:none;font:bold 14px Arial;color:#ff5236;text-shadow:0 0 6px #ff3a1a}
+.rh{margin-top:12px;border:1px solid #8b8e87;border-radius:5px;padding:9px 9px 6px;position:relative}
+.rh>i{position:absolute;top:-7px;left:8px;background:#c4c6bf;padding:0 4px;font:normal 9.5px Arial,sans-serif;text-transform:uppercase;letter-spacing:.6px;color:#2b2b26}
+.rh input[type=range]{width:100%;accent-color:#3c3c36;margin:2px 0}
+.rh .v{font:11px ui-monospace,Consolas,monospace;color:#111;text-align:center}
+.btn-sov{background:linear-gradient(#f4f4f0,#c8c9c3);border:1px solid #6f716b;border-radius:3px;font:10.5px Arial,sans-serif;padding:5px 8px;cursor:pointer;color:#111;
+  box-shadow:inset 0 1px 0 #fff,0 1px 2px rgba(0,0,0,.35);text-transform:uppercase;letter-spacing:.3px}
+.btn-sov:active{box-shadow:inset 0 2px 3px rgba(0,0,0,.45)}
+.sovbtns{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px;justify-content:center}
+.panel .hint{color:#3b3b36;font-size:10.5px;margin:8px 0 0}
+.panel .warn{color:#a3160d;font:bold 11px Arial,sans-serif;margin:6px 0 0;min-height:0}
+.panel .warn:empty{display:none}
+.chk{display:flex;align-items:flex-start;gap:6px;font-size:13px;margin-top:8px;cursor:pointer}
+.chk input{margin-top:3px}
+.cov{font-size:12.5px;color:var(--muted);margin-top:6px}
+.cov:empty{display:none}
+input[type=text]{width:100%;margin:3px 0 0;font:inherit;font-size:13px;padding:4px 6px;border-radius:6px;border:1px solid var(--line);background:var(--bg);color:var(--fg)}
+.ser{display:flex;gap:8px;align-items:flex-start;margin:6px 0;font-size:12.5px;line-height:1.35}
+.ser i{flex:none;width:12px;height:12px;border-radius:50%;margin-top:3px}
+.ser span{flex:1;min-width:0}
+.ser small{color:var(--muted)}
+.ser button{flex:none;border:1px solid var(--line);background:var(--bg);color:var(--fg);border-radius:6px;cursor:pointer;padding:0 7px;font-size:14px;line-height:20px}
+.msg-ok{color:#1b7f3b}.msg-bad{color:var(--cp)}
+[hidden]{display:none !important}
+
+/* ---------- графіки і таблиця ---------- */
+.graphs{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(440px,100%),1fr));gap:12px}
+.g{border:1px solid var(--line);border-radius:8px;padding:4px;min-width:0}
+.g canvas{display:block;width:100%;height:360px}
+.gbar{display:flex;flex-wrap:wrap;gap:4px 18px;align-items:center;justify-content:space-between;margin:0 0 6px}
+.gbar .hint,.gbar .chk{margin:0}
+.th{font-size:14.5px}
+.th h4{margin:16px 0 4px;font-size:14.5px;color:var(--accent)}
+.th p{margin:6px 0}
+.th ol{margin:6px 0;padding-left:22px}
+.th table{margin:8px 0;font-size:13px}
+.th .warn{border-left:3px solid #c27100;background:rgba(194,113,0,.12);padding:7px 10px;margin:10px 0;border-radius:0 6px 6px 0;font-size:14px}
+mjx-container[display="true"]{overflow-x:auto;overflow-y:hidden;margin:6px 0 !important;padding:2px 0}
+table{border-collapse:collapse;width:100%;font-size:13px}
+th,td{border:1px solid var(--line);padding:2px 7px;text-align:center}
+th{background:var(--valbg)}
+.tw{max-height:300px;overflow:auto}
+textarea{width:100%;margin-top:8px;font:12px ui-monospace,Consolas,monospace;background:transparent;color:inherit;border:1px solid var(--line);border-radius:4px}
+
+/* ---------- розкладка «стенд»: схема ліворуч, прилади праворуч (широкий екран) ---------- */
+@media (min-width:1500px){
+  main{max-width:1880px}
+  .g canvas{height:clamp(250px,calc(100vh - 640px),480px)}
+  .content{display:grid;grid-template-columns:minmax(0,1fr);gap:14px;align-items:start}
+  .content>.card{margin-bottom:0}
+}
+@media (max-width:920px){
+  .layout{grid-template-columns:minmax(0,1fr)}
+  .content{display:contents}
+  .content>.card{margin-bottom:0}
+  .c-th{order:1}
+  .c-stand{order:2}
+  aside.params{order:3;position:static;max-height:none}
+  .content>details:not(.c-th):not(.c-stand){order:4}
+  .layout{gap:14px}
+  header.top{position:static}
+  .schem-wrap{overflow-x:auto}
+  .schem-wrap canvas{min-width:430px}
+  .panel{flex:1 1 100%}
+}
+@media (max-width:520px){main{padding:8px}.card{padding:10px}}
+</style>
+<script>
+window.MathJax = {
+  tex: { inlineMath: [['\\(', '\\)']], displayMath: [['\\[', '\\]']] },
+  chtml: { scale: 0.98 },
+  options: { skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code', 'svg', 'canvas'] }
+};
+</script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+<script src="assets/theme.js"></script>
+</head>
+<body>
+<header class="top">
+  <h1>Електрика та магнетизм. Постійний струм<small>Віртуальний практикум · лабораторна «ВАХ джерела ЕРС»</small></h1>
+</header>
+
+<main>
+<div class="layout">
+ <aside class="params card">
+  <h3>Параметри</h3>
+  <label class="f">Джерело
+    <select id="src">
+      <option value="bat">Батарейка</option>
+      <option value="acc">Акумулятор мотоцикла</option>
+      <option value="lab">Лабораторний блок живлення</option>
+      <option value="cc">Джерело струму (стабілізатор)</option>
+      <option value="ph">Сонячна панель (діодна модель)</option>
+    </select>
+  </label>
+  <label class="f">Режим
+    <select id="mode">
+      <option value="study">Навчальний (джерело відоме)</option>
+      <option value="box">Чорний ящик (знайти ε і R)</option>
+    </select>
+  </label>
+  <div id="known">
+    <label class="f"><span id="emfLbl">ЕРС ε (номінал)</span><select id="emf"></select></label>
+    <label class="f"><span id="riLbl">Внутрішній опір R<sub>i</sub> (стан джерела)</span><select id="ri"></select></label>
+    <div class="hint">Зміна джерела, ε чи R<sub>i</sub> скидає виміряні точки.</div>
+  </div>
+  <div id="boxAns" class="pgroup" hidden><b>Ваша відповідь</b>
+    <div class="hint">Параметри цього джерела невідомі й випадкові. Виміряйте ВАХ, знайдіть ε і внутрішній опір та введіть відповідь.</div>
+    <label class="f"><span>ε, В</span><input type="text" id="ansE" inputmode="decimal" autocomplete="off"></label>
+    <label class="f"><span id="ansRLbl">R<sub>i</sub>, Ом</span><input type="text" id="ansR" inputmode="decimal" autocomplete="off"></label>
+    <div class="btns"><button class="btn primary" id="chkAns">Перевірити</button><button class="btn" id="newBox">Новий ящик</button><button class="btn" id="showAns" hidden>Показати еталон</button></div>
+    <div class="hint" id="boxMsg"></div>
+  </div>
+
+  <div class="pgroup"><b>Схема включення приладів</b>
+    <label class="f"><select id="scheme">
+      <option value="term">A. Вольтметр на джерелі</option>
+      <option value="load">B. Вольтметр на навантаженні</option>
+    </select></label>
+    <label class="chk"><input type="checkbox" id="real" checked><span>Враховувати власні опори приладів R<sub>A</sub>, R<sub>V</sub></span></label>
+    <div class="hint" id="meterInfo"></div>
+  </div>
+
+  <div class="pgroup"><b>Результат апроксимації</b>
+    <div class="val" id="fr"></div>
+    <div class="cov" id="cov"></div>
+    <div class="hint" id="chk"></div>
+  </div>
+
+  <div class="pgroup"><b>Серії для порівняння</b>
+    <div class="btns"><button class="btn" id="saveSer">Запам’ятати серію</button></div>
+    <div id="series"></div>
+    <div class="hint">Збережені серії малюються іншими кольорами на графіках ВАХ і P(R). Порівняйте, наприклад, нову й підсаджену батарейку або дві схеми включення приладів.</div>
+  </div>
+  <div id="teach"></div>
+  <div class="hint" id="devnote"></div>
+ </aside>
+
+ <div class="content">
+  <details class="card th c-th">
+   <summary>Теорія: джерело ЕРС із внутрішнім опором</summary>
+   <p class="hint">Позначення як у конспекті (розд. «Постійний струм»): ε ≡ ℰ — ЕРС, R<sub>i</sub> ≡ r — внутрішній опір джерела, R — опір навантаження (у стенді це реостат). Форма співвідношень однакова в гаусовій і практичній системах; у стенді користуємося вольтами, амперами й омами.</p>
+
+   <h4>Закон Ома для замкненого кола і ВАХ</h4>
+   \[ I=\frac{\varepsilon}{R+R_i},\qquad U=IR=\varepsilon-IR_i. \]
+   <p>Залежність \(U(I)\) — пряма. Її відтинок на осі напруги дорівнює ε (холостий хід, \(I\to0\)), нахил дорівнює \(-R_i\), а на осі струму пряма відтинає струм короткого замикання \(I_{\text{кз}}=\varepsilon/R_i\). Саме це й робить стенд: будує зважену лінійну апроксимацію виміряних точок \(U=a+bI\) і читає \(\varepsilon=a\), \(R_i=-b\).</p>
+
+   <h4>Потужність і ККД</h4>
+   \[ P=I^2R=\frac{\varepsilon^2R}{(R+R_i)^2},\qquad \eta=\frac{P}{\varepsilon I}=\frac{R}{R+R_i},\qquad P_{\max}=\frac{\varepsilon^2}{4R_i}\ \text{ при }\ R=R_i. \]
+   <div class="warn"><b>Не плутайте.</b> ККД зростає з R і прямує до 1, але корисна потужність при цьому прямує до нуля. Максимум потужності досягається при узгодженому навантаженні \(R=R_i\), і ККД тоді лише 50 %.</div>
+
+   <h4>Три режими</h4>
+   <table>
+     <thead><tr><th>режим</th><th>\(R/R_i\)</th><th>\(I\)</th><th>\(U\)</th><th>\(P\)</th><th>\(\eta\)</th></tr></thead>
+     <tbody>
+       <tr><td>коротке замикання</td><td>≪ 1</td><td>≈ \(I_{\text{кз}}=\varepsilon/R_i\)</td><td>≈ 0</td><td>≈ 0 (тепло виділяється всередині джерела)</td><td>→ 0</td></tr>
+       <tr><td>узгодження</td><td>= 1</td><td>\(I_{\text{кз}}/2\)</td><td>\(\varepsilon/2\)</td><td>\(\varepsilon^2/4R_i\) (максимум)</td><td>50 %</td></tr>
+       <tr><td>холостий хід</td><td>≫ 1</td><td>≈ 0</td><td>≈ ε</td><td>≈ 0</td><td>→ 1</td></tr>
+     </tbody>
+   </table>
+   <p>На середньому графіку ці три області підписано під віссю (межі умовні: у 4 рази від \(R_i\)).</p>
+
+   <h4>Нормовані залежності</h4>
+   <p>Якщо ввести \(x=R/R_i\), то для будь-якого джерела
+   \[ \frac{U}{\varepsilon}=\frac{x}{1+x},\qquad \frac{I}{I_{\text{кз}}}=\frac{1}{1+x},\qquad \frac{P}{\varepsilon I_{\text{кз}}}=\frac{x}{(1+x)^2}\ \ (\text{максимум }1/4\text{ при }x=1). \]
+   Тому виміри різних джерел лягають на ті самі три криві, щойно ε і \(R_i\) знайдено з підгонки: це зручна перевірка якості вимірювань.</p>
+
+   <h4>Джерело струму</h4>
+   <p>Джерело струму \(I_0\) із паралельним шунтом \(R_p\) для навантаження еквівалентне джерелу ЕРС \(\varepsilon=I_0R_p\) із внутрішнім опором \(R_i=R_p\) (теорема Нортона–Тевенена): \(I=I_0-U/R_p\). Тому ВАХ — та сама пряма, а нормовані криві ті самі, лише вісь \(R/R_p\). Поки \(R\ll R_p\), струм майже не залежить від навантаження: це режим стабілізатора струму.</p>
+
+   <h4>Сонячна панель</h4>
+   \[ I=I_{\text{ф}}-I_s\left(e^{U/V_T}-1\right)-\frac{U}{R_{sh}}. \]
+   <p>ВАХ нелінійна, тож «ε і \(R_i\)» не визначаються. Натомість шукають \(I_{\text{кз}}\approx I_{\text{ф}}\), напругу холостого ходу \(U_{\text{хх}}\approx V_T\ln(I_{\text{ф}}/I_s)\), точку максимальної потужності («коліно») і коефіцієнт заповнення \(FF=P_{\max}/(I_{\text{кз}}U_{\text{хх}})\), для кремнієвих елементів зазвичай 0,6–0,8.</p>
+
+   <h4>Власні опори приладів і схеми включення</h4>
+   <p>Амперметр має опір \(R_A\) (спад ≈ 0,3 В на межі), вольтметр — \(R_V\) (≈ 1 кОм/В). У схемі A вольтметр стоїть на затискачах джерела: він показує справжню напругу, але через нього тече частина струму; в схемі B вольтметр стоїть на реостаті після амперметра: амперметр показує повний струм, зате вольтметр не бачить спаду напруги на самому амперметрі. Для виміряного внутрішнього опору виходить
+   \[ \text{схема A: } R_i^{\text{вим}}\approx\frac{R_i}{1+R_i/R_V},\qquad \text{схема B: } R_i^{\text{вим}}\approx R_i+R_A. \]
+   Відносні похибки — \(R_i/R_V\) у схемі A і \(R_A/R_i\) у схемі B, тож схема A краща, коли \(R_i<\sqrt{R_AR_V}\), інакше краща B. Для батарейки з \(R_i\sim1\) Ом треба брати A, для стабілізатора струму з \(R_p\sim1\) кОм — B.</p>
+
+   <h4>Похибки і апроксимація</h4>
+   <p>Смуги на ВАХ — це ±2σ показів (амперметр класу 0,5 й шум вольтметра з округленням до 0,01). Підгонка зважена: вага точки \(w=1/(\sigma_U^2+b^2\sigma_I^2)\) враховує похибки обох приладів. Значення \(\chi^2/\nu\approx1\) означає, що розкид точок відповідає похибкам приладів; \(\gg1\) — є систематика або нелінійність; \(\ll1\) — похибки завищено.</p>
+
+   <h4>Порядок роботи</h4>
+   <ol>
+     <li>Оберіть джерело та схему включення приладів (або режим «чорний ящик» і тоді параметри невідомі).</li>
+     <li>Зніміть 6–10 точок рівномірно по реостату, обов’язково біля короткого замикання й біля холостого ходу.</li>
+     <li>За ВАХ знайдіть ε і \(R_i\), перевірте, що точки лягли на нормовані криві, знайдіть \(P_{\max}\) і \(R\), при якому він досягається.</li>
+     <li>Збережіть серію, змініть стан джерела чи схему включення і порівняйте результати.</li>
+   </ol>
+  </details>
+
+  <details class="card c-stand" open>
+   <summary>Схема стенда і прилади</summary>
+   <div class="row">
+    <div class="schem-wrap"><canvas id="cCirc"></canvas></div>
+    <div class="panel">
+     <div class="plate"><b>ВИМІРЮВАННЯ</b><span>клас точності 0,5</span></div>
+     <div class="disp"><i>амперметр<br>струм I</i><div class="led"><b id="dI">0,00</b><u id="dIu">А</u></div></div>
+     <div class="disp"><i>вольтметр<br>напруга U</i><div class="led"><b id="dU">0,00</b><u>В</u></div></div>
+     <div class="warn" id="warn"></div>
+     <div class="rh"><i>реостат</i>
+       <input type="range" id="pos" min="0" max="100" step="1" value="50" aria-label="Повзунок реостата">
+       <div class="v" id="lpos"></div>
+     </div>
+     <div class="sovbtns">
+       <button class="btn-sov" id="take">Зняти точку</button>
+       <button class="btn-sov" id="undo">Видалити останню</button>
+       <button class="btn-sov" id="clear">Очистити</button>
+     </div>
+    </div>
+   </div>
+  </details>
+
+  <details class="card" open>
+   <summary>Графіки</summary>
+   <div class="gbar">
+     <div class="hint">Теоретичні лінії з’являються після двох точок, збережені серії — кольорові. Опис графіків — у розділі «Теорія».</div>
+     <label class="chk"><input type="checkbox" id="errx"><span>смуги похибок ×10 (для наочності)</span></label>
+   </div>
+   <div class="graphs">
+     <div class="g"><canvas id="cUI"></canvas></div>
+     <div class="g"><canvas id="cNorm"></canvas></div>
+     <div class="g"><canvas id="cPow"></canvas></div>
+   </div>
+  </details>
+
+  <details class="card">
+   <summary>Таблиця вимірювань</summary>
+   <div class="tw"><table id="tbl"><thead><tr><th>№</th><th id="thI">I, А</th><th>U, В</th><th>R<sub>e</sub> = U/I, Ом</th><th id="thP">P, Вт</th><th>η, %</th></tr></thead><tbody></tbody></table></div>
+   <div class="btns"><button class="btn" id="cp">Копіювати таблицю</button><button class="btn" id="csv">Завантажити CSV</button><button class="btn" id="exp">Таблиця для LaTeX</button></div>
+   <textarea id="latex" rows="5" readonly></textarea>
+  </details>
+ </div>
+</div>
+</main>
+
+<script>
+const $=id=>document.getElementById(id);
+const CV={circ:$('cCirc'),ui:$('cUI'),norm:$('cNorm'),pow:$('cPow')};
+let g=null,BG,INK,AX,GR,C_U,C_I,C_P,C_TRUE,C_FIT='#c0392b',C_PT;
+/* кольори беремо з CSS-змінних щоразу під час малювання: тема змінюється на льоту */
+function colors(){
+  const s=getComputedStyle(document.documentElement),v=n=>s.getPropertyValue(n).trim();
+  BG=v('--card');INK=v('--fg');AX=v('--axis');GR=v('--grid');
+  C_U=v('--cu');C_I=v('--ci');C_P=v('--cp');C_TRUE=v('--true');C_PT=C_U;
+}
+
+/* Джерела. Прилади для кожного: амперметр класу 0,5 з межею Imax (похибка ±0,5 % від межі),
+   вольтметр — похибка ~0,005 В, округлення до 0,01. Реостат лінійний: Rmin — опір контактів. */
+const SOURCES={
+  bat:{short:'батарейка',E:4.5,Ri:2.0,Rmin:0.3,Rmax:60,
+       EOpts:[[1.5,'1,5 В'],[3,'3 В'],[4.5,'4,5 В']],
+       RiOpts:[[0.5,'нова, 0,5 Ом'],[1,'1 Ом'],[2,'2 Ом'],[4,'підсаджена, 4 Ом'],[8,'майже розряджена, 8 Ом']]},
+  acc:{short:'акумулятор',E:12,Ri:0.05,Rmin:0.2,Rmax:10,
+       EOpts:[[6,'6 В'],[12,'12 В'],[24,'24 В']],
+       RiOpts:[[0.02,'новий, 0,02 Ом'],[0.05,'0,05 Ом'],[0.1,'0,1 Ом'],[0.2,'старий, 0,2 Ом'],[0.5,'підсаджений, 0,5 Ом']]},
+  lab:{short:'блок живлення',E:12,Ri:0.5,Rmin:2,Rmax:100,
+       EOpts:[[5,'5 В'],[9,'9 В'],[12,'12 В']],
+       RiOpts:[[0.1,'0,1 Ом (добре стабілізований)'],[0.2,'0,2 Ом'],[0.5,'0,5 Ом'],[1,'1 Ом']]},
+  /* Джерела струму: еквівалентна схема Нортона — ідеальне джерело струму I0 із шунтом Rp.
+     Для навантаження вони еквівалентні джерелу ЕРС ε = I0·Rp з внутрішнім опором Rp, тож ВАХ — та сама пряма. */
+  cc:{kind:'i',k:1e-3,iu:'мА',short:'джерело струму',I0:0.010,Ri:1000,Rmin:10,Rmax:10000,
+       EOpts:[[0.005,'5 мА'],[0.01,'10 мА'],[0.02,'20 мА']],
+       RiOpts:[[500,'0,5 кОм'],[1000,'1 кОм'],[2000,'2 кОм'],[5000,'5 кОм (майже ідеальне)']]},
+  /* Сонячна панель (10 елементів послідовно): діодна модель I = Iф − Is·(e^{U/Vte} − 1) − U/Rsh; Voc ≈ 6 В.
+     Лінійної ВАХ немає: ε і R_i тут не визначаються, натомість шукаємо I_кз, U_хх, точку максимальної потужності і FF. */
+  ph:{kind:'pv',k:1e-3,iu:'мА',short:'сонячна панель',I0:0.050,Ri:1000,Vte:0.334,Isat:1e-9,Rmin:5,Rmax:3000,
+       EOpts:[[0.02,'тьмяне світло, 20 мА'],[0.05,'денне світло, 50 мА'],[0.1,'яскраве сонце, 100 мА']],
+       RiOpts:[[300,'300 Ом (поганий елемент)'],[1000,'1 кОм'],[3000,'3 кОм (хороший елемент)']]}
+};
+let S;   // поточне джерело (призначається нижче)
+const KI=()=>S.k||1;                 // ампер в одній одиниці вимірювання струму (1 для А, 1e-3 для мА)
+const IU=()=>S.iu||'А';
+const isI=()=>S.kind==='i';
+const isPV=()=>S.kind==='pv';
+const hasI0=()=>S.kind==='i'||S.kind==='pv';   // перший комбобокс задає струм (I0 або фотострум), а не ЕРС
+const Eof=()=>isI()?S.I0*S.Ri:isPV()?S.Vte*Math.log(S.I0/S.Isat+1):S.E;   // ЕРС еквівалентного джерела (для панелі — напруга холостого ходу), В
+/* Межі приладів і шкали: обираються автоматично під ЕРС і R_i */
+function niceCeil(x){const p=Math.pow(10,Math.floor(Math.log10(x)));for(const m of [1,1.5,2,2.5,3,4,5,6,8,10])if(m*p>=x)return m*p;return 10*p}
+function ticksFor(max){const raw=max/5,p=Math.pow(10,Math.floor(Math.log10(raw)));const st=[1,2,2.5,5,10].map(m=>m*p).find(v=>v>=raw);const t=[];for(let v=0;v<=max+1e-9;v+=st)t.push(+v.toFixed(6));return t}
+/* Адреса для викладача: ?src=acc, а також ?E=…&Ri=… (перевизначає обране джерело) і ?teacher=1 (еталон). */
+const P=new URLSearchParams(location.search);
+const teacher=P.has('teacher');
+S=SOURCES[SOURCES[P.get('src')]?P.get('src'):'bat'];
+if(P.has('E')&&!hasI0())S.E=+P.get('E');
+if(P.has('I0')&&hasI0())S.I0=+P.get('I0');
+if(P.has('Ri'))S.Ri=+P.get('Ri');
+for(const k in SOURCES){const o=SOURCES[k];o.def={E:o.E,I0:o.I0,Ri:o.Ri}}   // номінальні значення (для повернення з режиму «чорний ящик»)
+
+const fmt2=v=>v.toFixed(2).replace('.',',');
+const fmtA=v=>(Math.abs(v)<0.5?v.toFixed(3):v.toFixed(2)).replace('.',',');
+const fmtR=v=>v>=1000?fmtA(v/1000)+' кОм':fmtA(v)+' Ом';
+const posFrac=()=>(+$('pos').value)/100;
+const Rset=()=>S.Rmin+(S.Rmax-S.Rmin)*posFrac();
+
+function gauss(){let u=0,v=0;while(!u)u=Math.random();while(!v)v=Math.random();return Math.sqrt(-2*Math.log(u))*Math.cos(2*Math.PI*v)}
+/* Власні опори приладів: амперметр має спад ~0,3 В на межі (R_A = 0,3 В / Imax), вольтметр — 1 кОм/В (R_V = 1000·Umax).
+   Схема A: вольтметр на затискачах джерела, амперметр далі у ланцюзі навантаження. Вольтметр показує U на затискачах,
+            амперметр — струм навантаження I_L, а джерело віддає ще й струм вольтметра: I = I_L + U/R_V.
+   Схема B: вольтметр безпосередньо на реостаті (після амперметра). Амперметр показує повний струм джерела,
+            а вольтметр — напругу на реостаті, без спаду на амперметрі: U = U_затискачів − I·R_A. */
+const SCHEME=()=>$('scheme').value;
+const REAL=()=>$('real').checked;
+const RA=()=>REAL()?0.3/(S.Imax*KI()):0;
+const RV=()=>REAL()?1000*S.uMax:Infinity;
+/* Струм джерела при напрузі U на його затискачах, А: лінійна ВАХ (ЕРС з внутрішнім опором, або струм із шунтом)
+   або діодна модель сонячної панелі. Напругу на затискачах знаходимо методом поділу навпіл: характеристика джерела
+   спадна, а навантаження (R, R_A, R_V) — зростаюча функція U, тож корінь єдиний. */
+function srcI(U){
+  if(isPV()) return S.I0-S.Isat*(Math.exp(U/S.Vte)-1)-U/S.Ri;
+  return (Eof()-U)/S.Ri;
+}
+function ideal(R,meters=true){
+  const ra=meters?RA():0,gv=meters?1/RV():0;
+  let F,fin;
+  if(SCHEME()==='term'){const gl=1/(R+ra);F=U=>srcI(U)-U*(gl+gv);fin=U=>({IA:U*gl,U})}
+  else{const req=1/(1/R+gv),gt=1/(ra+req);F=U=>srcI(U)-U*gt;fin=U=>{const Is=U*gt;return{IA:Is,U:Is*req}}}
+  let lo=0,hi=Eof()*1.02;
+  for(let i=0;i<70;i++){const m=(lo+hi)/2;if(F(m)>0)lo=m;else hi=m}
+  return fin((lo+hi)/2);
+}
+/* похибки показів: амперметр класу 0,5 (рівномірно в ±0,5 % межі) і шум вольтметра 0,005 В; обидва округлено до 0,01 */
+const sigI=()=>Math.sqrt(Math.pow(0.005*S.Imax,2)/3+0.0001/12);
+const sigU=()=>Math.sqrt(0.005*0.005+0.0001/12);
+function reading(){
+  const {IA,U}=ideal(Rset()),I=IA/KI();
+  const Im=Math.round((I+(Math.random()*2-1)*0.005*S.Imax)*100)/100;
+  const Um=Math.round((U+gauss()*0.005)*100)/100;
+  return{I:Im,U:Um};
+}
+
+let pts=[],saved=[],last={I:0,U:0};   // last задається після updRange(): reading() потребує S.Imax
+
+/* Зважена лінійна апроксимація U = a + b·I з ефективною дисперсією σ² = σU² + b²σI² (враховує похибки обох приладів).
+   Похибки параметрів — формальні, помножені на √(χ²/ν), якщо розкид точок більший за очікуваний. */
+function fit(arr=pts,sI=sigI(),sU=sigU(),ki=KI()){
+  if(isPV()&&arr===pts) return null;   // діодна характеристика нелінійна
+  const n=arr.length; if(n<2) return null;
+  let mx=0,my=0;for(const p of arr){mx+=p.I;my+=p.U}mx/=n;my/=n;
+  let Sxx=0,Sxy=0,Syy=0;
+  for(const p of arr){const dx=p.I-mx,dy=p.U-my;Sxx+=dx*dx;Sxy+=dx*dy;Syy+=dy*dy}
+  if(Sxx<1e-12) return null;
+  let b=Sxy/Sxx,a=my-b*mx,Sw=0,Swx=0,Swy=0,Swxx=0,Swxy=0,D=0;
+  for(let it=0;it<4;it++){
+    Sw=Swx=Swy=Swxx=Swxy=0;
+    for(const p of arr){const w=1/(sU*sU+b*b*sI*sI);Sw+=w;Swx+=w*p.I;Swy+=w*p.U;Swxx+=w*p.I*p.I;Swxy+=w*p.I*p.U}
+    D=Sw*Swxx-Swx*Swx; if(D<=0) return null;
+    b=(Sw*Swxy-Swx*Swy)/D; a=(Swxx*Swy-Swx*Swxy)/D;
+  }
+  let chi2=0;for(const p of arr){const e=p.U-(a+b*p.I);chi2+=e*e/(sU*sU+b*b*sI*sI)}
+  const nu=n-2,chi2r=nu>0?chi2/nu:null,sc=nu>0?Math.max(1,Math.sqrt(chi2r)):1;
+  const r2=Syy>0?Sxy*Sxy/(Sxx*Syy):1;
+  return{a,b,Ri:-b/ki,r2,n,chi2r,sa:Math.sqrt(Swxx/D)*sc,sb:Math.sqrt(Sw/D)*sc/ki};
+}
+
+/* ---- допоміжні для схеми ---- */
+function wire(x1,y1,x2,y2){g.beginPath();g.moveTo(x1,y1);g.lineTo(x2,y2);g.stroke()}
+function mask(x,y,w,h){g.fillStyle=BG;g.fillRect(x,y,w,h)}
+function battery(x,yc,sign){
+  const lw=g.lineWidth;g.lineWidth=2.5;
+  const yl=yc-(sign>0?5:-5), ys=yc+(sign>0?5:-5);
+  wire(x-12,yl,x+12,yl);wire(x-6,ys,x+6,ys);
+  g.lineWidth=lw;
+}
+function probe(x,y,letter,color,val){
+  g.fillStyle=BG;g.beginPath();g.arc(x,y,13,0,2*Math.PI);g.fill();
+  g.strokeStyle=color;g.lineWidth=2;g.beginPath();g.arc(x,y,13,0,2*Math.PI);g.stroke();
+  g.fillStyle=color;g.font='bold 14px system-ui,"Segoe UI",sans-serif';g.textAlign='center';g.textBaseline='middle';
+  g.fillText(letter,x,y+1);g.textBaseline='alphabetic';
+  if(val!==undefined){g.font='13px system-ui,"Segoe UI",sans-serif';g.fillText(val,x,y+(letter==='A'?-22:30))}
+}
+
+/* ---- схема стенда ---- */
+/* Реостат — як справжній повзунковий: керамічний циліндр із обмоткою, зверху металева шина з рухомою кареткою.
+   Струм: вивід A → обмотка до контакту каретки → шина → вивід C. Активна частина обмотки (між A і контактом)
+   підсвічена, решта — тьмяна. Вольтметр стоїть між A і C, тож каретка не потребує окремих дротів. */
+function roundRect(x,y,w,h,r){g.beginPath();g.moveTo(x+r,y);g.arcTo(x+w,y,x+w,y+h,r);g.arcTo(x+w,y+h,x,y+h,r);g.arcTo(x,y+h,x,y,r);g.arcTo(x,y,x+w,y,r);g.closePath()}
+function drawRheostat(xA,xB,yb,xs,Rv){
+  const bh=36,y0=yb-bh/2,len=xB-xA;
+  /* шина */
+  const ry=yb-34;
+  let gr=g.createLinearGradient(0,ry-4,0,ry+4);gr.addColorStop(0,'#e6e9ee');gr.addColorStop(.5,'#9aa1ab');gr.addColorStop(1,'#5f6671');
+  g.fillStyle=gr;roundRect(xA-6,ry-4,len+12,8,3);g.fill();g.strokeStyle='#4a505a';g.lineWidth=1;g.stroke();
+  /* корпус */
+  gr=g.createLinearGradient(0,y0,0,y0+bh);gr.addColorStop(0,'#efe3c8');gr.addColorStop(.45,'#d8c7a0');gr.addColorStop(1,'#a8946a');
+  g.fillStyle=gr;roundRect(xA,y0,len,bh,6);g.fill();g.strokeStyle='#6d5d3c';g.lineWidth=1.2;g.stroke();
+  /* обмотка: короткі похилі витки; до каретки — яскраві, далі — тьмяні */
+  const step=5;
+  for(let x=xA+8;x<=xB-8;x+=step){
+    const on=x<=xs;
+    g.strokeStyle=on?'#c4561a':'#8a6a4a';g.lineWidth=2.2;
+    g.beginPath();g.moveTo(x,y0+5);g.lineTo(x+3,y0+bh-5);g.stroke();
+    g.strokeStyle=on?'#ffc27a':'#b89a78';g.lineWidth=.8;
+    g.beginPath();g.moveTo(x+.8,y0+7);g.lineTo(x+3.6,y0+bh-7);g.stroke();
+  }
+  /* металеві торці з клемами */
+  for(const [x,l] of [[xA,'A'],[xB,'']]){
+    gr=g.createLinearGradient(x-5,0,x+5,0);gr.addColorStop(0,'#c9ced6');gr.addColorStop(.5,'#8c939e');gr.addColorStop(1,'#5f6671');
+    g.fillStyle=gr;g.fillRect(x-5,y0+3,10,bh-6);g.strokeStyle='#454b55';g.lineWidth=1;g.strokeRect(x-5,y0+3,10,bh-6);
+  }
+  /* каретка: корпус на шині, пружний контакт до обмотки, ручка */
+  const cw=24;
+  g.strokeStyle='#3a3f48';g.lineWidth=2;g.beginPath();g.moveTo(xs,ry+4);g.lineTo(xs,y0+6);g.stroke();
+  g.fillStyle='#3a3f48';g.beginPath();g.moveTo(xs-4,y0+9);g.lineTo(xs+4,y0+9);g.lineTo(xs,y0+2);g.closePath();g.fill();
+  gr=g.createLinearGradient(0,ry-12,0,ry+8);gr.addColorStop(0,C_P);gr.addColorStop(1,'#7f2118');
+  g.fillStyle=gr;roundRect(xs-cw/2,ry-10,cw,18,4);g.fill();g.strokeStyle='#4d140f';g.lineWidth=1.2;g.stroke();
+  g.fillStyle='#222';roundRect(xs-5,ry-20,10,11,3);g.fill();
+  /* клема C на правому кінці шини */
+  g.fillStyle='#b8bec8';g.strokeStyle='#454b55';g.lineWidth=1.2;g.beginPath();g.arc(xB+6,ry,5,0,2*Math.PI);g.fill();g.stroke();
+}
+let RH=null;   // геометрія реостата на схемі (для перетягування каретки)
+function drawCircuit(b){
+  const xL=b.x+b.w*0.085, xAm=b.x+b.w*0.33, xA=b.x+b.w*0.43, xB=b.x+b.w*0.80, xC=xB+30, xVj=b.x+b.w*0.25, term=SCHEME()==='term';
+  const yb=b.y+b.h*0.36, B=b.y+b.h*0.84, yc=(yb+B)/2, vy=b.y+b.h*0.66, ry=yb-34;
+  const xs=xA+8+(xB-xA-16)*posFrac();
+  const xv=(xA+xC)/2;
+  RH={xA:xA+8,xB:xB-8,xs,top:ry-28,bot:yb+22,x0:xA-8,x1:xB+10};
+  g.strokeStyle=INK;g.lineWidth=2;g.lineJoin='round';
+  /* основне коло */
+  wire(xL,yb,xAm-14,yb);wire(xAm+14,yb,xA-5,yb);
+  wire(xL,yb,xL,B);wire(xL,B,xC,B);
+  wire(xB+6,ry,xC,ry);wire(xC,ry,xC,B);
+  if(isI()||isPV()){
+    /* джерело струму (I0 або фотострум) і паралельний елемент: шунт Rp або діод (схема Нортона / діодна модель) */
+    const xS=b.x+b.w*0.17;
+    g.strokeStyle=INK;g.lineWidth=2;
+    wire(xS,yb,xS,B);
+    mask(xL-16,yc-18,32,36);
+    g.strokeStyle=INK;g.lineWidth=2;g.beginPath();g.arc(xL,yc,15,0,2*Math.PI);g.stroke();
+    wire(xL,yc+9,xL,yc-9);wire(xL,yc-9,xL-5,yc-2);wire(xL,yc-9,xL+5,yc-2);
+    if(isPV()){
+      mask(xS-10,yc-12,20,26);g.strokeStyle=INK;g.lineWidth=2;
+      g.beginPath();g.moveTo(xS-8,yc-9);g.lineTo(xS+8,yc-9);g.lineTo(xS,yc+6);g.closePath();g.stroke();
+      wire(xS-8,yc+6,xS+8,yc+6);
+    }else{
+      mask(xS-8,yc-17,16,34);g.strokeStyle=INK;g.lineWidth=2;g.strokeRect(xS-6,yc-15,12,30);
+    }
+    g.beginPath();g.arc(xS,yb,3,0,2*Math.PI);g.fillStyle=INK;g.fill();
+    g.beginPath();g.arc(xS,B,3,0,2*Math.PI);g.fill();
+    g.fillStyle=INK;g.font='14px system-ui,"Segoe UI",sans-serif';g.textAlign='right';
+    g.fillText(isPV()?'Iф':'I₀',xL-19,yc+5);
+    g.textAlign='left';g.fillText(isPV()?'VD':'Rp',xS+10,yc+5);
+  }else{
+    mask(xL-14,yc-14,28,28);battery(xL,yc,1);
+    g.fillStyle=INK;g.font='14px system-ui,"Segoe UI",sans-serif';g.textAlign='right';
+    g.fillText('ε',xL-18,yc+5);
+  }
+  g.font='12px system-ui,"Segoe UI",sans-serif';g.textAlign='center';
+  g.fillText(S.short,xL,B+18);
+  probe(xAm,yb,'A',C_I,'I = '+fmt2(last.I)+' '+IU());
+  /* реостат */
+  drawRheostat(xA,xB,yb,xs,Rset());
+  g.fillStyle=INK;g.font='13px system-ui,"Segoe UI",sans-serif';g.textAlign='center';
+  g.fillText('реостат',xB-24,ry-22);
+  g.font='12px system-ui,"Segoe UI",sans-serif';g.fillStyle=C_P;
+  g.fillText('повзунок',Math.min(xs,xB-80),ry-24);
+  g.fillStyle=AX;g.textAlign='center';g.fillText('A',xA-12,yb+24);g.fillText('C',xC+12,ry+4);
+  /* дужка активної частини обмотки */
+  const by=yb+26;
+  g.strokeStyle=C_U;g.lineWidth=2;
+  wire(xA,by,xs,by);wire(xA,by-4,xA,by+4);wire(xs,by-4,xs,by+4);
+  g.fillStyle=C_U;g.textAlign='left';g.font='12px system-ui,"Segoe UI",sans-serif';
+  g.fillText('R_е = '+fmtR(Rset())+(posFrac()===0?'  (повзунок на початку: лише опір контактів)':''),xA+8,by+17);
+  g.strokeStyle=C_U;g.fillStyle=C_U;g.lineWidth=2;
+  g.font='12px system-ui,"Segoe UI",sans-serif';
+  if(term){
+    /* схема A: вольтметр на затискачах джерела, ліворуч від амперметра */
+    wire(xVj,yb,xVj,yc-13);wire(xVj,yc+13,xVj,B);
+    g.beginPath();g.arc(xVj,yb,3,0,2*Math.PI);g.fill();
+    g.beginPath();g.arc(xVj,B,3,0,2*Math.PI);g.fill();
+    probe(xVj,yc,'V',C_U);
+    g.fillStyle=C_U;g.textAlign='left';g.font='13px system-ui,"Segoe UI",sans-serif';
+    g.fillText('U = '+fmt2(last.U)+' В',xVj+20,yc+5);
+    g.font='12px system-ui,"Segoe UI",sans-serif';g.fillStyle=INK;g.textAlign='center';
+    g.fillText('схема A: вольтметр на затискачах джерела, амперметр вимірює струм навантаження',(xL+xC)/2,B+36);
+  }else{
+    /* схема B: вольтметр на реостаті між виводами A і C */
+    wire(xA,yb+bh0(),xA,vy);
+    wire(xA,vy,xv-13,vy);wire(xv+13,vy,xC,vy);
+    g.beginPath();g.arc(xA,vy,3,0,2*Math.PI);g.fill();
+    g.beginPath();g.arc(xC,vy,3,0,2*Math.PI);g.fill();
+    probe(xv,vy,'V',C_U,'U = '+fmt2(last.U)+' В');
+    g.font='12px system-ui,"Segoe UI",sans-serif';g.fillStyle=INK;g.textAlign='center';
+    g.fillText('схема B: вольтметр на навантаженні R_е (між виводами A і C), амперметр — перед ним',(xL+xC)/2,B+36);
+  }
+}
+function bh0(){return 18}
+
+/* ---- графіки ---- */
+function frame(b,xmin,xmax,ymin,ymax,xt,yt,xlab,ylab,logx,xlabels,title,rm=14,bm=30){
+  const x0=b.x+54,x1=b.x+b.w-rm,y0=b.y+b.h-bm,y1=b.y+42;
+  const X=v=>logx?x0+(Math.log10(v)-xmin)/(xmax-xmin)*(x1-x0):x0+(v-xmin)/(xmax-xmin)*(x1-x0);
+  const Y=v=>y0-(v-ymin)/(ymax-ymin)*(y0-y1);
+  g.font='13px system-ui,"Segoe UI",sans-serif';g.textBaseline='alphabetic';
+  g.fillStyle=INK;g.textAlign='left';g.fillText(title,b.x+6,b.y+15);
+  g.strokeStyle=GR;g.lineWidth=1;
+  xt.forEach((v,k)=>{g.beginPath();g.moveTo(X(v),y1);g.lineTo(X(v),y0);g.stroke();
+    g.fillStyle=AX;g.textAlign='center';g.fillText(xlabels?xlabels[k]:String(v).replace('.',','),X(v),y0+15)});
+  yt.forEach(v=>{g.beginPath();g.moveTo(x0,Y(v));g.lineTo(x1,Y(v));g.stroke();
+    g.fillStyle=AX;g.textAlign='right';g.fillText(String(v).replace('.',','),x0-6,Y(v)+4)});
+  g.strokeStyle=AX;g.lineWidth=1.2;g.beginPath();g.moveTo(x0,y1);g.lineTo(x0,y0);g.lineTo(x1,y0);g.stroke();
+  g.fillStyle=INK;g.textAlign='right';g.fillText(xlab,x1,y0+27);
+  g.textAlign='left';g.fillText(ylab,x0+4,y1-10);
+  return{X,Y,x0,x1,y0,y1};
+}
+
+/* осі ВАХ охоплюють і збережені серії (з тими самими одиницями струму) */
+function axes(){
+  let im=S.Imax,um=S.uMax;
+  for(const sr of saved)if(sr.iu===IU())for(const p of sr.pts){im=Math.max(im,p.I*1.05);um=Math.max(um,p.U*1.05)}
+  const Im=niceCeil(im),Um=niceCeil(um);
+  return{Im,Um,it:ticksFor(Im),ut:ticksFor(Um)};
+}
+const SERC=()=>matchMedia('(prefers-color-scheme: dark)').matches?['#ffb347','#c39bff','#4fe0c0']:['#d98200','#8e44ad','#12876f'];
+const seriesOK=()=>saved.filter(sr=>sr.iu===IU());
+const byKey=(a,k)=>a.slice().sort((x,y)=>x[k]-y[k]);
+const PU=()=>(isI()||isPV())?'мВт':'Вт';
+/* теоретична характеристика джерела без впливу приладів (лише для викладача): набір точок за R */
+function trueCurve(n=120){
+  const lo=Math.log10(S.Rmin),hi=Math.log10(S.Rmax),out=[];
+  for(let k=0;k<=n;k++){const R=Math.pow(10,lo+(hi-lo)*k/n),q=ideal(R,false);out.push({R,I:q.IA/KI(),U:q.U})}
+  return out;
+}
+function polyline(A,arr,fx,fy,color,w,dash){
+  if(arr.length<2) return;
+  g.strokeStyle=color;g.lineWidth=w;g.setLineDash(dash||[]);g.beginPath();
+  arr.forEach((p,k)=>k?g.lineTo(A.X(fx(p)),A.Y(fy(p))):g.moveTo(A.X(fx(p)),A.Y(fy(p))));
+  g.stroke();g.setLineDash([]);
+}
+function dot(x,y,color,hollow,r=3.5){
+  g.beginPath();g.arc(x,y,r,0,2*Math.PI);
+  if(hollow){g.fillStyle=BG;g.fill();g.strokeStyle=color;g.lineWidth=1.8;g.stroke()}else{g.fillStyle=color;g.fill()}
+}
+
+function drawUI(b,f){
+  const ax=axes();
+  const A=frame(b,0,ax.Im,0,ax.Um,ax.it,ax.ut,'I, '+IU(),'U, В',false,null,'ВАХ U(I)');
+  if(teacher){
+    if(isPV()) polyline(A,trueCurve(),p=>p.I,p=>p.U,C_TRUE,1.5,[5,4]);
+    else{
+      const xe=Math.min(ax.Im,Eof()/S.Ri/KI());
+      g.strokeStyle=C_TRUE;g.setLineDash([5,4]);g.lineWidth=1.5;g.beginPath();
+      g.moveTo(A.X(0),A.Y(Eof()));g.lineTo(A.X(xe),A.Y(Eof()-S.Ri*KI()*xe));g.stroke();g.setLineDash([]);
+    }
+  }
+  /* збережені серії */
+  const cols=SERC();
+  for(const sr of seriesOK()){
+    const c=cols[sr.ci];
+    if(sr.f&&sr.f.b<0){
+      const xe=Math.min(ax.Im,-sr.f.a/sr.f.b);
+      g.globalAlpha=.75;polyline(A,[{I:0,U:sr.f.a},{I:xe,U:sr.f.a+sr.f.b*xe}],p=>p.I,p=>p.U,c,1.6);g.globalAlpha=1;
+    }else if(sr.pv) polyline(A,byKey(sr.pts,'I'),p=>p.I,p=>p.U,c,1.4);
+    for(const p of sr.pts) dot(A.X(p.I),A.Y(p.U),c,true,3.5);
+  }
+  if(f){
+    const xend=f.b<0?Math.min(ax.Im,-f.a/f.b):ax.Im;
+    g.strokeStyle=C_FIT;g.lineWidth=2;g.beginPath();
+    g.moveTo(A.X(0),A.Y(f.a));g.lineTo(A.X(xend),A.Y(f.a+f.b*xend));g.stroke();
+  }
+  if(isPV()) polyline(A,byKey(pts,'I'),p=>p.I,p=>p.U,C_PT,1.2);
+  /* смуги похибок ±2σ (95 %) по обох осях; прапорець ×10 збільшує їх для наочності */
+  const m=$('errx').checked?10:1,dI=2*sigI()*m,dU=2*sigU()*m;
+  g.strokeStyle=C_PT;g.lineWidth=1.2;
+  for(const p of pts){
+    const x=A.X(p.I),y=A.Y(p.U),xa=A.X(p.I-dI),xb=A.X(p.I+dI),ya=A.Y(p.U-dU),yb2=A.Y(p.U+dU);
+    g.beginPath();g.moveTo(x,ya);g.lineTo(x,yb2);g.moveTo(x-3,ya);g.lineTo(x+3,ya);g.moveTo(x-3,yb2);g.lineTo(x+3,yb2);
+    g.moveTo(xa,y);g.lineTo(xb,y);g.moveTo(xa,y-3);g.lineTo(xa,y+3);g.moveTo(xb,y-3);g.lineTo(xb,y+3);g.stroke();
+  }
+  for(const p of pts) dot(A.X(p.I),A.Y(p.U),C_PT,false,3.5);
+  g.font='11px system-ui,"Segoe UI",sans-serif';g.textAlign='right';g.fillStyle=AX;
+  g.fillText('смуги ±2σ'+(m>1?' ×10':''),A.x1,A.y1-10);
+}
+
+function decades(lo,hi){const t=[],l=[];for(let d=Math.ceil(lo);d<=Math.floor(hi);d++){const v=Math.pow(10,d);t.push(v);l.push(String(v).replace('.',','))}return{t,l}}
+
+function drawNorm(b,f){
+  if(isPV()) return drawPVpower(b);
+  const dec=decades(S.logMin,S.logMax);
+  const B=frame(b,S.logMin,S.logMax,0,1.05,dec.t,[0,0.25,0.5,0.75,1],isI()?'R_е / R_p':'R_е / R_i','нормована величина',true,dec.l,
+    'Нормовані залежності від '+(isI()?'R_е / R_p':'R_е / R_i'),14,76);
+  const curve=(fn,color)=>{g.strokeStyle=color;g.lineWidth=2;g.beginPath();
+    for(let k=0;k<=200;k++){const t=S.logMin+(S.logMax-S.logMin)*k/200,x=Math.pow(10,t),y=fn(x);k?g.lineTo(B.X(x),B.Y(y)):g.moveTo(B.X(x),B.Y(y))}g.stroke()};
+  curve(x=>x/(1+x),C_U);curve(x=>1/(1+x),C_I);curve(x=>x/((1+x)*(1+x)),C_P);
+  g.strokeStyle=INK;g.setLineDash([4,3]);g.lineWidth=1;
+  g.beginPath();g.moveTo(B.X(1),B.y1);g.lineTo(B.X(1),B.y0);g.stroke();g.setLineDash([]);
+  /* підписи кривих: праворуч угорі, в порядку зліва направо */
+  g.font='12px system-ui,"Segoe UI",sans-serif';g.textAlign='left';
+  const lab=[[C_U,'U/ε'],[C_I,isI()?'I/I₀':'I/I_кз'],[C_P,isI()?'P/(ε·I₀)':'P/(ε·I_кз)']];
+  const lw=lab.map(l=>g.measureText(l[1]).width+16);
+  let lx=B.x1-lw.reduce((a,b)=>a+b,0)+8;
+  lab.forEach(([c,t],k)=>{g.fillStyle=c;g.fillRect(lx,B.y1-35,9,3);g.fillText(t,lx,B.y1-27);lx+=lw[k]});
+  /* режими роботи джерела під віссю: коротке замикання, узгодження, холостий хід */
+  const Rn=isI()?'R_p':'R_i',base=B.y0+36,cuts=[S.logMin,-0.6,0.6,S.logMax].map(v=>Math.max(S.logMin,Math.min(S.logMax,v)));
+  const segs=[
+    {a:cuts[0],b:cuts[1],c:C_I,t:['коротке замикання','R_е < '+Rn+'/4'],s:['КЗ','']},
+    {a:cuts[1],b:cuts[2],c:C_P,t:['узгодження','P_max при R_е = '+Rn],s:['узгод.','R_е≈'+Rn]},
+    {a:cuts[2],b:cuts[3],c:C_U,t:['холостий хід','R_е > 4'+Rn],s:['ХХ','']}];
+  g.setLineDash([2,4]);g.strokeStyle=AX;g.lineWidth=1;
+  for(const v of [-0.6,0.6])if(v>S.logMin&&v<S.logMax){g.beginPath();g.moveTo(B.X(Math.pow(10,v)),B.y1);g.lineTo(B.X(Math.pow(10,v)),base+30);g.stroke()}
+  g.setLineDash([]);
+  for(const sg of segs){
+    if(sg.b-sg.a<=1e-9) continue;
+    const xa=B.X(Math.pow(10,sg.a))+2,xb=B.X(Math.pow(10,sg.b))-2,w=xb-xa;
+    g.globalAlpha=.16;g.fillStyle=sg.c;g.fillRect(xa,base,w,30);g.globalAlpha=1;
+    g.fillStyle=sg.c;g.fillRect(xa,base,w,2);
+    g.fillStyle=INK;g.textAlign='center';g.font='11px system-ui,"Segoe UI",sans-serif';
+    const tx=w>=96?sg.t:sg.s;
+    g.fillText(tx[0],(xa+xb)/2,base+14);
+    if(tx[1]) g.fillText(tx[1],(xa+xb)/2,base+26);
+  }
+  g.textAlign='left';
+  if(!f||f.Ri<=0||f.a<=0) return;
+  const E=f.a,Ri=f.Ri,Ik=E/Ri/KI(),P0=E*Ik;
+  for(const p of pts){
+    const x=p.R/Ri; if(Math.log10(x)<S.logMin||Math.log10(x)>S.logMax) continue;
+    for(const [y,c] of [[p.U/E,C_U],[p.I/Ik,C_I],[p.U*p.I/P0,C_P]]){
+      g.fillStyle=c;g.beginPath();g.arc(B.X(x),B.Y(y),4,0,2*Math.PI);g.fill();
+    }
+  }
+}
+
+/* сонячна панель: P(U) з точкою максимальної потужності */
+function drawPVpower(b){
+  const ax=axes(),Pm=niceCeil(S.I0*Eof()/KI()*0.9);
+  const B=frame(b,0,ax.Um,0,Pm,ax.ut,ticksFor(Pm),'U, В','P, '+PU(),false,null,'P(U): точка максимальної потужності');
+  if(teacher) polyline(B,trueCurve(),p=>p.U,p=>p.U*p.I,C_TRUE,1.5,[5,4]);
+  const pw=p=>p.U*p.I;
+  polyline(B,byKey(pts,'U'),p=>p.U,pw,C_P,1.4);
+  for(const p of pts) dot(B.X(p.U),B.Y(pw(p)),C_P,false,4);
+  if(pts.length>=3){
+    let best=pts[0];for(const p of pts)if(pw(p)>pw(best))best=p;
+    g.strokeStyle=INK;g.setLineDash([4,3]);g.lineWidth=1;
+    g.beginPath();g.moveTo(B.X(best.U),B.y0);g.lineTo(B.X(best.U),B.Y(pw(best)));g.stroke();g.setLineDash([]);
+    g.beginPath();g.arc(B.X(best.U),B.Y(pw(best)),8,0,2*Math.PI);g.strokeStyle=INK;g.lineWidth=1.5;g.stroke();
+    g.fillStyle=INK;g.font='12px system-ui,"Segoe UI",sans-serif';
+    const right=B.X(best.U)>(B.x0+B.x1)/2;g.textAlign=right?'right':'left';
+    g.fillText('P_max ≈ '+fmt2(pw(best))+' '+PU(),B.X(best.U)+(right?-12:12),B.Y(pw(best))-4);
+    g.fillText('U = '+fmt2(best.U)+' В, R_е = '+fmtR(best.R),B.X(best.U)+(right?-12:12),B.Y(pw(best))+11);
+  }
+}
+
+/* ---- потужність і ККД ---- */
+function drawPow(b,f){
+  let lo=Math.floor(Math.log10(S.Rmin)),hi=Math.ceil(Math.log10(S.Rmax)),smax=0;
+  const ser=seriesOK(),cols=SERC();
+  for(const sr of ser){lo=Math.min(lo,Math.floor(Math.log10(sr.Rmin)));hi=Math.max(hi,Math.ceil(Math.log10(sr.Rmax)));for(const p of sr.pts)smax=Math.max(smax,p.U*p.I)}
+  const dec=decades(lo,hi);
+  const Pn=isPV()?S.I0*Eof()/KI()*0.9:S.E*S.E/(4*S.Ri)/KI(),Pmax=niceCeil(Math.max(Pn*1.2,smax*1.1)),pt=ticksFor(Pmax);
+  const pv=isPV();
+  const B=frame(b,lo,hi,0,Pmax,dec.t,pt,'R_е, Ом','P, '+PU(),true,dec.l,pv?'Потужність від R_е':'Потужність і ККД',pv?14:44);
+  const Yr=v=>B.y0-v/100*(B.y0-B.y1);
+  g.font='12px system-ui,"Segoe UI",sans-serif';g.textAlign='left';
+  if(!pv){
+    g.font='13px system-ui,"Segoe UI",sans-serif';
+    for(const v of [0,25,50,75,100]){g.fillStyle=C_I;g.fillText(String(v),B.x1+6,Yr(v)+4)}
+    g.textAlign='right';g.fillStyle=C_I;g.fillText('η, %',B.x1+40,B.y1-10);
+    g.font='12px system-ui,"Segoe UI",sans-serif';g.textAlign='left';
+    g.fillStyle=C_P;g.fillText('P',B.x0+8,B.y1+14);g.fillStyle=C_I;g.fillText('η',B.x0+24,B.y1+14);
+  }
+  if(teacher&&pv) polyline(B,trueCurve(),p=>p.R,p=>p.U*p.I,C_TRUE,1.5,[5,4]);
+  for(const sr of ser){const c=cols[sr.ci];
+    polyline(B,byKey(sr.pts,'R'),p=>p.R,p=>p.U*p.I,c,1.3);
+    for(const p of sr.pts){const lx=Math.log10(p.R);if(lx>=lo&&lx<=hi)dot(B.X(p.R),B.Y(p.U*p.I),c,true,3.5)}}
+  const ok=f&&f.Ri>0&&f.a>0;
+  if(ok&&!pv){
+    const E=f.a,Ri=f.Ri;
+    const curve=(fn,Y,color)=>{g.strokeStyle=color;g.lineWidth=2;g.beginPath();
+      for(let k=0;k<=200;k++){const t=lo+(hi-lo)*k/200,R=Math.pow(10,t);k?g.lineTo(B.X(R),Y(fn(R))):g.moveTo(B.X(R),Y(fn(R)))}g.stroke()};
+    curve(R=>E*E*R/((R+Ri)*(R+Ri))/KI(),B.Y,C_P);
+    curve(R=>100*R/(R+Ri),Yr,C_I);
+    const xr=Math.log10(Ri);
+    if(xr>=lo&&xr<=hi){
+      g.strokeStyle=INK;g.setLineDash([4,3]);g.lineWidth=1;
+      g.beginPath();g.moveTo(B.X(Ri),B.y1);g.lineTo(B.X(Ri),B.y0);g.stroke();g.setLineDash([]);
+      const pm=E*E/(4*Ri)/KI();
+      g.fillStyle=C_P;g.beginPath();g.arc(B.X(Ri),B.Y(pm),5,0,2*Math.PI);g.fill();
+      g.fillStyle=INK;g.font='12px system-ui,"Segoe UI",sans-serif';g.textAlign=B.X(Ri)>(B.x0+B.x1)/2?'right':'left';
+      g.fillText('P_max = '+fmt2(pm)+' '+PU(),B.X(Ri)+(B.X(Ri)>(B.x0+B.x1)/2?-9:9),B.Y(pm)-8);
+      g.fillText('R_е = '+(isI()?'R_p':'R_i')+', η = 50 %',B.X(Ri)+(B.X(Ri)>(B.x0+B.x1)/2?-9:9),B.Y(pm)+6);
+    }
+  }
+  if(pv) polyline(B,byKey(pts,'R'),p=>p.R,p=>p.U*p.I,C_P,1.4);
+  for(const p of pts){
+    const lx=Math.log10(p.R); if(lx<lo||lx>hi) continue;
+    g.fillStyle=C_P;g.beginPath();g.arc(B.X(p.R),B.Y(p.U*p.I),4,0,2*Math.PI);g.fill();
+    if(ok&&!pv){g.fillStyle=C_I;g.beginPath();g.arc(B.X(p.R),Yr(100*p.U/f.a),4,0,2*Math.PI);g.fill()}
+  }
+}
+
+/* підготовка канви: розмір під CSS, масштаб під dpr; якщо блок згорнуто (ширина 0), малювати нічого */
+function useCanvas(cv){
+  const w=cv.clientWidth,h=cv.clientHeight; if(!w||!h) return null;
+  const d=devicePixelRatio||1;
+  if(cv.width!==Math.round(w*d)||cv.height!==Math.round(h*d)){cv.width=Math.round(w*d);cv.height=Math.round(h*d)}
+  g=cv.getContext('2d');g.setTransform(d,0,0,d,0,0);
+  g.fillStyle=BG;g.fillRect(0,0,w,h);
+  return{W:w,H:h};
+}
+function draw(){
+  colors();
+  const f=fit();
+  let s;
+  if((s=useCanvas(CV.circ))) drawCircuit({x:0,y:0,w:s.W,h:s.H});
+  if((s=useCanvas(CV.ui)))   drawUI({x:4,y:2,w:s.W-8,h:s.H-4},f);
+  if((s=useCanvas(CV.norm))) drawNorm({x:4,y:2,w:s.W-8,h:s.H-4},f);
+  if((s=useCanvas(CV.pow)))  drawPow({x:4,y:2,w:s.W-8,h:s.H-4},f);
+}
+
+/* ---- сонячна панель: результати вимірювань ---- */
+function pvResult(){
+  const n=pts.length;
+  if(n<3){
+    $('fr').innerHTML='Точок: '+n+'<br>Характеристика нелінійна: зніміть 8–10 точок від короткого замикання до холостого ходу, особливо біля «коліна».';
+    $('chk').innerHTML='';return;
+  }
+  let best=pts[0];for(const p of pts)if(p.U*p.I>best.U*best.I)best=p;
+  const Isc=Math.max(...pts.map(p=>p.I)),Uoc=Math.max(...pts.map(p=>p.U)),Pm=best.U*best.I;
+  $('fr').innerHTML='Точок: '+n+'<br>I<sub>кз</sub> ≈ '+fmt2(Isc)+' '+IU()+'<br>U<sub>хх</sub> ≈ '+fmt2(Uoc)+' В<br>P<sub>max</sub> ≈ '+fmt2(Pm)+' '+PU()+
+    '<br>при R<sub>е</sub> = '+fmtR(best.R)+', U = '+fmt2(best.U)+' В<br>FF = P<sub>max</sub>/(I<sub>кз</sub>U<sub>хх</sub>) = '+(Pm/(Isc*Uoc)).toFixed(2).replace('.',',');
+  $('chk').innerHTML='Діодна характеристика: спочатку панель поводиться як джерело струму (I ≈ I<sub>ф</sub>), біля холостого ходу — як джерело напруги. Лінійна апроксимація U(I) тут не застосовна; оптимальне навантаження — біля «коліна».';
+}
+function pvTeach(){
+  let best={P:0};
+  for(const q of trueCurve(400)){const P=q.U*q.I;if(P>best.P)best={P,U:q.U,I:q.I,R:q.R}}
+  return 'Еталон (лише для викладача): I<sub>ф</sub> = '+fmt2(S.I0/KI())+' '+IU()+', R<sub>sh</sub> = '+fmtR(S.Ri)+', U<sub>хх</sub> = '+fmt2(Eof())+' В; P<sub>max</sub> = '+fmt2(best.P)+' '+PU()+' при R = '+fmtR(best.R)+'; реостат = '+fmtR(Rset())+'.';
+}
+
+/* ---- таблиця, підсумки, експорт ---- */
+function refresh(){
+  const f=fit();
+  const okF=f&&f.a>0;
+  $('tbl').querySelector('tbody').innerHTML=pts.map((p,k)=>`<tr><td>${k+1}</td><td>${fmt2(p.I)}</td><td>${fmt2(p.U)}</td><td>${fmt2(p.R)}</td><td>${fmt2(p.U*p.I)}</td><td>${okF?(100*p.U/f.a).toFixed(1).replace('.',','):'—'}</td></tr>`).join('');
+  $('thI').textContent='I, '+IU();$('thP').textContent='P, '+PU();$('dIu').textContent=IU();
+  $('dI').textContent=fmt2(last.I);$('dU').textContent=fmt2(last.U);
+  if(isPV()){pvResult()}
+  else if(!f){
+    $('fr').innerHTML='Точок: '+pts.length+'<br>Зніміть щонайменше дві точки, щоб побудувати апроксимацію.';
+    $('chk').innerHTML='';
+  }else{
+    $('fr').innerHTML=
+      'Точок: '+f.n+'<br>'+
+      'ε = '+fmt2(f.a)+' ± '+fmtA(f.sa)+' В<br>'+
+      (isI()?'R<sub>p</sub>':'R<sub>i</sub>')+' = '+fmtR(f.Ri)+' ± '+fmtR(f.sb)+'<br>'+
+      (isI()?'I<sub>0</sub> = ε/R<sub>p</sub> = '+fmt2(f.a/f.Ri/KI())+' '+IU()+'<br>':'')+
+      (f.Ri>0&&f.a>0?'P<sub>max</sub> = ε²/4R = '+fmt2(f.a*f.a/(4*f.Ri)/KI())+' '+PU()+'<br>':'')+
+      'R² = '+f.r2.toFixed(4)+(f.chi2r!==null?'; χ²/ν = '+f.chi2r.toFixed(2).replace('.',','):'');
+    const p=pts[pts.length-1];
+    const Ik=f.a/f.Ri/KI();
+    $('chk').innerHTML='Перевірка для останньої точки: U/ε + I/'+(isI()?'I<sub>0</sub>':'I<sub>кз</sub>')+' = '+fmt2(p.U/f.a+p.I/Ik)+' (має бути близько 1)'+
+      (isI()?'.<br>Джерело струму з шунтом R<sub>p</sub> для навантаження еквівалентне джерелу ЕРС ε = I<sub>0</sub>R<sub>p</sub> з внутрішнім опором R<sub>p</sub> (теорема Нортона–Тевенена); тому ВАХ — та сама пряма.':'');
+  }
+  if(teacher&&isPV()){$('teach').innerHTML=pvTeach()}
+  else if(teacher){
+    $('teach').innerHTML='Еталон (лише для викладача): ε = '+fmt2(Eof())+' В, R<sub>i</sub> = '+fmtR(S.Ri)+(isI()?'; I<sub>0</sub> = '+fmt2(S.I0/KI())+' '+IU():'')+'; реостат = '+fmtR(Rset())+'.'+
+      (f?'<br>Систематика схеми: R<sub>i</sub>(вимір.)/R<sub>i</sub>(еталон) = '+(f.Ri/S.Ri).toFixed(3).replace('.',',')+', ε(вимір.)/ε(еталон) = '+(f.a/Eof()).toFixed(3).replace('.',',')+'.':'');
+  }
+  $('lpos').textContent=(+$('pos').value)+' %  ·  R = '+fmtR(Rset());
+  $('devnote').textContent='Прилади: амперметр класу точності 0,5, межа '+String(+S.Imax.toFixed(2)).replace('.',',')+' '+IU()+'; вольтметр, межа '+String(+S.uMax.toFixed(2)).replace('.',',')+' В; показання округлено до 0,01.';
+  $('meterInfo').innerHTML=REAL()?'R<sub>A</sub> = '+fmtR(RA())+' (спад 0,3 В на межі), R<sub>V</sub> = '+fmtR(RV())+' (1 кОм/В). Порівняйте їх з R<sub>'+(isI()?'p':isPV()?'sh':'i')+'</sub>: який прилад заважає більше за цієї схеми?':'Прилади ідеальні: R<sub>A</sub> = 0, R<sub>V</sub> = ∞.';
+  /* попередження про коротке замикання і підказка щодо покриття діапазону */
+  $('warn').textContent=(!isI()&&!isPV()&&Rset()<0.25*S.Ri)?'⚠ Майже коротке замикання: джерело швидко розряджається, не тримайте повзунок тут.':'';
+  const cov=[];
+  if(pts.length>0&&pts.length<5) cov.push('Зніміть щонайменше 5 точок.');
+  if(pts.length>=2&&!isPV()){
+    const Is=pts.map(p=>p.I),span=Math.max(...Is)-Math.min(...Is),full=Eof()/(S.Rmin+S.Ri)/KI();
+    if(span<0.6*full) cov.push('Охоплено лише '+Math.round(100*span/full)+' % можливого діапазону струмів: додайте точки при менших R (ближче до короткого замикання) і при більших R.');
+  }
+  $('cov').textContent=cov.join(' ');
+  draw();
+}
+
+/* діапазон осі R_е/R_i залежить від R_i: підлаштовуємо під реостат */
+function updRange(){
+  S.logMin=Math.floor(Math.log10(S.Rmin/S.Ri)-0.1);S.logMax=Math.ceil(Math.log10(S.Rmax/S.Ri)+0.1);   // запас: підігнане R_i трохи відрізняється від заданого
+  S.E=Eof();
+  S.Imax=niceCeil((isPV()?S.I0:S.E/(S.Rmin+S.Ri))/KI()*1.05);      // межа амперметра: з запасом над найбільшим струмом
+  S.iTicks=ticksFor(S.Imax);
+  S.uMax=niceCeil(S.E*1.1);                     // межа вольтметра
+  S.uTicks=ticksFor(S.uMax);
+}
+/* комбобокс ЕРС: номінали батарейок і акумуляторів */
+function fillEmf(){
+  const opts=S.EOpts.slice();
+  const cur=hasI0()?S.I0:S.E;
+  if(!opts.some(o=>o[0]===cur)) opts.push([cur,'задано в адресі: '+String(hasI0()?cur/KI():cur).replace('.',',')+(hasI0()?' '+IU():' В')]);
+  $('emf').innerHTML=opts.map(([v,t])=>`<option value="${v}">${t}</option>`).join('');
+  $('emf').value=String(cur);
+  $('emfLbl').innerHTML=isI()?'Струм джерела I<sub>0</sub>':isPV()?'Освітленість (фотострум I<sub>ф</sub>)':'ЕРС ε (номінал)';
+  $('riLbl').innerHTML=isI()?'Внутрішній опір R<sub>p</sub> (шунт джерела струму)':isPV()?'Шунтуючий опір R<sub>sh</sub> (якість елемента)':'Внутрішній опір R<sub>i</sub> (стан джерела)';
+}
+$('emf').addEventListener('change',()=>{if(hasI0())S.I0=+$('emf').value;else S.E=+$('emf').value;updRange();pts=[];last=reading();refresh()});
+/* комбобокс стану джерела: зміна R_i — це інший стан батареї, тож точки скидаються */
+function fillRi(){
+  const opts=S.RiOpts.slice();
+  if(!opts.some(o=>o[0]===S.Ri)) opts.push([S.Ri,'задано в адресі: '+fmtR(S.Ri)]);
+  $('ri').innerHTML=opts.map(([v,t])=>`<option value="${v}">${t}</option>`).join('');
+  $('ri').value=String(S.Ri);
+}
+$('ri').addEventListener('change',()=>{S.Ri=+$('ri').value;updRange();pts=[];last=reading();refresh()});
+
+function newReading(){last=reading();refresh()}
+/* ---- режим «чорний ящик»: випадкові приховані ε і R_i (або I0 і R_p) ---- */
+let mode='study',attempts=0;
+const sig2=x=>+x.toPrecision(2);
+const rangeOf=opts=>{const v=opts.map(o=>o[0]);return[Math.min(...v),Math.max(...v)]};
+const restoreDef=o=>{o.E=o.def.E;o.I0=o.def.I0;o.Ri=o.def.Ri};
+function randBox(){
+  const [e0,e1]=rangeOf(S.EOpts),[r0,r1]=rangeOf(S.RiOpts);
+  const e=sig2(e0+Math.random()*(e1-e0)),r=sig2(Math.exp(Math.log(r0)+Math.random()*(Math.log(r1)-Math.log(r0))));
+  if(isI())S.I0=e;else S.E=e;
+  S.Ri=r;
+}
+function applyMode(){
+  const box=mode==='box'&&!isPV();
+  $('known').hidden=box;$('boxAns').hidden=!box;
+  $('ansRLbl').innerHTML=(isI()?'R<sub>p</sub>':'R<sub>i</sub>')+', Ом';
+  $('mode').value=mode;
+}
+function newBox(){
+  if(mode==='box'&&!isPV()){restoreDef(S);randBox()}
+  attempts=0;$('boxMsg').innerHTML='';$('showAns').hidden=true;$('ansE').value='';$('ansR').value='';
+  updRange();fillEmf();fillRi();pts=[];last=reading();refresh();
+}
+function setMode(m){
+  if(m==='box'&&isPV()){m='study';$('boxMsg').textContent='Для сонячної панелі режим «чорний ящик» не передбачено.'}
+  if(mode==='box')restoreDef(S);
+  mode=m;applyMode();
+  if(mode==='box'&&!isPV())randBox();
+  attempts=0;$('showAns').hidden=true;$('ansE').value='';$('ansR').value='';
+  updRange();fillEmf();fillRi();pts=[];last=reading();refresh();
+}
+function setSource(id){
+  if(mode==='box')restoreDef(S);
+  S=SOURCES[id];
+  if(mode==='box'&&isPV()){mode='study'}
+  if(mode==='box')randBox();
+  applyMode();
+  updRange();fillEmf();fillRi();
+  $('scheme').value=isPV()||isI()?'load':'term';   // початкова схема: A для малого R_i, B для великого шунта R_p
+  attempts=0;$('showAns').hidden=true;$('ansE').value='';$('ansR').value='';$('boxMsg').innerHTML='';
+  pts=[];last=reading();
+  $('src').value=id;
+  refresh();
+}
+$('mode').addEventListener('change',()=>setMode($('mode').value));
+$('newBox').onclick=newBox;
+const num=t=>parseFloat(String(t).replace(',','.').replace(/\s/g,''));
+$('chkAns').onclick=()=>{
+  const pe=num($('ansE').value),pr=num($('ansR').value);
+  if(!isFinite(pe)||!isFinite(pr)){$('boxMsg').innerHTML='Введіть обидва числа (десяткова кома або крапка).';return}
+  attempts++;
+  const f=fit(),E=Eof(),R=S.Ri;
+  const tolE=Math.min(Math.max(0.03*E,f?3*f.sa:0),0.15*E),tolR=Math.min(Math.max(0.05*R,f?3*f.sb:0),0.15*R);
+  const okE=Math.abs(pe-E)<=tolE,okR=Math.abs(pr-R)<=tolR,rn=isI()?'R<sub>p</sub>':'R<sub>i</sub>';
+  const line=(ok,name)=>'<span class="'+(ok?'msg-ok':'msg-bad')+'">'+(ok?'✓ ':'✗ ')+name+(ok?' — в межах допуску':' — не збігається з еталоном')+'</span>';
+  let h=line(okE,'ε')+'<br>'+line(okR,rn);
+  if(okE&&okR)h='<b class="msg-ok">Правильно!</b> ε і '+rn+' визначено в межах допуску (±3 % і ±5 %).<br>Спроб: '+attempts;
+  else{
+    h+='<br>Спроба '+attempts+'. Допуск: ±3 % для ε, ±5 % для '+rn+'.';
+    if(okE&&!okR)h+=' Перевірте схему включення приладів і охоплення діапазону точок.';
+    if(!f)h+=' Спершу зніміть ≥ 5 точок.';
+  }
+  $('boxMsg').innerHTML=h;
+  $('showAns').hidden=!(attempts>=3&&!(okE&&okR));
+};
+$('showAns').onclick=()=>{$('boxMsg').innerHTML='Еталон: ε = <b>'+fmt2(Eof())+' В</b>, '+(isI()?'R<sub>p</sub>':'R<sub>i</sub>')+' = <b>'+fmtR(S.Ri)+'</b>.'};
+
+/* ---- серії для порівняння ---- */
+function seriesLabel(){
+  const sel=id=>{const e=$(id);return e.selectedOptions[0]?e.selectedOptions[0].text:''};
+  const base=mode==='box'&&!isPV()?S.short+' (чорний ящик)':S.short+', '+sel('emf')+', '+sel('ri');
+  return base+', схема '+(SCHEME()==='term'?'A':'B')+(REAL()?'':', ідеальні прилади');
+}
+function renderSeries(){
+  const cols=SERC();
+  $('series').innerHTML=saved.map((sr,k)=>{
+    const res=sr.pv?'P<sub>max</sub> ≈ '+fmt2(sr.pmax)+' '+(sr.iu==='А'?'Вт':'мВт'):sr.f?'ε = '+fmt2(sr.f.a)+' В, '+(sr.isI?'R<sub>p</sub>':'R<sub>i</sub>')+' = '+fmtR(sr.f.Ri):'';
+    const note=sr.iu===IU()?'':' — інші одиниці струму, на графіках не показано';
+    return '<div class="ser"><i style="background:'+cols[sr.ci]+'"></i><span>'+sr.label+'<br><small>'+res+'; точок: '+sr.pts.length+note+'</small></span><button data-k="'+k+'" title="Видалити серію">×</button></div>';
+  }).join('');
+}
+$('saveSer').onclick=()=>{
+  if(pts.length<(isPV()?3:2)){$('cov').textContent='Для збереження серії потрібно щонайменше '+(isPV()?3:2)+' точки.';return}
+  const used=new Set(saved.map(s=>s.ci)),ci=[0,1,2].find(c=>!used.has(c));
+  if(ci===undefined){$('cov').textContent='Збережено 3 серії — видаліть одну (×), щоб додати нову.';return}
+  const f=isPV()?null:fit();
+  let pmax=0;for(const p of pts)pmax=Math.max(pmax,p.U*p.I);
+  saved.push({ci,iu:IU(),isI:isI(),pv:isPV(),label:seriesLabel(),pts:pts.map(p=>({...p})),f,pmax,Rmin:S.Rmin,Rmax:S.Rmax});
+  renderSeries();draw();
+};
+$('series').addEventListener('click',e=>{
+  const bt=e.target.closest('button[data-k]');if(!bt)return;
+  saved.splice(+bt.dataset.k,1);renderSeries();draw();
+});
+
+$('src').addEventListener('change',()=>setSource($('src').value));
+$('scheme').addEventListener('change',()=>{pts=[];last=reading();refresh()});
+$('real').addEventListener('change',()=>{pts=[];last=reading();refresh()});
+$('errx').addEventListener('change',()=>draw());
+$('pos').addEventListener('input',newReading);
+$('take').onclick=()=>{pts.push({I:last.I,U:last.U,R:last.I>0?last.U/(last.I*KI()):Rset()});refresh()};
+$('undo').onclick=()=>{pts.pop();refresh()};
+$('clear').onclick=()=>{pts=[];refresh()};
+$('exp').onclick=()=>{
+  $('latex').value=pts.map(p=>fmt2(p.I)+' & '+fmt2(p.U)+' & '+fmt2(p.R)+' \\\\').join('\n');
+};
+/* таблиця для Excel / CSV: десяткова кома, розділювач — табуляція або «;» */
+function tableRows(sep){
+  const f=fit(),ok=f&&f.a>0;
+  const head=['№','I, '+IU(),'U, В','Rе, Ом','P, '+PU(),'η, %'];
+  const rows=pts.map((p,k)=>[k+1,fmt2(p.I),fmt2(p.U),fmt2(p.R),fmt2(p.U*p.I),ok?(100*p.U/f.a).toFixed(1).replace('.',','):'']);
+  return [head].concat(rows).map(r=>r.join(sep)).join('\n');
+}
+$('cp').onclick=()=>{
+  const t=tableRows('\t'),done=()=>{$('cp').textContent='Скопійовано ✓';setTimeout(()=>$('cp').textContent='Копіювати таблицю',1500)};
+  if(navigator.clipboard&&navigator.clipboard.writeText) navigator.clipboard.writeText(t).then(done,()=>{$('latex').value=t;$('latex').select()});
+  else{$('latex').value=t;$('latex').select();try{document.execCommand('copy');done()}catch(e){}}
+};
+$('csv').onclick=()=>{
+  const a=document.createElement('a');
+  a.href=URL.createObjectURL(new Blob(['\ufeff'+tableRows(';')],{type:'text/csv;charset=utf-8'}));
+  a.download='vax_dzherela.csv';document.body.appendChild(a);a.click();a.remove();
+};
+
+/* перемальовуємо при зміні розміру (у тому числі коли згорнутий блок розкривається) і зміні теми */
+const ro=new ResizeObserver(()=>draw());
+Object.values(CV).forEach(c=>ro.observe(c));
+matchMedia('(prefers-color-scheme: dark)').addEventListener('change',()=>{renderSeries();draw()});
+new MutationObserver(()=>draw()).observe(document.documentElement,{attributes:true,attributeFilter:['data-theme']});
+
+
+/* перетягування каретки по схемі: клік або рух по реостату виставляє повзунок (дублює повзунок на панелі) */
+(function(){
+  const cv=CV.circ;let drag=false;
+  const pt=e=>{const r=cv.getBoundingClientRect();return{x:e.clientX-r.left,y:e.clientY-r.top}};
+  const inside=q=>RH&&q.x>=RH.x0&&q.x<=RH.x1&&q.y>=RH.top&&q.y<=RH.bot;
+  const setFrom=q=>{
+    const f=Math.max(0,Math.min(1,(q.x-RH.xA)/(RH.xB-RH.xA)));
+    const v=Math.round(f*100);
+    if(+$('pos').value!==v){$('pos').value=v;newReading()}
+  };
+  cv.addEventListener('pointerdown',e=>{const q=pt(e);if(!inside(q))return;drag=true;cv.setPointerCapture(e.pointerId);cv.style.cursor='grabbing';setFrom(q);e.preventDefault()});
+  cv.addEventListener('pointermove',e=>{const q=pt(e);if(drag)setFrom(q);else cv.style.cursor=inside(q)?'grab':'default'});
+  const end=()=>{drag=false;cv.style.cursor='default'};
+  cv.addEventListener('pointerup',end);cv.addEventListener('pointercancel',end);
+})();
+
+$('src').value=Object.keys(SOURCES).find(k=>SOURCES[k]===S);
+updRange();fillEmf();fillRi();
+$('scheme').value=P.get('scheme')==='load'||P.get('scheme')==='term'?P.get('scheme'):(isI()?'load':'term');
+if(P.get('real')==='0')$('real').checked=false;
+if(P.get('mode')==='box'&&!isPV()){mode='box';restoreDef(S);randBox();applyMode();updRange();fillEmf();fillRi()}else applyMode();
+last=reading();
+refresh();renderSeries();
+</script>
+<script src="assets/panel-toggle.js"></script>
+</body>
+</html>

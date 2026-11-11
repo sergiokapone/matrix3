@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Лабораторна робота</title>
+<link rel="stylesheet" href="labs.css">
+</head>
+<body>
+<script>if(window.self!==window.top)document.documentElement.classList.add('embed');</script>
+<nav class="topnav">
+  <a href="../index.html">Матриці та реквізити</a>
+  <a href="index.html" class="active">Лабораторні (online)</a>
+</nav>
+<main>
+  <a class="back" id="back" href="index.html">← До списку лабораторних</a>
+  <h2 id="title"></h2>
+  <iframe class="applet" id="frame" title="Аплет лабораторної роботи"></iframe>
+</main>
+<script src="labs.js"></script>
+<script>
+const q=new URLSearchParams(location.search);
+const sec=LABS.find(s=>s.id===q.get('s')), it=sec&&sec.items.find(i=>i.id===q.get('id'));
+if(it){document.title=it.title;document.getElementById('title').textContent=sec.title+' — '+it.title;
+  document.getElementById('frame').src=it.file;document.getElementById('back').href='index.html#'+sec.id}
+else document.getElementById('title').textContent='Лабораторну роботу не знайдено';
+</script>
+</body>
+</html>

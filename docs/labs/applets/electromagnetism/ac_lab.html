@@ -1,0 +1,2259 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Змінний струм: віртуальний практикум (роботи 1–3)</title>
+<script>
+window.MathJax = {
+  tex: { inlineMath: [['\\(', '\\)']], displayMath: [['\\[', '\\]']] },
+  chtml: { scale: 0.98 },
+  options: { skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code', 'svg', 'canvas'] }
+};
+</script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+<style>
+:root{
+  --bg:#f4f5f7; --card:#ffffff; --fg:#1b2130; --muted:#5a6375; --line:#dde1e8; --grid:#e9ecf1; --axis:#9aa2b1;
+  --accent:#1f5fd6; --valbg:#eef3fd; --warnbg:#fff6e6; --warn:#c27100;
+  --c1:#1f5fd6; --c2:#d43a2f; --c3:#1b9a4b; --c4:#c97a00; --c5:#7a3fd1; --c6:#0b8ea6; --c7:#7c8696;
+  --marker:#e0218a; --flow:#f0a000; --wire:#2a3242; --elfill:#ffffff;
+}
+[data-theme="dark"]{
+  --bg:#0e1117; --card:#161a22; --fg:#e4e8ef; --muted:#9aa3b3; --line:#283040; --grid:#212836; --axis:#5f697b;
+  --accent:#6ea2ff; --valbg:#18233a; --warnbg:#2a2312; --warn:#f0b445;
+  --c1:#6ea2ff; --c2:#ff7a6e; --c3:#4fd18b; --c4:#ffbf47; --c5:#b48cff; --c6:#3fd0e6; --c7:#8d97a8;
+  --marker:#ff5cb4; --flow:#ffc23a; --wire:#cfd6e2; --elfill:#161a22;
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{font:15px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;background:var(--bg);color:var(--fg);-webkit-text-size-adjust:100%}
+header.top{position:sticky;top:0;z-index:30;background:var(--card);border-bottom:1px solid var(--line);display:flex;flex-wrap:wrap;align-items:center;gap:8px 18px;padding:8px 16px}
+header h1{font-size:15px;margin:0;font-weight:650;line-height:1.25}
+header h1 small{display:block;font-weight:400;color:var(--muted);font-size:12px}
+nav.tabs{display:flex;gap:4px;flex-wrap:wrap}
+nav.tabs button{font:inherit;font-size:14px;border:1px solid var(--line);background:transparent;color:var(--fg);padding:6px 12px;border-radius:8px;cursor:pointer}
+nav.tabs button.on{background:var(--accent);border-color:var(--accent);color:#fff}
+.toggles{margin-left:auto;display:flex;gap:14px;align-items:center;font-size:13px;color:var(--muted)}
+.menu{position:relative}
+.menu>summary{cursor:pointer;list-style:none;border:1px solid var(--line);border-radius:8px;padding:5px 11px;color:var(--fg)}
+.menu>summary::-webkit-details-marker{display:none}
+.menu-pop{position:absolute;right:0;top:calc(100% + 6px);background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 14px;display:flex;flex-direction:column;gap:10px;box-shadow:0 6px 18px rgba(0,0,0,.25);z-index:40;white-space:nowrap}
+.sw{display:inline-flex;align-items:center;gap:6px;cursor:pointer;user-select:none}
+.sw input{appearance:none;width:34px;height:19px;border-radius:10px;background:var(--line);position:relative;cursor:pointer;margin:0;transition:background .2s}
+.sw input::after{content:"";position:absolute;top:2px;left:2px;width:15px;height:15px;border-radius:50%;background:#fff;transition:left .2s;box-shadow:0 1px 2px rgba(0,0,0,.3)}
+.sw input:checked{background:var(--accent)}
+.sw input:checked::after{left:17px}
+main{padding:14px;max-width:1560px;margin:0 auto}
+.tab[hidden]{display:none}
+.layout{display:grid;grid-template-columns:290px minmax(0,1fr);gap:14px;align-items:start}
+aside.params{position:sticky;top:62px;max-height:calc(100vh - 74px);overflow:auto}
+.card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin-bottom:14px}
+.card>h3,.card>summary{font-size:15px;font-weight:650;margin:0 0 8px}
+.card>summary{cursor:pointer;list-style:none;display:flex;align-items:center;gap:8px;margin:0}
+.card>summary::-webkit-details-marker{display:none}
+.card>summary::before{content:"▸";transition:transform .2s;color:var(--muted)}
+details[open]>summary::before{transform:rotate(90deg)}
+details[open]>summary{margin-bottom:8px}
+.hint{font-size:12.5px;color:var(--muted)}
+.row{display:flex;gap:16px;flex-wrap:wrap;align-items:flex-start}
+.schem-wrap{flex:1 1 470px;min-width:0}
+.schem-wrap svg{width:100%;height:auto;display:block}
+.phasor-wrap{flex:1 1 300px;max-width:420px;min-width:0}
+.phasor-wrap canvas{width:100%;display:block}
+.minis{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:6px}
+.minis div{border:1px solid var(--line);border-radius:6px;padding:2px;text-align:center;font-size:12px;color:var(--muted)}
+.minis canvas{width:100%;display:block}
+.legend{display:flex;flex-wrap:wrap;gap:4px 12px;font:12px ui-monospace,Consolas,monospace;margin-top:4px}
+.legend i{display:inline-block;width:12px;height:3px;vertical-align:middle;margin-right:4px;border-radius:2px}
+.btn{font:inherit;font-size:13px;border:1px solid var(--line);background:var(--bg);color:var(--fg);padding:5px 10px;border-radius:7px;cursor:pointer}
+.btn:hover{border-color:var(--accent)}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:#fff}
+.btn.on{background:var(--accent);color:#fff;border-color:var(--accent)}
+.btns{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0}
+.graphs{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(440px,100%),1fr));gap:12px}
+.g{border:1px solid var(--line);border-radius:8px;padding:6px 8px 4px;min-width:0}
+.g h4{margin:0 0 2px;font-size:13px;font-weight:650}
+.g .cv{position:relative;width:100%}
+.g canvas{display:block;touch-action:pan-y}
+.pgroup{border-top:1px solid var(--line);margin-top:8px;padding-top:6px}
+.pgroup b{font-size:12px;text-transform:uppercase;letter-spacing:.4px;color:var(--muted);font-weight:600}
+.prow{display:grid;grid-template-columns:38px minmax(0,1fr) 98px;gap:6px;align-items:center;margin:5px 0}
+.prow label{font-size:14px;white-space:nowrap}
+.prow .u{display:flex;align-items:center;gap:3px;font-size:12px;color:var(--muted)}
+.prow input[type=number]{width:62px;font:12.5px ui-monospace,Consolas,monospace;padding:2px 4px;border:1px solid var(--line);border-radius:5px;background:var(--bg);color:var(--fg)}
+input[type=range]{width:100%;accent-color:var(--accent);margin:0}
+select{font:inherit;font-size:13px;padding:3px 6px;border-radius:6px;border:1px solid var(--line);background:var(--bg);color:var(--fg)}
+.seg{display:flex;flex-wrap:wrap;gap:4px;margin:4px 0}
+.seg label{font-size:13px;border:1px solid var(--line);border-radius:6px;padding:2px 8px;cursor:pointer}
+.seg input{display:none}
+.seg label:has(input:checked){background:var(--accent);color:#fff;border-color:var(--accent)}
+.th{font-size:14.5px}
+.th h4{margin:16px 0 4px;font-size:14.5px;color:var(--accent)}
+.th p{margin:6px 0}
+.val{font:12.5px/1.55 ui-monospace,Consolas,monospace;color:var(--fg);background:var(--valbg);border-left:3px solid var(--accent);padding:4px 9px;margin:2px 0 10px;border-radius:0 5px 5px 0}
+.warn{border-left:3px solid var(--warn);background:var(--warnbg);padding:7px 10px;margin:10px 0;border-radius:0 6px 6px 0;font-size:14px}
+.warn b{color:var(--warn)}
+mjx-container[display="true"]{overflow-x:auto;overflow-y:hidden;margin:6px 0 !important;padding:2px 0}
+.cols2{display:grid;grid-template-columns:1fr 1fr;gap:4px 18px}
+@media (max-width:1100px){.cols2{grid-template-columns:1fr}}
+.scan{margin-top:12px;display:flex;flex-wrap:wrap;gap:12px}
+.scan table{border-collapse:collapse;font:12px ui-monospace,Consolas,monospace}
+.scan th,.scan td{border:1px solid var(--line);padding:2px 7px;text-align:right}
+.scan th{background:var(--valbg);font-weight:600}
+.scan .tw{max-height:260px;overflow:auto}
+.scan caption{text-align:left;font:600 12.5px system-ui;padding:2px 0 4px;color:var(--muted)}
+
+/* ---------- радянські прилади ---------- */
+.instr{display:flex;flex-wrap:wrap;gap:16px;align-items:flex-start}
+.panel{background:linear-gradient(180deg,#d6d8d2 0%,#c2c5be 45%,#b1b4ac 100%);border:1px solid #858881;border-radius:6px;
+  box-shadow:inset 0 1px 0 #f1f2ee, inset 0 -3px 6px rgba(0,0,0,.16), 0 3px 8px rgba(0,0,0,.28);
+  padding:12px 16px 12px;color:#1d1d1b;position:relative;font-family:"Arial Narrow","Roboto Condensed",Arial,sans-serif;max-width:100%}
+[data-theme="dark"] .panel{filter:brightness(.86)}
+.panel::before,.panel::after{content:"";position:absolute;top:6px;width:9px;height:9px;border-radius:50%;
+  background:radial-gradient(circle at 35% 35%,#f4f4f4,#8a8a8a 70%,#555);box-shadow:0 0 0 1px #6c6c6c}
+.panel::before{left:6px}.panel::after{right:6px}
+.plate{display:flex;justify-content:space-between;align-items:baseline;gap:14px;border-bottom:1px solid #8b8e87;margin:0 10px 8px;padding-bottom:3px}
+.plate b{font-size:17px;letter-spacing:1.5px}
+.plate span{font-size:10px;letter-spacing:.6px;text-transform:uppercase;color:#3a3a36}
+.prow-in{display:flex;flex-wrap:wrap;gap:12px;align-items:flex-end;justify-content:center}
+.kn{display:flex;flex-direction:column;align-items:center;font-size:9.5px;text-transform:uppercase;letter-spacing:.5px;text-align:center;color:#26261f}
+.kn .v{font:11px ui-monospace,Consolas,monospace;background:#ecede6;border:1px solid #858881;padding:0 5px;border-radius:2px;margin-top:2px;color:#111;min-width:62px;text-transform:none;letter-spacing:0}
+.knob{cursor:grab;touch-action:none;user-select:none;outline:none;display:block}
+.knob.drag{cursor:grabbing}
+.knob:focus-visible{filter:drop-shadow(0 0 3px #1f5fd6)}
+.ktick{stroke:#1d1d1b;stroke-width:1}
+.ktick.major{stroke-width:1.6}
+.klabel{font:9.5px "Arial Narrow",Arial,sans-serif;fill:#1d1d1b;text-anchor:middle}
+.gen-read{font:12px ui-monospace,Consolas,monospace;background:#20241d;color:#b8ff9c;padding:3px 8px;border-radius:3px;box-shadow:inset 0 0 6px #000;white-space:nowrap}
+.dup{display:grid;grid-template-columns:auto 1fr;gap:2px 8px;align-items:center;margin-top:8px;font-size:10px;text-transform:uppercase;width:100%}
+.dup input{accent-color:#3c3c36}
+.lamp{width:11px;height:11px;border-radius:50%;background:radial-gradient(circle at 40% 35%,#ffcdb9,#ee3c1d 60%,#7a1205);box-shadow:0 0 7px #ff5a32;display:inline-block}
+.terms{display:flex;gap:10px;align-items:center;font-size:9px}
+.term{width:17px;height:17px;border-radius:50%;box-shadow:inset 0 -2px 3px rgba(0,0,0,.5),0 1px 1px rgba(255,255,255,.6);display:inline-block}
+.term.r{background:radial-gradient(circle at 40% 35%,#ff8a7a,#b31b0b)}
+.term.k{background:radial-gradient(circle at 40% 35%,#777,#111)}
+.screen{background:#050d06;border-radius:12px;padding:7px;box-shadow:inset 0 0 14px #000,0 0 0 4px #2a2c29,0 0 0 7px #6a6d67,0 0 0 8px #9a9d96}
+.screen canvas{display:block;width:100%;border-radius:6px}
+.scope-body{display:flex;flex-wrap:wrap;gap:16px;align-items:flex-start}
+.scope-screen{flex:1 1 300px;min-width:240px;max-width:400px;margin:6px}
+.lamp.off{background:radial-gradient(circle at 40% 35%,#8a5a4e,#4a1a10 70%);box-shadow:none}
+.lamp.g{background:radial-gradient(circle at 40% 35%,#d9ffc9,#3bd11d 60%,#0d5a05);box-shadow:0 0 7px #5aff32}
+.lamp.g.off{background:radial-gradient(circle at 40% 35%,#5e7a55,#1d3a14 70%);box-shadow:none}
+.tumb{width:24px;height:36px;border-radius:5px;border:1px solid #6f716b;background:radial-gradient(circle at 50% 50%,#9b9d97 0 5px,#d7d8d2 6px,#b8bab3);position:relative;cursor:pointer;padding:0;box-shadow:inset 0 1px 0 #fff,0 1px 2px rgba(0,0,0,.35)}
+.tumb::after{content:"";position:absolute;left:8px;width:6px;height:15px;border-radius:3px;background:linear-gradient(90deg,#8a8a86,#f6f6f2 45%,#8a8a86);box-shadow:0 1px 2px rgba(0,0,0,.5);bottom:17px;transition:bottom .12s}
+.tumb:not(.on)::after{bottom:3px}
+.kc{font-size:9.5px;text-transform:uppercase;letter-spacing:.5px;text-align:center;color:#26261f;line-height:1.15}
+.grp{border:1px solid #8b8e87;border-radius:5px;padding:9px 7px 6px;position:relative;margin-top:5px}
+.grp>i{position:absolute;top:-7px;left:8px;background:#c7c9c2;padding:0 4px;font:normal 9.5px Arial,sans-serif;text-transform:uppercase;letter-spacing:.6px;color:#2b2b26}
+.gk{display:flex;flex-wrap:wrap;gap:8px 10px;align-items:flex-end;justify-content:center}
+.rbtns{display:flex;flex-direction:column;gap:2px}
+.rbtns.h{flex-direction:row;flex-wrap:wrap;justify-content:center}
+.rbtns .btn-sov{min-width:30px;padding:3px 5px}
+.unc{display:inline-flex;align-items:center;gap:3px;font-size:8.5px;text-transform:uppercase;color:#26261f}
+.unc .lamp{width:8px;height:8px}
+.gen-top{display:flex;gap:12px;align-items:center;justify-content:center;flex-wrap:wrap;margin:2px 0 10px}
+.dial-win{padding:4px;background:#2a2c29;border-radius:6px;box-shadow:inset 0 0 6px #000;flex:0 1 308px;min-width:0}
+.dial{display:block;width:100%;height:auto}
+.meter{display:block;width:140px;height:auto;box-shadow:inset 0 0 4px rgba(0,0,0,.4),0 0 0 3px #2a2c29;border-radius:4px}
+.gen-read.off{color:#3c4a36}
+.scope-under{display:flex;justify-content:center;margin-top:10px}
+.scope-ctl{display:grid;grid-template-columns:repeat(auto-fit,minmax(285px,1fr));gap:10px;align-items:stretch;flex:1 1 360px;min-width:0}
+.scope-ctl>.hint{grid-column:1/-1;max-width:none !important}
+.btn-sov{background:linear-gradient(#f4f4f0,#c8c9c3);border:1px solid #6f716b;border-radius:3px;font:10.5px Arial,sans-serif;padding:3px 7px;cursor:pointer;color:#111;
+  box-shadow:inset 0 1px 0 #fff,0 1px 2px rgba(0,0,0,.35);text-transform:uppercase;letter-spacing:.3px}
+.btn-sov.on{background:linear-gradient(#a9aaa4,#d9dad4);box-shadow:inset 0 2px 3px rgba(0,0,0,.45)}
+.vm-disp{background:#140606;padding:8px 12px 6px;border-radius:4px;box-shadow:inset 0 0 10px #000;display:flex;align-items:flex-end;gap:8px}
+.vm-disp svg{display:block}
+.vm-unit{font:bold 15px Arial;color:#ff5236;text-shadow:0 0 6px #ff3a1a}
+.panel select{background:#ecede6;color:#111;border-color:#858881;font-size:12px}
+.panel .hint{color:#3b3b36;font-size:10.5px}
+
+/* ---------- схеми ---------- */
+.sch .w{stroke:var(--wire);stroke-width:2;fill:none;stroke-linejoin:round;stroke-linecap:round}
+.sch .wt{stroke:var(--wire);stroke-width:1.2;fill:none;stroke-dasharray:4 3;opacity:.7}
+.sch .el{fill:var(--elfill);stroke:var(--wire);stroke-width:2}
+.sch .mask{fill:var(--card);stroke:none}
+.sch .pl{stroke:var(--wire);stroke-width:3.2;stroke-linecap:round}
+.sch .box{fill:none;stroke:var(--muted);stroke-width:1.2;stroke-dasharray:5 4}
+.sch .nd{fill:var(--wire)}
+.sch text{fill:var(--fg);font:13px system-ui,sans-serif}
+.sch text.lv{fill:var(--accent);font:12.5px ui-monospace,Consolas,monospace}
+.sch text.sm{fill:var(--muted);font-size:11px}
+.sch text.big{font-size:15px;font-weight:600}
+.sch .sub{font-size:10px}
+.sch .flow{fill:var(--flow)}
+.sch .dev{fill:var(--bg);stroke:var(--muted);stroke-width:1.4}
+
+/* ---------- розкладка «стенд»: схема ліворуч, прилади праворуч ---------- */
+@media (min-width:1500px){
+  main{max-width:1880px}
+  .content{display:grid;grid-template-columns:minmax(440px,5fr) minmax(0,8fr);gap:14px;align-items:start}
+  .content>.card{margin-bottom:0}
+  .content>details:nth-child(1){grid-column:1;grid-row:1}
+  .content>details:nth-child(2){grid-column:2;grid-row:1}
+  .content>details:nth-child(n+3){grid-column:1/-1}
+  .content>details:nth-child(1) .schem-wrap{flex:1 1 100%}
+  .content>details:nth-child(1) .phasor-wrap{flex:1 1 100%;max-width:380px;margin:0 auto}
+}
+@media (max-width:920px){
+  .layout{grid-template-columns:minmax(0,1fr)}
+  .content,.instr,.panel{min-width:0}
+  /* телефон: схема → параметри → прилади → графіки → теорія */
+  .content{display:contents}
+  .content>.card{margin-bottom:0}
+  .content>details:nth-child(1){order:1}
+  aside.params{order:2}
+  .content>details:nth-child(2){order:3}
+  .content>details:nth-child(n+3){order:4}
+  .schem-wrap{overflow-x:auto}
+  .schem-wrap svg{min-width:430px}
+  .seg{flex-wrap:wrap}
+  aside.params{position:static;max-height:none}
+  header.top{position:static}
+  .toggles{margin-left:0}
+}
+@media (max-width:520px){
+  main{padding:8px}
+  .card{padding:10px}
+  .th{font-size:14px}
+}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <radialGradient id="gKnob" cx="38%" cy="32%" r="80%"><stop offset="0" stop-color="#6b6b6b"/><stop offset=".55" stop-color="#232323"/><stop offset="1" stop-color="#070707"/></radialGradient>
+    <radialGradient id="gSkirt" cx="50%" cy="40%" r="65%"><stop offset="0" stop-color="#3a3a3a"/><stop offset=".85" stop-color="#151515"/><stop offset="1" stop-color="#000"/></radialGradient>
+    <radialGradient id="gCap" cx="38%" cy="32%" r="80%"><stop offset="0" stop-color="#f3f3f0"/><stop offset=".6" stop-color="#b9bab4"/><stop offset="1" stop-color="#7c7d78"/></radialGradient>
+  </defs>
+</svg>
+
+<header class="top">
+  <h1>Електрика та магнетизм. Змінний струм<small>Віртуальний практикум ФТІ КПІ · роботи 1–3</small></h1>
+  <nav class="tabs" id="tabs">
+    <button data-t="1" class="on">Робота 1. Конденсатор</button>
+    <button data-t="2">Робота 2. Котушка</button>
+    <button data-t="3">Робота 3. Резонанс</button>
+  </nav>
+  <details class="toggles menu">
+    <summary title="Налаштування">⚙ Налаштування</summary>
+    <div class="menu-pop">
+      <label class="sw"><input type="checkbox" id="noiseSw" checked> шум відліку</label>
+      <label class="sw"><input type="checkbox" id="themeSw"> темна тема</label>
+    </div>
+  </details>
+</header>
+
+<main>
+<!-- ======================= РОБОТА 1 ======================= -->
+<section class="tab" id="t1">
+ <div class="layout">
+  <aside class="params card" id="p1"></aside>
+  <div class="content">
+   <details class="card" open><summary>Схема і векторна діаграма</summary>
+    <div class="row"><div class="schem-wrap" id="s1"></div><div class="phasor-wrap" id="ph1"></div></div>
+   </details>
+   <details class="card" open><summary>Прилади</summary><div class="instr" id="i1"></div></details>
+   <details class="card fold"><summary>Графіки</summary>
+    <p class="hint">Рожева вертикаль показує поточну частоту генератора. Клацніть або протягніть по графіку з віссю ν, щоб змінити частоту.</p>
+    <div class="graphs" id="g1"></div><div class="scan" id="sc1"></div>
+   </details>
+   <details class="card th">
+    <summary>Теорія: конденсатор у колі змінного струму</summary>
+    <p class="hint">Викладено в гаусовій системі (СГС). У ній \(R\) вимірюють у с/см, \(C\) у см, \(L\) у с²/см, щоб ЕРС самоіндукції мала вигляд \(-L\dot I\). Співвідношення: 1 Ом = 1,113·10⁻¹² с/см, 1 мкФ = 8,988·10⁵ см, 1 мГн = 1,113·10⁻¹⁵ с²/см, 1 В = 1/299,8 статВ. Частоти, кути φ, добротність і відношення напруг від системи одиниць не залежать. Тому робочі формули записано в Ом, мкФ, мГн, Гц.</p>
+    <div class="val" data-live="cgs"></div>
+
+    <h4>Рівняння кола та метод комплексних амплітуд</h4>
+    <p>Для послідовного кола з ЕРС \(\mathcal E(t)=\mathcal E_m\cos\omega t\) закон Ома для неоднорідної ділянки дає рівняння</p>
+    \[L\ddot q+R\dot q+\frac{q}{C}=\mathcal E_m\cos\omega t,\qquad I=\dot q .\]
+    <p>Вимушений розв'язок шукаємо в комплексній формі: \(\tilde{\mathcal E}=\mathcal E_m e^{i\omega t}\), \(\tilde I=\tilde I_m e^{i\omega t}\), а фізичний струм \(I=\operatorname{Re}\tilde I\). Похідна переходить у множення на \(i\omega\), інтеграл у ділення на \(i\omega\). Диференціальне рівняння стає алгебраїчним:</p>
+    \[\tilde I_m\Big(R+i\omega L+\frac{1}{i\omega C}\Big)=\mathcal E_m\;\Longrightarrow\;\tilde I_m=\frac{\mathcal E_m}{Z},\qquad Z=R+i\Big(\omega L-\frac{1}{\omega C}\Big)=|Z|\,e^{i\varphi}.\]
+    <p>Отже \(I(t)=I_m\cos(\omega t-\varphi)\), де \(I_m=\mathcal E_m/|Z|\). Кут \(\varphi=\arg Z\) показує, на скільки напруга випереджає струм: при \(\varphi>0\) струм відстає, при \(\varphi<0\) струм випереджає.</p>\n    <p class="hint">Увага до знака: тут \(\varphi\) — зсув фази напруги відносно струму. У літературі часто беруть протилежне означення, зсув фази струму відносно ЕРС, \(\varphi_I=-\arg Z\). Фізичний зміст однаковий, змінюється лише знак.</p>
+
+    <h4>RC-коло (L = 0)</h4>
+    \[Z=R-\frac{i}{\omega C}=R-iX_C,\qquad X_C=\frac{1}{\omega C},\qquad |Z|=\sqrt{R^2+X_C^2},\qquad I_m=\frac{\mathcal E_m}{\sqrt{R^2+X_C^2}} .\]
+    <div class="val" data-live="XC"></div>
+    \[\operatorname{tg}\varphi=-\frac{X_C}{R}=-\frac{1}{\omega RC}\;<\;0 .\]
+    <div class="val" data-live="phi"></div>
+    <p>Комплексні амплітуди напруг: \(\tilde U_R=\tilde I_m R\) у фазі зі струмом, \(\tilde U_C=-i\,\tilde I_m X_C\) відстає від струму на \(\pi/2\), а їхня сума дорівнює напрузі на затискачах генератора, \(\tilde U_R+\tilde U_C=\tilde U\).</p>
+    \[U_{Cm}=I_mX_C,\qquad U_{Rm}=I_mR,\qquad \frac{U_{Cm}}{U_{Rm}}=\frac{X_C}{R}=|\operatorname{tg}\varphi| .\]
+    <div class="val" data-live="UU"></div>
+    <div class="warn"><b>Знак кута.</b> Відношення амплітуд \(U_{Cm}/U_{Rm}\) дає лише модуль кута. Повний запис \(\operatorname{tg}\varphi=-U_{Cm}/U_{Rm}\): у RC-колі струм <i>випереджає</i> напругу генератора на \(|\varphi|\). Тому на графіку φ(ν) крива від'ємна.</div>
+
+    <h4>Умова \(X_C=R\) і метод вимірювання</h4>
+    <p>Якщо амплітуди на R і на C однакові, то \(X_C=R\) і \(|\varphi|=45^\circ\). Звідси частота</p>
+    \[\nu_*=\frac{1}{2\pi RC}.\]
+    <div class="val" data-live="nustar"></div>
+    <p>Для кожного R з ряду 10, 15, 25, 50, 75, 100, 150, 200 Ом підбирають ν, на якій сигнали каналів I і II однакові. На цій частоті \(X_C=R\). У log–log масштабі \(\lg X_C=-\lg\nu-\lg(2\pi C)\), тобто пряма з нахилом −1, зсунута на \(\lg C\).</p>
+
+    <h4>Ефективні значення</h4>
+    \[I_{\text{еф}}=\sqrt{\frac1T\int_0^T I^2\,dt}=\frac{I_m}{\sqrt2},\qquad U_{\text{еф}}=\frac{U_m}{\sqrt2}.\]
+    <div class="val" data-live="eff"></div>
+
+    <h4>З'єднання конденсаторів</h4>
+    \[C_{\parallel}=C_1+C_2,\qquad \frac{1}{C_{\text{посл}}}=\frac{1}{C_1}+\frac{1}{C_2}\;\Longrightarrow\;X_{C\parallel}=\frac{1}{\omega(C_1+C_2)},\quad X_{C\,\text{посл}}=X_{C1}+X_{C2}.\]
+    <div class="val" data-live="Cconn"></div>
+
+    <h4>Фігура Ліссажу (режим X–Y)</h4>
+    <p>На входи подано \(y\propto U_{Rm}\cos\omega t\) і \(x\propto U_{Cm}\cos(\omega t-\pi/2)\). Це еліпс з осями вздовж X і Y. Колом він стає лише тоді, коли коефіцієнти В/под обох каналів однакові і \(U_{Cm}=U_{Rm}\), тобто \(X_C=R\).</p>
+    <div class="warn"><b>Зауваження.</b> При зсуві фаз \(\pi/2\) коло видно лише за рівних амплітуд на екрані. За різних амплітуд це еліпс із півосями \(U_{Cm}/k_x\) і \(U_{Rm}/k_y\).</div>
+
+    <h4>Робочі формули (практичні одиниці) і модель приладів</h4>
+    \[X_C\,[\text{Ом}]=\frac{10^6}{2\pi\,\nu[\text{Гц}]\,C[\text{мкФ}]},\qquad \nu_*\,[\text{Гц}]=\frac{10^6}{2\pi\,R[\text{Ом}]\,C[\text{мкФ}]},\qquad \varphi=-\operatorname{arctg}\frac{X_C}{R}.\]
+    <p>Покази приладів симуляція рахує з повної комплексної моделі: \(Z=R_i+(R\parallel R_{\text{вх}})+(Z_C\parallel R_{\text{вх}})\), \(R_{\text{вх}}=1\) МОм. Опір \(R_i\) змінює амплітуди, але не кут між \(U\) на затискачах і \(I\).</p>
+    <div class="val" data-live="model"></div>
+   </details>
+  </div>
+ </div>
+</section>
+
+<!-- ======================= РОБОТА 2 ======================= -->
+<section class="tab" id="t2" hidden>
+ <div class="layout">
+  <aside class="params card" id="p2"></aside>
+  <div class="content">
+   <details class="card" open><summary>Схема і векторна діаграма</summary>
+    <div class="row"><div class="schem-wrap" id="s2"></div><div class="phasor-wrap" id="ph2"></div></div>
+   </details>
+   <details class="card" open><summary>Прилади</summary><div class="instr" id="i2"></div></details>
+   <details class="card fold"><summary>Графіки</summary>
+    <p class="hint">Рожева вертикаль показує поточну частоту генератора. Клацніть або протягніть по графіку з віссю ν, щоб змінити частоту.</p>
+    <div class="graphs" id="g2"></div><div class="scan" id="sc2"></div>
+   </details>
+   <details class="card th">
+    <summary>Теорія: котушка індуктивності в колі змінного струму</summary>
+    <p class="hint">Гаусова система. У рівнянні \(L\ddot q+R\dot q+q/C=\mathcal E\) величина \(L\) вимірюється в с²/см (1 мГн = 1,113·10⁻¹⁵ с²/см). Робочі формули нижче записано в мГн, Ом і Гц.</p>
+    <div class="val" data-live="cgs"></div>
+
+    <h4>Ідеальна котушка і RL-коло</h4>
+    <p>Для \(C\to\infty\) (конденсатора немає) рівняння набуває вигляду \(L\dot I+RI=\mathcal E_m\cos\omega t\). У комплексній формі:</p>
+    \[\tilde I_m\,(R+i\omega L)=\mathcal E_m,\qquad X_L=\omega L,\qquad \tilde U_L=i\,\tilde I_m X_L\ \ (\text{випереджає струм на }\pi/2).\]
+    <div class="val" data-live="XL"></div>
+
+    <h4>Реальна котушка: активний опір обмотки \(R_L\)</h4>
+    <p>Схема заміщення реальної котушки — послідовно з'єднані \(L\) і \(R_L\). Тоді</p>
+    \[Z=R+R_L+i\omega L,\qquad \operatorname{tg}\varphi=\frac{\omega L}{R+R_L}>0\quad(\text{струм відстає від напруги}).\]
+    <div class="val" data-live="phi"></div>
+    <p>Осцилограф вимірює напругу на <i>всій</i> котушці: \(U_{Lm}=I_m\sqrt{R_L^2+\omega^2L^2}\). Тому відношення, яке знімають у роботі,</p>
+    \[\frac{U_{Lm}}{U_{Rm}}=\frac{\sqrt{R_L^2+\omega^2L^2}}{R}\;\neq\;\operatorname{tg}\varphi=\frac{\omega L}{R+R_L}.\]
+    <div class="val" data-live="ratio"></div>
+    <p>На низьких частотах \(U_{Lm}/U_{Rm}\to R_L/R\), а точний \(\operatorname{tg}\varphi\to 0\). На високих частотах різниця зникає, поки \(\omega L\gg R_L\). На графіку tg φ це добре видно в log–log масштабі.</p>
+
+    <h4>Умова \(X_L=R\)</h4>
+    \[\omega L=R\;\Longrightarrow\;\nu_*=\frac{R}{2\pi L}.\]
+    <div class="val" data-live="nustar"></div>
+    <p>У log–log масштабі \(\lg X_L=\lg\nu+\lg(2\pi L)\), тобто пряма з нахилом +1. Через \(R_L\) рівність сигналів настає трохи раніше, ніж за ідеальною формулою.</p>
+
+    <h4>З'єднання котушок (без взаємоіндукції)</h4>
+    \[L_{\text{посл}}=L_1+L_2,\qquad \frac{1}{L_\parallel}=\frac{1}{L_1}+\frac{1}{L_2}.\]
+    <div class="val" data-live="Lconn"></div>
+    <p>Активні опори обмоток при цьому теж складаються послідовно або паралельно. Симуляція рахує точне комплексне з'єднання \((R_L+i\omega L_1)\) і \((R_L+i\omega L_2)\).</p>
+
+    <h4>Ефективні значення</h4>
+    \[I_{\text{еф}}=\frac{I_m}{\sqrt2},\qquad U_{\text{еф}}=\frac{U_m}{\sqrt2}.\]
+    <div class="val" data-live="eff"></div>
+
+    <h4>Робочі формули і модель</h4>
+    \[X_L\,[\text{Ом}]=2\pi\,\nu[\text{Гц}]\,L[\text{мГн}]\cdot10^{-3},\qquad \nu_*\,[\text{Гц}]=\frac{10^3\,R[\text{Ом}]}{2\pi\,L[\text{мГн}]},\qquad \varphi=\operatorname{arctg}\frac{\omega L}{R+R_L}.\]
+    <div class="warn"><b>Зауваження.</b> Співвідношення \(\operatorname{tg}\varphi=U_{Lm}/U_{Rm}\) точне лише для ідеальної котушки.</div>
+    <p>Модель приладів: \(Z=R_i+(R\parallel R_{\text{вх}})+(Z_L\parallel R_{\text{вх}})\), де \(Z_L=R_L+i\omega L\).</p>
+    <div class="val" data-live="model"></div>
+   </details>
+  </div>
+ </div>
+</section>
+
+<!-- ======================= РОБОТА 3 ======================= -->
+<section class="tab" id="t3" hidden>
+ <div class="layout">
+  <aside class="params card" id="p3"></aside>
+  <div class="content">
+   <details class="card" open><summary>Схема і векторна діаграма</summary>
+    <div class="row"><div class="schem-wrap" id="s3"></div><div class="phasor-wrap" id="ph3"></div></div>
+   </details>
+   <details class="card" open><summary>Прилади</summary><div class="instr" id="i3"></div></details>
+   <details class="card fold"><summary>Графіки</summary>
+    <p class="hint">Рожева вертикаль показує поточну частоту генератора. Клацніть або протягніть по графіку, щоб змінити частоту. Q<sub>exp</sub> визначено числово за шириною кривої з повної моделі.</p>
+    <div class="graphs" id="g3"></div><div class="scan" id="sc3"></div>
+   </details>
+   <details class="card th">
+    <summary>Теорія: резонанс напруг і резонанс струмів</summary>
+    <p class="hint">Гаусова система: \(2\gamma=R/L\), \(\omega_0^2=1/(LC)\). Рівняння вимушених коливань: \(\ddot q+2\gamma\dot q+\omega_0^2q=\omega_0^2C\,\mathcal E_m\cos\omega t\).</p>
+    <div class="val" data-live="cgs"></div>
+
+    <h4>Послідовний контур: резонанс напруг</h4>
+    <p>Комплексний імпеданс \(Z=R+i\left(\omega L-\dfrac{1}{\omega C}\right)\), амплітуда та фаза струму:</p>
+    \[I_m(\omega)=\frac{\mathcal E_m}{\sqrt{R^2+\left(\omega L-\frac{1}{\omega C}\right)^2}},\qquad \operatorname{tg}\varphi=\frac{\omega L-1/(\omega C)}{R}.\]
+    <p>Модуль \(|Z|\) мінімальний, коли \(X_L=X_C\), тобто при</p>
+    \[\omega_0=\frac{1}{\sqrt{LC}},\qquad \nu_0=\frac{1}{2\pi\sqrt{LC}},\qquad I_{m,\max}=\frac{\mathcal E_m}{R},\quad \varphi(\omega_0)=0 .\]
+    <div class="val" data-live="w0"></div>
+    <p>На резонансі напруги на реактивних елементах однакові й у \(Q\) разів більші за ЕРС, а на LC-ділянці вони взаємно компенсуються:</p>
+    \[U_{Cm}=U_{Lm}=\frac{1}{R}\sqrt{\frac{L}{C}}\;\mathcal E_m=Q\,\mathcal E_m,\qquad U_{Rm}=\mathcal E_m,\qquad U_{LC}=U_{Lm}-U_{Cm}=0 .\]
+    <div class="val" data-live="UQ"></div>
+
+    <h4>Добротність і ширина резонансної кривої</h4>
+    \[Q=\frac{\omega_0}{2\gamma}=\frac{\omega_0L}{R}=\frac{1}{R}\sqrt{\frac{L}{C}},\qquad \frac{I_m}{I_{m,\max}}=\frac{1}{\sqrt{1+Q^2\left(\frac{\omega}{\omega_0}-\frac{\omega_0}{\omega}\right)^2}} .\]
+    <p>Граничні частоти, на яких \(I_m=I_{m,\max}/\sqrt2\) (потужність падає вдвічі), задовольняють \(\omega L-1/(\omega C)=\pm R\). Повна ширина кривої на цьому рівні</p>
+    \[\Delta\omega=\omega_2-\omega_1=\frac{R}{L}=2\gamma\quad\Longrightarrow\quad Q=\frac{\omega_0}{\Delta\omega}=\frac{\nu_0}{\Delta\nu}.\]
+    <div class="val" data-live="Q"></div>
+    <p>На межах смуги \(\varphi=\pm45^\circ\). Потужність, яку контур бере від генератора, має лоренцову форму:</p>
+    \[P=\tfrac12 I_m^2R=\frac{\mathcal E_m^2}{2R}\,\frac{1}{1+Q^2\left(\frac{\omega}{\omega_0}-\frac{\omega_0}{\omega}\right)^2}\approx\frac{P_{\max}}{1+(\omega-\omega_0)^2/\gamma^2}.\]
+    <div class="val" data-live="P"></div>
+
+    <h4>Енергетичний зміст добротності</h4>
+    <p>Енергія вільних коливань спадає як \(W\propto e^{-2\gamma t}\). За період втрачається \(\Delta W_T=2\gamma T\,W\), звідки</p>
+    \[Q=2\pi\,\frac{W}{\Delta W_T}=\frac{\omega_0}{2\gamma}=\omega_0\tau_W,\qquad \tau_W=\frac{1}{2\gamma}.\]
+    <p>На резонансі \(W=\tfrac12 L I_m^2\), а \(\Delta W_T=\tfrac12 I_m^2RT\), тож \(2\pi W/\Delta W_T=\omega_0L/R\).</p>
+    <div class="val" data-live="QE"></div>
+
+    <h4>Резонансні криві напруг</h4>
+    \[U_{Rm}=I_mR,\qquad U_{Lm}=I_m\,\omega L,\qquad U_{Cm}=\frac{I_m}{\omega C}.\]
+    <p>Максимум \(U_C\) лежить трохи нижче \(\omega_0\), при \(\omega=\sqrt{\omega_0^2-2\gamma^2}\). Максимум \(U_L\) лежить трохи вище. Обидва максимуми приблизно дорівнюють \(Q\,\mathcal E_m\).</p>
+    <div class="val" data-live="Umax"></div>
+
+    <h4>Схеми заміщення реальних елементів</h4>
+    <p>Реальна котушка — це \(L\) і \(R_L\) послідовно (у роботі \(R_L\approx0{,}8\) Ом). Генератор — ідеальна ЕРС \(\mathcal E\) з внутрішнім опором \(R_i\approx5\) Ом. Втрати в конденсаторі малі (\(R_C\to\infty\)). Тому в контурі 3.6 у формулу для \(Q\) входить сумарний опір:</p>
+    \[R_\Sigma=R+R_i+R_L,\qquad Q_{\text{theor}}=\frac{1}{R_\Sigma}\sqrt{\frac{L}{C}},\qquad U_{LC}(\omega_0)=I_mR_L\neq0 .\]
+    <div class="val" data-live="real"></div>
+
+    <h4>Паралельний контур: резонанс струмів</h4>
+    <p>Для ідеальних \(R\), \(L\), \(C\), увімкнених паралельно до ЕРС, комплексні провідності складаються:</p>
+    \[\tilde I=\tilde{\mathcal E}\left[\frac1R+i\left(\omega C-\frac{1}{\omega L}\right)\right],\qquad I_m=\mathcal E_m\sqrt{\frac{1}{R^2}+\left(\omega C-\frac{1}{\omega L}\right)^2}.\]
+    <p>При \(\omega_0=1/\sqrt{LC}\) загальний струм мінімальний, \(I_{\min}=\mathcal E_m/R\). Струми у вітках L і C протифазні й у \(Q\) разів більші:</p>
+    \[I_{Lm}=I_{Cm}=Q\,I_{\min},\qquad Q=R\sqrt{\frac{C}{L}}\quad(\text{паралельний контур}).\]
+    <div class="warn"><b>Зауваження.</b> Добротність паралельного контуру дорівнює \(Q=R\sqrt{C/L}\), тобто R стоїть у чисельнику. Формула послідовного контуру \(Q=\frac1R\sqrt{L/C}\) тут не годиться. У схемі паралельного контуру роль R відіграє еквівалентний паралельний опір, у який входять \(R_L\), \(R\) і джерело \(R_k+R_i\).</div>
+    <p>Котушку з \(R_L\) поблизу резонансу замінюють паралельним опором \(R_p\). Резонансний опір контуру:</p>
+    \[R_p=\frac{L}{C R_L}=Q_L^2R_L,\qquad R_{\text{екв}}=R_p\parallel R,\qquad Z(\omega_0)\approx R_{\text{екв}} .\]
+    <p>Контур живиться через \(R_k+R_i\), і ця гілка шунтує його так само. Ширину кривої \(U_{\text{конт}}(\nu)\) визначає</p>
+    \[Q_{\text{нав}}=\big(R_{\text{екв}}\parallel(R_k+R_i)\big)\sqrt{\frac{C}{L}},\qquad \frac{I_{Lm}}{I_m}\Big|_{\omega_0}\approx Q_{\text{конт}}=R_{\text{екв}}\sqrt{\frac{C}{L}} .\]
+    <div class="val" data-live="par"></div>
+
+    <h4>Робочі формули (Гц, мГн, мкФ, Ом)</h4>
+    \[\nu_0\,[\text{Гц}]=\frac{10^{4.5}}{2\pi\sqrt{L[\text{мГн}]\,C[\text{мкФ}]}},\qquad \rho=\sqrt{\frac{L}{C}}=\sqrt{\frac{10^{3}L[\text{мГн}]}{C[\text{мкФ}]}}\ \text{Ом},\qquad Q_{\text{theor}}=\frac{\rho}{R_\Sigma},\qquad Q_{\text{exp}}=\frac{\nu_0}{\nu_2-\nu_1}.\]
+    <div class="val" data-live="work"></div>
+   </details>
+  </div>
+ </div>
+</section>
+</main>
+<script>
+'use strict';
+/* =====================================================================
+   Загальні утиліти
+   ===================================================================== */
+const PI = Math.PI, TAU = 2 * PI, SQ2 = Math.SQRT2, RIN = 1e6;
+const FVIS = 0.25;                 // частота «уповільненої» анімації, Гц
+const CGS = { ohm: 1 / 8.98755e11, F: 8.98755e11, H: 1 / 8.98755e11, V: 1 / 299.792 };
+const NS = 'http://www.w3.org/2000/svg';
+const $ = (q, r = document) => r.querySelector(q);
+const $$ = (q, r = document) => [...r.querySelectorAll(q)];
+const clamp = (x, a, b) => Math.min(b, Math.max(a, x));
+const sleep = ms => new Promise(r => setTimeout(r, ms));
+const G = { noise: true };
+
+function h(tag, attrs, ...kids) {
+  const e = document.createElement(tag);
+  for (const k in attrs || {}) {
+    const v = attrs[k];
+    if (k === 'class') e.className = v;
+    else if (k === 'html') e.innerHTML = v;
+    else if (k.startsWith('on')) e.addEventListener(k.slice(2), v);
+    else if (v !== false && v != null) e.setAttribute(k, v === true ? '' : v);
+  }
+  for (const c of kids.flat()) if (c != null) e.append(c.nodeType ? c : document.createTextNode(c));
+  return e;
+}
+function sv(tag, attrs, parent) {
+  const e = document.createElementNS(NS, tag);
+  for (const k in attrs || {}) {
+    if (k === 'text') e.textContent = attrs[k];
+    else if (k === 'html') e.innerHTML = attrs[k];
+    else e.setAttribute(k, attrs[k]);
+  }
+  if (parent) parent.appendChild(e);
+  return e;
+}
+let cssCache = null;
+function cssv(n) {
+  if (!cssCache) cssCache = getComputedStyle(document.documentElement);
+  return cssCache.getPropertyValue(n).trim();
+}
+function gauss() { let u = 0, v = 0; while (!u) u = Math.random(); while (!v) v = Math.random(); return Math.sqrt(-2 * Math.log(u)) * Math.cos(TAU * v); }
+function noisy(v, rel = 0.004, ab = 0) { return G.noise ? v * (1 + rel * gauss()) + ab * gauss() : v; }
+
+/* ---------- комплексні числа ---------- */
+const Cx = (re, im = 0) => ({ re, im });
+const add = (...zs) => zs.reduce((a, b) => (b == null ? a : Cx(a.re + b.re, a.im + b.im)), Cx(0));
+const sub = (a, b) => Cx(a.re - b.re, a.im - b.im);
+const mul = (a, b) => Cx(a.re * b.re - a.im * b.im, a.re * b.im + a.im * b.re);
+const div = (a, b) => { const d = b.re * b.re + b.im * b.im; return Cx((a.re * b.re + a.im * b.im) / d, (a.im * b.re - a.re * b.im) / d); };
+const inv = z => div(Cx(1), z);
+const abs = z => Math.hypot(z.re, z.im);
+const arg = z => Math.atan2(z.im, z.re);
+const scl = (z, k) => Cx(z.re * k, z.im * k);
+const par = (a, b) => (a == null ? b : b == null ? a : div(mul(a, b), add(a, b)));
+const rot = (z, t) => mul(z, Cx(Math.cos(t), Math.sin(t)));
+const inst = (z, t) => z.re * Math.cos(t) - z.im * Math.sin(t);       // Re(z·e^{it})
+const wrapA = a => { while (a > PI) a -= TAU; while (a <= -PI) a += TAU; return a; };
+
+/* ---------- форматування чисел ---------- */
+const SUPD = '⁰¹²³⁴⁵⁶⁷⁸⁹';
+const sup = n => String(n).replace(/-/g, '⁻').replace(/\d/g, d => SUPD[d]);
+function nf(x, sig = 3) {
+  if (x === Infinity) return '∞';
+  if (x === -Infinity) return '−∞';
+  if (!isFinite(x)) return '—';
+  if (x === 0) return '0';
+  const a = Math.abs(x);
+  let s;
+  if (a >= 1e5 || a < 1e-3) {
+    let e = Math.floor(Math.log10(a)), m = x / 10 ** e;
+    if (Math.abs(+m.toFixed(sig - 1)) >= 10) { e++; m /= 10; }
+    s = m.toFixed(sig - 1) + '·10' + sup(e);
+  } else {
+    const d = clamp(sig - 1 - Math.floor(Math.log10(a)), 0, 8);
+    s = x.toFixed(d);
+  }
+  return s.replace('.', ',').replace('-', '−');
+}
+const PRE = [[1e6, 'М'], [1e3, 'к'], [1, ''], [1e-3, 'м'], [1e-6, 'мк'], [1e-9, 'н']];
+function si(x, u, sig = 3) {
+  if (!isFinite(x)) return nf(x) + ' ' + u;
+  const a = Math.abs(x);
+  const p = a === 0 ? [1, ''] : (PRE.find(([m]) => a >= m * 0.99995) || PRE[PRE.length - 1]);
+  return nf(x / p[0], sig) + ' ' + p[1] + u;
+}
+const dg = r => r * 180 / PI;
+const deg = r => nf(dg(r), 3) + '°';
+const plain = v => (v >= 1 ? v.toLocaleString('uk-UA', { maximumSignificantDigits: 3 }) : nf(v, 2));
+const round3 = v => (v === 0 || !isFinite(v) ? v : +v.toPrecision(3));
+
+/* ---------- текст з індексами на canvas: "X_C", "U_{0R}", "Q·E_m" ---------- */
+function richParts(t) {
+  const out = []; let i = 0, buf = '';
+  while (i < t.length) {
+    if (t[i] === '_' && i + 1 < t.length) {
+      if (buf) { out.push([buf, 0]); buf = ''; }
+      if (t[i + 1] === '{') { const j = t.indexOf('}', i); out.push([t.slice(i + 2, j), 1]); i = j + 1; }
+      else { out.push([t[i + 1], 1]); i += 2; }
+    } else buf += t[i++];
+  }
+  if (buf) out.push([buf, 0]);
+  return out;
+}
+function richWidth(ctx, t, fs) {
+  let w = 0;
+  for (const [s, sb] of richParts(t)) { ctx.font = `${sb ? fs * 0.78 : fs}px system-ui,sans-serif`; w += ctx.measureText(s).width; }
+  return w;
+}
+function richText(ctx, t, x, y, fs = 11.5, align = 'left') {
+  const w = richWidth(ctx, t, fs);
+  let cx = align === 'center' ? x - w / 2 : align === 'right' ? x - w : x;
+  ctx.textAlign = 'left';
+  for (const [s, sb] of richParts(t)) {
+    ctx.font = `${sb ? fs * 0.78 : fs}px system-ui,sans-serif`;
+    ctx.fillText(s, cx, y + (sb ? fs * 0.3 : 0));
+    cx += ctx.measureText(s).width;
+  }
+  return w;
+}
+
+/* =====================================================================
+   Легка бібліотека графіків (Canvas)
+   ===================================================================== */
+function ticks(a) {
+  const out = [], f = a.fmt || (v => nf(v * (a.k || 1), 3));
+  if (a.log) {
+    const e0 = Math.floor(Math.log10(a.min)), e1 = Math.ceil(Math.log10(a.max));
+    for (let e = e0; e <= e1; e++) for (let m = 1; m < 10; m++) {
+      const v = m * 10 ** e;
+      if (v < a.min * 0.999 || v > a.max * 1.001) continue;
+      const lab = m === 1 || (e1 - e0 <= 2 && (m === 2 || m === 5));
+      out.push({ v, minor: m !== 1, label: lab ? (a.fmt ? a.fmt(v) : plain(v * (a.k || 1))) : null });
+    }
+  } else {
+    const span = a.max - a.min, raw = span / (a.n || 6), p = 10 ** Math.floor(Math.log10(raw)), m = raw / p;
+    const st = (m < 1.5 ? 1 : m < 3.5 ? 2 : m < 7.5 ? 5 : 10) * p;
+    for (let v = Math.ceil(a.min / st - 1e-9) * st; v <= a.max + st * 1e-9; v += st) {
+      const vv = Math.abs(v) < st * 1e-9 ? 0 : v;
+      out.push({ v: vv, label: f(vv) });
+    }
+  }
+  return out;
+}
+
+class Plot {
+  constructor(host, opt = {}) {
+    this.host = host; this.h = opt.height || 250;
+    this.cv = h('canvas'); host.append(this.cv);
+    this.ctx = this.cv.getContext('2d'); this.cfg = null; this.hov = null;
+    new ResizeObserver(() => this.draw()).observe(host);
+    const pos = e => { const r = this.cv.getBoundingClientRect(); return { x: e.clientX - r.left, y: e.clientY - r.top }; };
+    this.cv.addEventListener('pointermove', e => { this.hov = pos(e); if (this.drag) this.pick(); this.draw(); });
+    this.cv.addEventListener('pointerleave', () => { this.hov = null; this.draw(); });
+    this.cv.addEventListener('pointerdown', e => {
+      if (!this.cfg || !this.cfg.onPickX) return;
+      this.hov = pos(e); this.drag = true; this.cv.setPointerCapture(e.pointerId); this.pick();
+    });
+    const up = () => { this.drag = false; };
+    this.cv.addEventListener('pointerup', up); this.cv.addEventListener('pointercancel', up);
+  }
+  pick() { const { x } = this.hov; if (x < this.L || x > this.L + this.W) return; this.cfg.onPickX(this.ix(x)); }
+  tx(v) { const a = this.cfg.x; return this.L + (a.log ? (Math.log10(v) - this.xl0) / (this.xl1 - this.xl0) : (v - a.min) / (a.max - a.min)) * this.W; }
+  ty(v) { const a = this.cfg.y; return this.T + this.H - (a.log ? (Math.log10(v) - this.yl0) / (this.yl1 - this.yl0) : (v - a.min) / (a.max - a.min)) * this.H; }
+  ix(px) { const a = this.cfg.x, f = (px - this.L) / this.W; return a.log ? 10 ** (this.xl0 + f * (this.xl1 - this.xl0)) : a.min + f * (a.max - a.min); }
+  iy(py) { const a = this.cfg.y, f = (this.T + this.H - py) / this.H; return a.log ? 10 ** (this.yl0 + f * (this.yl1 - this.yl0)) : a.min + f * (a.max - a.min); }
+  set(cfg) { this.cfg = cfg; this.draw(); }
+  draw() {
+    const c = this.cfg, w = this.host.clientWidth;
+    if (!c || !w) return;
+    const H0 = this.h, dpr = window.devicePixelRatio || 1, cv = this.cv, ctx = this.ctx;
+    if (cv.width !== Math.round(w * dpr) || cv.height !== Math.round(H0 * dpr)) {
+      cv.width = Math.round(w * dpr); cv.height = Math.round(H0 * dpr); cv.style.width = w + 'px'; cv.style.height = H0 + 'px';
+    }
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0); ctx.clearRect(0, 0, w, H0);
+    const fg = cssv('--fg'), mu = cssv('--muted'), gr = cssv('--grid'), ax = cssv('--axis'), bg = cssv('--card');
+    const X = c.x, Y = c.y;
+    // легенда
+    const items = (c.series || []).filter(s => s.label).concat(c.legend || []);
+    let lx = 8, ly = 10; const lp = [];
+    for (const it of items) { const tw = richWidth(ctx, it.label, 11.5) + 30; if (lx + tw > w - 6 && lx > 8) { lx = 8; ly += 15; } lp.push([lx, ly]); lx += tw; }
+    this.L = c.mL || 56; this.R = 12; this.T = items.length ? ly + 12 : 10; this.B = 34;
+    this.W = w - this.L - this.R; this.H = H0 - this.T - this.B;
+    if (X.log) { this.xl0 = Math.log10(X.min); this.xl1 = Math.log10(X.max); }
+    if (Y.log) { this.yl0 = Math.log10(Y.min); this.yl1 = Math.log10(Y.max); }
+    const { L, T, W, H } = this;
+    ctx.textBaseline = 'middle';
+    items.forEach((it, i) => {
+      const [x, y] = lp[i];
+      if (!it.dot) {
+        ctx.strokeStyle = it.color; ctx.lineWidth = it.w || 2; ctx.setLineDash(it.dash || []);
+        ctx.beginPath(); ctx.moveTo(x, y); ctx.lineTo(x + 20, y); ctx.stroke(); ctx.setLineDash([]);
+      }
+      if (it.dot) { ctx.fillStyle = it.color; ctx.beginPath(); ctx.arc(x + 10, y, 3.5, 0, TAU); ctx.fill(); }
+      ctx.fillStyle = mu; richText(ctx, it.label, x + 24, y, 11.5);
+    });
+    // сітка
+    const xt = ticks(X), yt = ticks(Y);
+    ctx.lineWidth = 1;
+    for (const t of xt) {
+      const px = Math.round(this.tx(t.v)) + 0.5; if (px < L - 1 || px > L + W + 1) continue;
+      ctx.strokeStyle = gr; ctx.globalAlpha = t.minor ? 0.55 : 1;
+      ctx.beginPath(); ctx.moveTo(px, T); ctx.lineTo(px, T + H); ctx.stroke(); ctx.globalAlpha = 1;
+      if (t.label != null) { ctx.fillStyle = mu; ctx.font = '11px system-ui,sans-serif'; ctx.textAlign = 'center'; ctx.fillText(t.label, px, T + H + 11); }
+    }
+    for (const t of yt) {
+      const py = Math.round(this.ty(t.v)) + 0.5; if (py < T - 1 || py > T + H + 1) continue;
+      ctx.strokeStyle = gr; ctx.globalAlpha = t.minor ? 0.55 : 1;
+      ctx.beginPath(); ctx.moveTo(L, py); ctx.lineTo(L + W, py); ctx.stroke(); ctx.globalAlpha = 1;
+      if (t.label != null) { ctx.fillStyle = mu; ctx.font = '11px system-ui,sans-serif'; ctx.textAlign = 'right'; ctx.fillText(t.label, L - 5, py); }
+    }
+    if (!Y.log && Y.min < 0 && Y.max > 0) { const py = Math.round(this.ty(0)) + 0.5; ctx.strokeStyle = ax; ctx.beginPath(); ctx.moveTo(L, py); ctx.lineTo(L + W, py); ctx.stroke(); }
+    ctx.strokeStyle = ax; ctx.strokeRect(L + 0.5, T + 0.5, W, H);
+    ctx.fillStyle = mu; richText(ctx, X.label, L + W / 2, H0 - 8, 12, 'center');
+    ctx.save(); ctx.translate(12, T + H / 2); ctx.rotate(-PI / 2); richText(ctx, Y.label, 0, 0, 12, 'center'); ctx.restore();
+    // дані
+    ctx.save(); ctx.beginPath(); ctx.rect(L, T, W, H); ctx.clip();
+    for (const b of c.bands || []) {
+      const x1 = this.tx(b.x1), x2 = this.tx(b.x2);
+      ctx.fillStyle = b.color; ctx.globalAlpha = b.alpha || 0.1; ctx.fillRect(x1, T, x2 - x1, H); ctx.globalAlpha = 1;
+    }
+    for (const l of c.hlines || []) {
+      const py = this.ty(l.y); ctx.strokeStyle = l.color || mu; ctx.lineWidth = l.w || 1.2; ctx.setLineDash(l.dash || [5, 4]);
+      ctx.beginPath(); ctx.moveTo(L, py); ctx.lineTo(L + W, py); ctx.stroke(); ctx.setLineDash([]);
+      if (l.label) { ctx.fillStyle = l.color || mu; richText(ctx, l.label, l.left ? L + 6 : L + W - 6, py - 8, 11, l.left ? 'left' : 'right'); }
+    }
+    for (const l of c.vlines || []) {
+      if (!isFinite(l.x)) continue;
+      const px = this.tx(l.x); ctx.strokeStyle = l.color || mu; ctx.lineWidth = l.w || 1.2; ctx.setLineDash(l.dash || []);
+      ctx.beginPath(); ctx.moveTo(px, T); ctx.lineTo(px, T + H); ctx.stroke(); ctx.setLineDash([]);
+      if (l.label) {
+        ctx.font = '11px system-ui'; const tw = richWidth(ctx, l.label, 11) + 6;
+        const right = px + tw + 4 < L + W; const tx0 = right ? px + 3 : px - tw - 3, ty0 = T + 9 + (l.row || 0) * 15;
+        ctx.fillStyle = bg; ctx.globalAlpha = 0.85; ctx.fillRect(tx0, ty0 - 7, tw, 14); ctx.globalAlpha = 1;
+        ctx.fillStyle = l.color || mu; richText(ctx, l.label, tx0 + 3, ty0, 11);
+      }
+    }
+    for (const s of c.series || []) this.curve(s);
+    for (const a of c.arrows || []) {
+      const x1 = this.tx(a.x1), x2 = this.tx(a.x2), py = this.ty(a.y);
+      ctx.strokeStyle = a.color || fg; ctx.fillStyle = a.color || fg; ctx.lineWidth = 1.3;
+      ctx.beginPath(); ctx.moveTo(x1, py); ctx.lineTo(x2, py); ctx.stroke();
+      for (const [xx, d] of [[x1, 1], [x2, -1]]) { ctx.beginPath(); ctx.moveTo(xx, py); ctx.lineTo(xx + 7 * d, py - 3.5); ctx.lineTo(xx + 7 * d, py + 3.5); ctx.fill(); }
+      if (a.label) richText(ctx, a.label, (x1 + x2) / 2, py + (a.below ? 11 : -9), 11.5, 'center');
+    }
+    for (const p of c.points || []) this.pts(p);
+    ctx.restore();
+    // текстові блоки
+    for (const tb of c.texts || []) {
+      const lines = tb.lines; ctx.font = '11.5px system-ui';
+      const tw = Math.max(...lines.map(s => richWidth(ctx, s, 11.5))) + 12, th = lines.length * 15 + 6;
+      const x0 = tb.at.includes('r') ? L + W - tw - 6 : L + 6, y0 = tb.at.includes('b') ? T + H - th - 6 : T + 6;
+      ctx.fillStyle = bg; ctx.globalAlpha = 0.9; ctx.fillRect(x0, y0, tw, th); ctx.globalAlpha = 1;
+      ctx.strokeStyle = gr; ctx.strokeRect(x0 + 0.5, y0 + 0.5, tw, th);
+      lines.forEach((s, i) => { ctx.fillStyle = (tb.colors && tb.colors[i]) || fg; richText(ctx, s, x0 + 6, y0 + 11 + i * 15, 11.5); });
+    }
+    // перехрестя під курсором
+    if (this.hov && this.hov.x > L && this.hov.x < L + W && this.hov.y > T && this.hov.y < T + H) {
+      const { x, y } = this.hov;
+      ctx.strokeStyle = mu; ctx.globalAlpha = 0.5; ctx.setLineDash([2, 3]); ctx.lineWidth = 1;
+      ctx.beginPath(); ctx.moveTo(x, T); ctx.lineTo(x, T + H); ctx.moveTo(L, y); ctx.lineTo(L + W, y); ctx.stroke();
+      ctx.setLineDash([]); ctx.globalAlpha = 1;
+      const fx = X.hfmt || (v => nf(v * (X.k || 1), 4)), fy = Y.hfmt || (v => nf(v * (Y.k || 1), 3));
+      const s = `${fx(this.ix(x))};  ${fy(this.iy(y))}`;
+      ctx.font = '11px ui-monospace,Consolas,monospace'; const tw = ctx.measureText(s).width + 8;
+      const bx = clamp(x + 8, L, L + W - tw), by = y > T + 24 ? y - 20 : y + 6;
+      ctx.fillStyle = bg; ctx.globalAlpha = 0.92; ctx.fillRect(bx, by, tw, 15); ctx.globalAlpha = 1;
+      ctx.fillStyle = fg; ctx.textAlign = 'left'; ctx.fillText(s, bx + 4, by + 8);
+    }
+  }
+  curve(s) {
+    const ctx = this.ctx, X = this.cfg.x, Y = this.cfg.y;
+    let P = s.pts;
+    if (!P) {
+      P = []; const N = s.n || 360;
+      for (let i = 0; i <= N; i++) {
+        const x = X.log ? 10 ** (this.xl0 + i / N * (this.xl1 - this.xl0)) : X.min + i / N * (X.max - X.min);
+        P.push([x, s.fn(x)]);
+      }
+    }
+    ctx.strokeStyle = s.color; ctx.lineWidth = s.w || 2; ctx.setLineDash(s.dash || []); ctx.globalAlpha = s.alpha || 1;
+    ctx.lineJoin = 'round'; ctx.beginPath();
+    let pen = false;
+    for (const [x, y] of P) {
+      if (!isFinite(y) || !isFinite(x) || (Y.log && y <= 0) || (X.log && x <= 0)) { pen = false; continue; }
+      const px = this.tx(x), py = clamp(this.ty(y), -4000, 4000);
+      if (pen) ctx.lineTo(px, py); else ctx.moveTo(px, py);
+      pen = true;
+    }
+    ctx.stroke(); ctx.setLineDash([]); ctx.globalAlpha = 1;
+  }
+  pts(p) {
+    const ctx = this.ctx, r = p.r || 3.5;
+    for (const q of p.pts) {
+      const [x, y, lab] = q;
+      if (!isFinite(x) || !isFinite(y)) continue;
+      if (this.cfg.x.log && x <= 0) continue;
+      if (this.cfg.y.log && y <= 0) continue;
+      const px = this.tx(x), py = this.ty(y);
+      ctx.beginPath();
+      if (p.shape === 's') ctx.rect(px - r, py - r, 2 * r, 2 * r);
+      else if (p.shape === 'd') { ctx.moveTo(px, py - r * 1.3); ctx.lineTo(px + r * 1.3, py); ctx.lineTo(px, py + r * 1.3); ctx.lineTo(px - r * 1.3, py); ctx.closePath(); }
+      else ctx.arc(px, py, r, 0, TAU);
+      if (p.fill === false) { ctx.fillStyle = cssv('--card'); ctx.fill(); ctx.strokeStyle = p.color; ctx.lineWidth = 1.5; ctx.stroke(); }
+      else { ctx.fillStyle = p.color; ctx.fill(); if (p.ring) { ctx.strokeStyle = cssv('--card'); ctx.lineWidth = 1.5; ctx.stroke(); } }
+      if (lab) { ctx.fillStyle = p.color; richText(ctx, String(lab), px + r + 3, py - r - 3, 11); }
+    }
+  }
+}
+
+/* =====================================================================
+   Ручка приладу (SVG), обертання мишею / дотиком / колесом
+   ===================================================================== */
+class Knob {
+  constructor(o) {
+    Object.assign(this, { size: 54, a0: -140, a1: 140, min: 0, max: 1, log: false, steps: null, value: 0, ticks: null, minor: 0, onChange: null, title: '' }, o);
+    const R = this.size / 2, pad = this.ticks ? 22 : (this.minor ? 9 : 3), S = this.size + 2 * pad;
+    const svg = this.svg = sv('svg', { viewBox: `${-S / 2} ${-S / 2} ${S} ${S}`, width: S, height: S, class: 'knob', tabindex: 0, role: 'slider', 'aria-label': this.title });
+    const ang = p => (this.a0 + p * (this.a1 - this.a0)) * PI / 180;
+    const tk = (a, r1, r2, cls) => sv('line', { x1: r1 * Math.sin(a), y1: -r1 * Math.cos(a), x2: r2 * Math.sin(a), y2: -r2 * Math.cos(a), class: cls }, svg);
+    if (this.minor) for (let i = 0; i <= this.minor; i++) tk(ang(i / this.minor), R + 3, R + 6, 'ktick');
+    if (this.ticks) for (const t of this.ticks) {
+      const p = this.steps ? this.steps.indexOf(t.v) / (this.steps.length - 1) : this.pos(t.v), a = ang(p);
+      tk(a, R + 3, R + 9, 'ktick major');
+      sv('text', { x: (R + 16) * Math.sin(a), y: -(R + 16) * Math.cos(a) + 3.4, class: 'klabel', text: t.l != null ? t.l : t.v }, svg);
+    }
+    const g = this.g = sv('g', {}, svg);
+    sv('circle', { r: R, fill: 'url(#gSkirt)', stroke: '#000', 'stroke-width': 0.8 }, g);
+    const nr = Math.max(18, Math.round(R * 1.3));
+    for (let i = 0; i < nr; i++) { const a = i / nr * TAU; sv('line', { x1: (R - 0.8) * Math.sin(a), y1: -(R - 0.8) * Math.cos(a), x2: (R - 3.5) * Math.sin(a), y2: -(R - 3.5) * Math.cos(a), stroke: 'rgba(255,255,255,.13)', 'stroke-width': 1 }, g); }
+    sv('circle', { r: R * 0.74, fill: 'url(#gKnob)' }, g);
+    if (this.size >= 70) sv('circle', { r: R * 0.22, fill: 'url(#gCap)' }, g);
+    sv('line', { x1: 0, y1: -R * 0.28, x2: 0, y2: -R * 0.96, stroke: '#f6f6f2', 'stroke-width': Math.max(2, R * 0.07), 'stroke-linecap': 'round' }, g);
+    // взаємодія
+    const angle = e => Math.atan2(e.clientX - this.cx, -(e.clientY - this.cy)) * 180 / PI;
+    svg.addEventListener('pointerdown', e => {
+      e.preventDefault(); svg.focus(); svg.setPointerCapture(e.pointerId);
+      const r = svg.getBoundingClientRect(); this.cx = r.left + r.width / 2; this.cy = r.top + r.height / 2;
+      this.la = angle(e); this.acc = this.curP(); this.drag = true; svg.classList.add('drag');
+    });
+    svg.addEventListener('pointermove', e => {
+      if (!this.drag) return;
+      const a = angle(e); let d = a - this.la; if (d > 180) d -= 360; if (d < -180) d += 360; this.la = a;
+      this.acc = clamp(this.acc + d / (this.a1 - this.a0), 0, 1); this.emit(this.acc);
+    });
+    const up = () => { this.drag = false; svg.classList.remove('drag'); };
+    svg.addEventListener('pointerup', up); svg.addEventListener('pointercancel', up);
+    svg.addEventListener('wheel', e => { e.preventDefault(); this.nudge(e.deltaY < 0 ? 1 : -1); }, { passive: false });
+    svg.addEventListener('keydown', e => {
+      if (e.key === 'ArrowUp' || e.key === 'ArrowRight') { this.nudge(1); e.preventDefault(); }
+      if (e.key === 'ArrowDown' || e.key === 'ArrowLeft') { this.nudge(-1); e.preventDefault(); }
+    });
+    this.render();
+  }
+  pos(v) { if (this.log) return Math.log(v / this.min) / Math.log(this.max / this.min); return (v - this.min) / (this.max - this.min); }
+  curP() { return this.steps ? Math.max(0, this.steps.indexOf(this.value)) / (this.steps.length - 1) : clamp(this.pos(this.value), 0, 1); }
+  val(p) {
+    p = clamp(p, 0, 1);
+    if (this.steps) return this.steps[Math.round(p * (this.steps.length - 1))];
+    return this.log ? this.min * (this.max / this.min) ** p : this.min + p * (this.max - this.min);
+  }
+  nudge(d) { const st = this.steps ? 1 / (this.steps.length - 1) : 0.005; this.emit(clamp(this.curP() + d * st, 0, 1)); }
+  render() { this.g.setAttribute('transform', `rotate(${this.a0 + this.curP() * (this.a1 - this.a0)})`); }
+  set(v) {
+    if (this.steps) { let b = this.steps[0]; for (const s of this.steps) if (Math.abs(Math.log(s / v)) < Math.abs(Math.log(b / v))) b = s; v = b; }
+    this.value = v; this.render();
+  }
+  emit(p) { const v = this.val(p); if (v !== this.value) { this.value = v; this.render(); if (this.onChange) this.onChange(v); } }
+}
+function knobBox(knob, caption, valEl) {
+  return h('div', { class: 'kn' }, knob.svg, valEl || null, h('div', { html: caption, style: 'margin-top:2px' }));
+}
+
+/* =====================================================================
+   Повзунок параметра (панель параметрів і дублі на приладах)
+   ===================================================================== */
+function makeSlider(tab, key, sp, cls = 'prow') {
+  const mulD = sp.mul || 1;
+  const toP = v => (sp.log ? Math.log(v / sp.min) / Math.log(sp.max / sp.min) : (v - sp.min) / (sp.max - sp.min));
+  const fromP = p => (sp.log ? sp.min * (sp.max / sp.min) ** p : sp.min + p * (sp.max - sp.min));
+  const rng = h('input', { type: 'range', min: 0, max: 1000, step: 1, 'aria-label': sp.plain || key });
+  const num = h('input', { type: 'number', step: 'any', min: 0 });
+  rng.addEventListener('input', () => { let v = fromP(rng.value / 1000); v = sp.round ? sp.round(v) : round3(v); tab.set(key, v, rng); });
+  num.addEventListener('change', () => {
+    const v = parseFloat(String(num.value).replace(',', '.')) / mulD;
+    if (isFinite(v) && v >= (sp.hardMin != null ? sp.hardMin : 0)) tab.set(key, v, num);
+  });
+  tab.syncers.push(src => {
+    const v = tab.st[key];
+    if (src !== rng) rng.value = Math.round(clamp(toP(v), 0, 1) * 1000);
+    if (src !== num) num.value = +(v * mulD).toPrecision(4);
+  });
+  if (cls === 'dup') return [h('span', { html: sp.label }), rng];
+  return h('div', { class: cls }, h('label', { html: sp.label }), rng, h('span', { class: 'u' }, num, sp.unit || ''));
+}
+function makeSeg(tab, key, opts, name) {
+  const wrap = h('div', { class: 'seg' });
+  const inputs = opts.map(([v, l]) => {
+    const inp = h('input', { type: 'radio', name, value: String(v) });
+    inp.addEventListener('change', () => { if (inp.checked) tab.set(key, v, inp); });
+    wrap.append(h('label', {}, inp, h('span', { html: l })));
+    return [inp, v];
+  });
+  tab.syncers.push(() => inputs.forEach(([inp, v]) => { inp.checked = tab.st[key] === v; }));
+  return wrap;
+}
+
+/* =====================================================================
+   Дрібні елементи передніх панелей: тумблер, лампа, група, шкала, стрілочний прилад
+   ===================================================================== */
+function tumbler(on, click, title) {
+  const b = h('button', { class: 'tumb' + (on ? ' on' : ''), title, 'aria-label': title, 'aria-pressed': String(on) });
+  b.onclick = () => { click(); };
+  b.setOn = v => { b.classList.toggle('on', v); b.setAttribute('aria-pressed', String(v)); };
+  return b;
+}
+const lampEl = (cls = '') => h('span', { class: 'lamp ' + cls });
+const grp = (title, ...kids) => h('div', { class: 'grp' }, h('i', {}, title), h('div', { class: 'gk' }, ...kids));
+const vstack = (...kids) => h('div', { style: 'display:flex;flex-direction:column;gap:4px;align-items:center' }, ...kids);
+const capt = t => h('div', { class: 'kc', html: t });
+
+/* шкала-барабан частоти: рухома шкала під нерухомим візиром */
+function makeDialScale(T) {
+  const W = 300, H = 50, PX = 620;
+  const x = v => Math.log10(v / T.dmin) * PX;
+  const svg = sv('svg', { viewBox: `0 0 ${W} ${H}`, class: 'dial', role: 'img', 'aria-label': 'шкала частоти' });
+  const defs = sv('defs', {}, svg);
+  const lg = sv('linearGradient', { id: 'gDrum', x1: 0, y1: 0, x2: 1, y2: 0 }, defs);
+  [[0, 'rgba(0,0,0,.55)'], [0.18, 'rgba(0,0,0,0)'], [0.82, 'rgba(0,0,0,0)'], [1, 'rgba(0,0,0,.55)']].forEach(([o, c]) => sv('stop', { offset: o, 'stop-color': c }, lg));
+  sv('rect', { width: W, height: H, fill: '#efe7cf' }, svg);
+  const g = sv('g', {}, svg);
+  for (let v = T.dmin; v <= T.dmax * 1.0001; v += v < 2 * T.dmin ? T.dmin / 10 : v < 5 * T.dmin ? T.dmin / 5 : T.dmin / 2) {
+    const vv = +v.toPrecision(6), major = T.lab.includes(Math.round(vv)) && Math.abs(vv - Math.round(vv)) < 1e-6;
+    sv('line', { x1: x(vv), x2: x(vv), y1: 30, y2: major ? 14 : (Math.round(vv) % 5 === 0 && Math.abs(vv - Math.round(vv)) < 1e-6 ? 21 : 25), stroke: '#1d1d1b', 'stroke-width': major ? 1.4 : 0.8 }, g);
+    if (major) sv('text', { x: x(vv), y: 11, 'text-anchor': 'middle', style: 'font:bold 11px Arial,sans-serif', fill: '#1d1d1b', text: Math.round(vv) }, g);
+  }
+  sv('line', { x1: 0, x2: x(T.dmax), y1: 30.5, y2: 30.5, stroke: '#1d1d1b', 'stroke-width': 0.8 }, g);
+  const mt = sv('text', { x: 6, y: 44, style: 'font:10px Arial,sans-serif', fill: '#4a4436', text: '' }, svg);
+  const mr = sv('text', { x: W - 6, y: 44, 'text-anchor': 'end', style: 'font:10px Arial,sans-serif', fill: '#4a4436', text: 'Hz' }, svg);
+  sv('rect', { width: W, height: H, fill: 'url(#gDrum)' }, svg);
+  sv('line', { x1: W / 2, x2: W / 2, y1: 0, y2: H, stroke: '#c0180c', 'stroke-width': 1.5 }, svg);
+  sv('rect', { x: 0.5, y: 0.5, width: W - 1, height: H - 1, fill: 'none', stroke: '#3b3a35', 'stroke-width': 1, rx: 3 }, svg);
+  return { el: svg, set(d, m, ml) { g.setAttribute('transform', `translate(${W / 2 - x(d)},0)`); mt.textContent = 'множник ' + ml; mr.textContent = 'ν = ' + si(d * m, 'Hz', 4); } };
+}
+
+/* стрілочний вольтметр виходу (ефективне значення) */
+function makeMeter(max = 8) {
+  const W = 140, H = 84, cx = 70, cy = 78, R = 60, A = 48;
+  const svg = sv('svg', { viewBox: `0 0 ${W} ${H}`, class: 'meter', role: 'img', 'aria-label': 'вольтметр виходу' });
+  sv('rect', { x: 0.5, y: 0.5, width: W - 1, height: H - 1, rx: 4, fill: '#f4f0e2', stroke: '#3b3a35' }, svg);
+  const pt = (v, r) => { const a = (-A + v / max * 2 * A) * PI / 180; return [cx + r * Math.sin(a), cy - r * Math.cos(a)]; };
+  for (let v = 0; v <= max + 1e-9; v += 0.25) {
+    const mj = Math.abs(v - Math.round(v)) < 1e-9, [x1, y1] = pt(v, R), [x2, y2] = pt(v, R - (mj ? 8 : 4));
+    sv('line', { x1, y1, x2, y2, stroke: '#1d1d1b', 'stroke-width': mj ? 1.2 : 0.6 }, svg);
+    if (mj && Math.round(v) % 2 === 0) { const [tx, ty] = pt(v, R - 16); sv('text', { x: tx, y: ty + 3.5, 'text-anchor': 'middle', style: 'font:10px Arial,sans-serif', fill: '#1d1d1b', text: Math.round(v) }, svg); }
+  }
+  sv('path', { d: `M${pt(0, R + 2).join(',')} A${R + 2},${R + 2} 0 0 1 ${pt(max, R + 2).join(',')}`, fill: 'none', stroke: '#1d1d1b', 'stroke-width': 0.8 }, svg);
+  sv('text', { x: cx, y: cy - 22, 'text-anchor': 'middle', style: 'font:bold 12px Arial,sans-serif', fill: '#1d1d1b', text: 'V' }, svg);
+  sv('text', { x: 8, y: H - 6, style: 'font:8px Arial,sans-serif', fill: '#4a4436', text: 'U еф.' }, svg);
+  const nd = sv('g', { style: `transform-origin:${cx}px ${cy}px;transition:transform .45s cubic-bezier(.3,1.6,.5,1)` }, svg);
+  sv('line', { x1: cx, y1: cy, x2: cx, y2: cy - R + 2, stroke: '#111', 'stroke-width': 1.3 }, nd);
+  sv('circle', { cx, cy, r: 4.5, fill: '#2a2a28' }, svg);
+  return { el: svg, set(u) { nd.style.transform = `rotate(${-A + clamp(u / max, -0.02, 1.04) * 2 * A}deg)`; } };
+}
+
+/* =====================================================================
+   Генератори Г3-112 і Г3-56/1 (передня панель)
+   ===================================================================== */
+function makeGenerator(host, tab, type) {
+  const T = type === 'g56'
+    ? { name: 'Г3-56/1', sub: 'генератор звуковий', dmin: 20, dmax: 200, lab: [20, 30, 40, 50, 70, 100, 150, 200], mults: [1, 10, 100, 1000] }
+    : { name: 'Г3-112', sub: 'генератор сигналів низькочастотний', dmin: 10, dmax: 100, lab: [10, 15, 20, 30, 40, 50, 70, 100], mults: [1, 10, 100, 1000] };
+  const st = tab.st;
+  tab.genOn = true;
+  const split = nu => {
+    let m = T.mults[0];
+    for (const mm of T.mults) if (nu / mm >= T.dmin * 0.9999) m = mm;
+    return { m, d: clamp(nu / m, T.dmin, T.dmax) };
+  };
+  let cur = split(st.nu);
+  const ATT = [0, 10, 20, 30, 40, 50, 60], af = a => 10 ** (-a / 20);
+  let att = 0, lvl = st.E0;
+  const setE = () => tab.set('E0', +(lvl * af(att)).toPrecision(4), 'gen');
+  const ml = v => '×' + (v >= 1000 ? '10³' : v >= 100 ? '10²' : v);
+
+  const fk = new Knob({ size: 92, min: T.dmin, max: T.dmax, log: true, value: cur.d, ticks: T.lab.map(v => ({ v })), minor: 50, title: 'частота',
+    onChange: d => { cur.d = d; tab.set('nu', round3(d * cur.m), 'gen'); } });
+  const ak = new Knob({ size: 52, min: 0, max: 10, value: lvl, ticks: [0, 2, 4, 6, 8, 10].map(v => ({ v })), minor: 20, title: 'регулятор виходу',
+    onChange: v => { lvl = +v.toFixed(3); setE(); } });
+  const tk = new Knob({ size: 44, steps: ATT, value: 0, a0: -120, a1: 120, ticks: ATT.map(v => ({ v })), title: 'ослаблення, дБ',
+    onChange: a => { att = a; setE(); } });
+  const rb = T.mults.map(m => {
+    const b = h('button', { class: 'btn-sov', title: 'множник ' + m }, ml(m));
+    b.onclick = () => { cur.m = m; tab.set('nu', round3(cur.d * m), 'gen'); };
+    return [b, m];
+  });
+  const lamp = lampEl();
+  const pw = tumbler(true, () => { tab.genOn = !tab.genOn; tab.dirty = true; tab.sync('gen'); }, 'мережа');
+  const scale = makeDialScale(T), meter = makeMeter(8);
+  const fval = h('div', { class: 'v' }), aval = h('div', { class: 'v' }), tval = h('div', { class: 'v' });
+  const read = h('div', { class: 'gen-read' });
+  const extra = [];
+  if (type === 'g56') {
+    const b5 = h('button', { class: 'btn-sov' }, '5 Ω'), b600 = h('button', { class: 'btn-sov' }, '600 Ω');
+    b5.onclick = () => tab.set('Ri', 5, 'gen'); b600.onclick = () => tab.set('Ri', 600, 'gen');
+    tab.syncers.push(() => { b5.classList.toggle('on', st.Ri === 5); b600.classList.toggle('on', st.Ri === 600); });
+    extra.push(vstack(h('div', { style: 'display:flex;gap:3px' }, b5, b600), capt('вих. опір')));
+  }
+  const panel = h('div', { class: 'panel gen', style: 'flex:1 1 560px' },
+    h('div', { class: 'plate' }, h('b', {}, T.name), h('span', {}, T.sub)),
+    h('div', { class: 'gen-top' }, h('div', { class: 'dial-win' }, scale.el), meter.el),
+    h('div', { class: 'prow-in' },
+      vstack(pw, capt('мережа'), lamp),
+      knobBox(fk, 'частота, Hz', fval),
+      vstack(h('div', { class: 'rbtns' }, rb.map(x => x[0])), capt('множник')),
+      knobBox(tk, 'ослаблення, dB', tval),
+      knobBox(ak, 'рег. виходу', aval),
+      ...extra,
+      vstack(h('div', { class: 'terms' }, h('span', { class: 'term r' }), h('span', { class: 'term k' })), capt('вихід ⏚'))),
+    h('div', { style: 'display:flex;justify-content:center;margin-top:8px' }, read),
+    h('div', { class: 'dup' }, ...makeSlider(tab, 'nu', SPEC.nu, 'dup'), ...makeSlider(tab, 'E0', SPEC.E0, 'dup')));
+  host.append(panel);
+  tab.syncers.push(src => {
+    if (src !== 'gen') {
+      cur = split(st.nu); fk.set(cur.d);
+      if (Math.abs(lvl * af(att) - st.E0) > 1e-9 * Math.max(1, st.E0)) {
+        lvl = st.E0 / af(att);
+        if (lvl > 10) { att = 0; lvl = st.E0; }
+      }
+    }
+    ak.set(lvl); tk.set(att);
+    rb.forEach(([b, m]) => b.classList.toggle('on', m === cur.m));
+    const on = tab.genOn;
+    pw.setOn(on); lamp.classList.toggle('off', !on); read.classList.toggle('off', !on);
+    scale.set(cur.d, cur.m, ml(cur.m));
+    meter.set(on ? lvl / SQ2 : 0);
+    fval.textContent = nf(cur.d, 3); aval.textContent = nf(lvl, 3) + ' V'; tval.textContent = (att ? '−' : '') + att + ' dB';
+    read.textContent = on ? `ν = ${si(st.nu, 'Гц', 4)}   E_m = ${si(st.E0, 'В', 3)}   R_i = ${nf(st.Ri, 3)} Ом` : 'вимкнено';
+  });
+}
+
+/* =====================================================================
+   Осцилограф С1-93 / С1-83 (двоканальний, передня панель)
+   ===================================================================== */
+const VDIV = [0.002, 0.005, 0.01, 0.02, 0.05, 0.1, 0.2, 0.5, 1, 2, 5, 10];
+const TDIV = [1e-6, 2e-6, 5e-6, 1e-5, 2e-5, 5e-5, 1e-4, 2e-4, 5e-4, 1e-3, 2e-3, 5e-3, 1e-2, 2e-2];
+const fV = v => (v < 1 ? nf(v * 1000, 3) + ' mV' : nf(v, 3) + ' V');
+const fT = t => (t < 1e-3 ? nf(t * 1e6, 3) + ' µs' : nf(t * 1e3, 3) + ' ms');
+function makeScope(host, tab, o) {
+  const sc = tab.st.scope = {
+    v: [0.5, 0.5], t: 2e-4, mode: 'yt', disp: 'both', auto: true,
+    on: true, onT: -1e9, bright: 0.75, focus: 0.5,
+    fine: [1, 1], pos: [0, 0], cpl: ['ac', 'ac'], hpos: 0, mag: false,
+    trig: { src: 0, slope: 1, lvl: 0, wait: false },
+  };
+  const cv = h('canvas');
+  const btns = [];
+  const sbtn = (label, isOn, click, title) => {
+    const b = h('button', { class: 'btn-sov', title: title || label, html: label });
+    b.onclick = () => { click(); syncUI(); };
+    btns.push([b, isOn]); return b;
+  };
+  const manual = () => { sc.auto = false; };
+  const small = (o2, title) => new Knob(Object.assign({ size: 28, title }, o2));
+  // промінь
+  const pw = tumbler(true, () => { sc.on = !sc.on; if (sc.on) sc.onT = performance.now(); syncUI(); }, 'мережа');
+  const kB = small({ min: 0, max: 1, value: sc.bright, minor: 10, onChange: v => { sc.bright = v; } }, 'яскравість');
+  const kF = small({ min: 0, max: 1, value: sc.focus, minor: 10, onChange: v => { sc.focus = v; } }, 'фокус');
+  // канали
+  const ch = [0, 1].map(k => {
+    const kV = new Knob({ size: 40, steps: VDIV, value: sc.v[k], minor: VDIV.length - 1, title: `В/под канал ${k + 1}`, onChange: v => { sc.v[k] = v; manual(); syncUI(); } });
+    const kFi = small({ min: 0, max: 1, value: 1, onChange: p => { sc.fine[k] = 1 + (1 - p) * 1.5; manual(); syncUI(); } }, `плавно, канал ${k + 1}`);
+    const kP = small({ min: -4, max: 4, value: 0, minor: 8, onChange: v => { sc.pos[k] = Math.abs(v) < 0.08 ? 0 : v; } }, `зміщення ↕, канал ${k + 1}`);
+    const lm = lampEl('off');
+    const cp = [['ac', '~', 'закритий вхід (змінна складова)'], ['gnd', '⏚', 'вхід заземлено'], ['dc', '≅', 'відкритий вхід']]
+      .map(([c, l, t]) => sbtn(l, () => sc.cpl[k] === c, () => { sc.cpl[k] = c; }, t));
+    const val = h('div', { class: 'v' });
+    return { kV, kFi, kP, lm, val, el: grp(`канал ${k ? 'II' : 'I'} · Y`,
+      knobBox(kV, 'V/под', val),
+      vstack(kFi.svg, capt('плавно'), h('span', { class: 'unc' }, lm, 'некал.')),
+      vstack(kP.svg, capt('↕')),
+      vstack(h('div', { class: 'rbtns h' }, cp), capt('вхід'))) };
+  });
+  // розгортка
+  const kt = new Knob({ size: 40, steps: TDIV, value: sc.t, minor: TDIV.length - 1, title: 'час/под', onChange: v => { sc.t = v; manual(); syncUI(); } });
+  const kH = small({ min: -5, max: 5, value: 0, minor: 10, onChange: v => { sc.hpos = Math.abs(v) < 0.1 ? 0 : v; } }, 'зміщення ↔');
+  const vt = h('div', { class: 'v' });
+  const bMag = sbtn('×10', () => sc.mag, () => { sc.mag = !sc.mag; }, 'розтяжка ×10');
+  // синхронізація
+  const kL = small({ min: -4, max: 4, value: 0, minor: 8, onChange: v => { sc.trig.lvl = Math.abs(v) < 0.08 ? 0 : v; } }, 'рівень синхронізації');
+  const tLamp = lampEl('g');
+  const trSrc = [0, 1].map(k => sbtn(k ? 'II' : 'I', () => sc.trig.src === k, () => { sc.trig.src = k; }, 'джерело синхронізації'));
+  const trSl = [[1, '+'], [-1, '−']].map(([s, l]) => sbtn(l, () => sc.trig.slope === s, () => { sc.trig.slope = s; }, s > 0 ? 'за фронтом' : 'за спадом'));
+  const trMd = [[false, 'авт'], [true, 'чек']].map(([w, l]) => sbtn(l, () => sc.trig.wait === w, () => { sc.trig.wait = w; }, w ? 'чекаюча розгортка' : 'автоколивальна розгортка'));
+  // режим
+  const md = [['1', 'I'], ['2', 'II'], ['both', 'I і II']].map(([d, l]) => sbtn(l, () => sc.mode === 'yt' && sc.disp === d, () => { sc.mode = 'yt'; sc.disp = d; }));
+  const bXY = sbtn('X–Y', () => sc.mode === 'xy', () => { sc.mode = 'xy'; });
+  const bA = sbtn('автовст.', () => sc.auto, () => { sc.auto = !sc.auto; if (sc.auto && tab.res) autoRange(tab.res); }, 'автоматичне встановлення В/под і час/под');
+
+  function syncUI() {
+    ch.forEach((c, k) => {
+      c.kV.set(sc.v[k]); c.kFi.set(1 - (sc.fine[k] - 1) / 1.5); c.kP.set(sc.pos[k]);
+      c.lm.classList.toggle('off', sc.fine[k] < 1.001);
+      c.val.textContent = (sc.fine[k] > 1.001 ? '>' : '') + fV(sc.v[k]);
+    });
+    kt.set(sc.t); vt.textContent = fT(sc.t / (sc.mag ? 10 : 1));
+    kB.set(sc.bright); kF.set(sc.focus); kH.set(sc.hpos); kL.set(sc.trig.lvl);
+    pw.setOn(sc.on); pLamp.classList.toggle('off', !sc.on);
+    for (const [b, f] of btns) b.classList.toggle('on', !!f());
+  }
+  function autoRange(res) {
+    o.chans.forEach((c, k) => { const A = abs(c.get(res)); sc.v[k] = VDIV.find(v => A / v <= 3.6) || 10; });
+    sc.fine = [1, 1];
+    if (sc.mode === 'xy') { const v = Math.max(sc.v[0], sc.v[1]); sc.v = [v, v]; }
+    sc.t = TDIV.find(t => 10 * t * res.nu >= 2) || TDIV[TDIV.length - 1];
+  }
+  const pLamp = lampEl();
+  const panel = h('div', { class: 'panel scope', style: 'flex:1 1 100%' },
+    h('div', { class: 'plate' }, h('b', {}, o.name), h('span', {}, 'осцилограф універсальний двоканальний')),
+    h('div', { class: 'scope-body' },
+      h('div', { class: 'scope-screen' }, h('div', { class: 'screen' }, cv)),
+      h('div', { class: 'scope-ctl' },
+        ch[0].el, ch[1].el,
+        grp('розгортка · X', knobBox(kt, 'час/под', vt), vstack(kH.svg, capt('↔')), vstack(bMag, capt('розтяжка'))),
+        grp('синхронізація',
+          vstack(kL.svg, capt('рівень')),
+          vstack(h('div', { class: 'rbtns h' }, trSrc), capt('джерело')),
+          vstack(h('div', { class: 'rbtns h' }, trSl), capt('полярн.')),
+          vstack(h('div', { class: 'rbtns h' }, trMd), h('span', { class: 'unc' }, tLamp, 'синхр.'))),
+        grp('режим', h('div', { class: 'rbtns h' }, md, bXY), bA),
+        grp('промінь', vstack(pw, capt('мережа'), pLamp), vstack(kB.svg, capt('яскр.')), vstack(kF.svg, capt('фокус'))),
+        h('div', { class: 'hint', style: 'max-width:360px', html: (o.note || '') + ' Ручка «плавно» не в крайньому правому положенні — канал некалібрований (горить «некал.»), тоді показ В/под неточний.' }))));
+  host.append(panel);
+  tab.onRes.push(res => { if (sc.auto) autoRange(res); syncUI(); });
+  syncUI();
+  let lastW = 0, trigShown = null;
+  return {
+    draw(res, theta) {
+      const w = cv.clientWidth; if (!w || !res) return;
+      const H = Math.round(w * 0.8), dpr = window.devicePixelRatio || 1;
+      if (w !== lastW) { cv.width = Math.round(w * dpr); cv.height = Math.round(H * dpr); cv.style.height = H + 'px'; lastW = w; }
+      const ctx = cv.getContext('2d'); ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      const now = performance.now();
+      const warm = sc.on ? clamp((now - sc.onT) / 1400, 0, 1) : 0;
+      const gr = ctx.createRadialGradient(w / 2, H / 2, 10, w / 2, H / 2, w * 0.7);
+      gr.addColorStop(0, sc.on ? '#0e2612' : '#060b07'); gr.addColorStop(1, '#030904');
+      ctx.fillStyle = gr; ctx.fillRect(0, 0, w, H);
+      const dx = w / 10, dy = H / 8;
+      const ga = sc.on ? 1 : 0.35;
+      ctx.strokeStyle = `rgba(130,255,160,${0.17 * ga})`; ctx.lineWidth = 1;
+      ctx.beginPath();
+      for (let i = 1; i < 10; i++) { ctx.moveTo(i * dx + 0.5, 0); ctx.lineTo(i * dx + 0.5, H); }
+      for (let j = 1; j < 8; j++) { ctx.moveTo(0, j * dy + 0.5); ctx.lineTo(w, j * dy + 0.5); }
+      ctx.stroke();
+      ctx.strokeStyle = `rgba(130,255,160,${0.32 * ga})`; ctx.beginPath();
+      for (let i = 0; i <= 50; i++) { const x = i * dx / 5; ctx.moveTo(x, H / 2 - 3); ctx.lineTo(x, H / 2 + 3); }
+      for (let j = 0; j <= 40; j++) { const y = j * dy / 5; ctx.moveTo(w / 2 - 3, y); ctx.lineTo(w / 2 + 3, y); }
+      ctx.stroke();
+      const setTrig = v => { if (v !== trigShown) { trigShown = v; tLamp.classList.toggle('off', !v); } };
+      if (!sc.on || warm <= 0) { setTrig(false); return; }
+
+      const gen = tab.genOn === false ? 0 : 1;
+      const z = o.chans.map((c, k) => (sc.cpl[k] === 'gnd' ? Cx(0) : scl(c.get(res), gen)));
+      const vd = k => sc.v[k] * sc.fine[k];
+      const I = sc.bright * warm, df = Math.abs(sc.focus - 0.5) * 2;
+      const nz = G.noise ? 0.025 : 0;
+      ctx.save(); ctx.globalCompositeOperation = 'lighter'; ctx.lineJoin = 'round';
+      const beam = (col, fn) => {
+        for (const [lw, al, bl] of [[4 + df * 9, 0.2 * I, 10 + df * 16], [1.6 + df * 5, I * (1 - 0.6 * df), 4 + df * 10]]) {
+          ctx.strokeStyle = col; ctx.globalAlpha = clamp(al, 0, 1); ctx.lineWidth = lw; ctx.shadowColor = col; ctx.shadowBlur = bl;
+          ctx.beginPath(); fn(); ctx.stroke();
+        }
+        ctx.globalAlpha = 1; ctx.shadowBlur = 0;
+      };
+      const col = ['#9dffb4', '#e2ff9a'];
+      const w0 = TAU * res.nu, Tp = 1 / res.nu;
+      if (sc.mode === 'yt') {
+        const span0 = 10 * sc.t, span = span0 / (sc.mag ? 10 : 1), cycles = span * res.nu;
+        const tOf = x => span0 / 2 + (x - w / 2 - sc.hpos * dx) / w * span;
+        const s = sc.trig.src, As = abs(z[s]) / vd(s), L = sc.trig.lvl;
+        const trig = As > 1e-6 && Math.abs(L) < As;
+        setTrig(trig);
+        let t0;
+        if (trig) t0 = (-sc.trig.slope * Math.acos(L / As) - arg(z[s])) / w0;
+        else t0 = (now / 1000) * 0.55 * Tp;
+        t0 %= Tp; if (t0 < 0) t0 += Tp;
+        const show = sc.disp === 'both' ? [0, 1] : [+sc.disp - 1];
+        if (!trig && sc.trig.wait) { /* чекаюча розгортка без запуску: променя немає */ }
+        else show.forEach(k => {
+          const A = abs(z[k]) / vd(k) * dy, a = arg(z[k]), yc = H / 2 - sc.pos[k] * dy;
+          const xa = Math.max(0, w / 2 + sc.hpos * dx - w / 2 * (sc.mag ? 10 : 1)), xb = Math.min(w, w / 2 + sc.hpos * dx + w / 2 * (sc.mag ? 10 : 1));
+          if (xb <= xa) return;
+          if (cycles > 140) {
+            ctx.fillStyle = col[k]; ctx.globalAlpha = 0.35 * I; ctx.fillRect(xa, yc - A - 1, xb - xa, 2 * A + 2); ctx.globalAlpha = 1;
+          } else {
+            const N = Math.min(1400, Math.max(300, Math.round(cycles * 40)));
+            beam(col[k], () => {
+              for (let i = 0; i <= N; i++) {
+                const x = xa + i / N * (xb - xa), t = tOf(x), y = yc - A * Math.cos(w0 * (t + t0) + a) - nz * dy * gauss();
+                if (i) ctx.lineTo(x, y); else ctx.moveTo(x, y);
+              }
+            });
+          }
+          ctx.fillStyle = col[k]; ctx.globalAlpha = I; ctx.font = '11px ui-monospace,monospace';
+          ctx.fillText(k ? 'II' : 'I', xa + 4, clamp(yc - A * Math.cos(w0 * (tOf(xa) + t0) + a) - 6, 10, H - 4)); ctx.globalAlpha = 1;
+        });
+        // мітка рівня синхронізації
+        const yL = H / 2 - sc.pos[s] * dy - L * dy;
+        ctx.fillStyle = 'rgba(255,190,90,.8)'; ctx.globalCompositeOperation = 'source-over';
+        ctx.beginPath(); ctx.moveTo(w, yL); ctx.lineTo(w - 8, yL - 5); ctx.lineTo(w - 8, yL + 5); ctx.closePath(); ctx.fill();
+      } else {
+        setTrig(true);
+        const ax = o.xy.x, ay = o.xy.y;
+        const Ax = abs(z[ax]) / vd(ax) * dx, Ay = abs(z[ay]) / vd(ay) * dy, px = arg(z[ax]), py = arg(z[ay]);
+        const cx0 = w / 2 + sc.hpos * dx, cy0 = H / 2 - sc.pos[ay] * dy;
+        beam(col[0], () => {
+          for (let i = 0; i <= 260; i++) {
+            const t = i / 260 * TAU, x = cx0 + Ax * Math.cos(t + px) + nz * dx * gauss(), y = cy0 - Ay * Math.cos(t + py) + nz * dy * gauss();
+            if (i) ctx.lineTo(x, y); else ctx.moveTo(x, y);
+          }
+          ctx.closePath();
+        });
+        const x = cx0 + Ax * Math.cos(theta + px), y = cy0 - Ay * Math.cos(theta + py);
+        ctx.fillStyle = '#eaffef'; ctx.shadowColor = '#7dff9a'; ctx.shadowBlur = 14; ctx.globalAlpha = I;
+        ctx.beginPath(); ctx.arc(x, y, 3, 0, TAU); ctx.fill(); ctx.shadowBlur = 0; ctx.globalAlpha = 1;
+      }
+      ctx.restore();
+      ctx.fillStyle = 'rgba(160,255,180,.85)'; ctx.font = '10.5px ui-monospace,Consolas,monospace';
+      const cl = k => (sc.cpl[k] === 'gnd' ? '⏚' : sc.cpl[k] === 'ac' ? '~' : '≅') + (sc.fine[k] > 1.001 ? '>' : '');
+      const lab = sc.mode === 'yt'
+        ? `I${cl(0)} ${fV(sc.v[0])}  II${cl(1)} ${fV(sc.v[1])}  ${fT(sc.t / (sc.mag ? 10 : 1))}/под${sc.mag ? ' ×10' : ''}`
+        : `X(${o.xy.x === 0 ? 'I' : 'II'}): ${fV(sc.v[o.xy.x])}  Y(${o.xy.y === 0 ? 'I' : 'II'}): ${fV(sc.v[o.xy.y])}  X–Y`;
+      ctx.fillText(lab, 5, H - 6);
+      ctx.textAlign = 'right'; ctx.fillText(o.chans.map((c, k) => `${k ? 'II' : 'I'}: ${c.name.replace('_', '')}`).join('  '), w - 5, 12); ctx.textAlign = 'left';
+      if (gen === 0) { ctx.fillStyle = 'rgba(255,190,90,.85)'; ctx.fillText('генератор вимкнено', 5, 12); }
+    }
+  };
+}
+
+/* =====================================================================
+   Вольтметр В7-16А (семисегментне табло)
+   ===================================================================== */
+const SEGS = { 0: 'abcdef', 1: 'bc', 2: 'abged', 3: 'abgcd', 4: 'fgbc', 5: 'afgcd', 6: 'afgedc', 7: 'abc', 8: 'abcdefg', 9: 'abcdfg', '-': 'g', ' ': '' };
+const SEGR = { a: [4, 0, 12, 3], b: [17, 3, 3, 13], c: [17, 20, 3, 13], d: [4, 33, 12, 3], e: [0, 20, 3, 13], f: [0, 3, 3, 13], g: [4, 16.5, 12, 3] };
+function makeVoltmeter(host, tab, o) {
+  const ND = 5, svg = sv('svg', { width: ND * 26 + 6, height: 40, viewBox: `0 0 ${ND * 26 + 6} 40` });
+  const digs = [];
+  for (let i = 0; i < ND; i++) {
+    const g = sv('g', { transform: `translate(${i * 26 + 4},2) skewX(-7)` }, svg);
+    const seg = {};
+    for (const k in SEGR) { const [x, y, w, hh] = SEGR[k]; seg[k] = sv('rect', { x, y, width: w, height: hh, rx: 1.2, fill: '#ff4a2a' }, g); }
+    seg.dp = sv('circle', { cx: 23, cy: 34.5, r: 1.9, fill: '#ff4a2a' }, g);
+    digs.push(seg);
+  }
+  const unit = h('span', { class: 'vm-unit' }, 'V');
+  const sel = h('select', {});
+  for (const [k, l] of o.options) sel.append(h('option', { value: k }, l));
+  sel.onchange = () => tab.set('vm', sel.value, sel);
+  tab.syncers.push(() => {
+    const opts = o.optionsFor ? o.optionsFor(tab.st) : o.options;
+    const keys = opts.map(x => x[0]).join();
+    if (sel.dataset.k !== keys) { sel.innerHTML = ''; for (const [k, l] of opts) sel.append(h('option', { value: k }, l)); sel.dataset.k = keys; }
+    if (!opts.some(x => x[0] === tab.st.vm)) tab.st.vm = opts[0][0];
+    sel.value = tab.st.vm;
+  });
+  const panel = h('div', { class: 'panel', style: 'flex:0 1 auto' },
+    h('div', { class: 'plate' }, h('b', {}, 'В7-16А'), h('span', {}, 'вольтметр універсальний')),
+    h('div', { class: 'vm-disp' }, svg, unit),
+    h('div', { style: 'display:flex;gap:8px;align-items:center;margin-top:8px;font-size:10px;text-transform:uppercase' }, 'U~ еф.  ·  вхід:', sel),
+    h('div', { class: 'hint', style: 'margin-top:4px' }, 'Rвх = 1 МОм · автоматичний вибір межі'));
+  host.append(panel);
+  function show(v) {
+    let s;
+    if (v < 10) s = v.toFixed(4); else if (v < 100) s = v.toFixed(3); else s = v.toFixed(2);
+    const chars = []; for (const ch of s) { if (ch === '.') chars[chars.length - 1].dp = true; else chars.push({ ch, dp: false }); }
+    while (chars.length < ND) chars.unshift({ ch: ' ', dp: false });
+    chars.slice(-ND).forEach((c, i) => {
+      const on = SEGS[c.ch] || '';
+      for (const k in SEGR) digs[i][k].setAttribute('opacity', on.includes(k) ? 1 : 0.07);
+      digs[i].dp.setAttribute('opacity', c.dp ? 1 : 0.07);
+    });
+  }
+  let last = 0;
+  return {
+    update(res, now, force) {
+      if (!force && now - last < 350) return; last = now;
+      const U = (tab.genOn === false ? 0 : 1) * abs(o.get(res, tab.st.vm)) / SQ2;
+      show(Math.max(0, noisy(U, 0.0015, 2e-5)));
+    }
+  };
+}
+
+/* =====================================================================
+   Схеми: примітиви SVG і анімація струму
+   ===================================================================== */
+const SCH = {
+  wire(g, pts) { return sv('path', { d: 'M' + pts.map(p => p.join(',')).join(' L'), class: 'w' }, g); },
+  res(g, x, y, vert, len = 54, wd = 16) {
+    return vert ? sv('rect', { x: x - wd / 2, y: y - len / 2, width: wd, height: len, class: 'el' }, g)
+      : sv('rect', { x: x - len / 2, y: y - wd / 2, width: len, height: wd, class: 'el' }, g);
+  },
+  cap(g, x, y, vert, pl = 28) {
+    const gp = 5;
+    if (vert) {
+      sv('rect', { x: x - pl / 2, y: y - gp, width: pl, height: 2 * gp, class: 'mask' }, g);
+      sv('line', { x1: x - pl / 2, y1: y - gp, x2: x + pl / 2, y2: y - gp, class: 'pl' }, g);
+      sv('line', { x1: x - pl / 2, y1: y + gp, x2: x + pl / 2, y2: y + gp, class: 'pl' }, g);
+    } else {
+      sv('rect', { x: x - gp, y: y - pl / 2, width: 2 * gp, height: pl, class: 'mask' }, g);
+      sv('line', { x1: x - gp, y1: y - pl / 2, x2: x - gp, y2: y + pl / 2, class: 'pl' }, g);
+      sv('line', { x1: x + gp, y1: y - pl / 2, x2: x + gp, y2: y + pl / 2, class: 'pl' }, g);
+    }
+  },
+  ind(g, x, y, vert, len = 56) {
+    const n = 4, r = len / (2 * n);
+    let d;
+    if (vert) {
+      sv('rect', { x: x - 1, y: y - len / 2, width: r + 3, height: len, class: 'mask' }, g);
+      d = `M${x},${y - len / 2}`; for (let i = 0; i < n; i++) d += ` a${r},${r} 0 0 1 0,${2 * r}`;
+    } else {
+      sv('rect', { x: x - len / 2, y: y - r - 2, width: len, height: r + 3, class: 'mask' }, g);
+      d = `M${x - len / 2},${y}`; for (let i = 0; i < n; i++) d += ` a${r},${r} 0 0 1 ${2 * r},0`;
+    }
+    sv('path', { d, class: 'w', 'stroke-width': 2.4 }, g);
+  },
+  src(g, x, y, r = 20) {
+    sv('circle', { cx: x, cy: y, r, class: 'el' }, g);
+    sv('path', { d: `M${x - 11},${y} q5.5,-11 11,0 t11,0`, class: 'w' }, g);
+  },
+  meter(g, x, y, l, r = 16) { sv('circle', { cx: x, cy: y, r, class: 'el' }, g); sv('text', { x, y: y + 5, 'text-anchor': 'middle', class: 'big', text: l }, g); },
+  dot(g, x, y) { sv('circle', { cx: x, cy: y, r: 3.4, class: 'nd' }, g); },
+  txt(g, x, y, html, cls = '', anchor = 'start') { return sv('text', { x, y, class: cls, 'text-anchor': anchor, html }, g); },
+};
+const subT = (a, b) => `${a}<tspan class="sub" dy="3">${b}</tspan><tspan dy="-3"></tspan>`;
+
+class Flow {
+  constructor(g, pts) { this.g = sv('g', {}, g); this.off = 0; this.setPts(pts); }
+  setPts(pts) {
+    this.pts = pts; this.cum = [0];
+    for (let i = 1; i < pts.length; i++) this.cum.push(this.cum[i - 1] + Math.hypot(pts[i][0] - pts[i - 1][0], pts[i][1] - pts[i - 1][1]));
+    this.len = this.cum[this.cum.length - 1];
+    const n = Math.max(2, Math.round(this.len / 26));
+    this.g.innerHTML = ''; this.dots = [];
+    for (let i = 0; i < n; i++) this.dots.push(sv('circle', { r: 3.1, class: 'flow' }, this.g));
+  }
+  at(s) {
+    let i = 1; while (i < this.cum.length - 1 && this.cum[i] < s) i++;
+    const f = (s - this.cum[i - 1]) / ((this.cum[i] - this.cum[i - 1]) || 1), a = this.pts[i - 1], b = this.pts[i];
+    return [a[0] + (b[0] - a[0]) * f, a[1] + (b[1] - a[1]) * f];
+  }
+  step(rel, dt) {
+    this.off = ((this.off + rel * 85 * dt) % this.len + this.len) % this.len;
+    const n = this.dots.length, sp = this.len / n, op = 0.25 + 0.75 * Math.min(1, Math.abs(rel) * 1.3);
+    for (let k = 0; k < n; k++) {
+      const [x, y] = this.at((this.off + k * sp) % this.len);
+      const d = this.dots[k]; d.setAttribute('cx', x.toFixed(1)); d.setAttribute('cy', y.toFixed(1)); d.setAttribute('opacity', op.toFixed(2));
+    }
+  }
+}
+
+/* =====================================================================
+   Векторні (фазорні) діаграми
+   ===================================================================== */
+function arrow(ctx, x1, y1, x2, y2, col, w = 2.2, dash = null) {
+  const L = Math.hypot(x2 - x1, y2 - y1); if (L < 0.5) return;
+  const ux = (x2 - x1) / L, uy = (y2 - y1) / L, hl = Math.min(10, L * 0.45);
+  ctx.strokeStyle = col; ctx.fillStyle = col; ctx.lineWidth = w; ctx.setLineDash(dash || []);
+  ctx.beginPath(); ctx.moveTo(x1, y1); ctx.lineTo(x2 - ux * hl * 0.7, y2 - uy * hl * 0.7); ctx.stroke(); ctx.setLineDash([]);
+  ctx.beginPath(); ctx.moveTo(x2, y2); ctx.lineTo(x2 - ux * hl - uy * hl * 0.4, y2 - uy * hl + ux * hl * 0.4); ctx.lineTo(x2 - ux * hl + uy * hl * 0.4, y2 - uy * hl - ux * hl * 0.4); ctx.closePath(); ctx.fill();
+}
+function fitCanvas(cv, hRatio = 1) {
+  const w = cv.clientWidth; if (!w) return null;
+  const H = Math.round(w * hRatio), dpr = window.devicePixelRatio || 1;
+  if (cv.width !== Math.round(w * dpr) || cv.height !== Math.round(H * dpr)) { cv.width = Math.round(w * dpr); cv.height = Math.round(H * dpr); cv.style.height = H + 'px'; }
+  const ctx = cv.getContext('2d'); ctx.setTransform(dpr, 0, 0, dpr, 0, 0); ctx.clearRect(0, 0, w, H);
+  return { ctx, w, H };
+}
+/* items: {z, from, color, label, u:'V'|'A', w, dash, proj} — z і from уже повернуті */
+function drawPhasors(cv, items, o = {}) {
+  const f = fitCanvas(cv, o.ratio || 1); if (!f) return;
+  const { ctx, w, H } = f, cx = w / 2, cy = H / 2, R0 = Math.min(w, H) / 2;
+  ctx.textBaseline = 'middle';
+  const mu = cssv('--muted'), gr = cssv('--grid');
+  ctx.strokeStyle = gr; ctx.lineWidth = 1;
+  ctx.beginPath(); ctx.moveTo(4, cy); ctx.lineTo(w - 4, cy); ctx.moveTo(cx, 4); ctx.lineTo(cx, H - 4); ctx.stroke();
+  if (!o.mini) { ctx.fillStyle = mu; ctx.font = '11px system-ui'; ctx.textAlign = 'right'; ctx.fillText('Re → миттєві значення', w - 6, cy - 6); }
+  const mx = { V: 1e-30, A: 1e-30 };
+  for (const it of items) { const e = it.from ? add(it.from, it.z) : it.z; mx[it.u] = Math.max(mx[it.u], abs(e), abs(it.z), it.from ? abs(it.from) : 0); }
+  const k = { V: (o.mini ? 0.86 : 0.8) * R0 / mx.V, A: (o.mini ? 0.62 : 0.55) * R0 / mx.A };
+  if (!o.mini) { ctx.strokeStyle = gr; ctx.setLineDash([3, 4]); ctx.beginPath(); ctx.arc(cx, cy, 0.8 * R0, 0, TAU); ctx.stroke(); ctx.setLineDash([]); }
+  for (const it of items) {
+    const kk = k[it.u], s = it.from || Cx(0), e = add(s, it.z);
+    const x1 = cx + s.re * kk, y1 = cy - s.im * kk, x2 = cx + e.re * kk, y2 = cy - e.im * kk;
+    arrow(ctx, x1, y1, x2, y2, it.color, it.w || (o.mini ? 1.6 : 2.2), it.dash);
+    if (it.proj && !o.mini) {
+      ctx.strokeStyle = it.color; ctx.globalAlpha = 0.55; ctx.setLineDash([3, 3]); ctx.lineWidth = 1;
+      ctx.beginPath(); ctx.moveTo(x2, y2); ctx.lineTo(x2, cy); ctx.stroke(); ctx.setLineDash([]); ctx.globalAlpha = 1;
+      ctx.fillStyle = it.color; ctx.beginPath(); ctx.arc(x2, cy, 3.5, 0, TAU); ctx.fill();
+    }
+    if (it.label && (!o.mini || it.miniLabel)) {
+      const L = Math.hypot(x2 - x1, y2 - y1) || 1, nx = -(y2 - y1) / L, ny = (x2 - x1) / L;
+      ctx.fillStyle = it.color;
+      richText(ctx, it.label, (x1 + x2) / 2 + nx * 11 * (it.side || 1), (y1 + y2) / 2 + ny * 11 * (it.side || 1), o.mini ? 10 : 12, 'center');
+    }
+  }
+}
+
+/* =====================================================================
+   Вкладки: спільна інфраструктура
+   ===================================================================== */
+const TABS = {};
+let ACTIVE = 1;
+const SPEC = {
+  nu: { label: 'ν', plain: 'частота', unit: 'Гц', min: 20, max: 100000, log: true, hardMin: 1 },
+  E0: { label: 'E<sub>m</sub>', plain: 'амплітуда ЕРС', unit: 'В', min: 0, max: 10, round: v => +v.toFixed(2) },
+  R: { label: 'R', unit: 'Ом', min: 1, max: 1000, log: true, hardMin: 0.01 },
+  Ri: { label: 'R<sub>i</sub>', unit: 'Ом', min: 0.1, max: 600, log: true },
+  RL: { label: 'R<sub>L</sub>', unit: 'Ом', min: 0, max: 20, round: v => +v.toFixed(2) },
+  C: { label: 'C', unit: 'мкФ', mul: 1e6, min: 0.1e-6, max: 10e-6, log: true, hardMin: 1e-12 },
+  L: { label: 'L', unit: 'мГн', mul: 1e3, min: 0.1e-3, max: 20e-3, log: true, hardMin: 1e-9 },
+  Rk: { label: 'R<sub>k</sub>', unit: 'Ом', min: 10, max: 10000, log: true, hardMin: 0.01 },
+};
+const RLIST = [10, 15, 25, 50, 75, 100, 150, 200];
+const colors = () => { const o = {}; for (const k of ['c1', 'c2', 'c3', 'c4', 'c5', 'c6', 'c7', 'marker', 'fg', 'muted']) o[k] = cssv('--' + k); return o; };
+const zfmt = z => `${nf(z.re)} ${z.im < 0 ? '−' : '+'} ${nf(Math.abs(z.im))}·i`;
+
+function newTab(n, st) {
+  const tab = {
+    n, st: { ...st }, def: { ...st }, syncers: [], onRes: [], dirty: true, theta: 0, paused: false, scan: {}, res: null, flows: [],
+    set(k, v, src) { this.st[k] = v; this.sync(src, k); this.dirty = true; },
+    sync(src, k) { for (const f of this.syncers) f(src, k); },
+    reset() { const sc = this.st.scope; Object.assign(this.st, this.def); this.st.scope = sc; sc.auto = true; this.sync('reset'); this.dirty = true; },
+  };
+  tab.liveEls = $$('[data-live]', $('#t' + n));
+  TABS[n] = tab;
+  return tab;
+}
+function updateLive(tab, r) {
+  for (const el of tab.liveEls) { const f = tab.live[el.dataset.live]; if (f) el.innerHTML = f(r); }
+}
+function makeGraph(host, title, hgt = 260) {
+  const head = h('h4', { html: title }), cv = h('div', { class: 'cv' });
+  host.append(h('div', { class: 'g' }, head, cv));
+  const p = new Plot(cv, { height: hgt }); p.head = head; return p;
+}
+function table(cap, heads, rows) {
+  return h('div', { class: 'tw' }, h('table', {}, h('caption', {}, cap),
+    h('thead', {}, h('tr', {}, heads.map(x => h('th', { html: x })))),
+    h('tbody', {}, rows.map(r => h('tr', {}, r.map(c => h('td', {}, c)))))));
+}
+function makePhasorPanel(host, tab, refAngle, minis) {
+  const cv = h('canvas'), leg = h('div', { class: 'legend' });
+  const btn = h('button', { class: 'btn' }, '⏸ Зупинити обертання');
+  btn.onclick = () => {
+    tab.paused = !tab.paused;
+    if (tab.paused && tab.res) tab.theta = refAngle(tab.res);
+    btn.textContent = tab.paused ? '▶ Обертати' : '⏸ Зупинити обертання'; btn.classList.toggle('on', tab.paused);
+  };
+  host.append(h('div', { style: 'display:flex;justify-content:space-between;align-items:center;gap:6px;flex-wrap:wrap;margin-bottom:4px' },
+    h('b', { style: 'font-size:13px' }, 'Векторна діаграма'), btn), cv, leg,
+    h('div', { class: 'hint' }, `Вектори обертаються проти годинникової стрілки з частотою ω (анімацію уповільнено до ${nf(FVIS, 2)} об/с). Проєкції на горизонталь дорівнюють миттєвим значенням. Струм і напруги мають різні масштаби.`));
+  const out = { cv, leg, minis: [] };
+  if (minis) {
+    const box = h('div', { class: 'minis' });
+    for (const t of ['ω < ω₀', 'ω = ω₀', 'ω > ω₀']) { const c = h('canvas'); out.minis.push(c); box.append(h('div', {}, c, t)); }
+    host.append(h('div', { class: 'hint', style: 'margin-top:8px' }, 'Три характерні випадки :'), box);
+  }
+  return out;
+}
+function legendHTML(items) {
+  return items.map(([c, t]) => `<span><i style="background:${c}"></i>${t}</span>`).join('');
+}
+function peakWidth(f, lo, hi) {
+  const N = 320, q = (hi / lo) ** (1 / N);
+  let best = lo, fb = -1;
+  for (let i = 0; i <= N; i++) { const x = lo * q ** i, y = f(x); if (y > fb) { fb = y; best = x; } }
+  let a = best / q, b = best * q;
+  for (let k = 0; k < 50; k++) { const m1 = a + (b - a) * 0.382, m2 = a + (b - a) * 0.618; if (f(m1) > f(m2)) b = m2; else a = m1; }
+  const pk = (a + b) / 2, fm = f(pk), lev = fm / SQ2;
+  const bis = (x1, x2) => {
+    let g1 = f(x1) - lev; if (g1 * (f(x2) - lev) > 0) return NaN;
+    for (let k = 0; k < 60; k++) { const m = Math.sqrt(x1 * x2), g = f(m) - lev; if (g * g1 > 0) { x1 = m; g1 = g; } else x2 = m; }
+    return Math.sqrt(x1 * x2);
+  };
+  const n1 = bis(pk / 100, pk), n2 = bis(pk, pk * 100);
+  return { pk, fm, n1, n2, Q: pk / (n2 - n1) };
+}
+/* ширина за дискретними «виміряними» точками (лінійна інтерполяція) */
+function widthFromPoints(pts) {
+  if (pts.length < 3) return null;
+  const P = [...pts].sort((a, b) => a[0] - b[0]);
+  let im = 0; P.forEach((p, i) => { if (p[1] > P[im][1]) im = i; });
+  const lev = P[im][1] / SQ2;
+  let n1 = NaN, n2 = NaN;
+  for (let i = im; i > 0; i--) if (P[i - 1][1] < lev) { const [x1, y1] = P[i - 1], [x2, y2] = P[i]; n1 = x1 + (lev - y1) / (y2 - y1) * (x2 - x1); break; }
+  for (let i = im; i < P.length - 1; i++) if (P[i + 1][1] < lev) { const [x1, y1] = P[i], [x2, y2] = P[i + 1]; n2 = x1 + (lev - y1) / (y2 - y1) * (x2 - x1); break; }
+  return { pk: P[im][0], n1, n2, Q: P[im][0] / (n2 - n1), max: P[im][1] };
+}
+function makeAutoscanButtons(tab, run, clear) {
+  const b = h('button', { class: 'btn primary' }, '▶ Автозйомка');
+  const c = h('button', { class: 'btn' }, 'Очистити точки');
+  b.onclick = async () => {
+    if (tab.scanning) { tab.scanning = false; return; }
+    tab.scanning = true; b.textContent = '■ Зупинити'; b.classList.remove('primary');
+    try { await run(); } finally { tab.scanning = false; b.textContent = '▶ Автозйомка'; b.classList.add('primary'); tab.dirty = true; }
+  };
+  c.onclick = () => { clear(); tab.dirty = true; };
+  return h('div', { class: 'btns' }, b, c);
+}
+
+/* =====================================================================
+   Роботи 1 і 2: RC- та RL-коло
+   ===================================================================== */
+function makeLab12(n, kind) {
+  const isC = kind === 'C';
+  const tab = newTab(n, isC
+    ? { nu: 1590, E0: 2, R: 100, X1: 1e-6, X2: 2e-6, conn: '1', Ri: 5, RL: 0.8 }
+    : { nu: 8000, E0: 2, R: 100, X1: 1e-3, X2: 2e-3, conn: '1', Ri: 5, RL: 0.8 });
+  const st = tab.st;
+  tab.scan = { xr: [], phi: [] };
+  const S = isC ? 'C' : 'L', UX = isC ? 'U_C' : 'U_L', UXh = isC ? 'U<sub>C</sub>' : 'U<sub>L</sub>';
+  const CONN = ['1', '2', 's', 'p'];
+  const eq = (s, c) => isC
+    ? (c === '1' ? s.X1 : c === '2' ? s.X2 : c === 's' ? s.X1 * s.X2 / (s.X1 + s.X2) : s.X1 + s.X2)
+    : (c === '1' ? s.X1 : c === '2' ? s.X2 : c === 's' ? s.X1 + s.X2 : s.X1 * s.X2 / (s.X1 + s.X2));
+  const unitX = isC ? 'Ф' : 'Гн';
+  const cName = c => ({ 1: `${S}₁`, 2: `${S}₂`, s: `${S}₁+${S}₂ посл.`, p: `${S}₁∥${S}₂` })[c];
+  const ZX = (s, w, c) => {
+    if (isC) return Cx(0, -1 / (w * eq(s, c)));
+    const z1 = Cx(s.RL, w * s.X1), z2 = Cx(s.RL, w * s.X2);
+    return c === '1' ? z1 : c === '2' ? z2 : c === 's' ? add(z1, z2) : par(z1, z2);
+  };
+  function model(s, nu, c = s.conn, R = s.R) {
+    const w = TAU * nu, zx = ZX(s, w, c), zr = par(Cx(R), Cx(RIN)), zxm = par(zx, Cx(RIN));
+    const zext = add(zr, zxm), Z = add(Cx(s.Ri), zext), E = Cx(s.E0), I = div(E, Z);
+    const UR = mul(I, zr), UX = mul(I, zxm), U = mul(I, zext), IR = scl(UR, 1 / R);
+    let branch = null;
+    if (c === 'p') {
+      const z1 = isC ? Cx(0, -1 / (w * s.X1)) : Cx(s.RL, w * s.X1), z2 = isC ? Cx(0, -1 / (w * s.X2)) : Cx(s.RL, w * s.X2);
+      branch = [div(UX, z1), div(UX, z2)];
+    }
+    return { nu, w, zx, Z, E, I, IR, UR, UX, U, URi: scl(I, s.Ri), phi: wrapA(arg(U) - arg(IR)), Xid: isC ? 1 / (w * eq(s, c)) : w * eq(s, c), Xeq: eq(s, c), branch };
+  }
+  tab.model = model;
+  function nuStar(s, c, R) {
+    const f = nu => { const m = model(s, nu, c, R); return Math.log(abs(m.UX) / abs(m.UR)); };
+    let a = Math.log(1), b = Math.log(1e8);
+    const fa = f(Math.exp(a));
+    if (fa * f(Math.exp(b)) > 0) return NaN;
+    for (let k = 0; k < 70; k++) { const m = (a + b) / 2, fm = f(Math.exp(m)); if (fm * fa > 0) a = m; else b = m; }
+    return Math.exp((a + b) / 2);
+  }
+
+  /* ---- панель параметрів ---- */
+  const spX = (i, d) => isC
+    ? { label: `C<sub>${i}</sub>`, unit: 'мкФ', mul: 1e6, min: 0.1e-6, max: 10e-6, log: true, hardMin: 1e-12 }
+    : { label: `L<sub>${i}</sub>`, unit: 'мГн', mul: 1e3, min: 0.1e-3, max: 20e-3, log: true, hardMin: 1e-9 };
+  const p = $('#p' + n);
+  p.append(h('h3', {}, 'Параметри'),
+    makeSlider(tab, 'nu', SPEC.nu), makeSlider(tab, 'E0', SPEC.E0), makeSlider(tab, 'R', SPEC.R),
+    makeSlider(tab, 'X1', spX(1)), makeSlider(tab, 'X2', spX(2)),
+    ...(isC ? [] : [makeSlider(tab, 'RL', SPEC.RL)]), makeSlider(tab, 'Ri', SPEC.Ri),
+    h('div', { class: 'pgroup' }, h('b', {}, isC ? "З'єднання конденсаторів" : "З'єднання котушок"),
+      makeSeg(tab, 'conn', [['1', `одиночний ${S}₁`], ['2', `одиночний ${S}₂`], ['s', 'послідовне'], ['p', 'паралельне']], 'conn' + n)),
+    h('div', { class: 'pgroup' }, h('b', {}, 'Пресети'), h('div', { class: 'btns' },
+      isC ? [
+        h('button', { class: 'btn', onclick: () => { tab.set('nu', 1590, 'preset'); tab.set('R', 100); } }, 'ν = 1,59 кГц'),
+        h('button', { class: 'btn', onclick: () => { tab.set('X1', 1e-6); tab.set('X2', 2e-6); tab.set('conn', '2'); tab.set('R', 100); tab.set('nu', 1000, 'preset'); } }, 'C = 2 мкФ, R = 100 Ом'),
+      ] : [
+        h('button', { class: 'btn', onclick: () => { tab.set('X1', 1e-3); tab.set('X2', 2e-3); tab.set('nu', 8000, 'preset'); } }, 'ν = 8 кГц'),
+        h('button', { class: 'btn', onclick: () => { tab.set('X1', 9e-3); tab.set('conn', '1'); tab.set('R', 50); tab.set('nu', 2000, 'preset'); } }, 'L = 9 мГн, R = 50 Ом'),
+      ],
+      h('button', { class: 'btn', onclick: () => tab.reset() }, 'Скинути'))),
+    h('div', { class: 'pgroup' }, h('b', {}, 'Вимірювання'),
+      makeAutoscanButtons(tab, autoscan, () => { tab.scan.xr = []; tab.scan.phi = []; renderScan(); }),
+      h('div', { class: 'hint', html: `Автозйомка знімає дві таблиці. Перша: для кожного R = 10…200 Ом шукає ν, на якій ${UXh} = U<sub>R</sub>, тобто X = R. Друга: φ(ν) на 1…16 кГц. Точки з шумом відліку лягають поверх теорії.` })));
+
+  /* ---- схема ---- */
+  const svg = sv('svg', { viewBox: '0 0 560 300', class: 'sch' }); $('#s' + n).append(svg);
+  const gw = sv('g', {}, svg), gx = sv('g', {}, svg), gf = sv('g', {}, svg), ge = sv('g', {}, svg), gxe = sv('g', {}, svg), gl = sv('g', {}, svg);
+  SCH.wire(gw, [[60, 150], [60, 40], [300, 40], [300, 150]]);
+  SCH.wire(gw, [[300, 250], [300, 260], [60, 260], [60, 150]]);
+  sv('rect', { x: 18, y: 62, width: 92, height: 176, rx: 6, class: 'box' }, ge);
+  SCH.txt(ge, 88, 78, 'Г3-112', 'sm', 'middle');
+  SCH.res(ge, 60, 118, true, 40, 14);
+  SCH.src(ge, 60, 188);
+  SCH.txt(ge, 76, 122, subT('R', 'i'));
+  SCH.txt(ge, 86, 193, 'ℰ');
+  SCH.res(ge, 300, 95, true);
+  SCH.dot(ge, 300, 40); SCH.dot(ge, 300, 150); SCH.dot(ge, 300, 260);
+  sv('path', { d: 'M300,40 H392 V96 H430', class: 'wt' }, gw);
+  sv('path', { d: 'M300,150 H430', class: 'wt' }, gw);
+  sv('path', { d: 'M300,260 H392 V204 H430', class: 'wt' }, gw);
+  sv('rect', { x: 430, y: 66, width: 118, height: 168, rx: 6, class: 'dev' }, ge);
+  SCH.txt(ge, 489, 86, 'С1-93', 'big', 'middle');
+  SCH.txt(ge, 489, 116, 'диф. підсилювач', 'sm', 'middle');
+  SCH.txt(ge, 438, 100, 'A', 'sm'); SCH.txt(ge, 438, 154, '⊥', 'sm'); SCH.txt(ge, 438, 208, 'B', 'sm');
+  SCH.txt(ge, 489, 140, 'кан. I: ' + subT('U', 'R'), 'sm', 'middle');
+  SCH.txt(ge, 489, 190, 'кан. II: ' + subT('U', S), 'sm', 'middle');
+  SCH.txt(ge, 489, 222, 'R<tspan class="sub" dy="3">вх</tspan><tspan dy="-3"> = 1 МОм</tspan>', 'sm', 'middle');
+  const L = {
+    E: SCH.txt(gl, 14, 284, '', 'lv'), Ri: SCH.txt(gl, 14, 30, '', 'lv'),
+    R: SCH.txt(gl, 316, 92, '', 'lv'), X: SCH.txt(gl, 0, 0, '', 'lv'), X2: SCH.txt(gl, 0, 0, '', 'lv'), Xe: SCH.txt(gl, 0, 0, '', 'lv'),
+    I: SCH.txt(gl, 150, 32, '', 'lv'),
+  };
+  SCH.txt(gl, 316, 76, 'R');
+  const fMain = new Flow(gf, [[0, 0], [1, 0]]), fB1 = new Flow(gf, [[0, 0], [1, 0]]), fB2 = new Flow(gf, [[0, 0], [1, 0]]);
+  let lastConn = null;
+  const elem = (g, x, y, len) => { if (isC) SCH.cap(g, x, y, true, len > 40 ? 28 : 22); else SCH.ind(g, x, y, true, len); };
+  function drawX(c) {
+    gx.innerHTML = ''; gxe.innerHTML = '';
+    if (c === 'p') {
+      SCH.wire(gx, [[300, 150], [300, 165], [270, 165], [270, 235], [300, 235], [300, 250]]);
+      SCH.wire(gx, [[300, 165], [330, 165], [330, 235], [300, 235]]);
+      elem(gxe, 270, 200, 44); elem(gxe, 330, 200, 44);
+      SCH.dot(gxe, 300, 165); SCH.dot(gxe, 300, 235);
+      fMain.setPts([[300, 235], [300, 260], [60, 260], [60, 40], [300, 40], [300, 165]]);
+      fB1.setPts([[300, 165], [270, 165], [270, 235], [300, 235]]);
+      fB2.setPts([[300, 165], [330, 165], [330, 235], [300, 235]]);
+      L.X.setAttribute('x', 344); L.X.setAttribute('y', 196); L.X2.setAttribute('x', 344); L.X2.setAttribute('y', 212);
+      L.Xe.setAttribute('x', 344); L.Xe.setAttribute('y', 180);
+    } else {
+      SCH.wire(gx, [[300, 150], [300, 250]]);
+      if (c === 's') { elem(gxe, 300, 176, 36); elem(gxe, 300, 224, 36); }
+      else elem(gxe, 300, 200, 56);
+      fMain.setPts([[60, 260], [60, 40], [300, 40], [300, 260], [60, 260]]);
+      L.X.setAttribute('x', 318); L.X.setAttribute('y', c === 's' ? 180 : 197);
+      L.X2.setAttribute('x', 318); L.X2.setAttribute('y', 228);
+      L.Xe.setAttribute('x', 318); L.Xe.setAttribute('y', c === 's' ? 252 : 214);
+    }
+    lastConn = c;
+  }
+  tab.flows = [
+    { flow: fMain, get: r => r.I, ref: r => r.E0ref },
+    { flow: fB1, get: r => (r.branch ? r.branch[0] : Cx(0)), ref: r => r.E0ref, only: 'p' },
+    { flow: fB2, get: r => (r.branch ? r.branch[1] : Cx(0)), ref: r => r.E0ref, only: 'p' },
+  ];
+
+  /* ---- векторна діаграма ---- */
+  const ph = makePhasorPanel($('#ph' + n), tab, r => -arg(r.IR), false);
+
+  /* ---- прилади ---- */
+  const ih = $('#i' + n);
+  makeGenerator(ih, tab, 'g3112');
+  const scope = makeScope(ih, tab, {
+    name: 'С1-93', chans: [{ name: 'U_R', get: r => r.UR }, { name: UX, get: r => r.UX }], xy: { x: 1, y: 0 },
+    note: `Канал I (Y) показує U<sub>R</sub> ∝ I, канал II (X) показує ${UXh}. У режимі X–Y видно еліпс. Коло буде лише при однакових В/под і ${UXh} = U<sub>R</sub>, тобто X = R.`,
+  });
+
+  /* ---- графіки ---- */
+  const gh = $('#g' + n);
+  const P1 = makeGraph(gh, isC ? 'X<sub>C</sub>(ν), log–log, з точками X<sub>C</sub> = R для R = 10…200 Ом' : 'X<sub>L</sub>(ν), log–log, з точками X<sub>L</sub> = R для R = 10…200 Ом');
+  const P2 = makeGraph(gh, '');
+  const P3 = makeGraph(gh, isC ? 'Зсув фаз φ(ν) між напругою генератора і струмом' : 'Зсув фаз φ(ν)');
+  const P4 = makeGraph(gh, `Амплітуди U<sub>R</sub>(ν) і ${UXh}(ν): перетин дає X = R`);
+  const P5 = isC ? null : makeGraph(gh, 'tg φ: точний (ωL/(R+R<sub>L</sub>)) проти U<sub>L</sub>/U<sub>R</sub>. Видно вплив R<sub>L</sub>');
+
+  /* ---- живі значення в теорії ---- */
+  tab.live = {
+    cgs: r => `СГС: R = ${nf(st.R * CGS.ohm)} с/см · ${S} = ${nf(r.Xeq * (isC ? CGS.F : CGS.H))} ${isC ? 'см' : 'с²/см'} · ω = ${nf(r.w)} с⁻¹ · E<sub>m</sub> = ${nf(st.E0 * CGS.V)} статВ`,
+    XC: r => `ν = ${si(st.nu, 'Гц')}, C = ${si(r.Xeq, 'Ф')} → X<sub>C</sub> = ${si(r.Xid, 'Ом')};  |Z| = ${si(Math.hypot(st.R, r.Xid), 'Ом')};  I<sub>m</sub> = ${si(abs(r.I), 'А')}`,
+    XL: r => `ν = ${si(st.nu, 'Гц')}, L = ${si(r.Xeq, 'Гн')} → X<sub>L</sub> = ωL = ${si(r.Xid, 'Ом')};  I<sub>m</sub> = ${si(abs(r.I), 'А')}`,
+    phi: r => isC
+      ? `tg φ = −X<sub>C</sub>/R = ${nf(-r.Xid / st.R)} → φ = ${deg(Math.atan(-r.Xid / st.R))}: струм випереджає напругу на ${deg(Math.atan(r.Xid / st.R))} (модель: ${deg(r.phi)})`
+      : `R<sub>L</sub> = ${si(r.zx.re, 'Ом')} (екв.), tg φ = ωL/(R+R<sub>L</sub>) = ${nf(r.zx.im / (st.R + r.zx.re))} → φ = ${deg(Math.atan(r.zx.im / (st.R + r.zx.re)))}: струм відстає (модель: ${deg(r.phi)})`,
+    UU: r => `U<sub>Cm</sub> = ${si(abs(r.UX), 'В')}, U<sub>Rm</sub> = ${si(abs(r.UR), 'В')}, U<sub>Cm</sub>/U<sub>Rm</sub> = ${nf(abs(r.UX) / abs(r.UR))}`,
+    ratio: r => `U<sub>Lm</sub>/U<sub>Rm</sub> = ${nf(abs(r.UX) / abs(r.UR), 4)};  точний tg φ = ${nf(Math.tan(r.phi), 4)};  ідеальна котушка ωL/R = ${nf(r.Xid / st.R, 4)}`,
+    nustar: r => isC
+      ? `R = ${si(st.R, 'Ом')}, C = ${si(r.Xeq, 'Ф')} → ν<sub>*</sub> = ${si(1 / (TAU * st.R * r.Xeq), 'Гц')}  (з повною моделлю приладів ${si(nuStar(st, st.conn, st.R), 'Гц')})`
+      : `R = ${si(st.R, 'Ом')}, L = ${si(r.Xeq, 'Гн')} → ν<sub>*</sub> = ${si(st.R / (TAU * r.Xeq), 'Гц')}  (з R<sub>L</sub> і приладами: U<sub>L</sub> = U<sub>R</sub> при ${si(nuStar(st, st.conn, st.R), 'Гц')})`,
+    eff: r => `I<sub>еф</sub> = ${si(abs(r.I) / SQ2, 'А')}, U<sub>R,еф</sub> = ${si(abs(r.UR) / SQ2, 'В')}, ${UXh}<sub>,еф</sub> = ${si(abs(r.UX) / SQ2, 'В')}`,
+    Cconn: r => `C₁ = ${si(st.X1, 'Ф')}, C₂ = ${si(st.X2, 'Ф')} → C<sub>∥</sub> = ${si(eq(st, 'p'), 'Ф')}, C<sub>посл</sub> = ${si(eq(st, 's'), 'Ф')}; увімкнено ${cName(st.conn)} = ${si(r.Xeq, 'Ф')}`,
+    Lconn: r => `L₁ = ${si(st.X1, 'Гн')}, L₂ = ${si(st.X2, 'Гн')} → L<sub>посл</sub> = ${si(eq(st, 's'), 'Гн')}, L<sub>∥</sub> = ${si(eq(st, 'p'), 'Гн')}; увімкнено ${cName(st.conn)}: Z<sub>L</sub> = ${zfmt(r.zx)} Ом`,
+    model: r => `Z = ${zfmt(r.Z)} Ом, |Z| = ${si(abs(r.Z), 'Ом')};  φ(U<sub>ген</sub>, I) = ${deg(r.phi)};  φ(ℰ, I) = ${deg(arg(r.Z))}`,
+  };
+
+  /* ---- автозйомка ---- */
+  async function autoscan() {
+    const R0 = st.R, c = st.conn;
+    for (const R of RLIST) {
+      if (!tab.scanning) break;
+      tab.set('R', R, 'scan');
+      const ns = nuStar(st, c, R), nm = round3(noisy(ns, 0.015));
+      tab.set('nu', nm, 'scan');
+      tab.scan.xr.push({ conn: c, R, nu: nm, X: R, Xc: isC ? 1 / (TAU * nm * R) : R / (TAU * nm) });
+      renderScan(); await sleep(330);
+    }
+    tab.set('R', R0, 'scan');
+    for (let k = 1; k <= 16 && tab.scanning; k++) {
+      const nu = k * 1000; tab.set('nu', nu, 'scan');
+      const m = model(st, nu), uR = noisy(abs(m.UR), 0.012), uX = noisy(abs(m.UX), 0.012), tg = uX / uR;
+      tab.scan.phi.push({ nu, uR, uX, tg, phi: isC ? -Math.atan(tg) : Math.atan(tg) });
+      renderScan(); await sleep(230);
+    }
+  }
+  function renderScan() {
+    const host = $('#sc' + n); host.innerHTML = '';
+    if (tab.scan.xr.length) host.append(table('Таблиця 1. Умова X = R (рівні сигнали каналів I і II)',
+      ['R, Ом', "з'єдн.", 'ν, Гц', isC ? 'C = 1/(2πνR), мкФ' : 'L = R/(2πν), мГн'],
+      tab.scan.xr.map(p => [p.R, cName(p.conn), nf(p.nu, 4), nf(p.Xc * (isC ? 1e6 : 1e3), 3)])));
+    if (tab.scan.phi.length) host.append(table('Таблиця 2. Зсув фаз (амплітуди за осцилографом)',
+      ['ν, Гц', 'U<sub>0R</sub>, В', `${UXh}<sub>0</sub>, В`, `${UXh}/U<sub>R</sub>`, 'φ, °'],
+      tab.scan.phi.map(p => [p.nu, nf(p.uR, 3), nf(p.uX, 3), nf(p.tg, 3), nf(dg(p.phi), 3)])));
+  }
+
+  /* ---- рендер ---- */
+  tab.render = () => {
+    const r = tab.res = model(st, st.nu);
+    r.E0ref = Math.max(1e-12, st.E0 / (st.Ri + st.R + (isC ? 0 : 2 * st.RL)));
+    if (st.conn !== lastConn) drawX(st.conn);
+    tab.onRes.forEach(f => f(r));
+    updateLive(tab, r);
+    const K = colors(), COLS = [K.c1, K.c2, K.c3, K.c4];
+    const pick = v => tab.set('nu', round3(v), 'plot');
+    // підписи схеми
+    L.E.innerHTML = `ℰ<tspan class="sub" dy="3">m</tspan><tspan dy="-3"> = ${nf(st.E0)} В, ν = ${si(st.nu, 'Гц')}</tspan>`;
+    L.Ri.innerHTML = `R<tspan class="sub" dy="3">i</tspan><tspan dy="-3"> = ${nf(st.Ri)} Ом</tspan>`;
+    L.R.textContent = si(st.R, 'Ом');
+    L.I.innerHTML = `I<tspan class="sub" dy="3">m</tspan><tspan dy="-3"> = ${si(abs(r.I), 'А')}</tspan>`;
+    const xl = (i, v) => `${S}<tspan class="sub" dy="3">${i}</tspan><tspan dy="-3"> = ${si(v, unitX)}</tspan>`;
+    if (st.conn === '1' || st.conn === '2') {
+      L.X.innerHTML = xl(st.conn, st.conn === '1' ? st.X1 : st.X2);
+      L.X2.innerHTML = '';
+    } else { L.X.innerHTML = xl(1, st.X1); L.X2.innerHTML = xl(2, st.X2); }
+    L.Xe.innerHTML = isC ? (st.conn === 's' || st.conn === 'p' ? `C<tspan class="sub" dy="3">екв</tspan><tspan dy="-3"> = ${si(r.Xeq, 'Ф')}</tspan>` : '')
+      : `R<tspan class="sub" dy="3">L</tspan><tspan dy="-3"> = ${nf(st.RL)} Ом/кот.</tspan>`;
+    tab.flows[1].flow.g.style.display = tab.flows[2].flow.g.style.display = st.conn === 'p' ? '' : 'none';
+
+    // P1: X(ν) log-log
+    const Xof = (c, nu) => (isC ? 1 / (TAU * nu * eq(st, c)) : TAU * nu * eq(st, c));
+    const nuOf = (c, R) => (isC ? 1 / (TAU * R * eq(st, c)) : R / (TAU * eq(st, c)));
+    P1.set({
+      x: { log: true, min: 100, max: 1e5, label: 'ν, Гц', hfmt: v => si(v, 'Гц') },
+      y: { log: true, min: isC ? 1 : 0.1, max: 1e4, label: `X_${S}, Ом`, hfmt: v => si(v, 'Ом') },
+      series: CONN.map((c, i) => ({ label: `${cName(c)} = ${si(eq(st, c), unitX)}`, color: COLS[i], w: c === st.conn ? 3 : 1.4, fn: nu => Xof(c, nu) })),
+      points: [
+        ...CONN.map((c, i) => ({ color: COLS[i], fill: false, r: 3, pts: RLIST.map(R => [nuOf(c, R), R]) })),
+        ...CONN.map((c, i) => ({ color: COLS[i], r: 3.8, ring: true, pts: tab.scan.xr.filter(q => q.conn === c).map(q => [q.nu, q.X]) })),
+        { color: K.marker, r: 5, ring: true, pts: [[st.nu, r.Xid]] }],
+      hlines: [{ y: st.R, label: 'R = ' + si(st.R, 'Ом'), left: !isC }],
+      vlines: [{ x: st.nu, color: K.marker, w: 1.6, label: 'ν = ' + si(st.nu, 'Гц') }],
+      onPickX: pick,
+    });
+    // P2: X(C) або X(L) на поточній частоті
+    const w = r.w, xs = CONN.map(c => eq(st, c));
+    const xmax = Math.max(isC ? 3.6e-6 : 3.6e-3, 1.15 * Math.max(...xs));
+    const ymax = isC ? 1.25 * Math.max(...xs.map(c => 1 / (w * c))) : w * xmax;
+    P2.head.innerHTML = isC ? `X<sub>C</sub>(C) на частоті ν = ${si(st.nu, 'Гц')}` : `X<sub>L</sub>(L) на частоті ν = ${si(st.nu, 'Гц')}`;
+    const shortN = { 1: '1', 2: '2', s: 'посл.', p: 'пар.' };
+    P2.set({
+      x: { min: 0, max: xmax, k: isC ? 1e6 : 1e3, label: isC ? 'C, мкФ' : 'L, мГн', hfmt: v => si(v, unitX) },
+      y: { min: 0, max: ymax, label: `X_${S}, Ом`, hfmt: v => si(v, 'Ом') },
+      series: [{ fn: x => (isC ? 1 / (w * x) : w * x), color: K.c5, label: isC ? 'X_C = 1/(2πνC)' : 'X_L = 2πνL', n: 500 }],
+      points: CONN.map((c, i) => ({ color: COLS[i], r: c === st.conn ? 6 : 4.5, ring: true, pts: [[eq(st, c), isC ? 1 / (w * eq(st, c)) : w * eq(st, c), shortN[c]]] })),
+      hlines: [{ y: st.R, label: 'R = ' + si(st.R, 'Ом') }],
+    });
+    // P3: φ(ν)
+    const ns = nuStar(st, st.conn, st.R);
+    const phiE = nu => dg(model(st, nu).phi);
+    const phiM = nu => { const m = model(st, nu); return dg(Math.atan(abs(m.UX) / abs(m.UR))); };
+    P3.set({
+      x: { min: 0, max: 20000, k: 1e-3, label: 'ν, кГц', hfmt: v => si(v, 'Гц') },
+      y: isC ? { min: -90, max: 90, label: 'φ, °', n: 6, hfmt: v => nf(v, 3) + '°' } : { min: 0, max: 90, label: 'φ, °', hfmt: v => nf(v, 3) + '°' },
+      series: isC
+        ? [{ fn: phiE, color: K.c1, w: 2.4, label: 'точний φ < 0 (струм випереджає)' }, { fn: phiM, color: K.c2, dash: [6, 4], label: 'arctg(U_C/U_R), лише модуль' }]
+        : [{ fn: phiE, color: K.c1, w: 2.4, label: 'точний φ = arctg(ωL/(R+R_L))' }, { fn: phiM, color: K.c2, dash: [6, 4], label: 'arctg(U_L/U_R), без поправки на R_L' }],
+      points: [{ color: K.c3, r: 4, ring: true, pts: tab.scan.phi.map(q => [q.nu, dg(q.phi)]) },
+        { color: K.marker, r: 5, ring: true, pts: [[st.nu, dg(r.phi)]] }],
+      hlines: [{ y: isC ? -45 : 45, label: isC ? '−45°' : '45°', left: true }],
+      vlines: [{ x: st.nu, color: K.marker, w: 1.6, label: 'ν' }, { x: ns, dash: [3, 3], label: 'X = R', row: 1 }],
+      legend: tab.scan.phi.length ? [{ label: 'автозйомка', color: K.c3, w: 0, dot: true }] : [],
+      onPickX: pick,
+    });
+    // P4: амплітуди
+    P4.set({
+      x: { log: true, min: 100, max: 1e5, label: 'ν, Гц', hfmt: v => si(v, 'Гц') },
+      y: { min: 0, max: Math.max(1e-6, st.E0 * 1.08), label: 'амплітуда, В', hfmt: v => si(v, 'В') },
+      series: [{ fn: nu => abs(model(st, nu).UR), color: K.c1, label: 'U_{Rm}' }, { fn: nu => abs(model(st, nu).UX), color: K.c2, label: UX + 'm' },
+        { fn: nu => abs(model(st, nu).U), color: K.c5, dash: [4, 3], w: 1.4, label: 'U_{ген}' }],
+      hlines: [{ y: st.E0, label: 'ℰ_m', left: true }],
+      vlines: [{ x: st.nu, color: K.marker, w: 1.6, label: 'ν' }, { x: ns, dash: [3, 3], label: 'X = R: ' + si(ns, 'Гц'), row: 1 }],
+      points: [{ color: K.marker, r: 4.5, ring: true, pts: [[st.nu, abs(r.UR)], [st.nu, abs(r.UX)]] }],
+      onPickX: pick,
+    });
+    if (P5) {
+      const tgE = nu => Math.tan(model(st, nu).phi), rat = nu => { const m = model(st, nu); return abs(m.UX) / abs(m.UR); };
+      P5.set({
+        x: { log: true, min: 20, max: 1e5, label: 'ν, Гц', hfmt: v => si(v, 'Гц') },
+        y: { log: true, min: 1e-3, max: 100, label: 'tg φ, U_L/U_R', hfmt: v => nf(v, 3) },
+        series: [{ fn: tgE, color: K.c1, w: 2.4, label: 'точний tg φ' }, { fn: rat, color: K.c2, dash: [6, 4], label: 'U_{Lm}/U_{Rm} (вимірюване)' },
+          { fn: nu => TAU * nu * r.Xeq / st.R, color: K.c7, dash: [2, 3], w: 1.3, label: 'ідеальна котушка ωL/R' }],
+        hlines: [{ y: r.zx.re / st.R, label: 'R_L/R = ' + nf(r.zx.re / st.R, 3), left: true, color: K.c4 }],
+        vlines: [{ x: st.nu, color: K.marker, w: 1.6, label: 'ν' }],
+        points: [{ color: K.marker, r: 4.5, ring: true, pts: [[st.nu, Math.tan(r.phi)], [st.nu, abs(r.UX) / abs(r.UR)]] }],
+        onPickX: pick,
+      });
+    }
+  };
+
+  /* ---- анімація ---- */
+  tab.tick = (dt, now) => {
+    const r = tab.res; if (!r) return;
+    const th = tab.theta;
+    for (const f of tab.flows) if (!f.only || f.only === st.conn) f.flow.step(tab.paused ? 0 : inst(f.get(r), th) / f.ref(r), dt);
+    const K = colors(), Rr = z => rot(z, th);
+    const items = [
+      { z: Rr(r.UR), color: K.c1, label: 'U_R', u: 'V' },
+      { z: Rr(r.UX), from: Rr(r.UR), color: isC ? K.c2 : K.c4, label: UX, u: 'V' },
+      { z: Rr(r.URi), from: Rr(add(r.UR, r.UX)), color: K.c7, label: 'IR_i', u: 'V', side: -1 },
+      { z: Rr(r.E), color: K.c5, label: 'ℰ', u: 'V', w: 2.6, proj: true, side: -1 },
+      { z: Rr(r.IR), color: K.c3, label: 'I', u: 'A', w: 3.2, proj: true },
+    ];
+    if (!isC) {
+      const IRL = mul(r.IR, Cx(r.zx.re)), IXL = mul(r.IR, Cx(0, r.zx.im));
+      items.splice(2, 0, { z: Rr(IRL), from: Rr(r.UR), color: K.c4, dash: [3, 3], w: 1.4, u: 'V' },
+        { z: Rr(IXL), from: Rr(add(r.UR, IRL)), color: K.c4, dash: [3, 3], w: 1.4, u: 'V', label: 'U_{L,ід}', side: -1 });
+    }
+    drawPhasors(ph.cv, items, { ratio: 0.8 });
+    if (!tab._legT || now - tab._legT > 300) {
+      tab._legT = now;
+      ph.leg.innerHTML = legendHTML([[K.c3, `I<sub>m</sub>=${si(abs(r.I), 'А')}`], [K.c1, `U<sub>R</sub>=${si(abs(r.UR), 'В')}`],
+        [isC ? K.c2 : K.c4, `${UXh}=${si(abs(r.UX), 'В')}`], [K.c5, `ℰ<sub>m</sub>=${si(st.E0, 'В')}`], [K.c7, `φ=${deg(r.phi)}`]]);
+    }
+    scope.draw(r, th);
+  };
+  tab.sync('init');
+  renderScan();
+  return tab;
+}
+
+/* =====================================================================
+   Робота 3: послідовний і паралельний контури
+   ===================================================================== */
+function makeLab3() {
+  const n = 3;
+  const tab = newTab(n, { nu: 3000, E0: 1, R: 10, C: 1.2e-6, L: 2e-3, RL: 0.8, Ri: 5, mode: 's', Rk: 1000, Rp: Infinity, vm: 'R' });
+  const st = tab.st;
+  tab.scan = { s: [], p: [] };
+  const RPS = [[Infinity, '∞'], [1000, '1 кОм'], [500, '500 Ом']];
+  const rpName = v => (isFinite(v) ? si(v, 'Ом') : '∞');
+
+  function mS(s, nu, R = s.R) {
+    const w = TAU * nu, ZL = Cx(s.RL, w * s.L), ZC = Cx(0, -1 / (w * s.C)), ZR = par(Cx(R), Cx(RIN / 2));
+    const Z = add(Cx(s.Ri), ZR, ZL, ZC), E = Cx(s.E0), I = div(E, Z);
+    return { mode: 's', nu, w, ZL, ZC, Z, E, I, UR: mul(I, ZR), UL: mul(I, ZL), ULi: mul(I, Cx(0, w * s.L)), UC: mul(I, ZC),
+      ULC: mul(I, add(ZL, ZC)), URi: scl(I, s.Ri), U: sub(E, scl(I, s.Ri)), phi: arg(Z), P: 0.5 * (E.re * I.re + E.im * I.im) };
+  }
+  function mP(s, nu, Rp = s.Rp) {
+    const w = TAU * nu, ZL = Cx(s.RL, w * s.L);
+    const Y = add(inv(ZL), Cx(0, w * s.C), Cx(isFinite(Rp) ? 1 / Rp : 0), Cx(1 / RIN));
+    const Zt = inv(Y), Z = add(Cx(s.Ri + s.Rk), Zt), E = Cx(s.E0), I = div(E, Z), Ut = mul(I, Zt);
+    return { mode: 'p', nu, w, ZL, Zt, Z, E, I, Ut, IL: div(Ut, ZL), IC: mul(Ut, Cx(0, w * s.C)), IRb: isFinite(Rp) ? scl(Ut, 1 / Rp) : Cx(0),
+      URk: scl(I, s.Rk), U: sub(E, scl(I, s.Ri)), URi: scl(I, s.Ri), phi: arg(Zt) };
+  }
+  const model = (s, nu) => (s.mode === 's' ? mS(s, nu) : mP(s, nu));
+  tab.model = model;
+  function derived(s) {
+    const nu0 = 1 / (TAU * Math.sqrt(s.L * s.C)), w0 = TAU * nu0, rho = Math.sqrt(s.L / s.C), Rs = s.R + s.Ri + s.RL;
+    const Rpl = s.L / (s.C * s.RL), Req = isFinite(s.Rp) ? (s.RL > 0 ? Rpl * s.Rp / (Rpl + s.Rp) : s.Rp) : Rpl;
+    const Rload = isFinite(Req) ? Req * (s.Rk + s.Ri) / (Req + s.Rk + s.Ri) : s.Rk + s.Ri;
+    return { nu0, w0, rho, Rs, Qth: rho / Rs, gamma: Rs / (2 * s.L), Rpl, Req, Rload, Qtank: Req / rho, Qload: Rload / rho };
+  }
+
+  /* ---- параметри ---- */
+  const p = $('#p' + n);
+  const gS = h('div', {}, makeSlider(tab, 'R', { ...SPEC.R, max: 500 }));
+  const gP = h('div', {}, makeSlider(tab, 'Rk', SPEC.Rk),
+    h('div', { style: 'font-size:13px;margin-top:4px' }, 'Опір R паралельно контуру:'), makeSeg(tab, 'Rp', RPS, 'rp3'));
+  p.append(h('h3', {}, 'Параметри'),
+    makeSeg(tab, 'mode', [['s', 'послідовний'], ['p', 'паралельний']], 'mode3'),
+    makeSlider(tab, 'nu', SPEC.nu), makeSlider(tab, 'E0', SPEC.E0), gS, gP,
+    makeSlider(tab, 'C', SPEC.C), makeSlider(tab, 'L', SPEC.L), makeSlider(tab, 'RL', SPEC.RL), makeSlider(tab, 'Ri', SPEC.Ri),
+    h('div', { class: 'btns' },
+      h('button', { class: 'btn', onclick: () => tab.set('nu', round3(derived(st).nu0), 'preset') }, 'ν → ν₀'),
+      h('button', { class: 'btn', onclick: () => { tab.set('mode', 's'); tab.set('R', 10); tab.set('C', 1.2e-6); tab.set('L', 2e-3); } }, 'R = 10 Ом'),
+      h('button', { class: 'btn', onclick: () => { tab.set('mode', 's'); tab.set('R', 50); } }, 'R = 50 Ом'),
+      h('button', { class: 'btn', onclick: () => tab.reset() }, 'Скинути')),
+    h('div', { class: 'pgroup' }, h('b', {}, 'Вимірювання'),
+      makeAutoscanButtons(tab, autoscan, () => { tab.scan.s = []; tab.scan.p = []; renderScan(); }),
+      h('div', { class: 'hint' }, 'Автозйомка проходить частоти навколо ν₀ і записує показ В7-16А (ефективне значення). Точки з шумом лягають на АЧХ, а Q рахується з виміряних точок.')));
+  tab.syncers.push(() => { gS.style.display = st.mode === 's' ? '' : 'none'; gP.style.display = st.mode === 'p' ? '' : 'none'; });
+
+  /* ---- схеми 3.6 і 3.7 ---- */
+  const host = $('#s' + n);
+  const svgS = sv('svg', { viewBox: '0 0 600 300', class: 'sch' }), svgP = sv('svg', { viewBox: '0 0 600 300', class: 'sch' });
+  host.append(svgS, svgP);
+  const genBox = (g, name) => {
+    sv('rect', { x: 18, y: 72, width: 92, height: 166, rx: 6, class: 'box' }, g);
+    SCH.txt(g, 88, 84, name, 'sm', 'middle');
+    SCH.res(g, 60, 116, true, 40, 14); SCH.src(g, 60, 192);
+    SCH.txt(g, 74, 120, subT('R', 'i')); SCH.txt(g, 86, 197, 'ℰ');
+  };
+  // послідовний
+  const sw = sv('g', {}, svgS), sf = sv('g', {}, svgS), se = sv('g', {}, svgS), sl = sv('g', {}, svgS);
+  SCH.wire(sw, [[60, 260], [60, 50], [440, 50], [440, 260], [60, 260]]);
+  genBox(se, 'Г3-56/1');
+  SCH.res(se, 200, 50, false);
+  SCH.wire(se, [[166, 50], [166, 106], [184, 106]]); SCH.wire(se, [[216, 106], [234, 106], [234, 50]]);
+  SCH.meter(se, 200, 106, 'V'); SCH.dot(se, 166, 50); SCH.dot(se, 234, 50);
+  sv('rect', { x: 412, y: 82, width: 56, height: 140, rx: 5, class: 'box' }, se);
+  SCH.ind(se, 440, 122, true, 56); SCH.res(se, 440, 190, true, 30, 12);
+  SCH.cap(se, 260, 260, false);
+  SCH.txt(se, 200, 36, 'R', '', 'middle'); SCH.txt(se, 252, 110, 'В7-16А', 'sm');
+  SCH.txt(se, 478, 98, 'котушка', 'sm'); SCH.txt(se, 260, 292, 'C', '', 'middle');
+  SCH.txt(se, 120, 290, 'С1-83: кан. I — U<tspan class="sub" dy="3">ген</tspan><tspan dy="-3">, кан. II — U</tspan><tspan class="sub" dy="3">R</tspan>', 'sm');
+  const LS = {
+    E: SCH.txt(sl, 14, 282, '', 'lv'), Ri: SCH.txt(sl, 14, 30, '', 'lv'), R: SCH.txt(sl, 248, 40, '', 'lv'), Lv: SCH.txt(sl, 476, 126, '', 'lv'),
+    RL: SCH.txt(sl, 476, 194, '', 'lv'), Cv: SCH.txt(sl, 290, 250, '', 'lv'), I: SCH.txt(sl, 345, 40, '', 'lv'),
+  };
+  const fS = new Flow(sf, [[60, 260], [60, 50], [440, 50], [440, 260], [60, 260]]);
+  // паралельний
+  const pw = sv('g', {}, svgP), pf = sv('g', {}, svgP), pe = sv('g', {}, svgP), pl = sv('g', {}, svgP);
+  SCH.wire(pw, [[300, 260], [60, 260], [60, 50], [470, 50]]);
+  SCH.wire(pw, [[300, 50], [300, 260]]); SCH.wire(pw, [[390, 50], [390, 260]]);
+  SCH.wire(pw, [[470, 260], [300, 260]]);
+  const rWireTop = SCH.wire(pw, [[470, 50], [470, 122]]), rWireBot = SCH.wire(pw, [[470, 188], [470, 260]]);
+  SCH.wire(pw, [[470, 50], [530, 50], [530, 139]]); SCH.wire(pw, [[530, 171], [530, 260], [470, 260]]);
+  genBox(pe, 'Г3-56/1');
+  SCH.res(pe, 180, 50, false);
+  SCH.ind(pe, 300, 122, true, 56); SCH.res(pe, 300, 196, true, 30, 12);
+  SCH.cap(pe, 390, 155, true);
+  const rEl = SCH.res(pe, 470, 155, true);
+  SCH.meter(pe, 530, 155, 'V');
+  for (const x of [300, 390, 470]) { SCH.dot(pe, x, 50); SCH.dot(pe, x, 260); }
+  SCH.txt(pe, 180, 36, subT('R', 'k'), '', 'middle');
+  SCH.txt(pe, 120, 290, 'С1-83: кан. I — U<tspan class="sub" dy="3">ген</tspan><tspan dy="-3">, кан. II — U</tspan><tspan class="sub" dy="3">Rk</tspan><tspan dy="-3"> ∝ I</tspan>', 'sm');
+  const LP = {
+    E: SCH.txt(pl, 14, 282, '', 'lv'), Ri: SCH.txt(pl, 14, 30, '', 'lv'), Rk: SCH.txt(pl, 214, 40, '', 'lv'),
+    Lv: SCH.txt(pl, 312, 118, '', 'lv'), RL: SCH.txt(pl, 312, 200, '', 'lv'), Cv: SCH.txt(pl, 400, 140, '', 'lv'), Rv: SCH.txt(pl, 478, 220, '', 'lv'),
+    I: SCH.txt(pl, 80, 40, '', 'lv'),
+  };
+  const fP = new Flow(pf, [[300, 260], [60, 260], [60, 50], [300, 50]]);
+  const fL = new Flow(pf, [[300, 50], [300, 260]]);
+  const fC = new Flow(pf, [[300, 50], [390, 50], [390, 260], [300, 260]]);
+  const fR = new Flow(pf, [[300, 50], [470, 50], [470, 260], [300, 260]]);
+  tab.flows = [
+    { flow: fS, get: r => r.I, ref: r => r.ref, only: 's' },
+    { flow: fP, get: r => r.I, ref: r => r.ref, only: 'p' },
+    { flow: fL, get: r => r.IL, ref: r => r.ref, only: 'p' },
+    { flow: fC, get: r => r.IC, ref: r => r.ref, only: 'p' },
+    { flow: fR, get: r => r.IRb, ref: r => r.ref, only: 'p' },
+  ];
+
+  /* ---- векторна діаграма ---- */
+  const ph = makePhasorPanel($('#ph' + n), tab, r => (r.mode === 's' ? -arg(r.I) : -arg(r.Ut)), true);
+
+  /* ---- прилади ---- */
+  const ih = $('#i' + n);
+  makeGenerator(ih, tab, 'g56');
+  const vm = makeVoltmeter(ih, tab, {
+    options: [['R', 'R (струм)'], ['C', 'C'], ['Lc', 'котушка L+R_L'], ['LC', 'ділянка LC'], ['G', 'генератор']],
+    optionsFor: s => (s.mode === 's'
+      ? [['R', 'R (струм)'], ['C', 'C'], ['Lc', 'котушка L+R_L'], ['LC', 'ділянка LC'], ['G', 'генератор']]
+      : [['T', 'контур LC'], ['Rk', 'R_k (струм)'], ['G', 'генератор']]),
+    get: (r, k) => (r.mode === 's' ? ({ R: r.UR, C: r.UC, Lc: r.UL, LC: r.ULC, G: r.U })[k] : ({ T: r.Ut, Rk: r.URk, G: r.U })[k]) || Cx(0),
+  });
+  const scope = makeScope(ih, tab, {
+    name: 'С1-83', xy: { x: 0, y: 1 },
+    chans: [{ name: 'U_ген', get: r => r.U }, { get name() { return st.mode === 's' ? 'U_R' : 'U_Rk'; }, get: r => (r.mode === 's' ? r.UR : r.URk) }],
+    note: 'X–Y: X — напруга генератора, Y — U<sub>R</sub> ∝ I. На резонансі еліпс стягується у відрізок, бо φ = 0.',
+  });
+
+  /* ---- графіки ---- */
+  const gh = $('#g' + n);
+  const boxS = h('div', { class: 'graphs' }), boxP = h('div', { class: 'graphs' });
+  gh.style.display = 'block'; gh.append(boxS, boxP);
+  const A1 = makeGraph(boxS, 'АЧХ: I/I<sub>max</sub>');
+  const A2 = makeGraph(boxS, 'ФЧХ: φ(ν) = arg Z');
+  const A3 = makeGraph(boxS, '|Z|, X<sub>L</sub>, X<sub>C</sub>, X<sub>L</sub> − X<sub>C</sub>');
+  const A4 = makeGraph(boxS, 'Резонансна крива потужності P/P<sub>max</sub>');
+  const A5 = makeGraph(boxS, 'Резонанс напруг: U<sub>C</sub>, U<sub>L</sub>, U<sub>R</sub>');
+  const B1 = makeGraph(boxP, 'Паралельний контур: U<sub>конт</sub>/U<sub>max</sub> і I/I<sub>max</sub>');
+  const B2 = makeGraph(boxP, 'Загальний струм I(ν) для R = ∞, 1 кОм, 500 Ом');
+  const B3 = makeGraph(boxP, 'Струми I, I<sub>L</sub>, I<sub>C</sub>, I<sub>R</sub>: резонанс струмів');
+  const B4 = makeGraph(boxP, 'Опір контуру |Z<sub>конт</sub>|(ν) і резонансний опір L/(C·R<sub>L</sub>)');
+  const B5 = makeGraph(boxP, 'ФЧХ контуру: φ = arg Z<sub>конт</sub>');
+
+  /* ---- живі значення ---- */
+  let D = derived(st), WS = null, WP = null;
+  tab.live = {
+    cgs: () => `СГС: L = ${nf(st.L * CGS.H)} с²/см · C = ${nf(st.C * CGS.F)} см · R<sub>Σ</sub> = ${nf(D.Rs * CGS.ohm)} с/см · γ = R/2L = ${nf(D.gamma)} с⁻¹ · ω₀ = ${nf(D.w0)} с⁻¹`,
+    w0: () => `L = ${si(st.L, 'Гн')}, C = ${si(st.C, 'Ф')} → ω₀ = ${nf(D.w0)} с⁻¹, ν₀ = ${si(D.nu0, 'Гц')};  I<sub>m,max</sub> = ℰ<sub>m</sub>/R<sub>Σ</sub> = ${si(st.E0 / D.Rs, 'А')}`,
+    UQ: () => `ρ = √(L/C) = ${si(D.rho, 'Ом')};  Q = ${nf(D.Qth)} → U<sub>Cm</sub>(ω₀) = U<sub>Lm</sub>(ω₀) ≈ ${si(D.Qth * st.E0, 'В')} при ℰ<sub>m</sub> = ${si(st.E0, 'В')}`,
+    Q: () => `Δν<sub>theor</sub> = R<sub>Σ</sub>/(2πL) = ${si(D.Rs / (TAU * st.L), 'Гц')};  Q<sub>theor</sub> = ${nf(D.Qth)};  з кривої моделі: ν₁ = ${si(WS.n1, 'Гц')}, ν₂ = ${si(WS.n2, 'Гц')}, Q<sub>exp</sub> = ${nf(WS.Q)}`,
+    P: () => `P<sub>max</sub> = ℰ<sub>m</sub>²/(2R<sub>Σ</sub>) = ${si(st.E0 ** 2 / (2 * D.Rs), 'Вт')};  на поточній частоті P = ${si(mS(st, st.nu).P, 'Вт')}`,
+    QE: () => { const Im = st.E0 / D.Rs, W = 0.5 * st.L * Im * Im, dW = 0.5 * Im * Im * D.Rs / D.nu0; return `W = ½LI<sub>m</sub>² = ${si(W, 'Дж')}, ΔW<sub>T</sub> = ${si(dW, 'Дж')} → 2πW/ΔW<sub>T</sub> = ${nf(TAU * W / dW)};  τ<sub>W</sub> = 1/2γ = ${si(1 / (2 * D.gamma), 'с')}`; },
+    Umax: () => {
+      const wc = Math.sqrt(Math.max(0, D.w0 ** 2 - 2 * D.gamma ** 2));
+      return `ν(U<sub>C,max</sub>) = √(ω₀² − 2γ²)/2π = ${si(wc / TAU, 'Гц')};  U<sub>C,max</sub> = ${si(abs(mS(st, wc / TAU || 1).UC), 'В')};  Qℰ<sub>m</sub> = ${si(D.Qth * st.E0, 'В')}`;
+    },
+    real: () => `R<sub>Σ</sub> = ${nf(st.R)} + ${nf(st.Ri)} + ${nf(st.RL)} = ${si(D.Rs, 'Ом')} → Q<sub>theor</sub> = ${nf(D.Qth)};  U<sub>LC</sub>(ν₀) = ${si(abs(mS(st, D.nu0).ULC), 'В')} ≈ I<sub>m</sub>R<sub>L</sub> = ${si(st.E0 / D.Rs * Math.hypot(st.RL, 0), 'В')}`,
+    par: () => `R<sub>p</sub> = L/(CR<sub>L</sub>) = ${si(D.Rpl, 'Ом')};  R = ${rpName(st.Rp)} → R<sub>екв</sub> = ${si(D.Req, 'Ом')}, Q<sub>конт</sub> = ${nf(D.Qtank)};  R<sub>k</sub>+R<sub>i</sub> = ${si(st.Rk + st.Ri, 'Ом')} → Q<sub>нав</sub> = ${nf(D.Qload)};  Q<sub>exp</sub>(U<sub>конт</sub>) = ${nf(WP.Q)}`,
+    work: () => `ν₀ = ${si(D.nu0, 'Гц')}, ρ = ${si(D.rho, 'Ом')}, Q<sub>theor</sub> = ${nf(D.Qth)}, Q<sub>exp</sub> = ${nf(WS.Q)}`,
+  };
+
+  /* ---- автозйомка ---- */
+  async function autoscan() {
+    const d = derived(st), mode = st.mode, arr = tab.scan[mode];
+    arr.length = 0;
+    const N = 26, lo = 0.45 * d.nu0, hi = 2.1 * d.nu0;
+    const freqs = [];
+    for (let i = 0; i < N; i++) freqs.push(lo * (hi / lo) ** (i / (N - 1)));
+    for (const k of [0.92, 0.97, 1, 1.03, 1.08]) freqs.push(d.nu0 * k);
+    freqs.sort((a, b) => a - b);
+    for (const nu0 of freqs) {
+      if (!tab.scanning) break;
+      const nu = round3(nu0); tab.set('nu', nu, 'scan');
+      const m = model(st, nu);
+      if (mode === 's') { const U = noisy(abs(m.UR) / SQ2, 0.01); arr.push({ nu, U, I: U / st.R }); }
+      else { const U = noisy(abs(m.Ut) / SQ2, 0.01), Uk = noisy(abs(m.URk) / SQ2, 0.01); arr.push({ nu, U, Uk, I: Uk / st.Rk }); }
+      renderScan(); await sleep(170);
+    }
+  }
+  function renderScan() {
+    const host = $('#sc' + n); host.innerHTML = '';
+    const s = tab.scan.s, q = tab.scan.p;
+    if (s.length) {
+      const Im = Math.max(...s.map(x => x.I)), w = widthFromPoints(s.map(x => [x.nu, x.I]));
+      host.append(table(`Послідовний контур (R = ${si(st.R, 'Ом')})${w && isFinite(w.Q) ? ` · Q_exp за точками = ${nf(w.Q)}` : ''}`,
+        ['№', 'ν, Гц', 'U<sub>R</sub>, В (еф.)', 'I, мА (еф.)', 'I/I<sub>max</sub>'],
+        s.map((x, i) => [i + 1, nf(x.nu, 4), nf(x.U, 4), nf(x.I * 1e3, 4), nf(x.I / Im, 3)])));
+    }
+    if (q.length) {
+      const Um = Math.max(...q.map(x => x.U)), w = widthFromPoints(q.map(x => [x.nu, x.U]));
+      host.append(table(`Паралельний контур${w && isFinite(w.Q) ? ` · Q_exp за точками = ${nf(w.Q)}` : ''}`,
+        ['№', 'ν, Гц', 'U<sub>конт</sub>, В', 'U<sub>Rk</sub>, В', 'I, мА', 'U/U<sub>max</sub>'],
+        q.map((x, i) => [i + 1, nf(x.nu, 4), nf(x.U, 4), nf(x.Uk, 4), nf(x.I * 1e3, 4), nf(x.U / Um, 3)])));
+    }
+  }
+
+  /* ---- рендер ---- */
+  tab.render = () => {
+    D = derived(st);
+    const r = tab.res = model(st, st.nu);
+    const isS = st.mode === 's';
+    WS = peakWidth(nu => abs(mS(st, nu).I), D.nu0 / 20, D.nu0 * 20);
+    WP = peakWidth(nu => abs(mP(st, nu).Ut), D.nu0 / 20, D.nu0 * 20);
+    r.ref = isS ? Math.max(1e-12, st.E0 / D.Rs) : Math.max(1e-12, abs(r.I), abs(r.IL), abs(r.IC), abs(r.IRb));
+    tab.onRes.forEach(f => f(r));
+    updateLive(tab, r);
+    svgS.style.display = isS ? '' : 'none'; svgP.style.display = isS ? 'none' : '';
+    boxS.style.display = isS ? '' : 'none'; boxP.style.display = isS ? 'none' : '';
+    const K = colors(), pick = v => tab.set('nu', round3(v), 'plot');
+    const subv = (a, b, v) => `${a}<tspan class="sub" dy="3">${b}</tspan><tspan dy="-3"> = ${v}</tspan>`;
+    // підписи схем
+    for (const LL of [LS, LP]) {
+      LL.E.innerHTML = subv('ℰ', 'm', `${nf(st.E0)} В`); LL.Ri.innerHTML = subv('R', 'i', `${nf(st.Ri)} Ом`);
+      LL.Lv.innerHTML = `L = ${si(st.L, 'Гн')}`; LL.RL.innerHTML = subv('R', 'L', `${nf(st.RL)} Ом`); LL.Cv.innerHTML = `C = ${si(st.C, 'Ф')}`;
+      LL.I.innerHTML = subv('I', 'm', si(abs(r.I), 'А'));
+    }
+    LS.R.innerHTML = `R = ${si(st.R, 'Ом')}`;
+    LP.Rk.innerHTML = subv('R', 'k', si(st.Rk, 'Ом'));
+    LP.Rv.innerHTML = `R = ${rpName(st.Rp)}`;
+    const open = !isFinite(st.Rp);
+    rEl.style.strokeDasharray = open ? '4 3' : ''; rEl.style.opacity = open ? 0.45 : 1;
+    rWireBot.style.strokeDasharray = open ? '3 4' : ''; rWireTop.style.strokeDasharray = open ? '3 4' : '';
+    fR.g.style.display = open ? 'none' : '';
+
+    const xlo = Math.min(0.4 * D.nu0, st.nu / 1.15), xhi = Math.max(2.1 * D.nu0, st.nu * 1.15);
+    const X = { min: xlo, max: xhi, k: 1e-3, label: 'ν, кГц', hfmt: v => si(v, 'Гц') };
+    const mk = { x: st.nu, color: K.marker, w: 1.6, label: 'ν = ' + si(st.nu, 'Гц') };
+    if (isS) {
+      const Imax = WS.fm, sc = tab.scan.s;
+      const Ims = sc.length ? Math.max(...sc.map(x => x.I)) : 1;
+      const other = st.R === 10 ? 50 : 10;
+      const Io = peakWidth(nu => abs(mS(st, nu, other).I), D.nu0 / 20, D.nu0 * 20).fm;
+      A1.set({
+        x: X, y: { min: 0, max: 1.08, label: 'I/I_{max}', hfmt: v => nf(v, 3) },
+        series: [{ fn: nu => abs(mS(st, nu).I) / Imax, color: K.c1, w: 2.6, label: `R = ${si(st.R, 'Ом')} (R_Σ = ${si(D.Rs, 'Ом')})` },
+          { fn: nu => abs(mS(st, nu, other).I) / Io, color: K.c7, w: 1.3, dash: [5, 4], label: `R = ${other} Ом` }],
+        hlines: [{ y: 1 / SQ2, label: '1/√2', left: true }],
+        vlines: [mk, { x: WS.pk, dash: [4, 3], color: K.c3, label: 'ν₀ = ' + si(WS.pk, 'Гц'), row: 1 }, { x: WS.n1, dash: [2, 3] }, { x: WS.n2, dash: [2, 3] }],
+        arrows: [{ x1: WS.n1, x2: WS.n2, y: 1 / SQ2, label: 'Δν = ' + si(WS.n2 - WS.n1, 'Гц'), below: true, color: K.c3 }],
+        points: [{ color: K.c2, r: 3.8, ring: true, pts: sc.map(x => [x.nu, x.I / Ims]) }, { color: K.marker, r: 5, ring: true, pts: [[st.nu, abs(r.I) / Imax]] }],
+        texts: [{ at: 'tr', lines: [`ν₀ = ${si(D.nu0, 'Гц')}`, `Δν = ${si(WS.n2 - WS.n1, 'Гц')}`, `Q_{exp} = ν₀/Δν = ${nf(WS.Q)}`, `Q_{theor} = √(L/C)/R_Σ = ${nf(D.Qth)}`],
+          colors: [null, null, K.c3, K.c1] }],
+        legend: sc.length ? [{ label: 'автозйомка', color: K.c2, w: 0, dot: true }] : [],
+        onPickX: pick,
+      });
+      A2.set({
+        x: X, y: { min: -90, max: 90, n: 6, label: 'φ, °', hfmt: v => nf(v, 3) + '°' },
+        series: [{ fn: nu => dg(mS(st, nu).phi), color: K.c1, w: 2.4, label: 'φ = arctg((X_L − X_C)/R_Σ)' }],
+        hlines: [{ y: 45, label: '+45°', left: true }, { y: -45, label: '−45°', left: true }],
+        vlines: [mk, { x: D.nu0, dash: [4, 3], color: K.c3, label: 'ν₀', row: 1 }, { x: WS.n1, dash: [2, 3] }, { x: WS.n2, dash: [2, 3] }],
+        points: [{ color: K.c3, r: 4, pts: [[WS.n1, dg(mS(st, WS.n1).phi)], [WS.n2, dg(mS(st, WS.n2).phi)]] }, { color: K.marker, r: 5, ring: true, pts: [[st.nu, dg(r.phi)]] }],
+        texts: [{ at: 'br', lines: ['φ > 0: струм відстає (індуктивний)', 'φ < 0: струм випереджає (ємнісний)'] }],
+        onPickX: pick,
+      });
+      const Ym = 2.8 * D.rho;
+      A3.set({
+        x: X, y: { min: -Ym, max: Ym, label: 'опір, Ом', hfmt: v => si(v, 'Ом') },
+        series: [{ fn: nu => TAU * nu * st.L, color: K.c4, label: 'X_L = ωL' }, { fn: nu => 1 / (TAU * nu * st.C), color: K.c2, label: 'X_C = 1/ωC' },
+          { fn: nu => TAU * nu * st.L - 1 / (TAU * nu * st.C), color: K.c5, dash: [6, 3], label: 'X_L − X_C' },
+          { fn: nu => abs(mS(st, nu).Z), color: K.c1, w: 2.6, label: '|Z| (з R_i, R_L)' }],
+        hlines: [{ y: D.Rs, label: 'R_Σ = ' + si(D.Rs, 'Ом'), left: true }],
+        vlines: [mk, { x: D.nu0, dash: [4, 3], color: K.c3, label: 'ν₀', row: 1 }],
+        points: [{ color: K.marker, r: 5, ring: true, pts: [[st.nu, abs(r.Z)]] }],
+        onPickX: pick,
+      });
+      const Pm = st.E0 ** 2 / (2 * D.Rs) || 1;
+      A4.set({
+        x: X, y: { min: 0, max: 1.08, label: 'P/P_{max}', hfmt: v => nf(v, 3) },
+        series: [{ fn: nu => mS(st, nu).P / Pm, color: K.c6, w: 2.6, label: 'P = ½I_m²R_Σ' },
+          { fn: nu => 1 / (1 + ((TAU * nu - D.w0) / D.gamma) ** 2), color: K.c7, dash: [4, 3], w: 1.3, label: 'лоренціан 1/(1+(ω−ω₀)²/γ²)' }],
+        hlines: [{ y: 0.5, label: '1/2', left: true }],
+        vlines: [mk, { x: WS.n1, dash: [2, 3] }, { x: WS.n2, dash: [2, 3] }],
+        arrows: [{ x1: WS.n1, x2: WS.n2, y: 0.5, label: 'Δν', below: true, color: K.c6 }],
+        points: [{ color: K.marker, r: 5, ring: true, pts: [[st.nu, r.P / Pm]] }],
+        onPickX: pick,
+      });
+      // U_C, U_L, U_R
+      let mC = [0, 0], mL = [0, 0];
+      for (let i = 0; i <= 400; i++) {
+        const nu = xlo + (xhi - xlo) * i / 400, m = mS(st, nu), uc = abs(m.UC), ul = abs(m.ULi);
+        if (uc > mC[1]) mC = [nu, uc]; if (ul > mL[1]) mL = [nu, ul];
+      }
+      const Ytop = Math.max(D.Qth * st.E0, mC[1], mL[1], st.E0) * 1.12 || 1;
+      A5.set({
+        x: X, y: { min: 0, max: Ytop, label: 'амплітуда, В', hfmt: v => si(v, 'В') },
+        series: [{ fn: nu => abs(mS(st, nu).UC), color: K.c2, w: 2.3, label: 'U_{Cm}' }, { fn: nu => abs(mS(st, nu).ULi), color: K.c4, w: 2.3, label: 'U_{Lm} = I_mωL' },
+          { fn: nu => abs(mS(st, nu).UR), color: K.c1, w: 2.3, label: 'U_{Rm}' }, { fn: nu => abs(mS(st, nu).ULC), color: K.c5, dash: [4, 3], w: 1.3, label: 'U_{LC}' }],
+        hlines: [{ y: D.Qth * st.E0, label: 'Q·ℰ_m = ' + si(D.Qth * st.E0, 'В'), color: K.c3, left: true }, { y: st.E0, label: 'ℰ_m' }],
+        vlines: [mk, { x: D.nu0, dash: [4, 3], color: K.c3, label: 'ν₀', row: 1 }],
+        points: [{ color: K.c2, r: 4, pts: [[mC[0], mC[1], 'max U_C']] }, { color: K.c4, r: 4, pts: [[mL[0], mL[1], 'max U_L']] },
+          { color: K.marker, r: 4.5, ring: true, pts: [[st.nu, abs(r.UC)], [st.nu, abs(r.ULi)], [st.nu, abs(r.UR)]] }],
+        onPickX: pick,
+      });
+    } else {
+      const sc = tab.scan.p;
+      const Utm = WP.fm;
+      const Ifar = Math.max(abs(mP(st, xlo).I), abs(mP(st, xhi).I));
+      const Ums = sc.length ? Math.max(...sc.map(x => x.U)) : 1;
+      B1.set({
+        x: X, y: { min: 0, max: 1.08, label: 'відносні одиниці', hfmt: v => nf(v, 3) },
+        series: [{ fn: nu => abs(mP(st, nu).Ut) / Utm, color: K.c1, w: 2.6, label: 'U_{конт}/U_{max}' },
+          { fn: nu => abs(mP(st, nu).I) / Ifar, color: K.c2, w: 2, label: 'I/I(краї діапазону)' }],
+        hlines: [{ y: 1 / SQ2, label: '1/√2', left: true }],
+        vlines: [mk, { x: WP.pk, dash: [4, 3], color: K.c3, label: 'ν₀ = ' + si(WP.pk, 'Гц'), row: 1 }, { x: WP.n1, dash: [2, 3] }, { x: WP.n2, dash: [2, 3] }],
+        arrows: [{ x1: WP.n1, x2: WP.n2, y: 1 / SQ2, label: 'Δν = ' + si(WP.n2 - WP.n1, 'Гц'), below: true, color: K.c3 }],
+        points: [{ color: K.c4, r: 3.8, ring: true, pts: sc.map(x => [x.nu, x.U / Ums]) }, { color: K.marker, r: 5, ring: true, pts: [[st.nu, abs(r.Ut) / Utm]] }],
+        texts: [{ at: 'tr', lines: [`Q_{exp} = ν₀/Δν = ${nf(WP.Q)}`, `Q_{нав} = R_{екв}∥(R_k+R_i)·√(C/L) = ${nf(D.Qload)}`, `Q_{конт} = R_{екв}√(C/L) = ${nf(D.Qtank)}`],
+          colors: [K.c3, K.c1, K.fg] }],
+        legend: sc.length ? [{ label: 'автозйомка', color: K.c4, w: 0, dot: true }] : [],
+        onPickX: pick,
+      });
+      const RC = [K.c1, K.c2, K.c3];
+      let ymax = 0, mins = [];
+      RPS.forEach(([Rp]) => {
+        let mn = [0, Infinity];
+        for (let i = 0; i <= 300; i++) { const nu = xlo + (xhi - xlo) * i / 300, I = abs(mP(st, nu, Rp).I); ymax = Math.max(ymax, I); if (I < mn[1]) mn = [nu, I]; }
+        mins.push(mn);
+      });
+      B2.set({
+        x: X, y: { min: 0, max: ymax * 1.1 || 1, k: 1e3, label: 'I_m, мА', hfmt: v => si(v, 'А') },
+        series: RPS.map(([Rp, l], i) => ({ fn: nu => abs(mP(st, nu, Rp).I), color: RC[i], w: Rp === st.Rp ? 3 : 1.5, label: 'R = ' + l })),
+        points: [...mins.map((m, i) => ({ color: RC[i], r: 3.5, fill: false, pts: [[m[0], m[1]]] })),
+          { color: K.marker, r: 5, ring: true, pts: [[st.nu, abs(r.I)]] },
+          { color: K.c4, r: 3.8, ring: true, pts: sc.map(x => [x.nu, x.I * SQ2]) }],
+        vlines: [mk, { x: D.nu0, dash: [4, 3], color: K.c3, label: 'ν₀', row: 1 }],
+        texts: [{ at: 'br', lines: ['мінімум загального струму', 'на резонансі струмів'] }],
+        onPickX: pick,
+      });
+      const m0 = mP(st, D.nu0);
+      let y3 = 0; for (let i = 0; i <= 200; i++) { const m = mP(st, xlo + (xhi - xlo) * i / 200); y3 = Math.max(y3, abs(m.IL), abs(m.IC), abs(m.I)); }
+      B3.set({
+        x: X, y: { min: 0, max: y3 * 1.1 || 1, k: 1e3, label: 'амплітуда струму, мА', hfmt: v => si(v, 'А') },
+        series: [{ fn: nu => abs(mP(st, nu).IL), color: K.c4, w: 2.2, label: 'I_L' }, { fn: nu => abs(mP(st, nu).IC), color: K.c2, w: 2.2, label: 'I_C' },
+          { fn: nu => abs(mP(st, nu).I), color: K.c1, w: 2.8, label: 'I (загальний)' }, { fn: nu => abs(mP(st, nu).IRb), color: K.c7, w: 1.3, dash: [4, 3], label: 'I_R' }],
+        vlines: [mk, { x: D.nu0, dash: [4, 3], color: K.c3, label: 'ν₀', row: 1 }],
+        points: [{ color: K.marker, r: 4.5, ring: true, pts: [[st.nu, abs(r.I)], [st.nu, abs(r.IL)], [st.nu, abs(r.IC)]] }],
+        texts: [{ at: 'tr', lines: [`на ν₀: I_L/I = ${nf(abs(m0.IL) / abs(m0.I))}, I_C/I = ${nf(abs(m0.IC) / abs(m0.I))}`, `Q_{конт} = R_{екв}√(C/L) = ${nf(D.Qtank)}`] }],
+        onPickX: pick,
+      });
+      let y4 = 0; for (let i = 0; i <= 300; i++) y4 = Math.max(y4, abs(mP(st, xlo + (xhi - xlo) * i / 300, Infinity).Zt));
+      B4.set({
+        x: X, y: { min: 0, max: Math.max(y4, D.Rpl) * 1.12, k: 1e-3, label: '|Z_{конт}|, кОм', hfmt: v => si(v, 'Ом') },
+        series: RPS.map(([Rp, l], i) => ({ fn: nu => abs(mP(st, nu, Rp).Zt), color: RC[i], w: Rp === st.Rp ? 3 : 1.5, label: 'R = ' + l })),
+        hlines: [{ y: D.Rpl, label: 'L/(C·R_L) = ' + si(D.Rpl, 'Ом'), color: K.c4, left: true }, { y: D.Req, label: 'R_{екв} = ' + si(D.Req, 'Ом'), dash: [2, 3] }],
+        vlines: [mk, { x: D.nu0, dash: [4, 3], color: K.c3, label: 'ν₀', row: 1 }],
+        points: [{ color: K.marker, r: 5, ring: true, pts: [[st.nu, abs(r.Zt)]] }],
+        onPickX: pick,
+      });
+      B5.set({
+        x: X, y: { min: -90, max: 90, n: 6, label: 'φ, °', hfmt: v => nf(v, 3) + '°' },
+        series: RPS.map(([Rp, l], i) => ({ fn: nu => dg(mP(st, nu, Rp).phi), color: RC[i], w: Rp === st.Rp ? 2.8 : 1.4, label: 'R = ' + l })),
+        vlines: [mk, { x: D.nu0, dash: [4, 3], color: K.c3, label: 'ν₀', row: 1 }],
+        points: [{ color: K.marker, r: 5, ring: true, pts: [[st.nu, dg(r.phi)]] }],
+        texts: [{ at: 'br', lines: ['нижче ν₀ контур індуктивний (φ > 0)', 'вище ν₀ — ємнісний (φ < 0)'] }],
+        onPickX: pick,
+      });
+    }
+    // три характерні випадки
+    const fr = [0.7, 1, 1 / 0.7];
+    ph.minis.forEach((cv, i) => drawMini(cv, model(st, D.nu0 * fr[i]), K));
+  };
+
+  function vecs(r, th, K, mini) {
+    const R = z => rot(z, th);
+    if (r.mode === 's') {
+      const a = r.UR, b = add(a, r.UL), c = add(b, r.UC);
+      return [
+        { z: R(r.UR), color: K.c1, label: 'U_R', u: 'V', miniLabel: true },
+        { z: R(r.UL), from: R(a), color: K.c4, label: 'U_L', u: 'V', miniLabel: true },
+        { z: R(r.UC), from: R(b), color: K.c2, label: 'U_C', u: 'V', miniLabel: true },
+        { z: R(r.URi), from: R(c), color: K.c7, label: 'IR_i', u: 'V', side: -1 },
+        { z: R(r.E), color: K.c5, label: 'ℰ', u: 'V', w: mini ? 2 : 2.6, proj: true, side: -1, miniLabel: true },
+        { z: R(r.I), color: K.c3, label: 'I', u: 'A', w: mini ? 2.2 : 3.2, proj: true, miniLabel: true },
+      ];
+    }
+    const a = r.IRb, b = add(a, r.IC);
+    return [
+      { z: R(r.Ut), color: K.c5, label: 'U', u: 'V', w: mini ? 2 : 2.6, proj: true, miniLabel: true },
+      { z: R(r.IRb), color: K.c1, label: 'I_R', u: 'A' },
+      { z: R(r.IC), from: R(a), color: K.c2, label: 'I_C', u: 'A', miniLabel: true },
+      { z: R(r.IL), from: R(b), color: K.c4, label: 'I_L', u: 'A', miniLabel: true },
+      { z: R(r.I), color: K.c3, label: 'I', u: 'A', w: mini ? 2.2 : 3.2, proj: true, miniLabel: true, side: -1 },
+    ];
+  }
+  function drawMini(cv, r, K) {
+    const th = r.mode === 's' ? -arg(r.I) : -arg(r.Ut);
+    drawPhasors(cv, vecs(r, th, K, true), { mini: true, ratio: 1 });
+  }
+
+  /* ---- анімація ---- */
+  tab.tick = (dt, now) => {
+    const r = tab.res; if (!r) return;
+    const th = tab.theta, K = colors();
+    for (const f of tab.flows) if (f.only === st.mode) f.flow.step(tab.paused ? 0 : inst(f.get(r), th) / f.ref(r), dt);
+    drawPhasors(ph.cv, vecs(r, th, K, false), { ratio: 0.8 });
+    if (!tab._legT || now - tab._legT > 300) {
+      tab._legT = now;
+      ph.leg.innerHTML = r.mode === 's'
+        ? legendHTML([[K.c3, `I<sub>m</sub>=${si(abs(r.I), 'А')}`], [K.c1, `U<sub>R</sub>=${si(abs(r.UR), 'В')}`], [K.c4, `U<sub>L</sub>=${si(abs(r.UL), 'В')}`],
+          [K.c2, `U<sub>C</sub>=${si(abs(r.UC), 'В')}`], [K.c5, `ℰ<sub>m</sub>=${si(st.E0, 'В')}`], [K.c7, `φ=${deg(r.phi)}`]])
+        : legendHTML([[K.c5, `U<sub>конт</sub>=${si(abs(r.Ut), 'В')}`], [K.c3, `I=${si(abs(r.I), 'А')}`], [K.c4, `I<sub>L</sub>=${si(abs(r.IL), 'А')}`],
+          [K.c2, `I<sub>C</sub>=${si(abs(r.IC), 'А')}`], [K.c1, `I<sub>R</sub>=${si(abs(r.IRb), 'А')}`]]);
+    }
+    scope.draw(r, th);
+    vm.update(r, now);
+  };
+  tab.syncers.push((src, k) => { if (k === 'mode' || k === 'vm') vm.update(tab.model(st, st.nu), 0, true); });
+  tab.sync('init');
+  renderScan();
+  return tab;
+}
+
+/* =====================================================================
+   Ініціалізація
+   ===================================================================== */
+function init() {
+  const themeSw = $('#themeSw'), noiseSw = $('#noiseSw');
+  const setTheme = d => { document.documentElement.dataset.theme = d ? 'dark' : 'light'; Object.values(TABS).forEach(t => { t.dirty = true; }); };
+  themeSw.checked = window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches;
+  setTheme(themeSw.checked);
+  themeSw.onchange = () => setTheme(themeSw.checked);
+  noiseSw.onchange = () => { G.noise = noiseSw.checked; Object.values(TABS).forEach(t => { t.dirty = true; }); };
+
+  makeLab12(1, 'C');
+  makeLab12(2, 'L');
+  makeLab3();
+
+  $$('#tabs button').forEach(b => b.addEventListener('click', () => {
+    ACTIVE = +b.dataset.t;
+    $$('#tabs button').forEach(x => x.classList.toggle('on', x === b));
+    for (const k of [1, 2, 3]) $('#t' + k).hidden = k !== ACTIVE;
+    TABS[ACTIVE].dirty = true;
+  }));
+
+  const hs = /^#t([123])$/.exec(location.hash);
+  if (hs) $(`#tabs button[data-t="${hs[1]}"]`).click();
+  let last = performance.now();
+  const loop = now => {
+    const dt = Math.min(0.05, (now - last) / 1000); last = now;
+    const tab = TABS[ACTIVE];
+    if (tab) {
+      if (tab.dirty) { tab.dirty = false; try { tab.render(); } catch (e) { console.error(e); } }
+      if (!tab.paused) tab.theta = (tab.theta + TAU * FVIS * dt) % TAU;
+      try { tab.tick(dt, now); } catch (e) { console.error(e); }
+    }
+    requestAnimationFrame(loop);
+  };
+  requestAnimationFrame(loop);
+}
+document.addEventListener('DOMContentLoaded', init);
+</script>
+<script>
+// Згорнуті розділи: після розкриття канвас отримує ширину, тож змушуємо перемалювати
+document.addEventListener('toggle',e=>{if(e.target.open)setTimeout(()=>window.dispatchEvent(new Event('resize')),30)},true);
+</script>
+<script>
+// Широка розкладка «стенд»: масштабуємо приборы так, щоб вони влізли по висоті у вікно (zoom не змінює кути ручок)
+(function(){
+  function fit(){
+    document.querySelectorAll('.tab:not([hidden]) .instr').forEach(el=>{
+      el.style.zoom = '';
+      if (innerWidth < 1500) return;
+      const top = el.getBoundingClientRect().top + scrollY, avail = innerHeight - 52 - 14 - 54 - 14;
+      let z = 1, lo = 0.55, hi = 1;
+      // шукаємо zoom, при якому видима висота (zoom · власна висота) дорівнює доступній: двійковий пошук
+      el.style.zoom = 1;
+      if (el.offsetHeight <= avail) { return; }
+      for (let i = 0; i < 9; i++) {
+        z = (lo + hi) / 2; el.style.zoom = z;
+        if (z * el.offsetHeight > avail) hi = z; else lo = z;
+      }
+      z = lo;
+      el.style.zoom = z;
+      
+    });
+  }
+  let t; const later = () => { clearTimeout(t); t = setTimeout(fit, 80); };
+  addEventListener('resize', later); addEventListener('load', () => { later(); setTimeout(fit, 600); });
+  document.addEventListener('click', e => { if (e.target.closest('#tabs')) setTimeout(fit, 50); });
+  document.addEventListener('toggle', later, true);
+})();
+</script>
+<script src="assets/panel-toggle.js"></script>
+</body>
+</html>

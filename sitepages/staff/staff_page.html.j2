@@ -1,0 +1,64 @@
+{# staff_page.html.j2 — шаблон сторінки співробітників кафедри #}
+<section id="staff-ranking" style="max-width: 1200px; margin: 0 auto; font-family: inherit;">
+
+  {# --- Завідувач кафедри --- #}
+  {% if groups.head %}
+  <div style="margin-bottom: 30px; padding-bottom: 20px; border-bottom: 2px solid #eee;">
+    <h2>👨‍🏫 Завідувач кафедри</h2>
+    <ul style="list-style: none !important; padding: 0 !important; margin: 0 !important;">
+      {% for t in groups.head %}
+      <li style="background: #f5f9ff; padding: 12px 20px; border-left: 5px solid #2b6f9e; list-style: none !important; margin: 0 !important;">
+        <a style="color: #1e3c5c; text-decoration: none;" href="{{ profile_url(t) }}">{{ t.name }}</a>
+        — {{ t.degree }}{% if t.academic_title %}, {{ t.academic_title | join(', ') }}{% endif %}
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+  {% endif %}
+
+  {# --- Двоколонковий макет --- #}
+  <table style="width: 100%; border-collapse: collapse; margin: 0; padding: 0;">
+    <tbody>
+      <tr>
+
+        {# ЛІВА КОЛОНКА: професори, старші викладачі, асистенти #}
+        <td style="width: 50%; vertical-align: top; padding-right: 20px; margin: 0;">
+
+          {% for cat in ['professor', 'senior_lecturer', 'assistant'] %}
+          {% if groups[cat] %}
+          <h2 style="border-left: 5px solid #2b6f9e; padding-left: 15px; margin-top: 30px; margin-bottom: 15px; text-align: left;">{{ titles[cat] }}</h2>
+          <ul style="list-style: none !important; padding: 0 !important; margin: 0 0 30px 0 !important;">
+            {% for t in groups[cat] %}
+            <li style="margin-bottom: 8px; text-align: left; list-style: none !important; padding: 0 !important;">
+              <a style="color: #1e3c5c; text-decoration: none;" href="{{ profile_url(t) }}">{{ t.name }}</a>
+            </li>
+            {% endfor %}
+          </ul>
+          {% endif %}
+          {% endfor %}
+
+        </td>
+
+        {# ПРАВА КОЛОНКА: доценти, НДП #}
+        <td style="width: 50%; vertical-align: top; padding-left: 20px; margin: 0;">
+
+          {% for cat in ['docent', 'staff'] %}
+          {% if groups[cat] %}
+          <h2 style="border-left: 5px solid #2b6f9e; padding-left: 15px; margin-top: 30px; margin-bottom: 15px; text-align: left;">{{ titles[cat] }}</h2>
+          <ul style="list-style: none !important; padding: 0 !important; margin: 0 0 30px 0 !important;">
+            {% for t in groups[cat] %}
+            <li style="margin-bottom: 8px; text-align: left; list-style: none !important; padding: 0 !important;">
+              <a style="color: #1e3c5c; text-decoration: none;" href="{{ profile_url(t) }}">{{ t.name }}</a>
+            </li>
+            {% endfor %}
+          </ul>
+          {% endif %}
+          {% endfor %}
+
+        </td>
+
+      </tr>
+    </tbody>
+  </table>
+
+</section>

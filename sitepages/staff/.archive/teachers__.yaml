@@ -1,0 +1,1842 @@
+teachers:
+- id: ponomarenko_sm
+  page_id: 215
+  name: Пономаренко Сергій Миколайович
+  degree: Кандидат фізико-математичних наук
+  position: Вчений секретар кафедри прикладної фізики
+  photo: http://apd.ipt.kpi.ua/wp-content/uploads/2025/01/MyPhoto2.jpg
+  contacts:
+    email: s.ponomarenko@kpi.ua
+    orcid: 0000-0002-9851-7109
+    github: sergiokapone
+    linkedin: sergiokapone
+    wos: I-3896-2018
+    scopus: '7005144109'
+    google_scholar: lyOREZEAAAAJ
+    intellect: psm37
+    schedule: https://schedule.kpi.ua/lecturers?lecturerId=5f60288fa383ac8cbd2f3a3348f0d112f84e3ef3cd5182ef0379dfe515b2b13f
+  research_interests:
+  - Квантово-хімічні розрахунки молекул функціональних матеріалів
+  - Комп'ютерне моделювання процесів горіння твердих та газоподібних палив
+  courses:
+    bachelor:
+    - title: Електрика та магнетизм
+      url: https://classroom.google.com/c/NTQ1MzUzNjE5MDA3?cjc=su45h2j
+      description: лекції, нормативна дисципліна для ІІ курсу бакалаврату
+    - title: Комп'ютерні пакети для представлення наукових результатів
+      url: https://classroom.google.com/c/NjUyMDg4MjMwMjAw?cjc=7iattfn
+      description: лекції та практичні, нормативна дисципліна для ІІ курсу бакалаврату
+    - title: LaTeX в наукових дослідженнях
+      url: https://classroom.google.com/c/MjI0MTA1NjIxMDkw?cjc=we6caxd
+      description: лекції та практичні, нормативна дисципліна для ІV курсу бакалаврату
+    master:
+    - title: Квантова хімія та квантово-механічні обчислення
+      url: https://classroom.google.com/c/MjI0NzY1NTA5OTMy?cjc=ozzjpz7
+      description: лекції та практичні, нормативна дисципліна для I курсу магістратури
+    - title: Фізика горіння
+      url: https://classroom.google.com/c/MTUzMzA1ODEzNDEz?cjc=dazq4pe
+      description: лекції та практичні, вибіркова дисципліна для I курсу магістратури
+    - title: Фізика плазми
+      url: https://classroom.google.com/c/NjU4MTMxNzc0MTkw?cjc=a2ggrny
+      description: лекції та практичні, вибіркова дисципліна для I курсу магістратури
+  duties:
+  - Заступник директора з міжнародних питань
+  - Член вченої та адміністративної ради НН ФТІ
+  - Адміністратор сайту НН ФТІ
+  - Голова організаційного комітету студентської конференції
+  - 'Вчений секретар кафедри: ведення протоколів засідань кафедри, формування витягів; адміністрування ресурсу my.kpi.ua'
+  - Адміністратор кафедрального сайту
+  - Адміністратор Google Workspace
+  - 'Учасник робочої групи ОПП «Прикладна фізика»: участь в оновленні та перегляді освітніх програм (ОПП, ОНП); участь у підготовці
+    матеріалів для самооцінювання освітніх програм та акредитації'
+  - Член НМКУ зі спеціальності 105/E6 «Прикладна фізика та наноматеріали»
+  - Член екзаменаційної комісії фахового іспиту для вступу в магістратуру
+  - Розробник програми фахового іспиту для вступу в магістратуру
+  - Член екзаменаційної комісії фахового іспиту для вступу в аспірантуру
+  - Розробник програми фахового іспиту для вступу в аспірантуру
+  - Науковий керівник аспіранта
+  certificates:
+  - year: 2021
+    title: Сертифікат "Цифрові інструменти Google для закладів вищої, фахової передвищої освіти"
+    url: https://drive.google.com/file/d/13c43L8rOtyVytmvKhAdLNLap2skFFPHl/view?usp=sharing
+    issuer: ТОВ "Академія цифрового розвитку", № 9GW-029
+  - year: 2022
+    title: 'Свідоцтво про підвищення кваліфікації: "Створення фото, відео, анімації для підтримки навчання"'
+    url: https://drive.google.com/file/d/1fHClWU98m-v9swHfFSlueDNDmlGwiCKv/view?usp=sharing
+    issuer: Інститут післядипломної освіти КПІ, ПК№02070921/007099-22
+  - year: 2023
+    title: Свідоцтво про підвищення кваліфікації / стажування
+    url: https://drive.google.com/file/d/1rbhzRdly6GAVVQ5oCnf3ASWFHk0VBzq-/view?usp=drive_link
+    issuer: Інститут гідромеханіки НАНУ
+  - year: 2023
+    title: Сертифікат "IT-інструменти для викладачів"
+    url: https://drive.google.com/file/d/1JJt6tcnKFpAol8tx5WA2nAFDNq1zCkjU/view?usp=sharing
+    issuer: GlobalLogic
+  - year: 2024
+    title: Сертифікат Python Developer
+    url: https://drive.google.com/file/d/1ErXxsbwf0wxZszT0PkXk2ufx907-L6Wd/view?usp=drive_link
+    issuer: GoIT, Unique ID 22341
+  - year: 2025
+    title: Курс НАЗК "Спільна робота близьких осіб"
+    url: https://drive.google.com/file/d/1BuNKEkLlPuxAirvQRcIobwo0lIV6QNDI/view?usp=drive_link
+    issuer: Національне агентство з питань запобігання корупції
+  students:
+    bachelor:
+    - year: 2015
+      name: Туряб Вікторія Юріївна
+      topic: Термодинамічний цикл повітряної газової турбіни для утилізації теплоти на газотранспортній системі України
+      url: http://phes.ipt.kpi.ua/wp-content/uploads/sites/5/2015/11/Turyab.pdf
+    - year: 2015
+      name: Мулярчук Марія Андріївна
+      topic: Термогазодинаміка закрученого потоку повітря в радіально-обертаючому круглому каналі
+      url: http://phes.ipt.kpi.ua/wp-content/uploads/sites/5/2015/09/Mularchuk.pdf
+    - year: 2016
+      name: Чорний Андрій Петрович
+      topic: Фізичні умови спалювання метану та їх застосування в теплоенергетичних установках
+    - year: 2017
+      name: Бурлака Анастасія Олегівна
+      topic: Моделювання процесу горіння суміші метану і кисню в мікро каналі
+    - year: 2018
+      name: Докашенко Богдан Вікторович
+      topic: null
+    - year: 2018
+      name: Андруцький Борис Сергійович
+      topic: Ефективність сонячних електростанцій на території України
+    - year: 2019
+      name: Полванов Богдан Мирославович
+      topic: Вплив розміру вугільних частинок на процес їх горіння у метаноповітряній суміші
+    - year: 2020
+      name: Хлієв Нікіта Олександрович
+      topic: Дослідження впливу вхідного тиску реактивного палива на повноту його окислення у камері згоряння повітряних реактивних
+        двигунів
+    - year: 2023
+      name: Барковський Ярослав Олегович
+      topic: Квантово-хімічний розрахунок хімічного зсуву для визначення стереохімічної структури полімерних композитів
+    - year: 2024
+      name: Комаров Кирил Ігорович
+      topic: Вплив форми соплового тракту на газодинамічні характеристики вихлопу малого турбореактивного двигуна
+    master:
+    - year: 2017
+      name: Туряб Вікторія Юріївна
+      topic: Збільшення ефективності повітряної газової турбіни для утилізації теплоти на газотранспортній системі України
+    - year: 2018
+      name: Чорний Андрій Петрович
+      topic: Вплив стадійної подачі повітря при спалюванні метану на процес утворення оксидів азоту
+      url: https://ela.kpi.ua/handle/123456789/23072
+    - year: 2018
+      name: Докашенко Богдан Вікторович
+      topic: Моделювання молекулярної структури комплексу білка з лігандом
+      url: https://ela.kpi.ua/items/d18c1721-42f3-4832-b68e-66805beb5dc8
+    - year: 2019
+      name: Бурлака Анастасія Олегівна
+      topic: Дослідження впливу розміру каналу на процес горіння метано-повітряної суміші в мікроканалі з регенерацією тепла
+    - year: 2023
+      name: Макарчук Богдан Олексійович
+      topic: Оцінка параметрів концепту гібридної електрохімічної рушійної установки літального апарата
+  biography: 'Сергій Миколайович Пономаренко, кандидат фізико-математичних наук, доцент. Народився 12 грудня 1978 року в селі
+    Пересадівка Жовтневого району Миколаївської області. У 2001 році закінчив Миколаївський державний педагогічний університет
+    за спеціальністю "Фізика" (магістр). У 2005 році здобув ступінь кандидата фізико-математичних наук у Інституті хімії високомолекулярних
+    сполук НАН України (спеціальність – 01.04.19 – фізика полімерів). З 2005 року працював на посадах асистента та доцента
+    кафедри фізики КНУБА. У 2011 отримав вчене звання доцента. З 2014 року працює на посаді доцента кафедри прикладної фізики
+    НН ФТІ НТУУ "Київський політехнічний інститут імені Ігоря Сікорського".
+
+    '
+  publications:
+  - authors: Макарчук Б.О., Пономаренко С.М.
+    title: Дослідження впливу геометричної форми сопла на термодинамічні та газодинамічні параметри вихлопного потоку малого
+      ТРД з ежектором
+    journal: Теплофізика та теплоенергетика, Т. 48, № 1, с. 56–64
+    year: 2026
+    doi: https://doi.org/10.31472/ttpe.1.2026.6
+  - authors: Макарчук Б.О., Пономаренко С.М.
+    title: Дослідження впливу форми соплового тракту на термодинамічні та газодинамічні параметри вихлопу малого реактивного
+      двигуна
+    journal: Теплофізика та теплоенергетика, 47(1), с. 89–99 (фахове видання категорії Б)
+    year: 2025
+    doi: https://ihe.nas.gov.ua/index.php/journal/article/download/619/540
+  - authors: Dudin V.V., Ivanova V.V., Gordiiko N.O., Ponomarenko S.M., Monastyrsky G.E.
+    title: New thiophene based materials for emissive layers of organic light-emitting diodes
+    journal: Вісник КПІ. Серія Приладобудування, 65(1), с. 47–51 (фахове видання категорії Б)
+    year: 2023
+    doi: https://doi.org/10.20535/1970.65(1).2023.283314
+  - authors: Ponomarenko S.M., Dolgoshey V.B.
+    title: The effect of an external magnetic field on the structure, thermal and electrophysical properties of polymer composites
+      based on epoxy polymer and Fe3O4
+    journal: 11th International Conference «Nanotechnology and nanomaterials» (NANO-2023), p. 360 (Scopus Q)
+    year: 2023
+    doi: https://drive.google.com/file/d/1aiNjrJPy5ENVFPL081ps4ab3SYLnxf6V/view?usp=sharing
+  - authors: Korskanov V., Fesenko O., Tsebriinko T., Budnyk O., Dolgoshey V., Ponomarenko S.
+    title: Experimental device for study of the thermal stimulated direct current in the composite materials
+    journal: Journal of Thermal Analysis and Calorimetry, 147(22), pp. 12481–12487 (Scopus Q2)
+    year: 2022
+    doi: https://doi.org/10.1007/s10973-022-11495-1
+  - authors: Dolgoshey V.B., Fesenko O.M., Tsebriinko T.V., Klochek A.V., Ponomarenko S.M., Semchenko A.V., Sidsky V.V.
+    title: Effect of Isovalent Substitution of Bi Cations by La Cations on the Crystal Structure and Thermodynamic Properties
+      of Nanocomposites Based on Bismuth Ferrite
+    journal: Journal of Nano- and Electronic Physics, 14(4), 04023 (Scopus Q3)
+    year: 2022
+    doi: https://doi.org/10.21272/jnep.14(4).04023
+  academic_title:
+  - доцент
+
+- id: monastyrsky_ge
+  page_id: 189
+  name: Монастирський Геннадій Євгенович
+  degree: Доктор фізико-математичних наук
+  position: Гарант програми другого (освітньо-наукового) рівня вищої освіти
+  photo: http://apd.ipt.kpi.ua/wp-content/uploads/2024/09/MGE-264x300.jpg
+  contacts:
+    email: gmonastyrsky@kpi.ua
+    orcid: 0000-0002-3889-0817
+    linkedin: monastyrsky-gennady-058486127
+    wos: I-4513-2018
+    scopus: '6506561715'
+    google_scholar: XwR5Jq8AAAAJ
+    schedule: https://schedule.kpi.ua/lecturers?lecturerId=1523b662871b049a426f70cf57fbeab33b79bb3731b96cdbd779a7f1126d41fb
+  research_interests:
+  - Розробка і дослідження функціональних матеріалів
+  - Структурні фазові перетворення
+  - Методи отримання порошків сплавів та наноструктурних матеріалів
+  - Signal processing; методи вимірювання та ідентифікації слабких сигналів та шумів
+  - Комп'ютерне моделювання фізичних процесів
+  courses:
+    bachelor:
+    - title: Термодинаміка і молекулярна фізика
+    - title: Коливання та хвилі
+    - title: Фізика сучасних технологій та технологій майбутнього
+    - title: Статистична радіофізика та оптика
+    - title: Фізика металів
+    - title: Нові речовини і матеріали для наукоємних технологій
+    - title: Інформаційні технології та прикладна фізика
+  certificates:
+  - year: 2012
+    title: Стажування у відділі «Фазових перетворень» Інституту металофізики ім. Г.В. Курдюмова НАН України (16.02–16.06.2012)
+  - year: 2010–2013
+    title: Докторантура в НТУУ КПІ
+  - year: 2016
+    title: Стажування у відділі «Парофазових технологій неорганічних матеріалів» Інституту електрозварювання ім. Є.О. Патона
+      НАН України (01.11–05.12.2016)
+  - year: 2020
+    title: 'Захист докторської дисертації «Закономірності фазових структурних перетворень в неоднорідних, нерівноважних і
+      просторово обмежених станах функціональних матеріалів» (спеціальність: фізика металів)'
+  - year: ''
+    title: Курс НАЗК «Спільна робота близьких осіб»
+    url: https://drive.google.com/file/d/1qCM5YemKf0NsUwX6vsu-OUkagkVQ_brz/view?usp=drive_link
+  publications:
+  - authors: P.P. Vysots'kyy, H.Y. Monastyrs'kyy, O.H. Druzheruchenko
+    title: Use of Diffraction Effects in the X-Ray Fluorescence Analysis for Determination of Carbon Concentration in Steels
+    journal: Metallofiz. Noveishie Tekhnol., 46, No. 10, 943–952
+    year: 2024
+    doi: https://doi.org/10.15407/mfint.46.10.0943
+  - authors: Andrii Gilchuk, Gennady Monastyrsky
+    title: «Core–shell» nanoparticles produced from Ti-Ni-Hf and Ti-Ni-Zr alloys by spark erosion method
+    journal: Applied Nanoscience
+    year: 2023
+    doi: https://doi.org/10.1007/s13204-023-02864-9
+  - authors: Monastyrsky G.E., Shcheretskyi O.A.
+    title: The adsorption ability of powders obtained by pulsed electrical discharge in cryogenic liquids
+    journal: Applied Nanoscience
+    year: 2023
+    doi: https://doi.org/10.1007/s13204-022-02753-7
+  - authors: P. Vysotskyi, G. Monastyrsky, A. Druzheruchenko, I. Vlasov
+    title: Pulse Pile-up Rejection in Energy Dispersive XRF Analysis
+    journal: 2022 IEEE 41st International Conference on Electronics and Nanotechnology (ELNANO), pp. 516–519
+    year: 2022
+    doi: https://doi.org/10.1109/ELNANO54667.2022
+  - authors: G. Monastyrsky, V. Ivanova, D. Humeniuk, S. Bekh
+    title: Indirect Estimation of Thermal Regime of Operation of Power LEDs
+    journal: 2022 IEEE 41st International Conference on Electronics and Nanotechnology (ELNANO), pp. 119–123
+    year: 2022
+    doi: https://doi.org/10.1109/ELNANO54667.2022
+  - authors: Y. Mamchur, V. Ivanova, G. Monastyrsky, T. Melnychenko, G. Zheng, S. Voronov
+    title: Thermography investigation of soldered joints for LED mounting
+    journal: 2020 IEEE 40th International Conference on Electronics and Nanotechnology (ELNANO)
+    year: 2020
+    doi: https://doi.org/10.1109/ELNANO50318.2020.9088886
+  - authors: V.V. Dudin, V.V. Ivanova, N.O. Gordiiko, S.M. Ponomarenko, G.E. Monastyrsky
+    title: New thiophene based materials for emissive layers of organic light-emitting diodes
+    journal: Вісник КПІ. Серія Приладобудування, Вип. 65(1), с. 47–51
+    year: 2023
+    doi: ''
+  - authors: G. Monastyrsky
+    title: Nanoparticles formation mechanisms through the spark erosion of alloys in cryogenic liquids
+    journal: Nanoscale Research Letters, v. 10, pp. 503–511
+    year: 2015
+    doi: https://doi.org/10.1186/s11671-015-1212-9
+  - authors: GE Monastyrsky, V Odnosum, J Van Humbeeck, VI Kolomytsev, YN Koval
+    title: 'Powder metallurgical processing of Ni–Ti–Zr alloys undergoing martensitic transformation: Part I'
+    journal: Intermetallics, 10(1), 95–103
+    year: 2002
+    doi: https://www.sciencedirect.com/science/article/abs/pii/S0966979502000390
+  - authors: RA Portier, P Ochin, A Pasko, GE Monastyrsky, AV Gilchuk, VI Kolomytsev et al.
+    title: Spark plasma sintering of Cu–Al–Ni shape memory alloy
+    journal: Journal of Alloys and Compounds, 577, S472–S477
+    year: 2013
+    doi: https://www.sciencedirect.com/science/article/abs/pii/S0925838812004343
+  - authors: GE Monastyrsky, PA Yakovenko, VI Kolomytsev, YN Koval, AA Shcherba et al.
+    title: Characterization of spark-eroded shape memory alloy powders obtained in cryogenic liquids
+    journal: 'Materials Science and Engineering: A, 481, 643–646'
+    year: 2008
+    doi: https://www.sciencedirect.com/science/article/abs/pii/S0921509307012580
+  - authors: YN Koval, GE Monastyrsky
+    title: Reversible martensite transformation and shape memory effect in Fe-Ni-Nb alloys
+    journal: Scripta Metallurgica et Materialia, 28(1), 41–46
+    year: 1993
+    doi: https://www.sciencedirect.com/science/article/abs/pii/0956716X9390534Y
+  achievements:
+  - Патент України на корисну модель № 84465 «Спосіб отримання монолітного нітриду титану» (2013)
+  - Патент на винахід № 105862 Україна «Спосіб отримання монолітного нітриду титану» (2014)
+  - Авторське свідоцтво СРСР 1469901 «Спосіб виготовлення термочутливого елементу» (1987)
+  students:
+    phd:
+    - year: 2014
+      name: Гільчук Андрій Володимирович
+      degree: к.ф-м.н.
+      topic: Особливості фазоутворення і мікроструктури в сплавах на основі Ni-Ti, Cu-Al, Ni-Mn-Ga, отриманих електроіскровим
+        та плазмово-іскровим методом
+    phd_current:
+    - year: 2023
+      name: Висоцький Павло
+    master:
+    - year: 2022
+      name: Стандик Андрій
+      topic: Механізми балістичного захисту бронеплит для індивідуального захисту
+    - year: 2016
+      name: Закусило Тетяна
+      topic: Умови отримання паяних з'єднань мідних пластин за рахунок тепла СВС реакції, ініційованій в багатошаровій фользі
+        Ni/Al, та їхні властивості
+    - year: 2012
+      name: Портніченко Павло
+      topic: Синтез композитних структур із матеріалів із пам'яттю форми
+    - year: 2012
+      name: Сірий Дмитро
+      topic: Отримання металічних пін на основі сплаву Cu-Al-Ni
+    bachelor:
+    - year: 2024
+      name: Голіков Максим
+      topic: Дослідження SERS відгуку плазмонного датчика AuНч-МІП для детектування молекул вибухівки
+    - year: 2024
+      name: Король Олег
+      topic: Особливості реалізації спектрального ефекту ППР в тонких плівках високопровідних металів для побудови оптоелектронних
+        хемосенсорних систем
+    - year: 2024
+      name: Литвин Анастасія
+      topic: Виготовлення філаменту з ПЕТ-пластику та друк ним
+    - year: 2024
+      name: Смоліков Михайло
+      topic: Моделювання поширення детонаційної хвилі в структурах з циліндричною симетрією
+    - year: 2023
+      name: Лицар Данило
+      topic: Спектр видимого і ближнього ІЧ діапазону гідрогелевих нанокомпозитів AgNP-PVA, зшитих опроміненням електронним
+        променем
+    - year: 2023
+      name: Суханевич Олександра
+      topic: Особливості структури гідрогелевих нанокомпозитів ПВС-наносрібло, опромінених високоенергетичним пучком електронів
+    - year: 2023
+      name: Суханевич Роман
+      topic: Акустична локація літаючих дозвукових об'єктів
+    - year: 2022
+      name: Печонкин Ілля
+      topic: Використання ідеології квантового комп'ютингу для розв'язку фізичних задач
+    - year: 2010
+      name: Іванова Ольга
+      topic: Structure research of Ti-Ni-Zr-Cu powders, produced of spark erosion method
+    contest_winners:
+    - name: Оліфер Леонід
+      year: 2013
+      note: І місце, секція «Вивчення фізики»
+    - name: Закусило Тетяна
+      year: 2018
+      note: ІІ місце, секція «Фізика»
+  biography: 'В 1984 році закінчив Московський фізико-технічний інститут (факультет Проблем фізики та енергетики) за спеціальністю
+    «Автоматика і електроніка». В 1984–1985 працював в Інституті металофізики ім. Г.В. Курдюмова НАН України стажером-дослідником.
+    З 1985 по 1989 заочно навчався в аспірантурі Інституту металофізики ім. Г.В. Курдюмова НАН України. В 1990 році захистив
+    кандидатську дисертацію «Мартенситне перетворення та ефект пам''яті форми в легованих сплавах на основі Fe-Ni» (спеціальність:
+    фізика твердого тіла). З 1991 по 1995 — науковий співробітник Інституту металофізики НАН України. В 1995 перейшов до НТУУ
+    «КПІ», де брав активну участь в організації фізико-технічного інституту та розвитку навчальних лабораторій із загальної
+    фізики. З 1997 по 2010 — заступник завідувача кафедри «Прикладна фізика» ФТІ НТУУ КПІ. До 2014 року за сумісництвом —
+    старший науковий співробітник відділу фазових перетворень Інституту металофізики НАН України. З 2010 по 2021 — заступник
+    директора ФТІ з міжнародної діяльності. В 2020 році захистив докторську дисертацію «Закономірності фазових структурних
+    перетворень в неоднорідних, нерівноважних і просторово обмежених станах функціональних матеріалів» (спеціальність: фізика
+    металів). З 2021 року — завідувач кафедри прикладної фізики ФТІ КПІ ім. Ігоря Сікорського.
+
+    '
+  international_projects:
+  - program: INTAS
+    grants:
+    - (1995–1996) «Development and investigation of metallic systems and intermetallic compounds with advanced functional
+      properties» (INTAS 93-1202)
+    - (1996–1997) продовження проекту INTAS 93-1202-ext
+  - program: INCO-Copernicus
+    grants:
+    - '(1997–1999) E.U. INCO-Copernicus IC15-CT96-0704 «Development of non-conventional shape memory alloys production technologies:
+      high temperature Cu-based and Ni-Ti based alloys»'
+  - program: ECONET (Україна–Франція)
+    grants:
+    - (2004–2005) «Development of new bulk amorphous and nano-cristalline alloys, precursor of shape memory alloys»
+  - program: PICS (Україна–Франція)
+    grants:
+    - '(2003–2006) «Multicomponent TiNi-based Shape Memory Alloys: design and research of the alloys produced in the precursor
+      amorphous and nanocrystalline states» (PICS-1599)'
+    - (2007–2010) «Intermetallic and shape memory alloys for high temperature applications» (PICS-3717)
+  - program: STCU (УНТЦ)
+    grants:
+    - (1997–1999) «Вивчення та розробка багатокомпонентних сплавів з пам'яттю форми на основі технологій виробництва тонких
+      плівок та ультразвукової обробки» (STCU-453)
+    - (2002–2004) «Розробка ультразвукових технологій отримання нових композиційних матеріалів з регульованим коефіцієнтом
+      термічного розширення» (STCU 2354)
+    - (2005–2007) «Development of magnetoelastic shape memory materials for new class acoustic transducers» (STCU 3144)
+    - (2006–2007) «Bulk metallic glass precursors of the multicomponent shape memory alloys for enhanced and high-temperature
+      applications» (STCU 3520)
+  national_projects:
+  - (1996–1998) «Дослідження впливу хімічного складу та деформаційної поведінки на експлуатаційні характеристики сплавів з
+    пам'яттю форми» (Проект 5.2/0580, № 0197U017230)
+  - (1999–2001) «Дослідження механізмів структуроутворення, обумовленого фазовими перетвореннями в інтерметалічних сполуках»
+    (№ 0199U002844)
+  - (2002–2004) «Мартенситні перетворення і властивості в матеріалах з особливими структурним і магнітним станами» (№ 0102U000316)
+  - (2003–2004) «Розробка технології отримання нанорозмірних порошків багатофункціональних матеріалів із магніто-керованою
+    пам'яттю форми» (№ НЧ/438-2003)
+  - (2003–2005) «Вплив типу магнітного порядку на мартенситне перетворення і ефект пам'яті форми» (Проект №04.07/00102, №
+    0101U007641)
+  - (2005–2007) «Структурні фазові перетворення в градієнтних функціональних матеріалах і наноструктурних сплавах» (№ 0105U000978)
+  - (2008–2012) «Фазові перетворення, структурні особливості та функціональні властивості нових композиційних матеріалів на
+    основі сплавів з пам'яттю форми»
+  - (2015–2017) «Дослідження впливу характеристик мікроструктури багатошарових фольг на їхні параметри реакційної здатності»
+    (Відділення цільової підготовки КПІ–НАН України)
+  - (2017–2020) «Оптимізація параметрів отримання контактних з'єднань з низьким опором методом реакційної пайки» (№ ДР 0115U000969)
+  academic_title:
+  - професор
+
+- id: ivanova_vv
+  page_id: 193
+  name: Іванова Віта Вікторівна
+  degree: Кандидат технічних наук
+  position: Гарант програми першого (освітньо-професійного) рівня вищої освіти
+  photo: https://apd.ipt.kpi.ua/wp-content/uploads/2026/03/Ivanova_VV.jpg
+  contacts:
+    orcid: 0000-0003-1746-9246
+    wos: M-7761-2018
+    scopus: '7202080343'
+    google_scholar: A-gMt9gAAAAJ
+    intellect: ivv21
+    schedule: https://schedule.kpi.ua/lecturers?lecturerId=2cec8cf0e321c284fa0c2ebef804aac18bf1cbb85546f89e7e3d0b6aa8b9d2cf
+  research_interests:
+  - Тепловізійні системи
+  - Оптоелектроніка. Характеризація світлодіодів (RGB LED, фактор ідеальності), оптичні низько- і високочастотні шуми InGaN
+    LED
+  courses:
+    bachelor:
+    - title: Введення у спеціальність
+      description: для студентів 1-го курсу спеціальності Е6 Прикладна фізика та наноматеріали
+    - title: Оптика
+      description: для студентів 2-го курсу спеціальності 105 Прикладна фізика та наноматеріали
+    - title: Оптоелектроніка
+      description: для студентів 4-го курсу спеціальності 105 Прикладна фізика та наноматеріали
+    - title: Квантова електроніка
+      description: для студентів 4-го курсу спеціальності 105 Прикладна фізика та наноматеріали
+    - title: Основи фотовольтаїки
+      description: для студентів 4-го курсу спеціальності 105 Прикладна фізика та наноматеріали
+  duties:
+  - Гарант ОПП «Прикладна фізика»
+  - Учасник робочої групи ОПП «Прикладна фізика»
+  - Член НМКУ по спеціальності 105/E6 «Прикладна фізика та наноматеріали»
+  - Науковий керівник НДР «Дослідження фактору ідеальності вольт-амперних характеристик світлодіодів» (Договір №0124U001845
+    від 16.02.2024)
+  - Науковий керівник НДР «Термографічні дослідження з'єднань компонентів і конструкцій сушильних камер» (Договір №0122U200528
+    від 17.07.2022)
+  - НДР «Оптимізація параметрів отримання контактних з'єднань з низьким опором методом реакційної пайки» (ДР 0118U003537)
+  certificates:
+  - year: 05–06/2020
+    title: Онлайн-курс Coursera, University of Michigan
+    issuer: Certificate AZ6V7Q63TYPS
+  - year: 12/2021–02/2022
+    title: Стажування в Інституті фізики НАН України (МЦ Інститут прикладної оптики)
+  - year: 09–12/2023
+    title: Стажування в Технологічному університеті м. Хемніц (Німеччина), Фізичний факультет, лабораторія сенсорики. Дослідження
+      шумів світлодіодів. Викладання лекцій з оптоелектроніки для магістрів (in English)
+  publications:
+  - authors: Bohomolov, D., Ivanova, V. and Schwarz, U.T.
+    title: Low- and High-Frequency Noise in LEDs
+    journal: Phys. Status Solidi A, 2400869
+    year: 2025
+    doi: https://doi.org/10.1002/pssa.202400869
+  - authors: V. Ivanova, I. Yuliia, D. Bohomolov, G. Monastyrsky, U.T. Schwarz and M. Binder
+    title: Abnormal Ideality Factor and LED Noise Correlation
+    journal: 2024 IEEE 42nd International Conference on Electronics and Nanotechnology (ELNANO), pp. 640–644
+    year: 2024
+    doi: https://doi.org/10.1109/ELNANO63394.2024.10756844
+  - authors: Danylo Bohomolov, Vita Ivanova, Ulrich Theodor Schwarz
+    title: Optical and electrical noise in RGB LEDs in the mHz to kHz frequency band
+    journal: Proc. SPIE 12886, Gallium Nitride Materials and Devices XIX, 128860E
+    year: 2024
+    doi: https://doi.org/10.1117/12.3002
+  - authors: V. Dudin, V. Ivanova, N. Gordiiko, S. Ponomarenko, G. Monastyrsky
+    title: New thiophene based materials for emissive layers of organic light-emitting diodes
+    journal: Вісник КПІ. Серія Приладобудування, Вип. 65(1), с. 47–51
+    year: 2023
+    doi: https://doi.org/10.20535/1970.65(1).2023.283314
+  - authors: G. Monastyrsky, V. Ivanova, D. Humeniuk, S. Bekh
+    title: Indirect estimation of thermal regime of operation of power LEDs
+    journal: 2022 IEEE 41st International Conference on Electronics and Nanotechnology (ELNANO), pp. 119–123
+    year: 2022
+    doi: https://doi.org/10.1109/ELNANO54667.2022.9926996
+  - authors: Y. Mamchur, V. Ivanova, G. Monastyrsky, G. Zheng, S. Voronov
+    title: Thermography investigation of soldered joints for LED mounting
+    journal: 2020 IEEE 40th International Conference on Electronics and Nanotechnology (ELNANO), pp. 143–147
+    year: 2020
+    doi: https://doi.org/10.1109/ELNANO50318.2020.9088886
+  students:
+    bachelor:
+    - year: 2024
+      name: Панасюк Владислав Васильович
+      topic: Дифракційне багатопрохідне метадзеркало для покращення якості лазерного випромінювання
+    - year: 2024
+      name: Ільчук Юлія Миколаївна
+      topic: Дослідження електричних та оптичних характеристик світлодіодів
+    - year: 2023
+      name: Карабан Артем Олексійович
+      topic: Методика юстування проєкційного модуля оптичної системи
+    - year: 2020
+      name: Мамчур Ярина Дмитрівна
+      topic: Комплексне дослідження впливу температури на характеристики світлодіодів
+    master:
+    - year: 2025
+      name: Богомолов Данило Костянтинович
+      topic: Дослідження низькочастотного і високочастотного шуму у InGaN світлодіодах
+    - year: 2022
+      name: Мамчур Ярина Дмитрівна
+      topic: Дослідження дифракційних аномалій на періодичних металевих структурах
+    - year: 2019
+      name: Гао Чжен
+      topic: Тепловізійна діагностика компонентів друкованих плат та паяних з'єднань
+    contest_winners:
+    - name: Мамчур Ярина Дмитрівна
+      year: 2022
+    - name: Дудін Владислав Володимирович
+      year: 2022
+    - name: Богомолов Данило Костянтинович
+      year: 2023
+  conferences:
+  - title: E-MRS 2024 Fall Meeting (Warsaw University of Technology)
+    date: 16–19 вересня 2024
+    location: Варшава, Польща
+    url: https://www.european-mrs.com/meetings/archives/2024/2024-fall-meeting
+  - title: 15th International Conference on Nitride Semiconductors (ICNS-15)
+    date: 6–11 липня 2025
+    location: Мальме, Швеція
+    url: https://files.mkon.nu/fmfiles/file/Abstractbook_ICNS15_020725_updated-1.pdf
+  - title: 2024 IEEE 42nd International Conference on Electronics and Nanotechnology (ELNANO)
+    date: 13–16 травня 2024
+    location: Київ, Україна
+    url: https://ieeexplore.ieee.org/xpl/conhome/10756806/proceeding
+  - title: 2022 IEEE 41st International Conference on Electronics and Nanotechnology (ELNANO)
+    date: 10–14 жовтня 2022
+    location: Київ, Україна
+    url: https://ieee.org.ua/event/ieee-kyiv-polytechnic-week-2022-ieee-41st-international-conference-on-electronics-and-nanotechnology-elnano/
+  - title: 2020 IEEE 40th International Conference on Electronics and Nanotechnology (ELNANO)
+    date: 22–24 квітня 2020
+    location: Київ, Україна
+    url: https://ieeexplore.ieee.org/xpl/conhome/9085228/proceeding
+  - title: XXI Всеукраїнська науково-практична конференція «Теоретичні і прикладні проблеми фізики, математики та інформатики»
+    date: 11–12 травня 2023
+    location: Київ, Україна
+    url: http://conf.ipt.kpi.ua/arxiv/2023-%d1%80%d1%96%d0%ba/
+  - title: XX Всеукраїнська науково-практична конференція «Теоретичні і прикладні проблеми фізики, математики та інформатики»
+    date: 15–16 червня 2022
+    location: Київ, Україна
+    url: http://conf.ipt.kpi.ua/arxiv/2022-%d1%80%d1%96%d0%ba/
+  - title: XIX Всеукраїнська науково-практична конференція «Теоретичні і прикладні проблеми фізики, математики та інформатики»
+    date: '2021'
+    location: Київ, Україна
+  biography: 'Закінчила Київський політехнічний інститут, спеціальність: оптичне і оптико-електронне приладобудування, кваліфікація:
+    інженер-оптик-конструктор. Кандидат технічних наук (1997) за спеціальністю 05.11.07 — оптичні і оптикоелектронні прилади.
+    Тема дисертації: «Системи модуляції для пірокамер». Доцент кафедри прикладної фізики з 2003 р.
+
+    '
+  achievements:
+  - Член наукової школи «Оптико-електронні системи спостереження різного призначення», очолюваної проф. Колобродовим В.Г.
+  academic_title:
+  - доцент
+  
+- id: dimitrieva_nf
+  page_id: 335
+  name: Димитрієва Наталія Федорівна
+  degree: Кандидат фізико-математичних наук
+  photo: http://apd.ipt.kpi.ua/wp-content/uploads/2025/01/Dymytriyeva.jpg
+  contacts:
+    email: dimitrieva@nas.gov.ua
+    orcid: 0000-0002-0957-1112
+    wos: AAJ-8391-2020
+    scopus: '55613676300'
+    google_scholar: AoXsaN8AAAAJ
+    intellect: dnf
+    main_workplace_label: Інститут гідромеханіки НАН України
+    main_workplace_url: https://hydromech.org.ua/
+    nas_page: https://old.nas.gov.ua/UA/PersonalSite/Statuses/Pages/default.aspx?PersonID=0000016689
+  research_interests:
+  - Керування примежовим шаром
+  - Чисельне моделювання задач гідро- та газодинаміки
+  courses:
+    bachelor:
+    - title: Математичне моделювання та відкриті пакети прикладних програм
+      url: https://apd.ipt.kpi.ua/osvita/osvitni-komponenti-bakalavr-2024/po-09-matematichne-modeliuvannia-ta-vidkriti-paketi-prikladnikh-program-2024/
+      description: нормативна, бакалаврат
+    - title: Комп'ютерне моделювання механіки суцільних середовищ
+      url: https://apd.ipt.kpi.ua/osvita/osvitni-komponenti-bakalavr-2024/pv-11-1-komp-iuterne-modeliuvannia-mekhaniki-sutsilnikh-seredovishch-2024/
+      description: вибіркова, бакалаврат
+    master:
+    - title: Основи теорії примежового шару
+      url: https://apd.ipt.kpi.ua/osvita/osvitni-komponenti-magistr-2024/pv-07-2-osnovi-teorii-primezhovogo-sharu-2024/
+      description: вибіркова, магістратура
+  publications:
+  - authors: Димитрієва Н.Ф.
+    title: Моделювання вихрової структури всередині вентильованої каверни
+    journal: 'Вісник НТУ «ХПІ». Серія: Математичне моделювання'
+    year: 2025
+    doi: https://doi.org/10.20998/2222-0631.2025.02(9).07
+  - authors: Dimitrieva N.F.
+    title: Vortices Inside a Ventilated Cavity
+    journal: Topical Problems of Fluid Mechanics 2025, Prague
+    year: 2025
+    doi: https://doi.org/10.14311/TPFM.2025.007
+  - authors: Koval S.O., Dimitrieva N.F.
+    title: Two-Phase 3D Modeling of an Airlift Pump in OpenFOAM
+    journal: Topical Problems of Fluid Mechanics 2024, Prague
+    year: 2024
+    doi: https://doi.org/10.14311/TPFM.2024.014
+  - authors: Voropaiev G., Baskova O., Dimitrieva N.
+    title: Formation of the Thermocline in Storage Tanks
+    journal: Topical Problems of Fluid Mechanics 2023, Prague
+    year: 2023
+    doi: https://doi.org/10.14311/TPFM.2023.028
+  - authors: Коваль С.О., Воропаєв Г.О., Коробов В.І., Димитрієва Н.Ф.
+    title: Моделювання газоподібної каверни в потоці рідини
+    journal: 'Вісник НТУ «ХПІ». Серія: Математичне моделювання'
+    year: 2023
+    doi: https://doi.org/10.20998/2222-0631.2023.01.19
+  - authors: Воропаєв Г.О., Коробов В.І., Димитрієва Н.Ф.
+    title: Моделювання вентильованої каверни за обтічним тілом
+    journal: Журнал обчислювальної та прикладної математики. Т. 135, № 1
+    year: 2021
+    doi: https://doi.org/10.17721/2706-9699.2021.1.09
+  achievements:
+  - Учений секретар Інституту гідромеханіки НАН України (з 2021)
+  - 'Участь у міжнародному проєкті ONRG (США, 2025–2026): «Refinement of the mathematical model of gliding on a cavity surface,
+    including experimental validation» (№ P828)'
+  - Координатор Pilot Centre in Ukraine асоціації ERCOFTAC (https://www.ercoftac.org/pilot_centres/ukraine/people/)
+  - 'Рецензент журналів: Ocean Engineering (Scopus), Topical Problems of Fluid Mechanics (WoS)'
+  - Керівництво студентом Ковалем С.О. — 1-е місце в конкурсі НАН України для молодих учених (2023)
+  - Член журі Всеукраїнського конкурсу «Еко-Техно Україна» (Regeneron ISEF), категорія «Енергетика» (2023–2025)
+  - Голова/член Ради молодих вчених НАН України (2016–2019)
+  academic_title:
+  - старший дослідник
+  - старший викладач
+
+- id: voronov_so
+  page_id: 201
+  name: Воронов Сергій Олександрович
+  degree: Доктор технічних наук
+  position: Гарант програми третього (освітньо-наукового) рівня вищої освіти
+  photo: http://apd.ipt.kpi.ua/wp-content/uploads/2025/01/Voronov-233x300.jpg
+  contacts:
+    orcid: 0000-0002-0053-0381
+    wos: M-4429-2018
+    scopus: '56250715100'
+    google_scholar: _Kwhm20AAAAJ
+    intellect: vso12
+    schedule: https://schedule.kpi.ua/lecturers?lecturerId=f89f8d0e735a91c5269ab08d72fa27670d000e7561698d6e664e7b603f5c4e40
+  courses:
+    bachelor:
+    - title: Введення в спеціальність
+    - title: Наукові дослідження за темою кваліфікаційної роботи
+    - title: Лабораторно-дослідницький практикум
+    - title: Основи фізичного матеріалознавства
+    master:
+    - title: Наукова робота за темою магістерської дисертації. Основи наукових досліджень
+    - title: Спеціальні глави фізичного матеріалознавства
+    - title: Науково-дослідна робота за темою магістерської дисертації
+    phd:
+    - title: Актуальні проблеми прикладної фізики
+    - title: Методологія наукових досліджень
+  certificates:
+  - year: 2021
+    title: Міжнародний сертифікат № 2515 — участь у ІІ Міжнародній програмі підвищення кваліфікації (180 год., 6 кредитів
+      ECTS)
+    issuer: International Historical Biographical Institute (Dubai – New York – Rome – Burgas – Jerusalem – Beijing)
+  biography: 'Закінчив Київський політехнічний інститут у 1973 році за спеціальністю: електронні прилади та пристрої, кваліфікація:
+    інженер електронної техніки. Після закінчення інституту 2 роки служив в лавах Радянської армії. З 1 квітня 1975 року працює
+    в КПІ на посадах молодший науковий співробітник, старший науковий співробітник, заступник проректора з наукової роботи,
+    завідувач кафедри прикладної фізики. Навчався в аспірантурі в 1975–1978 роках. Захистив кандидатську дисертацію у 1981
+    році, докторську дисертацію у 1997 році, професор з 2004 року. Доктор технічних наук (1997) за спеціальністю: 05.27.01
+    — Твердотільна електроніка; 05.27.02 — Вакуумна, плазмова та квантова електроніка. Тема дисертації: «Оптимізація параметрів
+    реверсивних матеріалів, що використовуються для запису, збереження та відображення інформації». Завідувач кафедри прикладної
+    фізики з 2002 по 2021 рр., з 2021 до теперішнього часу — професор даної кафедри. Підготував двох кандидатів наук та одного
+    доктора наук. Член двох спеціалізованих Вчених рад із захисту докторських дисертацій (Д 26.002.08 та Д 26.002.18); Член
+    Науково-експертної ради МОН України; Член Експертної Ради МОН України з атестації наукових кадрів; Заступник голови НМК(П)
+    105 «Прикладна фізика та наноматеріали»; Голова технічної ради та член науково-інноваційної комісії Вченої ради КПІ ім.
+    Ігоря Сікорського; Голова науково-методичної комісії КПІ ім. Ігоря Сікорського зі спеціальності 105 «Прикладна фізика
+    та наноматеріали».
+
+    '
+  academic_title:
+  - професор
+
+- id: khalatov_aa
+  page_id: 328
+  name: Халатов Артем Артемович
+  degree: Доктор технічних наук
+  photo: http://apd.ipt.kpi.ua/wp-content/uploads/2025/01/khalatov-300x288.jpg
+  contacts:
+    orcid: 0000-0002-7659-4234
+    scopus: '7005232994'
+    google_scholar: nRuUOPEAAAAJ
+    intellect: xaa
+    main_workplace_label: Інститут технічної теплофізики НАН України, відділ високотемпературної термогазодинаміки
+    main_workplace_url: https://ittf.kiev.ua/naukovi-pidrozdili/visokotemperaturno%D1%97-termogazodinamiki-vttgd/
+    position_label: Завідувач відділу
+  research_interests:
+  - Конвективний теплообмін і гідродинаміка в каналах складної форми
+  - Закручені потоки та термогазодинаміка вихрових систем
+  - Плівкове охолодження криволінійних поверхонь і лопаток газових турбін
+  - Тепломасообмін у полях відцентрових масових сил
+  - Термодинаміка і теплообмін у ядерних енергетичних установках
+  - Вихрове спалювання біомаси та низькокалорійних газів
+  courses:
+    bachelor:
+    - title: Основи конвективного теплообміну
+      description: лекції, ІІІ курс
+    master:
+    - title: Спецглави конвективного теплообміну
+      description: лекції, V курс
+  publications:
+  - authors: D. Wang, A. Khalatov, E. Shi-Ju, I. Borisov, O. Stupak, T. Donyk
+    title: Flow structure and heat transfer in subsonic nozzle with initial flow swirl
+    journal: International Journal of Thermal Sciences, 224, 110712
+    year: 2026
+  - authors: A.A. Khalatov, T.V. Donyk, O.S. Stupak, I.A. Safiulin
+    title: Increase in the gas turbine fuel efficiency via application of enhanced blades cooling
+    journal: Energy Technologies & Resource Saving, 85(4), 26–37
+    year: 2025
+  - authors: A.A. Khalatov, S.G. Kobzar, I.I. Borysov, N.M. Fialko
+    title: Reciprocating gas engines in the distributed energy sector of Ukraine
+    journal: Thermophysics and Thermal Power Engineering, 50(4), 84–95
+    year: 2025
+  - authors: A.A. Khalatov, M.A. Danylov
+    title: Film cooling effectiveness under conditions of contamination of discrete cooler blow holes
+    journal: Thermophysics and Thermal Power Engineering, 48(2), 7–17
+    year: 2025
+  - authors: D. Wang, A. Khalatov, I. Borisov, E. Shi-Ju, O. Stupak
+    title: 'Swirling flow and heat transfer in a pipe: Decay and transition to axial flow'
+    journal: International Journal of Heat and Mass Transfer, 233, 125976
+    year: 2024
+  - authors: D. Wang, A. Khalatov, E. Shi-Ju, T. Donyk, O. Shikhabutinova
+    title: Thermodynamics of GT-MHR-250 modular nuclear plant with helium reactor and gas turbine based on the complex Brayton
+      cycle
+    journal: Thermal Science and Engineering Progress, 39, 101686
+    year: 2023
+  - authors: A.A. Khalatov, T.V. Donyk, N.A. Panchenko
+    title: Film Cooling of a Convex Surface with Coolant Supply through Two Rows of Transverse Trenches
+    journal: Journal of Engineering Physics and Thermophysics, 96(5), 1257–1264
+    year: 2023
+  - authors: I. Borisov, A. Khalatov, D. Paschenko
+    title: The biomass fueled micro-scale CHP unit with Stirling engine and two-stage vortex combustion chamber
+    journal: Heat and Mass Transfer, 58(7), 1091–1103
+    year: 2022
+  - authors: D. Wang, A. Khalatov, E. Shi-Ju, I. Borisov
+    title: Swirl flow heat transfer and flow characteristics in a solid and permeable pipe with exit nozzle
+    journal: International Journal of Thermal Sciences, 173, 107425
+    year: 2022
+  - authors: D. Wang, A. Khalatov, E. Shi-Ju, I. Borisov
+    title: Swirling flow heat transfer and hydrodynamics in the model of blade cyclone cooling with inlet co-swirling flow
+    journal: International Journal of Heat and Mass Transfer, 175, 121404
+    year: 2021
+  - authors: A.A. Khalatov, T.V. Donyk
+    title: Film cooling of a concave surface with two-row coolant supply in trenches
+    journal: Thermal Engineering, 68(12), 943–952
+    year: 2021
+  biography: 'Закінчив Казанський авіаційний інститут (КАІ). Його перше дослідження, присвячене новим системам охолодження
+    ракетних двигунів, було удостоєне диплому Міністра вищої та середньої освіти РРФСР (1966). У 1970 році захистив кандидатську
+    дисертацію, а в 1977 році — докторську, присвячені термогазодинаміці інтенсивних систем охолодження високотемпературних
+    двигунів літальних апаратів. З червня 1978 року працює в Інституті технічної теплофізики НАН України: спочатку старшим
+    науковим співробітником, з 1983 року — завідувачем відділу, у 1986–1994 роках — заступником директора з наукової роботи.
+    У 1981 році присвоєно вчене звання професора, у 1990 році обрано членом-кореспондентом НАН України, у 2000 році — академіком.
+    В ІТТФ НАН України очолив науковий напрямок у галузі тепломасообміну та гідродинаміки в полях відцентрових масових сил.
+    Автор і співавтор 12 монографій, кількох підручників, понад 300 наукових статей (80 опубліковано за кордоном), більш ніж
+    80 авторських свідоцтв і патентів. Серед найважливіших монографій: «Теплообмін, масообмін і гідродинаміка закручених потоків
+    в осесиметричних каналах» (1982), «Теорія і практика закручених потоків» (1989), «Термогазодинаміка складних потоків біля
+    криволінійних поверхонь» (1999), чотиритомна монографія «Теплообмін і гідродинаміка в полях відцентрових масових сил»
+    (1996–2000). У 1992 році присуджено премію НАН України ім. Г. Ф. Проскури, у 1995 році обрано дійсним членом Аерокосмічної
+    академії України, у 1996 році — Почесним професором Університету м. Кардіфф (Велика Британія). У 2002 році отримав перший
+    приз Наукового комітету НАТО. Під його керівництвом підготовлено 29 кандидатів наук, двоє з яких захистили докторські
+    дисертації. З 2 серпня 2011 року очолював кафедру Фізики енергетичних систем ФТІ КПІ ім. Ігоря Сікорського.
+
+    '
+  achievements:
+  - Лауреат Державної премії України в галузі науки і техніки
+  - Дві наукові премії Національної академії наук України
+  - Вища нагорода НАН України «За підготовку наукової зміни»
+  - Перша міжнародна премія Наукового комітету НАТО (2002, спільно з Великобританією та Росією) — за розробку циклонічної
+    схеми охолодження лопаток газових турбін
+  - Міжнародна наукова премія ім. академіка О.В. Ликова Національної академії наук Білорусі
+  - Почесний професор Університету м. Кардіфф (Велика Британія, 1996)
+  - W.W. Clyde Chair Visiting Professor Університету штату Юта (США)
+  - Дійсний член (академік) НАН України по Відділенню фізико-технічних проблем енергетики (2012)
+  - Член-кореспондент НАН України (1990)
+  - 'Наукова школа: підготовлено 40 докторів і кандидатів наук, один з яких обраний членом-кореспондентом НАН України'
+  - Автор та співавтор 23 монографій, 4 навчальних посібників, 650 статей, понад 110 патентів і авторських свідоцтв
+  - Голова Комісії з промислових газових турбін НАН України
+  - Заступник голови Національного комітету України з тепло- і масообміну
+  - Організатор 20 міжнародних конференцій для молодих вчених і 5 міжнародних конференцій з газотурбобудування в Україні
+  - Понад 20 міжнародних грантів та проектів ЄС, NATO, Soros Foundation, CRDF (Україна–США)
+  academic_title:
+  - професор
+  position: академік НАН України
+  
+- id: zhdanov_vi
+  page_id: 211
+  name: Жданов Валерій Іванович
+  degree: Доктор фізико-математичних наук
+  photo: http://apd.ipt.kpi.ua/wp-content/uploads/2025/01/zhdanov.jpg
+  contacts:
+    orcid: 0000-0003-3690-483X
+    scopus: '16456097400'
+    schedule: https://schedule.kpi.ua/lecturers?lecturerId=34a1f239090ea33fc9f6458e3d49c41b1dba5bdfafe7fcc0aa33a384cec9c79d
+    main_workplace_label: Астрономічна обсерваторія КНУ ім. Тараса Шевченка
+    main_workplace_url: http://observ.knu.ua/obs/
+    position_label: Завідувач відділу астрофізики (основне місце роботи); професор кафедри прикладної фізики КПІ ім. Ігоря
+      Сікорського (поза штатом)
+  research_interests:
+  - Релятивістська астрофізика та космологія
+  - Загальна теорія відносності
+  - Релятивістська динаміка
+  - Гравітаційне лінзування
+  - Теорія релятивістських ударних хвиль
+  - Релятивістські системи відліку
+  courses:
+    bachelor:
+    - title: Теорія поля
+    - title: Електродинаміка суцільних середовищ
+    - title: Рівняння математичної фізики
+  biography: 'Закінчив фізичний факультет Київського державного університету у 1972 році. Кандидат фізико-математичних наук
+    (1974), тема дисертації: «Дослідження рівнянь руху в релятивістській динаміці взаємодіючих частинок». Доктор фізико-математичних
+    наук (1992), тема дисертації: «Методи наближеного і якісного аналізу в релятивістській динаміці». У Київському університеті
+    з 1988 року. З 1997 року — завідувач відділу астрофізики та фізики Сонця (з 2001 року — відділ астрофізики) астрономічної
+    обсерваторії КНУ ім. Тараса Шевченка. Лауреат Державної премії України в галузі науки і техніки (2014). Академік АН вищої
+    школи України. Член Міжнародної астрономічної спілки. Підготував спеціальні курси із загальної теорії відносності, космології,
+    синергетики в астрономії для фізичного факультету КНУ ім. Тараса Шевченка.
+
+    '
+  achievements:
+  - Лауреат Державної премії України в галузі науки і техніки (2014)
+  - Академік АН вищої школи України
+  - Член Міжнародної астрономічної спілки
+  academic_title:
+  - професор
+- id: yavorsky_va
+  name: Яворський Володимир Анатолійович
+  degree: Кандидат біологічних наук
+  photo: https://scholar.googleusercontent.com/citations?view_op=view_photo&user=OmTPHO4AAAAJ&citpid=4
+  contacts:
+    email: volodymyr.yavorskyi-ipt@lll.kpi.ua
+    orcid: 0009-0002-9907-1839
+    google_scholar: OmTPHO4AAAAJ
+    schedule: https://schedule.kpi.ua
+    nas_page: https://old.nas.gov.ua/UA/PersonalSite/Statuses/Pages/default.aspx?PersonID=0000015609
+  research_interests:
+  - Розробка і дослідження моделей нейродегенеративних захворювань
+  - Комп'ютерне моделювання біологічних систем
+  - Побудова і використання нейромоделей штучного інтелекту
+  courses:
+    bachelor:
+    - title: Інформаційні ресурси в біомедичних дослідженнях
+    - title: Основи електрофізіологічного експерименту
+    - title: Комп'ютерне моделювання біофізичних систем
+  duties:
+  - Керівник розділу 5 держбюджетної теми «Біофізичні механізми патологічної активності нейронів, обумовленої гіпоксично-ішемічними
+    і запалювальними ураженнями» (2023)
+  certificates:
+  - year: 2025
+    title: 'Літня школа «Стійкий учитель — вмотивований учень: психоемоційна підтримка та EdTech-рішення» (1 ECTS)'
+  publications:
+  - authors: Yavorsky V.A., Rozumna N.M., Lukyanetz E.A.
+    title: Influence of amyloid beta on impulse spiking of isolated hippocampal neurons
+    journal: Frontiers in Cellular Neuroscience, 17, 1132092
+    year: 2023
+    doi: https://doi.org/10.3389/fncel.2023.1132092
+  - authors: V.A. Yavorskyi, I.O. Lukyanets, M.V. Yavorskyi, O.O. Lukyanets
+    title: Modeling the impact of hypoxia on neuronal impulse activity using the Hodgkin-Huxley computational model
+    journal: Фізіологічний журнал, Т. 70, № 5, додаток
+    year: 2024
+  - authors: В.А. Яворський, Н.М. Розумна, О.О. Лук'янець
+    title: Амілоїд Aβ 1-42 посилює імпульсну генерацію ізольованих нейронів гіпокампу
+    journal: Фізіологічний журнал, Т. 68, № 3, додаток
+    year: 2022
+  - authors: Shkryl V.M., Turytska T.G., Yavorsky V.A. et al.
+    title: Effect of caffeine and coffee diets on calcium signalling in rat hippocampal neurons
+    journal: Fiziolohichnyi Zhurnal, 67(4), 37–43
+    year: 2021
+    doi: https://doi.org/10.15407/fz67.04.037
+  academic_title: []
+
+- id: zagorodny_vv
+  page_id: 4348
+  name: Загородній Вячеслав Васильович
+  degree: Кандидат технічних наук
+  photo: https://files.nas.gov.ua/photo/PersonalSite/FW/200805141433419-7706.jpg
+  contacts:
+    email: v31zagww@gmail.com
+    google_scholar: AWrcvdcAAAAJ
+    intellect: zvv46
+    schedule: https://schedule.kpi.ua/lecturers?lecturerId=f0d588a225e6e6ba0501a3f787230abf579f6db2dd55be0fa3450f8acd54e6f3
+    main_workplace_label: Інститут металофізики ім. Г.В. Курдюмова НАН України
+    nas_page: https://www.old.nas.gov.ua/UA/PersonalSite/Pages/default.aspx?PersonID=0000030063
+    position_label: Старший науковий співробітник
+  courses:
+    bachelor:
+    - title: Механіка
+      description: лекції, нормативна дисципліна для І курсу
+    - title: Симетрія в фізиці
+      description: лекції та практичні, вибіркова дисципліна
+  biography: 'Закінчив Ростовський державний університет за спеціальністю «інженер-фізик» у 1974 році. Кандидат технічних
+    наук (1988) зі спеціальності 02.00.02 — аналітична хімія. Тема дисертації: «Оперативний рентгенофлуоресцентний аналіз
+    негомогенних матеріалів зварювального та феросплавного виробництва». Вчене звання: старший науковий співробітник, доцент
+    кафедри прикладної фізики (2015). Основне місце роботи: старший науковий співробітник Інституту металофізики ім. Г.В.
+    Курдюмова НАН України.
+
+    '
+  academic_title:
+  - старший науковий співробітник
+  - доцент
+
+- id: bekh_sv
+  page_id:263
+  name: Бех Станіслав Вікторович
+  degree: Старший викладач
+  photo: http://apd.ipt.kpi.ua/wp-content/uploads/2025/01/beh-296x300.jpg
+  contacts:
+    email: stanislawbeh@gmail.com
+    orcid: 0000-0002-9218-3080
+    wos: AAK-8739-2020
+    scopus: '57200259160'
+    google_scholar: Ldc5h0oAAAAJ
+    intellect: bsv50
+    schedule: https://schedule.kpi.ua/lecturers?lecturerId=b4bbe448fde336bb6a7d7d765f36d3327c772b845e7b54c8282aa08c9775ddd7
+  courses:
+    bachelor:
+    - title: Механіка
+      description: лабораторні роботи для І курсу
+    - title: Електрика та магнетизм
+      description: лабораторні роботи для ІІ курсу
+    - title: Оптика
+      description: лабораторні роботи для ІІ курсу
+  certificates:
+  - year: 2026
+    title: Штучний інтелект в освітній діяльності викладача (90 год., 3 кредити)
+    issuer: СНМК «ІПО», свідоцтво ПК 02070921/010246-26
+  - year: 2016
+    title: Пошукова оптимізація сайтів та просування за вебометричними показниками
+    issuer: СНМК «ІПО», свідоцтво ПК 02070921/001005-1
+  - year: 2010
+    title: Підвищення кваліфікації
+    issuer: НТУУ «КПІ» ІПО, № КПП-ІТ №2077
+  publications:
+  - authors: G. Monastyrsky, V. Ivanova, D. Humeniuk, S. Bekh
+    title: Indirect Estimation of Thermal Regime of Operation of Power LEDs
+    journal: 2022 IEEE 41st International Conference on Electronics and Nanotechnology (ELNANO)
+    year: 2022
+    doi: https://doi.org/10.1109/ELNANO54667.2022.9926996
+  - authors: S.V. Bekh, A.P. Kobushkin, E.A. Strokovsky
+    title: Nucleon momentum distributions in ³He and three-body interactions
+    journal: arXiv preprint [nucl-th/1704.07662]
+    year: 2017
+    doi: https://arxiv.org/abs/1704.07662
+  - authors: С.В. Бех, Д.Л. Дорисюк, О.П. Кобушкін
+    title: Визначення електромагнітного радіуса протона за даними пружного електрон-протонного розсіяння при Q² до 1 (ГеВ/c)²
+    journal: XII Всеукраїнська конференція «Теоретичні і прикладні проблеми фізики, математики та інформатики», т. 1, с. 16
+    year: 2021
+  - authors: С.В. Бех, О.П. Кобушкін
+    title: Амплітуди електронародження баріонних резонансів у релятивістській кварковій моделі
+    journal: XI Всеукраїнська конференція «Теоретичні та прикладні проблеми фізики, математики та інформатики», т. 1, с. 15
+    year: 2020
+  academic_title: []
+
+- id: dolgoshey_vb
+  page_id: 208
+  name: Долгошей Володимир Борисович
+  degree: Кандидат фізико-математичних наук
+  photo: http://apd.ipt.kpi.ua/wp-content/uploads/2024/10/Dolgoshey_photo_2020-236x300.jpg
+  contacts:
+    email: v.dolgoshey@kpi.ua
+    orcid: 0000-0002-0147-3534
+    wos: https://publons.com/researcher/3510359/dolgoshey-volodymyr/
+    scopus: '6506572229'
+    google_scholar: ATgv09kAAAAJ
+    schedule: https://schedule.kpi.ua/lecturers?lecturerId=61f5643dedd8af708aa354259f12823ba214225568fbd9e30122c35e01c91b76
+  research_interests:
+  - Теплофізичні властивості та релаксаційна поведінка альтернативних кополімерів 1-олефінів та монооксиду вуглецю
+  - Полімерні нанокомпозити
+  - Бактерицидні гідроґелеві композити
+  courses:
+    bachelor:
+    - title: Механіка
+      description: практичні, лабораторні, І курс
+    - title: Теорія поля
+      description: практичні, ІІІ курс
+    - title: Термодинаміка складних систем
+      description: лекції, практичні, IV курс
+    - title: Термодинаміка циклів
+      description: лекції, практичні, IV курс
+  academic_title:
+  - доцент
+  
+- id: gordiiko_no
+  page_id: 259
+  name: Гордійко Наталія Олександрівна
+  degree: Кандидат технічних наук
+  photo: http://apd.ipt.kpi.ua/wp-content/uploads/2025/01/gordiyko.jpg
+  contacts:
+    email: n.gordiiko@kpi.ua
+    orcid: 0000-0002-0925-5160
+    wos: AAK-9632-2020
+    scopus: '6504821616'
+    google_scholar: eLfE33EAAAAJ
+    intellect: gno7
+    schedule: https://schedule.kpi.ua/lecturers?lecturerId=d536a8c1664fec0bc85615cf3cb2645871e8b2935c9642c534c67ac85315cd35
+  courses:
+    bachelor:
+    - title: Обчислювальні методи
+    - title: Методи аналізу і обробки експериментів
+    master:
+    - title: Математичне моделювання систем і процесів
+  certificates:
+  - year: 2017
+    title: Підвищення кваліфікації
+    issuer: НМК «ІПО» НТУУ «КПІ ім. І. Сікорського», свідоцтво ПК № 02070921/002897-17
+  biography: 'Закінчила Київський політехнічний інститут у 1986 році за спеціальністю «інженер-математик». Кандидат технічних
+    наук за спеціальністю 05.11.07 — оптичні прилади і системи. Тема дисертації: «Підвищення якості вихідного зображення тепловізійної
+    системи на піровідиконі». Доцент кафедри прикладної фізики.
+
+    '
+  academic_title:
+  - доцент
+
+- id: kondakov_vo
+  page_id: 261
+  name: Кондаков Володимир Олександрович
+  degree: Кандидат фізико-математичних наук
+  photo: http://apd.ipt.kpi.ua/wp-content/uploads/2025/01/Kondakov-1-300x300.jpg
+  contacts:
+    orcid: 0000-0003-2298-4824
+    intellect: kvo90
+    schedule: https://schedule.kpi.ua/lecturers?lecturerId=7054d0451000f27e0673c136e684b10beee8f4d6d9d04f964a92345a92cb17ef
+  courses:
+    bachelor:
+    - title: Загальна фізика
+      description: лекції, ІІ курс
+  certificates:
+  - year: 2017
+    title: Стажування в Інституті металофізики ім. Г.В. Курдюмова НАН України (03.04–22.05.2017)
+    issuer: Наказ по НТУУ «КПІ» №678-П від 13.03.2017
+  biography: 'У 1973 р. закінчив Ростовський державний університет за спеціальністю «фізика», кваліфікація: фізик. Кандидат
+    фізико-математичних наук за спеціальністю «фізика твердого тіла» (1988). Тема дисертації: «Дослідження електронної будови
+    шаруватих сполук графіту із залізом, хромом, молібденом і рутенієм та деяких кристалів комплексних сполук цих металів
+    методом рентгенівської емісійної спектроскопії». Працював у Ростовському державному університеті. З 1988 р. — в Інституті
+    проблем матеріалознавства НАН України, м. Київ. З 1998 р. — доцент кафедри прикладної фізики НН ФТІ КПІ ім. Ігоря Сікорського.
+
+    '
+  academic_title:
+  - доцент
+
+- id: kryvenko_yd
+  page_id: 252
+  name: Кривенко-Еметов Ярослав Дмитрович
+  degree: Кандидат фізико-математичних наук
+  photo: http://apd.ipt.kpi.ua/wp-content/uploads/2025/01/Krivenko.jpg
+  contacts:
+    email: kyd2@kpi.ua
+    orcid: 0000-0001-8017-3638
+    wos: GLV-3513-2022
+    scopus: '55269837700'
+    google_scholar: tTho2GIAAAAJ
+    intellect: kyd2
+    schedule: https://schedule.kpi.ua/lecturers?lecturerId=681d12400213531e5fdef04c597ac192d359c2d0351df6f22f0240134d873350
+  courses:
+    bachelor:
+    - title: Атомна фізика
+      description: лекції, практичні заняття, лабораторні роботи
+    - title: Квантова механіка
+      description: лекції, практичні заняття
+    - title: Ядерна фізика
+      description: лекції, практичні заняття
+    - title: Електрика та магнетизм
+      description: практичні заняття
+    - title: Сучасні теоретичні методи у фізиці твердого тіла
+      description: лекції, практичні заняття
+    - title: Статистична фізика
+      description: лекції, практичні заняття
+    - title: Фізичні основи ядерної та термоядерної енергетики
+      description: лекції, практичні заняття
+  certificates:
+  - year: 2019
+    title: Стажування у відділі ядра Інституту ядерних досліджень НАН України
+  biography: 'Закінчив кафедру теоретичної фізики Київського університету ім. Тараса Шевченка у 1995 році. Дипломну роботу
+    «Полюса Редже в зіткненні елементарних частинок при високих енергіях» виконав у відділі фізики високих енергій Інституту
+    теоретичної фізики ім. М.М. Боголюбова, де також навчався в аспірантурі за спеціалізацією ядерна фізика, фізика високих
+    енергій та елементарних частинок. Після аспірантури прийнятий на кафедру прикладної фізики НТУУ «КПІ» асистентом. У 2007
+    р. переведений на посаду старшого викладача, з 2013 р. — доцент кафедри. У 2000–2022 рр. працював у відділі ядра Інституту
+    ядерних досліджень НАН України: провідним інженером (до 2012 р.), науковим співробітником (з 2019 р. за сумісництвом).
+
+    '
+  academic_title:
+  - доцент
+
+- id: gerasymchuk_iv
+  page_id: 332
+  name: Герасимчук Ігор Вікторович
+  degree: Доктор фізико-математичних наук
+  photo: https://files.nas.gov.ua/photo/PersonalSite/HY/211213102026574-4501.jpg
+  contacts:
+    google_scholar: fiUtkiIAAAAJ
+    intellect: giv90
+    main_workplace_label: Інститут магнетизму НАН України, лабораторія нанокристалічних структур №05
+    position_label: Провідний науковий співробітник
+  research_interests:
+  - Неоднорідні магнітні спінові текстури
+  - Локалізовані стани нелінійних хвиль (солітони) в нелінійних структурованих середовищах з метаповерхнями
+  - Просторова локалізація (суперлокалізація) нелінійних хвиль в ангармонічних періодичних середовищах
+  - Нелінійна динаміка несумірних структур
+  - Адсорбція полімерних ланцюжків у системах інтерфейсів
+  - Нелінійна фізика хвильових процесів та магнетизм
+  courses:
+    bachelor:
+    - title: Квантова механіка
+      description: лекції
+  biography: 'Народився 16 грудня 1974 року в м. Костянтинівка (нині Краматорського району Донецької області). Закінчив Харківський
+    національний університет (1997). 2000–2001 — Фізико-технічний інститут низьких температур НАН України (Харків). 2001–2007
+    — Національний науковий центр «Харківський фізико-технічний інститут» НАН України. З 2007–2008 та з 2011 року — за сумісництвом
+    у КПІ ім. Ігоря Сікорського (з 2020 року — професор). З 2008 року — Інститут магнетизму НАН України та МОН України (Київ),
+    з 2019 року — провідний науковий співробітник лабораторії нанокристалічних структур №05. Кандидат фізико-математичних
+    наук (2001, теоретична фізика). Доктор фізико-математичних наук (2017, теоретична фізика). Старший науковий співробітник
+    (2012). Син відомого українського фізика В. Герасимчука.
+
+    '
+  academic_title:
+  - доцент
+
+- id: stronsky_ov
+  page_id: 288
+  name: Стронський Олександр Володимирович
+  degree: Доктор фізико-математичних наук
+  photo: http://apd.ipt.kpi.ua/wp-content/uploads/2025/01/Stronsky.jpg
+  contacts:
+    orcid: 0000-0002-5096-3740
+    wos: AAT-9755-2020
+    scopus: '6603680521'
+    google_scholar: T912ZwMAAAAJ
+    main_workplace_label: Інститут фізики напівпровідників ім. В.Є. Лашкарьова НАН України
+    main_workplace_url: https://isp.kiev.ua/
+    nas_page: https://www.nas.gov.ua/employee/nasstronskyi
+    position_label: Завідувач відділом фізики оптоелектронних приладів; професор кафедри прикладної фізики (сумісник)
+  courses:
+    bachelor:
+    - title: Нелінійна оптика
+    - title: Квантова електроніка
+    - title: Фізика і хімія поверхні
+  biography: 'Закінчив Київський державний університет ім. Т.Г. Шевченка у 1972 році за спеціальністю «Оптичні прилади і спектроскопія»,
+    здобувши кваліфікацію інженера-оптика. Доктор фізико-математичних наук за спеціальністю «Фізика напівпровідників і діелектриків».
+    Тема докторської дисертації: «Фотостимульовані процеси в халькогенідних склоподібних напівпровідниках та їх застосування
+    для отримання голограмних оптичних елементів». Має вчені звання старшого наукового співробітника та професора. Завідувач
+    відділом фізики оптоелектронних приладів Інституту фізики напівпровідників ім. В.Є. Лашкарьова НАН України. Працює професором
+    (сумісником) кафедри прикладної фізики.
+
+    '
+  academic_title:
+  - професор
+
+- id: tetiorkin_vv
+  page_id: 320
+  name: Тетьоркін Володимир Володимирович
+  degree: Доктор фізико-математичних наук
+  photo: https://files.nas.gov.ua/photo/PersonalSite/FR/161022175949943-818.jpg
+  contacts:
+    email: teterkin@meta.ua
+    main_workplace_label: Інститут фізики напівпровідників ім. В.Є. Лашкарьова НАН України, відділ 06 ІЧ та ТГц електроніки
+    main_workplace_url: https://www.isp.kiev.ua/index.php/uk/component/content/article/1103-institute-divisions-new/9153-dep38-ukr
+    nas_page: https://old.nas.gov.ua/UA/PersonalSite/Pages/default.aspx?PersonID=0000021161
+    position_label: Провідний науковий співробітник, завідувач відділу 06 (з 01.06.2022); професор кафедри прикладної фізики
+      КПІ (сумісник)
+  research_interests:
+  - Фізика напівпровідників і діелектриків
+  - Інфрачервона та терагерцова електроніка
+  - Болометри на гарячих носіях, детектори ТГц-випромінювання
+  - Технології формування напівпровідникових структур для опто- та наноелектроніки
+  - Моделювання та експериментальне дослідження кремнієвих польових транзисторів як ТГц-детекторів
+  courses:
+    master:
+    - title: Технологія і застосування наноструктур
+      description: вибіркова дисципліна
+  biography: 'Закінчив Львівський політехнічний інститут у 1974 році. Доктор фізико-математичних наук (29.11.1996, спеціальність:
+    фізика напівпровідників і діелектриків). Працює в Інституті фізики напівпровідників ім. В.Є. Лашкарьова НАН України з
+    2000 року. У 2000–2022 рр. — провідний науковий співробітник лабораторії фізики і технології формування напівпровідникових
+    структур. З 01.06.2022 — провідний науковий співробітник та завідувач відділу 06 ІЧ та ТГц електроніки. Основні наукові
+    напрями: фізика та технології напівпровідникових матеріалів і структур для ІЧ та ТГц електроніки; моделювання і дослідження
+    болометрів на гарячих носіях; розробка детекторів ТГц-діапазону на основі кремнієвих структур; базові технології для нано-
+    та оптоелектроніки.
+
+    '
+  academic_title:
+  - професор
+
+- id: rykhalsky_ov
+  page_id: 341
+  name: Рихальський Олег Володимирович
+  degree: Молодший науковий співробітник, асистент
+  photo: https://apd.ipt.kpi.ua/wp-content/uploads/2025/01/Rihalsky-230x300.jpg
+  contacts:
+    main_workplace_label: Інститут фізіології ім. О.О. Богомольця НАН України, відділ фізіології нейронних мереж
+    position_label: Молодший науковий співробітник; асистент кафедри прикладної фізики КПІ (сумісник)
+  research_interests:
+  - Синаптична передача між периферичними та центральними нейронами, передача ноцицептивної та зорової інформації з периферії
+    в ЦНС
+  - Функціональний стан гангліозних клітин сітківки та синаптична нейропередача в зоровому тракті за умов гіпоксії
+  - Регуляція та функціонування ліганд-залежних і потенціал-залежних іонних каналів нейрональних мембран в нормі та за патологічних
+    умов
+  - Молекулярні механізми різних форм короткотривалої та довготривалої синаптичної пластичності
+  - Регуляція квантового вивільнення нейромедіаторів у синапсах
+  courses:
+    bachelor:
+    - title: Оптичні методи дослідження живих систем
+  biography: 'Рихальський Олег Володимирович — нейрофізіолог, молодший науковий співробітник відділу фізіології нейронних
+    мереж Інституту фізіології ім. О.О. Богомольця НАН України (Київ). Основний напрям досліджень — електрофізіологія нейронів,
+    синаптична передача, іонні канали, синаптична пластичність, механізми передачі сенсорної (ноцицептивної та зорової) інформації,
+    вплив гіпоксії на зорову систему. За сумісництвом — асистент кафедри прикладної фізики НН ФТІ КПІ ім. Ігоря Сікорського.
+
+    '
+  academic_title: []
+
+- id: lukyanets_oo
+  page_id: 324
+  name: Лук'янець Олена Олександрівна
+  degree: Доктор біологічних наук
+  photo: https://files.nas.gov.ua/photo/PersonalSite/GT/210301191505826-5013.jpg
+  contacts:
+    email: elena@biph.kiev.ua
+    google_scholar: PIBDGW8AAAAJ
+    main_workplace_label: Інститут фізіології ім. О.О. Богомольця НАН України
+    main_workplace_url: https://biph.kiev.ua/uk/
+    nas_page: https://old.nas.gov.ua/UA/PersonalSite/Pages/default.aspx?PersonID=0000007891
+    position_label: Заступник директора з наукової роботи; завідувачка лабораторії біофізики іонних каналів (з 2012); керівник
+      ЦКК «Прилади і обладнання клітинної біофізики та фізіології» НАН України
+  research_interests:
+  - Біофізика іонних каналів
+  - Кальцієва сигналізація в нервових клітинах
+  - Молекулярні механізми регуляції внутрішньоклітинного кальцію та його роль при патологічних станах нервової і ендокринної
+    систем
+  - Механізми синаптичної передачі при експериментальних патологіях мозку (ішемія, епілепсія, хвороба Альцгеймера)
+  - Методи клітинної біофізики та фізіології
+  courses:
+    bachelor:
+    - title: Біофізика складних систем. Частина 1 та 2
+    - title: Наукові основи біосенсорики
+  publications:
+  - authors: Лук'янець О.О. та ін.
+    title: Внутрішньоклітинний кальцієвий гомеостаз сенсорних нейронів при гіпоксичних впливах
+    journal: Фізіологічний журнал, Т. 49, № 3
+    year: 2003
+  - authors: Лук'янець О.О. та ін.
+    title: Використання серійних тахограм для дослідження викликаної імпульсної активності ізольованих нейронів гіпокампа
+    journal: Фізіологічний журнал, Т. 59, № 5
+    year: 2013
+  achievements:
+  - Член-кореспондент НАН України (2025)
+  - Лауреат Державної премії України в галузі науки і техніки (2003)
+  - Премія ім. О. Богомольця НАН України (2007)
+  - Премія ім. П. Костюка НАН України (2014)
+  - 'Авторка монографій: «Іони кальцію у функції мозку — від фізіології до патології» (2005), «Кальциевая сигнализация в нервной
+    клетке» (2008), «Внутрішньоклітинна кальцієва сигналізація: структури і функції» (2010)'
+  - Понад 1657 цитувань у Google Scholar
+  biography: 'Народилася 4 квітня 1963 р. у Києві. Закінчила Київський університет у 1985 році. З того часу працює в Інституті
+    фізіології ім. О.О. Богомольця НАН України. У 2010–2012 рр. — в.о. завідувача відділу загальної фізіології нервової системи,
+    з 2012 р. — завідувачка лабораторії біофізики іонних каналів. Доктор біологічних наук (2006), професор (2008), член-кореспондент
+    НАН України (2025). Під її керівництвом розроблено технології та пристрої для вимірювання парціального тиску кисню в ізольованій
+    клітині (полярографічні методи) та вимірювання секреції з поодиноких клітин (амперометрія, вуглецеві мікроелектроди).
+    Авторка та співавторка монографій і розділів у книгах з нейробіофізики.
+
+    '
+  academic_title:
+  - професор
+  position: член-кореспондент НАН України
+  
+- id: dimitriev_op
+  page_id: 279
+  name: Дімітрієв Олег Петрович
+  degree: Кандидат фізико-математичних наук
+  photo: http://apd.ipt.kpi.ua/wp-content/uploads/2025/01/Dimitriev.jpg
+  contacts:
+    orcid: 0000-0002-6848-6401
+    scopus: '7004692269'
+    main_workplace_label: Інститут фізики напівпровідників ім. В.Є. Лашкарьова НАН України, лабораторія опто-електронних молекулярно-напівпровідникових
+      систем
+    main_workplace_url: https://isp.kiev.ua/
+    position_label: Старший науковий співробітник; доцент кафедри прикладної фізики КПІ (сумісник)
+  research_interests:
+  - Динаміка екситонів у спряжених молекулах та органічних напівпровідникових системах
+  - Антистоксова фотолюмінесценція та однофотонне перетворення в барвниках ближнього ІЧ-діапазону
+  - Термічно активована сповільнена флуоресценція (TADF) матеріали для OLED
+  - Плазмонне підсилення фотолюмінесценції органічних барвників
+  - Фізика невпорядкованих систем та молекулярні напівпровідники
+  courses:
+    bachelor:
+    - title: Фізика невпорядкованих систем
+  publications:
+  - authors: O. Dimitriev, A. Fedoryak, D. Grynko, D. Blazevicius, G. Krucaite, S. Grigalevicius
+    title: Infrared radiation fails to promote reverse intersystem crossing in thermally activated delayed fluorescence emitters
+    journal: Optics Communications
+    year: 2026
+    doi: https://doi.org/10.1016/j.optcom.2026.133010
+  - authors: O. Dimitriev, A. Fedoryak, Y. Piryatinski, D. Blaževičius, J. Caroni, G. Krucaite, S. Grigalevicius
+    title: Storage of thermal energy using a piezochromic property of TADF materials
+    journal: Applied Physics Letters
+    year: 2026
+    doi: https://doi.org/10.1063/5.0311208
+  - authors: D. Blazevicius, G. Krucaite, A. Bogoslovska, S. Grigalevicius, A. Ali, H. Ågren, G. Baryshnikov, O. Dimitriev
+    title: A twisted double donor in donor–acceptor–donor D2–D1–A–D1–D2 type emitters yields multicomponent charge-transfer
+      emission
+    journal: RSC Advances
+    year: 2025
+    doi: https://doi.org/10.1039/D5RA02848E
+  - authors: O. Dimitriev, S. Ippolito, B. Chacon, Y. Gogotsi
+    title: 'Thermal Management of Anti-Stokes Photoluminescence of Near-Infrared Dyes Using MXene Nanosheets: Implications
+      for Passive Heating at the Nanoscale'
+    journal: ACS Applied Nano Materials
+    year: 2025
+    doi: https://doi.org/10.1021/acsanm.5c01341
+  - authors: O. Dimitriev, D. Kysil, A. Zaderko, O. Isaieva, A. Vasin, Y. Piryatinski, M. Fahlman, A. Nazarov
+    title: 'Photoluminescence quantum yield of carbon dots: emission due to multiple centers versus excitonic emission'
+    journal: Nanoscale Advances
+    year: 2024
+    doi: https://doi.org/10.1039/D4NA00033A
+  - authors: A.N. Fedoryak, T.P. Doroshenko, O.G. Golenkov, M. Kratzer, C. Teichert, O.P. Dimitriev
+    title: Thermally-activated locomotion of a bilayer polymer actuator
+    journal: Smart Materials in Manufacturing
+    year: 2024
+    doi: https://doi.org/10.1016/j.smmf.2024.100047
+  - authors: O. Dimitriev, Y. Harada, I. Sharanov, A. Ishchenko, T. Yoshida
+    title: Improved sensing of metal ions via abnormal enhancement of the anti-stokes emission of the near-infrared fluorescent
+      probe
+    journal: 'Journal of Photochemistry and Photobiology A: Chemistry'
+    year: 2023
+    doi: https://doi.org/10.1016/j.jphotochem.2023.115104
+  - authors: O. Dimitriev, R. Yamakado, A. Nagaoka, M. Giancaspro, F. Rizzi, N. Depalo, E. Fanizza, L. Yoshida, A. Kosar,
+      T. Yoshida
+    title: Plasmon Enhancement of the Hot-Band Absorption-Assisted Anti-Stokes Photoluminescence of Near-Infrared Dyes
+    journal: The Journal of Physical Chemistry C
+    year: 2023
+    doi: https://doi.org/10.1021/acs.jpcc.3c05695
+  - authors: O.P. Dimitriev
+    title: Dynamics of Excitons in Conjugated Molecules and Organic Semiconductor Systems
+    journal: Chemical Reviews
+    year: 2022
+    doi: https://doi.org/10.1021/acs.chemrev.1c00648
+  - authors: O.P. Dimitriev, Y.P. Piryatinski, Y.L. Slominskii, A.B. Ryabitskii
+    title: «Awakening» of the S2 Emission of Tricarbocyanine Dyes Stimulated by Interaction with Carbon Quantum Dots
+    journal: The Journal of Physical Chemistry Letters
+    year: 2022
+    doi: https://doi.org/10.1021/acs.jpclett.2c00805
+  - authors: O. Dimitriev, Y. Slominskii
+    title: Impact of the thermal properties of the environment on the hot-band absorption-assisted single-photon upconversion
+    journal: Physical Chemistry Chemical Physics
+    year: 2022
+    doi: https://doi.org/10.1039/D2CP04062J
+  - authors: O.P. Dimitriev, J. Zirzlmeier, A. Menon, Y. Slominskii, D.M. Guldi
+    title: Exciton Dynamics in J- and H-Aggregates of a Tricarbocyanine Near-Infrared Dye
+    journal: The Journal of Physical Chemistry C
+    year: 2021
+    doi: https://doi.org/10.1021/acs.jpcc.0c11593
+  - authors: I. Sharanov, Y. Slominskii, A. Ishchenko, A. Fedoryak, O. Dimitriev
+    title: Single-photon upconversion via hot-band absorption and assessment of the laser cooling effect of tricarbocyanine
+      dyes
+    journal: Chemical Physics Impact
+    year: 2021
+    doi: https://doi.org/10.1016/j.chphi.2021.100026
+  biography: 'Закінчив Київський державний університет ім. Т.Г. Шевченка у 1985 році за спеціальністю «Фізика твердого тіла»,
+    кваліфікація: інженер-фізик. Кандидат фізико-математичних наук, тема дисертації: «Поверхневі поляритони у феромагнітних
+    діелектриках». Вчене звання: доцент кафедри прикладної фізики, старший науковий співробітник. Основне місце роботи — лабораторія
+    опто-електронних молекулярно-напівпровідникових систем Інституту фізики напівпровідників ім. В.Є. Лашкарьова НАН України.
+    Доцент кафедри прикладної фізики КПІ ім. Ігоря Сікорського (за сумісництвом).
+
+    '
+  academic_title:
+  - старший науковий співробітник
+  - доцент
+  
+- id: gilchuk_av
+  page_id: 273
+  name: Гільчук Андрій Володимирович
+  degree: Кандидат фізико-математичних наук
+  photo: https://apd.ipt.kpi.ua/wp-content/uploads/2025/03/gil1-150x150-1.png
+  contacts:
+    email: a.gilchuk@kpi.ua
+    orcid: 0000-0001-6473-5346
+    scopus: '55258442500'
+    intellect: gav75
+    schedule: https://schedule.kpi.ua/lecturers?lecturerId=7c87b3a3ff2703959a1a08be75b89c96176b2e72f2f5c35638ab024515a90d4e
+  courses:
+    bachelor:
+    - title: Термодинаміка газового потоку
+      description: лекції, ІІ курс
+    - title: Теорія теплопровідності
+      description: лекції, практичні, ІІІ курс
+    - title: Термодинаміка і молекулярна фізика
+      description: практичні, лабораторні, І курс
+    - title: Основи фізики металів
+      description: лекції, практичні, ІV курс
+    - title: Новітні джерела енергії
+      description: лекції, VІ курс
+    master:
+    - title: Локальні методи досліджень
+      description: лекції, практичні, V курс
+  publications:
+  - authors: G.E. Monastyrsky, P.Yu. Portnychenko, A.V. Gilchuk, P. Ochin, Yu.N. Koval
+    title: Elaboration of the composites from the SMA powder Ni-Al and Cu-Al-Ni
+    journal: Metallophysica i novejshije tehnologii, V. 33, № 5, С. 639–650
+    year: 2011
+  - authors: G.E. Monastyrsky, D.O. Siryj, A.V. Gilchuk, V.I. Kolomytcev, Yu.N. Koval
+    title: Elaboration of metallic foam from SMA Cu-Al-Ni powder by powder metallurgy methods
+    journal: Nanosystems, Nanomaterials, Nanotechnologies, V. 9, № 4, С. 979–989
+    year: 2011
+  - authors: G.E. Monastyrsky, P. Ochin, G.Y. Wang, V.I. Kolomytsev, Yu.N. Koval, A.V. Gilchuk et al.
+    title: Effect of powder particles size on chemical composition of Ti-Ni-base spark erosion powder obtained in liquid argon
+    journal: Chemistry of Metals and Alloys, Vol. 4, P. 188–199
+    year: 2011
+    doi: http://www.chemetal-journal.org/ejournal9/CMA0179.pdf
+  - authors: G.E. Monastyrsky, P. Ochin, A.V. Gilchuk, V.I. Kolomytsev, Yu.N. Koval
+    title: The Role of Nano-sized Fraction on Spark Plasma Sintering the Pre-Alloyed Spark-Erosion Powders
+    journal: J. Nano-Electron. Phys., Vol. 4, № 1, P. 01007
+    year: 2012
+    doi: http://jnep.sumdu.edu.ua/ru/component/content/full_article/342
+  - authors: P. Ochin, A.V. Gilchuk, G.E. Monastyrsky, Yu.N. Koval, A.A. Shcherba, S.N. Zaharchenko
+    title: Martensitic transformation in spark plasma sintered compacts of Ni-Mn-Ga powders prepared by spark erosion method
+      in cryogenic liquids
+    journal: Materials Science Forum, Vol. 738–739, P. 451–455
+    year: 2013
+    doi: http://zh.scientific.net/MSF.738-739.451
+  - authors: R.A. Portier, P. Ochin, A. Pasko, G.E. Monastyrsky, A.V. Gilchuk, V.I. Kolomytsev, Yu.N. Koval
+    title: Spark plasma sintering of Cu–Al–Ni shape memory alloy
+    journal: Journal of Alloys and Compounds, Vol. 577, S1, P. S472–S477
+    year: 2013
+    doi: https://www.sciencedirect.com/science/article/pii/S0925838812004343
+  - authors: G.E. Monastyrsky, A.V. Kotko, A.V. Gilchuk, P. Ochin, V.I. Kolomytsev, Yu.N. Koval
+    title: Microstructure investigation of the spark plasma sintered Cu-Al-Ni shape memory material
+    journal: Metallophysica i novejshije tehnologii, Т. 36, № 8, С. 1091–1099
+    year: 2014
+  - authors: G.E. Monastyrsky, A.V. Gilchuk, P. Ochin, O.M. Ivanova, Yu.N. Podrezov, Yu.N. Koval
+    title: Mechanical testing of the spark plasma sintered shape memory materials
+    journal: Metallophysica i novejshije tehnologii, Т. 36, № 11, С. 857–862
+    year: 2014
+  - authors: Yu.Yu. Bacherikov, O.B. Okhrimenko, A.G. Zhuk, R.V. Kurichka, A.V. Gilchuk
+    title: Influence of the presence of a fluxing agent and its composition on the spectral characteristics of ZnS(Cu) obtained
+      by self-propagating high-temperature synthesis
+    journal: Semiconductor Physics, Quantum Electronics and Optoelectronics, Vol. 19, № 3, С. 303–306
+    year: 2016
+    doi: http://dx.doi.org/10.15407/spqeo19.03.303
+  academic_title:
+  - доцент
+
+- id: purnyn_oe
+  page_id: 339
+  name: Пурнинь Олена Едуардівна
+  degree: Кандидат біологічних наук (біофізика, 2005)
+  photo: https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y&s=300
+  contacts:
+    google_scholar: 98ce9HsAAAAJ
+    main_workplace_label: Інститут фізіології ім. О.О. Богомольця НАН України, відділ фізіології нейронних мереж
+    nas_page: https://www.old.nas.gov.ua/UA/PersonalSite/Pages/default.aspx?PersonID=0000003830
+    position_label: Старший науковий співробітник; старший викладач кафедри прикладної фізики КПІ (сумісник, з 2023)
+  research_interests:
+  - Фармакологія та структура нікотинових ацетилхолінових рецепторів нейронів вегетативних гангліїв
+  - Електрофізіологічні та фармакологічні властивості нейрональних нікотинових холінорецепторів
+  - Синаптична передача в нейронних мережах
+  - Молекулярні механізми регуляції синаптичної передачі
+  - Біофізика та фізіологія нейронів автономної нервової системи
+  courses:
+    bachelor:
+    - title: Загальна біологія та основи біохімії
+      description: вибіркова дисципліна
+    - title: Основи молекулярної фізіології
+      description: вибіркова дисципліна для бакалаврів та магістрів спеціальності 105
+  duties:
+  - Голова первинної профспілкової організації Інституту фізіології ім. О.О. Богомольця НАН України
+  - Відповідальний організатор та науковий секретар міжнародних симпозіумів «Molecular mechanisms of synaptic transmission
+    regulation» (Київ)
+  - Експерт та секретар конкурсів НАН України для молодих вчених
+  - Член Експертної комісії Відділення біохімії, фізіології та молекулярної біології НАН України
+  biography: 'Закінчила Київський національний університет імені Тараса Шевченка (1980) за спеціальністю «Біологія», кваліфікація
+    — викладач біології, фізіології людини і тварин та хімії. Кандидат біологічних наук (2005) за спеціальністю 03.00.02 —
+    Біофізика. Тема дисертації: «Фармакологічні властивості та альфа-субодиничний склад нікотинових ацетилхолінових рецепторів
+    нейронів вегетативних гангліїв щура» (диплом ДК №031906 від 15.12.2005). З 1994 року — старший науковий співробітник відділу
+    фізіології нейронних мереж Інституту фізіології ім. О.О. Богомольця НАН України. З 2023 року — за сумісництвом старший
+    викладач кафедри прикладної фізики НН ФТІ КПІ ім. Ігоря Сікорського. Науковий керівник дипломних робіт студентів.'
+  academic_title:
+  - старший викладач
+
+- id: maslov_vy
+  page_id: 282
+  name: Маслов Віталій Юрійович
+  degree: Кандидат біологічних наук
+  photo: https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y&s=300
+  contacts:
+    email: V.Maslov@nas.gov.ua
+    main_workplace_label: Інститут фізіології ім. О.О. Богомольця НАН України, відділ фізіології нейронних мереж
+    nas_page: https://old.nas.gov.ua/UA/PersonalSite/Statuses/Pages/default.aspx?PersonID=0000008437
+    position_label: Старший науковий співробітник; доцент кафедри прикладної фізики КПІ (сумісник)
+  research_interests:
+  - Біофізика мембранних структур та збудливих клітин
+  - Фізіологія нейронів та нейронних мереж
+  - Синаптична передача та конвергенція входів на нейронах автономної нервової системи
+  - Кінетичні моделі в біофізиці
+  - Вплив інсулінової депривації та ексайтотоксичності на нейрони гіпокампу
+  - Елементарна фізика нейрона та принципи функціонування нервових клітин
+  courses:
+    master:
+    - title: Біофізика мембранних структур
+      description: вибіркова дисципліна (ПВ 03.1)
+    - title: Кінетичні моделі в біофізиці
+      description: вибіркова дисципліна
+  duties:
+  - Доповідь «Елементарна фізика нейрона» на науковому семінарі кафедри (20 березня 2024 р.)
+  biography: 'Кандидат біологічних наук (2005) за спеціальністю 03.00.02 — Біофізика. Тема дисертації: «Конвергенція фоновоактивних
+    прегангліонарних входів на нейроні симпатичного ганглія». З 2005 року — старший науковий співробітник відділу фізіології
+    нейронних мереж Інституту фізіології ім. О.О. Богомольця НАН України (Київ). Основний напрям досліджень — механізми синаптичної
+    інтеграції в нейронах автономної нервової системи, моделювання кінетичних процесів у мембранах, вплив патологічних факторів
+    (інсулінова депривація, ексайтотоксичність) на нейрони гіпокампу. За сумісництвом — доцент кафедри прикладної фізики НН
+    ФТІ КПІ ім. Ігоря Сікорського, науковий керівник бакалаврських та магістерських робіт студентів.
+
+    '
+  academic_title:
+  - доцент
+
+- id: olkhovyk_iv
+  page_id: 179
+  name: Ольховик Ілля Володимирович
+  degree: Доктор філософії з прикладної фізики та наноматеріалів
+  position: Куратор групи ФФ-41
+  photo: http://apd.ipt.kpi.ua/wp-content/uploads/2025/01/photo_2022-12-20_04-25-54-169x300.jpg
+  contacts:
+    email: illia.olkhovyk-ipt@lll.kpi.ua
+    orcid: 0000-0002-3757-7378
+    wos: JDM-1964-2023
+    scopus: '57194632565'
+    google_scholar: M3MzyhMAAAAJ
+  research_interests:
+  - Кремній, тонкі плівки, сонячні батареї
+  - Індукована оловом кристалізація аморфного кремнію
+  - Вплив лазерного випромінювання на формування нанокристалів у кремнієвих структурах
+  - Гідрогелеві нанокомпозити зі сріблом для медичних застосувань
+  courses:
+    bachelor:
+    - title: Загальна фізика
+      description: лабораторні заняття
+    - title: Фізика. Частина 1. Практикум
+      description: лабораторні заняття
+    - title: Механіка
+      description: лабораторні заняття
+    - title: Термодинаміка та молекулярна фізика
+      description: лабораторні заняття
+    - title: Фізика. Частина 2. Практикум
+      description: лабораторні заняття
+  duties:
+  - Куратор групи ФФ-41
+  achievements:
+  - Патент на винахід № UA 120991 C2 від 10.03.2020 р. «Спосіб виготовлення медичних гідрогелевих бактерицидних пов'язок з
+    наночастинками срібла»
+  national_projects:
+  - Комп'ютерне моделювання молекулярних структур багатофункціональних матеріалів. Оптимізація параметрів молекул полівініліденфториду
+    методом функціонала щільності (ДРН 0121U108880)
+  - Розробка і підготовка до промислового впровадження радіаційної технології виготовлення метал-водо-полімерного нанокомпозиту
+    з властивостями антисептику широкого спектру дії для медичного застосування (ДРН 0119U001470)
+  publications:
+  - authors: V.B. Neimash, A.S. Nikolenko, V.V. Strelchuk, P.Ye. Shepeliavyi, P.M. Litvinchuk, V.V. Melnyk, I.V. Olkhovyk
+    title: Formation of nanocrystals and their properties during tin induced and laser light stimulated crystallization of
+      amorphous silicon
+    journal: Semiconductor Physics, Quantum Electronics & Optoelectronics, 22(2), P. 206–214 (Scopus/WoS Q3)
+    year: 2019
+    doi: https://doi.org/10.15407/spqeo22.02.206
+  - authors: Neimash V.B., Nikolenko A.S., Strelchuk V.V., Shepelyavyi P.Y., Litvinchuk P.M., Melnyk V.V., Olkhovyk I.V.
+    title: Influence of Laser Light on the Formation and Properties of Silicon Nanocrystals in a-Si/Sn Layered Structures
+    journal: Ukrainian Journal of Physics, 64(6), 522
+    year: 2019
+    doi: https://doi.org/10.15407/ujpe64.6.522
+  - authors: Neimash V.B., Kupianskyi H.D., Olkhovyk I.V., Styopkin V.I., Lytvynchuk P.M., Povarchuk V.Y. et al.
+    title: Formation of Silver Nanoparticles in PVA-PEG Hydrogel under Electron Irradiation
+    journal: Ukrainian Journal of Physics, 64(1), 41
+    year: 2019
+    doi: https://doi.org/10.15407/ujpe64.1.41
+  - authors: В.Б. Неймаш, П.Є. Шепелявий, А.С. Ніколенко, В.В. Стрельчук, В.І. Чегель, І.В. Ольховик, С.О. Воронов
+    title: Роль олова у формуванні мікро- і наноструктури поверхні шаруватих плівок Si–Sn–Si
+    journal: Український фізичний журнал, Т. 68, № 4, 284 (Scopus/WoS Q3)
+    year: 2023
+    doi: https://doi.org/10.15407/ujpe68.4.284
+  biography: 'Народився 11 березня 1995 року у м. Запоріжжі. У 2017 році закінчив бакалаврат, у 2019 році — магістратуру КПІ
+    ім. Ігоря Сікорського за спеціальністю «Прикладна фізика та наноматеріали». У 2024 році здобув ступінь доктора філософії
+    з прикладної фізики та наноматеріалів за темою «Вплив лазерного випромінювання на процеси індукованої оловом кристалізації
+    аморфного кремнію» під керівництвом проф. Воронова С.О. та проф. Неймаша В.Б. З 2024 року — асистент кафедри прикладної
+    фізики НН ФТІ КПІ ім. Ігоря Сікорського.
+
+    '
+  academic_title:
+  - асистент
+  
+- id: chyrkova_ap
+  page_id: 187
+  name: Чиркова Анна Петрівна
+  degree: Доктор філософії з прикладної фізики
+  photo: http://apd.ipt.kpi.ua/wp-content/uploads/2024/10/фото-на-сайт-207x300.jpg
+  contacts:
+    email: a.chyrkova@kpi.ua
+    orcid: 0000-0003-0592-0845
+    scopus: '58555208300'
+    google_scholar: hvy2Z_YAAAAJ
+    main_workplace_label: Інститут технічної теплофізики НАН України, відділення високотемпературної термогазодинаміки
+    position_label: Провідний інженер; асистент кафедри прикладної фізики КПІ (з 2024)
+  research_interests:
+  - Гідро- та теплофізика
+  - Комп'ютерне моделювання теплофізичних процесів
+  courses: {}
+  biography: 'Народилася 4 березня 1989 року в м. Біла Церква Київської області. У 2012 році закінчила НТУУ «Київський політехнічний
+    інститут» за спеціальністю 7.070101 «Фізика». У 2008–2009 рр. — лаборант в Інституті магнетизму НАН та МОН України. У
+    2013–2014 рр. — вчитель фізики СШ № 71 м. Києва; 2018–2019 — СШ № 101; 2020 — вчитель інформатики СШ № 173 м. Києва. З
+    2020 року — аспірантура КПІ ім. Ігоря Сікорського; у 2024 р. здобула ступінь доктора філософії з прикладної фізики (спеціальність
+    105). З 2021 року — провідний інженер відділення високотемпературної термогазодинаміки Інституту технічної теплофізики
+    НАН України. З 2024 року — асистент кафедри прикладної фізики НН ФТІ КПІ ім. Ігоря Сікорського.
+
+    '
+  academic_title:
+  - асистент
+  
+- id: borysova_to
+  page_id:
+  name: Борисова Тетяна Олександрівна
+  degree: Доктор біологічних наук
+  photo: https://www.biochemistry.org.ua/images/Borisova_s.jpg
+  contacts:
+    email: tborisov@biochem.kiev.ua
+    main_workplace_label: Інститут біохімії ім. О.В. Палладіна НАН України, відділ нейрохімії
+    main_workplace_url: https://www.biochemistry.org.ua/index.php?option=com_content&view=article&id=2036&Itemid=299&lang=uk
+    nas_page: https://old.nas.gov.ua/UA/PersonalSite/Pages/default.aspx?PersonID=0000001257
+    position_label: Завідувачка відділу нейрохімії (з 2013)
+  research_interests:
+  - Хімічна топографія нервової системи, субклітинна локалізація нейроспецифічних протеїнів, функціонування ферментних систем
+    обміну
+  - Вплив психотропних агентів на азотний, вуглеводний, протеїновий обмін у нервовій системі
+  - Механізми дії ензимних систем активного транспорту натрію, калію, кальцію в нервових клітинах
+  - Молекулярні механізми порушень транспорту нейромедіаторів, модуляція синаптичної передачі
+  - Космічна біологія, нанотехнології, екологічна нейротоксикологія
+  courses: {}
+  duties:
+  - 'Керівник проєктів НФДУ: 2020.02/0147, 2021.01/0061, 2023.03/0036'
+  biography: 'Доктор біологічних наук, професор. З 2013 року — завідувачка відділу нейрохімії Інституту біохімії ім. О.В.
+    Палладіна НАН України (відділ засновано у 1925 р.). Основні наукові напрями: молекулярні механізми порушень транспорту
+    нейромедіаторів у пресинаптичних терміналях головного мозку за нейропатологічних станів та ексайтотоксичності; модуляція
+    синаптичної передачі новими агентами для тераностики нейропатологій; роль пресинаптичних рецепторів та природних мембранотропних
+    сполук. Дослідження охоплюють космічну біологію (токсичність планетарного пилу), нанотехнології (нейроактивні наночастинки)
+    та екологічну нейротоксикологію (важкі метали Pb, Cd, Hg, Cu, карбонові частинки). Керівник проєктів Національного фонду
+    досліджень України. За 2020–2025 рр. опубліковано статті у журналах Q1–Q2 (PLOS ONE, Food and Chemical Toxicology, Environmental
+    Science and Pollution Research тощо).
+
+    '
+  academic_title:
+  - професор
+
+- id: tkach_vs
+  page_id: 779
+  name: Ткач Варвара Сергіївна
+  degree: Фахівець 1 категорії
+  photo: http://apd.ipt.kpi.ua/wp-content/uploads/2025/01/Tkach-300x300.jpg
+  contacts:
+    email: vstkach-ipt@lll.kpi.ua
+    orcid: 0000-0003-3083-4113
+    google_scholar: 2djJOooAAAAJ
+    intellect: tvs34
+  courses: {}
+  duties:
+  - Організація вибору студентами дисциплін у системі my.kpi.ua
+  - Збір індивідуальних навчальних планів студентів
+  - Рейтингування науково-педагогічних працівників
+  - Наповнення сторінок кафедри у Facebook, Instagram та інших соціальних мережах
+  - Завантаження дипломних робіт та магістерських дисертацій до електронного архіву ela.kpi.ua
+  - Консультування щодо роботи з системою «Електронний кампус КПІ»
+  - Секретар екзаменаційної комісії магістрів
+  certificates:
+  - year: 2026
+    title: НАЗК — онлайн-курс «Впливай — викривай!» (повідомлення про корупцію), 7 год
+    url: https://drive.google.com/file/d/1ZteW3CzQSzrXY0HR8w84_qq0h8cdxVOP/view?usp=sharing
+  - year: 2025
+    title: Prometheus — онлайн-курс «Початок роботи з ChatGPT»
+    url: https://certs.prometheus.org.ua/downloads/414bd3229e704cdcab1609a1746eb67f/Certificate.pdf
+  - year: 2025
+    title: НАЗК — онлайн-курс «Спільна робота близьких осіб», 3 год
+    url: https://drive.google.com/file/d/1bJLlx2ZP8tzF4JEDun5_1herK5JN1ea0/view?usp=sharing
+  - year: 2025
+    title: Prometheus — онлайн-курс «Стрес-менеджмент для освітян»
+    url: https://drive.google.com/file/d/182GBsRNue4pCRnOFLm2ENmwG_g1oXFbq/view?usp=sharing
+  - year: 2025
+    title: Clarivate — вебінар «Персональний кабінет, профіль науковця та профіль установи у Web of Science Core Collection»,
+      1 год (16.01.2025)
+    url: https://drive.google.com/file/d/1I4av77_Qcry64Ov5zU7FCsQqniTwawa0/view?usp=sharing
+  - year: 2024
+    title: Clarivate — вебінар «Розширений пошук у Web of Science та додаткові колекції», 1 год (17.10.2024)
+    url: https://drive.google.com/file/d/1kiBnh9H663lmekk6aRVgt9sltv4NAauv/view?usp=sharing
+  - year: 2023
+    title: Академія цифрового розвитку — «Рішення Google for Education для автоматизації оцінювання та формування підсумкових
+      документів і звітів», 2 год / 0,07 кред. (№ ЦІРАОПД-2974)
+    url: https://drive.google.com/file/d/180CeJAK1UUPYD-Cb6SfQEn3WID2Ke-i2/view?usp=sharing
+  - year: 2023
+    title: Академія цифрового розвитку — «Цифрові інструменти Google для освіти», середній рівень, 15 год / 0,5 кред. (№GDTfE-06-С-03631)
+    url: https://drive.google.com/file/d/1tpsLycFiBmy1KR3jRDfYvYtP8bECMLNO/view?usp=sharing
+  - year: 2023
+    title: Академія цифрового розвитку — «Цифрові інструменти Google для освіти», поглиблений рівень, 15 год / 0,5 кред. (№GDTfE-06-П-01985)
+    url: https://drive.google.com/file/d/1zzfpN0hzmHLJn31-7aHPsrvcZIVc0DjL/view?usp=sharing
+  - year: 2018
+    title: Інститут післядипломної освіти КПІ — підвищення кваліфікації, 108 год / 3,6 кред. (№ 02070921/007099-22)
+  academic_title: []
+
+- id: pinchevska_no
+  page_id: 777
+  name: Пінчевська Наталія Олександрівна
+  degree: Завідувач навчальною лабораторією
+  photo: https://apd.ipt.kpi.ua/wp-content/uploads/2026/02/Pinchevska.jpg
+  contacts:
+    intellect: pno4
+  courses: {}
+  duties:
+  - Робота в інформаційному середовищі університету My.kpi.ua (введення інформації для організації освітнього процесу за спеціальністю
+    «Прикладна фізика та наноматеріали»)
+  - Участь в оновленні та перегляді освітніх програм (ОПП, ОНП)
+  - Підготовка та актуалізація навчальних і робочих навчальних планів
+  - Розрахунок та аналіз педагогічного навантаження НПП кафедри, підготовка відповідних довідок і аналітичних матеріалів
+  - Формування індивідуальних навчальних планів студентів
+  - Участь у підготовці матеріалів для самооцінювання освітніх програм та акредитації
+  - Організація навчально-наукової роботи студентів у лабораторії
+  - Забезпечення матеріально-технічної та методичної бази лабораторії
+  certificates:
+  - year: 2025
+    title: НАЗК — онлайн-курс «Спільна робота близьких осіб», 3 год / 0,1 кред.
+    url: https://learning.nazk.gov.ua/certificates/f3693e323d4b4c72981ba8abe4a7ae0a
+  - year: 2025
+    title: ІПО КПІ — «Прості засоби створення та підтримки WEB-сторінки викладача», 108 год / 3,6 кред. (№ 02070921/009592-25)
+  - year: 2025
+    title: Prometheus — онлайн-курс «Вікіпедія для навчання (базовий рівень)», 15 год / 0,5 кред.
+    url: https://certs.prometheus.org.ua/cert/737fc1abc91044f4af2278f9443b4fce
+  - year: 2025
+    title: 'AcademyOcean — курс «Від початківця до експерта в ШІ»: Модуль 1 «Основи штучного інтелекту», 8 год'
+    url: https://app.academyocean.com/verify/6kLWoKVx9km8HOWD
+  - year: 2025
+    title: AcademyOcean — Модуль 2 «Робота з текстовими ШІ», 8 год
+    url: https://app.academyocean.com/verify/LZsL3pbTBi0kKy6Y
+  - year: 2025
+    title: AcademyOcean — Модуль 3 «Заглиблення у можливості ШІ», 10 год
+    url: https://app.academyocean.com/verify/RsXujIVfvl3WUPq4
+  - year: 2025
+    title: AcademyOcean — Модуль 4 «Основи створення агентів», 12 год
+    url: https://app.academyocean.com/verify/LZsL3pbTBi0kKy6Y
+  - year: 2025
+    title: AcademyOcean — Модуль 5 «Основи створення ШІ-асистентів», 16 год
+    url: https://app.academyocean.com/verify/EMlaglI4KHy2Qmd3
+  - year: 2025
+    title: AcademyOcean — Модуль 6 «Основи файтюнінгу моделей», 20 год
+    url: https://app.academyocean.com/verify/IWcSNzkPHolNS1Pq
+  - year: 2019
+    title: ІПО КПІ — «Інформаційні технології організації та проведення методичної та навчальної роботи», 108 год / 3,6 кред.
+      (Серія ПК № 02070921/004837-19)
+  academic_title: []
+  
+- id: katasonov_aa
+  page_id: 276
+  name: Катасонов Антон Анатолійович
+  degree: Кандидат фізико-математичних наук
+  photo: https://apd.ipt.kpi.ua/wp-content/uploads/2025/03/Katasonov.jpg
+  contacts:
+    orcid: 0000-0002-0512-1747
+    scopus: '23767179900'
+    google_scholar: U0r0stYAAAAJ
+    intellect: kaa124
+    schedule: https://schedule.kpi.ua/lecturers?lecturerId=8c525f93672f3080c828425862038d2406ba38983d93d6d7e98d11f76fde7dc3
+  courses:
+    bachelor:
+    - title: Рівняння математичної фізики
+      description: практичні заняття, ІІІ курс
+    - title: Фізика
+      description: практичні, лабораторні, І курс (ФТІ та ММІ)
+  academic_title:
+  - старший викладач
+
+- id: muravov_so
+  name: Муравов Сергій Олександрович
+  degree: Провідний інженер
+  photo: https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y&s=300
+  contacts: {}
+  courses: {}
+  duties:
+  - Провідний інженер кафедри прикладної фізики (навчально-допоміжний персонал)
+  - Секретар Науково-методичної комісії університету (НМКУ) зі спеціальності E6 «Прикладна фізика та наноматеріали» (2025–2026)
+  - Участь у забезпеченні навчального процесу, технічній підтримці лабораторій та інфраструктури кафедри
+  - Участь у роботі комісії з атестації освітніх програм та спеціальності 105 «Прикладна фізика та наноматеріали»
+  biography: Провідний інженер кафедри прикладної фізики НН ФТІ КПІ ім. Ігоря Сікорського, навчально-допоміжний персонал кафедри.
+    Секретар Науково-методичної комісії університету зі спеціальності E6 «Прикладна фізика та наноматеріали» (2025–2026).
+    Бере участь у методичній роботі, пов'язаній з освітніми програмами, самооцінюванням та акредитацією спеціальності 105.
+  academic_title: []
+  
+  - id: donyk_tv
+  page_id: 337
+  name: Доник Тетяна Василівна
+  degree: Кандидат технічних наук
+  photo: http://apd.ipt.kpi.ua/wp-content/uploads/2025/01/Donik.jpg
+  contacts:
+    email: doniktv@ukr.net
+    google_scholar: QYgPhs0AAAAJ
+    intellect: dtv26
+  courses:
+    bachelor:
+    - title: Відновлювальні та альтернативні джерела енергії
+    - title: Основи теплової енергетики
+    - title: Експериментальні дослідницькі установки
+    - title: Системи охолодження високотемпературних установок
+    - title: Спецглави теорії теплообміну
+  academic_title:
+  - старший викладач
+  external:
+    main_workplace:
+      name: Інститут технічної теплофізики НАН України
+      url: http://ittf.kiev.ua/
+    nas_profile: https://www.old.nas.gov.ua/UA/PersonalSite/Pages/default.aspx?PersonID=0000003830
+  
+- id: kulish_vv
+  page_id: 285
+  name: Куліш Володимир Вікторович
+  degree: Доктор фізико-математичних наук
+  photo: https://apd.ipt.kpi.ua/images/KulishVV.jpg
+  contacts:
+    email: kulish_volv@ukr.net
+    google_scholar: U6lMsmMAAAAJ
+    intellect: kvv361
+    schedule: https://schedule.kpi.ua/lecturers?lecturerId=05758cd3875ad2171484c0026ccbb8adc210cd2d852407e3c7af1b751f35fdd6
+  research_interests:
+  - Оптичні властивості наносистем
+  - Магнітні властивості наносистем
+  - Спін-хвильові процеси в феромагнітних наноструктурах (наномагнітні трубки, нанооболонки, наносистеми різної форми)
+  - Фізика твердого тіла та фізика малих структур
+  - Магнетизм, спін-хвилі, диполь-обмінні взаємодії в наноструктурах
+  biography: 'Куліш Володимир Вікторович народився в Україні. Закінчив НТУУ «КПІ»
+    у 2001 році за спеціальністю «Прикладна фізика» (магістр, інженер-фізик). Випускник
+    кафедри прикладної фізики. У 2005 році захистив кандидатську дисертацію за спеціальністю
+    01.04.07 – Фізика твердого тіла (Інститут фізики НАН України). У 2019 році здобув
+    ступінь доктора фізико-математичних наук за спеціальністю 01.04.11 – Магнетизм.'
+  academic_title:
+  - доцент
+  external:
+    main_workplace:
+      name: Кафедра загальної фізики, Фізико-математичний факультет КПІ ім. Ігоря Сікорського
+      url: https://kzf.kpi.ua/kulish-volodymyr-viktorovych
+      
+

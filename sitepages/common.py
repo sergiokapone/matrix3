@@ -76,3 +76,11 @@ def year_css(p: str) -> str:
 .{p}-year[open]>summary::before{{transform:rotate(90deg)}}
 .{p}-year .cnt{{color:var(--c-mute);font-size:14px;font-weight:400}}
 """)
+
+
+_UA = "абвгґдеєжзиіїйклмнопрстуфхцчшщьюя"
+
+
+def ua_key(s: str) -> list:
+    """Ключ сортування за українським алфавітом (Python сортує є/і/ї за кодами Unicode — невірно)."""
+    return [(_UA.index(c) if c in _UA else 100 + ord(c)) for c in s.lower()]

@@ -78,6 +78,26 @@ def year_css(p: str) -> str:
 """)
 
 
+_PEOPLE = None
+
+
+def _pkey(name: str) -> str:
+    import re
+    parts = name.replace("\xa0", " ").split(None, 1)
+    rest = parts[1] if len(parts) > 1 else ""
+    return parts[0].lower() + " " + "".join(re.findall(r"[A-ZА-ЯІЇЄҐ]", rest)[:2]).lower()
+
+
+def person_url(name: str) -> str | None:
+    """Посилання на персональну сторінку викладача за «Прізвище І.П.» або повним ПІБ (people.yaml)."""
+    global _PEOPLE
+    if _PEOPLE is None:
+        f = Path(__file__).parent / "people.yaml"
+        rows = yaml.safe_load(f.read_text(encoding="utf-8"))["people"] if f.exists() else []
+        _PEOPLE = {_pkey(p["short"]): p["url"] for p in rows}
+    return _PEOPLE.get(_pkey(name))
+
+
 _UA = "абвгґдеєжзиіїйклмнопрстуфхцчшщьюя"
 
 

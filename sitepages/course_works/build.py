@@ -8,7 +8,7 @@
 """
 from html import escape
 
-from sitepages.common import minify_css, ua_key, wrap, year_css
+from sitepages.common import minify_css, person_url, ua_key, wrap, year_css
 
 CSS = """
 .cw-head,.cw-row>summary,.cw-row.plain{display:grid;grid-template-columns:22% minmax(0,1fr) 24% 32px;gap:0 14px;align-items:start;text-align:left!important}
@@ -29,9 +29,10 @@ CSS = """
 .cw-ann{padding:12px 16px 16px;margin:0;background:#f6f8fc;border-top:1px solid var(--c-line);text-align:left}
 .cw-ann-h{margin:0 0 8px;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--c-mute);font-weight:700}
 .cw-ann p{margin:0 0 8px;line-height:1.5}
-.cw-ann b{color:var(--c-text)}
+.cw-ann .cw-lab{font-weight:700!important;color:var(--c-acc)}
 .cw-ann ol{margin:4px 0 8px;padding-left:22px}
 .cw-ann li{margin:0 0 6px;line-height:1.5}
+.cw .cw-link:hover{background:var(--c-acc);color:#fff!important}
 .cw-chip{display:inline-block;margin:0 6px 4px 0;padding:2px 9px;border-radius:999px;background:var(--c-acc-bg);color:var(--c-acc);font-size:13px;white-space:nowrap}
 @media(max-width:700px){
 .cw-head{display:none}
@@ -49,17 +50,24 @@ def annotation(blocks: list) -> str:
     for b in blocks:
         if b.get("items"):
             if b.get("label"):
-                out.append(f'<p><b>{escape(b["label"])}:</b></p>')
+                out.append(f'<p><strong class="cw-lab">{escape(b["label"])}:</strong></p>')
             out.append("<ol>" + "".join(f"<li>{escape(i)}</li>" for i in b["items"]) + "</ol>")
         else:
-            lab = f'<b>{escape(b["label"])}.</b> ' if b.get("label") else ""
+            lab = f'<strong class="cw-lab">{escape(b["label"])}.</strong> ' if b.get("label") else ""
             out.append(f'<p>{lab}{escape(b["text"])}</p>')
     out.append("</div>")
     return "".join(out)
 
 
+def chip(name: str) -> str:
+    url = person_url(name)
+    if url:
+        return f'<a class="cw-chip cw-link" href="{escape(url, quote=True)}" title="Персональна сторінка">{escape(name)}</a>'
+    return f'<span class="cw-chip">{escape(name)}</span>'
+
+
 def row(w: dict) -> str:
-    chips = "".join(f'<span class="cw-chip">{escape(a)}</span>' for a in w["advisors"])
+    chips = "".join(chip(a) for a in w["advisors"])
     cells = (f'<span class="cw-st">{escape(w["student"])}</span>'
              f'<span class="cw-ti">{escape(w["title"])}</span>'
              f'<span class="cw-ad">{chips}</span>')

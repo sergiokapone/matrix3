@@ -5,3 +5,5 @@ __pycache__/
 disciplines/
 .env
 Pipfile.lock
+# резервні копії живих сторінок сайту
+sitepages/*/bak/

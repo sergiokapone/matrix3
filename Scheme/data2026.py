@@ -420,6 +420,9 @@ EDGES = [
     ("S2_MatAn", "S3_MatAn"),
     ("S2_MatAn", "S3_MathPhys"),
 
+    ("S2_HistPhil", "S8_Research"),
+    ("S2_HistPhil", "S7_Lab"),
+
     ("S2_Thermo",    "S7_StatPhys"),
     ("S2_Graph",     "S3_CompMeth"),
 

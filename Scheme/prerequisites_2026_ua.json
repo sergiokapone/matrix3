@@ -230,7 +230,16 @@
     "type": "general",
     "color": "#B8B8B8",
     "prerequisites": [],
-    "postrequisites": []
+    "postrequisites": [
+      {
+        "id": "S7_Lab",
+        "name": "Лабораторно-дослідницький практикум"
+      },
+      {
+        "id": "S8_Research",
+        "name": "Основи наукових досліджень"
+      }
+    ]
   },
   "S2_Military": {
     "id": "S2_Military",
@@ -905,6 +914,10 @@
     "color": "#D4A5FF",
     "prerequisites": [
       {
+        "id": "S2_HistPhil",
+        "name": "Історико-філософські засади суспільного розвитку"
+      },
+      {
         "id": "S6_MathModel",
         "name": "Математичне моделювання та відкриті пакети прикладних програм"
       }
@@ -958,7 +971,12 @@
     "semester": 8,
     "type": "pract",
     "color": "#D4A5FF",
-    "prerequisites": [],
+    "prerequisites": [
+      {
+        "id": "S2_HistPhil",
+        "name": "Історико-філософські засади суспільного розвитку"
+      }
+    ],
     "postrequisites": [
       {
         "id": "S8_Practice",

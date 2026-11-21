@@ -1,0 +1,36 @@
+title: Куратори студентських груп
+page_id: 7375
+intro: 'Куратор — це викладач, до якого студенти можуть звернутися з будь-якими питаннями: навчальними, організаційними, побутовими чи особистими. Куратор допомагає адаптуватися до університетського життя, вирішує конфліктні ситуації, стежить за успішністю групи, організовує позанавчальні заходи та завжди готовий підтримати своїх студентів.'
+kurators:
+- group: ФФ-21
+  name: Бех Станіслав Вікторович
+  url: https://apd.ipt.kpi.ua/kafedra/stuff/bekh/
+  photo: https://apd.ipt.kpi.ua/wp-content/uploads/2025/01/beh-296x300.jpg
+- group: ФФ-31
+  name: Гільчук Андрій Володимирович
+  url: https://apd.ipt.kpi.ua/kafedra/stuff/gilchuk/
+  photo: https://apd.ipt.kpi.ua/wp-content/uploads/2025/03/gil1-150x150-1.png
+- group: ФФ-41
+  name: Ольховик Ілля Володимирович
+  url: https://apd.ipt.kpi.ua/kafedra/stuff/olkhovyk/
+  photo: https://apd.ipt.kpi.ua/wp-content/uploads/2025/01/photo_2022-12-20_04-25-54-169x300.jpg
+- group: ФФ-51
+  name: Долгошей Володимир Борисович
+  url: https://apd.ipt.kpi.ua/kafedra/stuff/dolgoshey/
+  photo: https://apd.ipt.kpi.ua/wp-content/uploads/2024/10/Dolgoshey_photo_2020-236x300.jpg
+- group: ФФ-61
+  name: Кривенко-Еметов Ярослав Дмитрович
+  url: https://apd.ipt.kpi.ua/kafedra/stuff/kryvenko-emetov/
+  photo: https://apd.ipt.kpi.ua/wp-content/uploads/2025/01/Krivenko.jpg
+- group: ФФ-41мн
+  name: Гордійко Наталія Олександрівна
+  url: https://apd.ipt.kpi.ua/kafedra/stuff/gordiiko/
+  photo: https://apd.ipt.kpi.ua/wp-content/uploads/2025/01/gordiyko.jpg
+- group: ФФ-51мн
+  name: Пономаренко Сергій Миколайович
+  url: https://apd.ipt.kpi.ua/kafedra/stuff/ponomarenko/
+  photo: https://apd.ipt.kpi.ua/wp-content/uploads/2025/01/MyPhoto2.jpg
+- group: ФФ-61мн
+  name: Монастирський Геннадій Євгенович
+  url: https://apd.ipt.kpi.ua/kafedra/stuff/monastyrsky/
+  photo: https://apd.ipt.kpi.ua/wp-content/uploads/2024/09/MGE-264x300.jpg

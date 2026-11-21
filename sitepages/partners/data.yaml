@@ -1,0 +1,89 @@
+title: Партнери кафедри
+page_id: 413
+lead: Кафедра прикладної фізики співпрацює з інститутами Національної академії наук України та науково-дослідними структурами наукоємних компаній.
+links:
+- label: Семінари
+  url: https://apd.ipt.kpi.ua/nauka/seminar/
+- label: Екскурсії
+  url: https://apd.ipt.kpi.ua/category/study/tour/
+- label: Зустрічі з партнерами
+  url: https://apd.ipt.kpi.ua/international/partners/zustrichi-z-partnerami/
+note: Роботодавці залучаються до аудиторних занять, разових лекцій, семінарів, екскурсій тощо.
+groups:
+- title: Інститути НАН України та наукові установи
+  partners:
+  - name: Інститут фізики
+    url: http://www.iop.kiev.ua/ua/
+    logo: https://apd.ipt.kpi.ua/wp-content/uploads/2026/03/Logo_IPhys.jpg
+    dates: 02.03.2026 – 31.12.2036
+    doc: https://drive.google.com/file/d/1X_ke_TCj1EHJBzxooYzv-AI-fbULibtY/view?usp=sharing
+  - name: Інститут електрозварювання ім. Є.О. Патона
+    url: https://paton.org.ua/
+    logo: https://apd.ipt.kpi.ua/wp-content/uploads/2026/11/logo-paton.png
+    dates: 16.03.2026 – 01.03.2031
+    doc: https://drive.google.com/file/d/1U3vvwFk6w-5A3TsnIuxEwr1S1f8-PLp4/view?usp=sharing
+  - name: Міжнародний центр «Інститут прикладної оптики» НАН України
+    url: https://www.nas.gov.ua/UA/Org/Pages/default.aspx?OrgID=0000448
+    dates: 07.12.2020 – 07.12.2030
+    doc: https://dnvr.kpi.ua/wp-content/uploads/2020/12/%D0%9C%D1%96%D0%B6%D0%BD%D0%B0%D1%80%D0%BE%D0%B4%D0%BD%D0%B8%D0%B9-%D1%86%D0%B5%D0%BD%D1%82%D1%80-%D0%86%D0%BD%D1%81%D1%82%D0%B8%D1%82%D1%83%D1%82-%D0%BF%D1%80%D0%B8%D0%BA%D0%BB%D0%B0%D0%B4%D0%BD%D0%BE%D1%97-%D0%BE%D0%BF%D1%82%D0%B8%D0%BA%D0%B8-%D0%9D%D0%90%D0%9D%D0%A3.pdf
+  - name: Інститут фізіології ім. О.О. Богомольця НАН України
+    url: http://biph.kiev.ua/uk
+    logo: https://apd.ipt.kpi.ua/wp-content/uploads/2026/03/Logo_IPhysBog.jpg
+    dates: 18.12.2020 – 18.12.2030
+    doc: https://dnvr.kpi.ua/wp-content/uploads/2020/12/%D0%86%D0%BD%D1%81%D1%82%D0%B8%D1%82%D1%83%D1%82-%D1%84%D1%96%D0%B7%D1%96%D0%BE%D0%BB%D0%BE%D0%B3%D1%96%D1%97-%D1%96%D0%BC.-%D0%9E.%D0%9E.-%D0%91%D0%BE%D0%B3%D0%BE%D0%BC%D0%BE%D0%BB%D1%8C%D1%86%D1%8F-%D0%9D%D0%90%D0%9D%D0%A3.pdf
+  - name: Інститут фізики напівпровідників імені В.Є. Лашкарьова НАН України
+    url: https://isp.kiev.ua/index.php/uk
+    logo: https://apd.ipt.kpi.ua/wp-content/uploads/2026/11/logo-isp.png
+    dates: 21.12.2020 – 21.12.2030
+    doc: https://dnvr.kpi.ua/wp-content/uploads/2022/08/%D0%86%D0%BD%D1%81%D1%82%D0%B8%D1%82%D1%83%D1%82-%D1%84%D1%96%D0%B7%D0%B8%D0%BA%D0%B8-%D0%BD%D0%B0%D0%BF%D1%96%D0%B2%D0%BF%D1%80%D0%BE%D0%B2%D1%96%D0%B4%D0%BD%D0%B8%D0%BA%D1%96%D0%B2-%D1%96%D0%BC.-%D0%9B%D0%B0%D1%88%D0%BA%D0%B0%D1%80%D1%8C%D0%BE%D0%B2%D0%B0.pdf
+  - name: Інститут гідромеханіки
+    url: https://hydromech.org.ua/
+    logo: https://apd.ipt.kpi.ua/wp-content/uploads/2026/11/logo-hydromech.png
+    dates: 18.01.2024 – 31.12.2029
+    doc: https://dnvr.kpi.ua/wp-content/uploads/2024/01/%D0%86%D0%BD%D1%81%D1%82%D0%B8%D1%82%D1%83%D1%82-%D0%B3%D1%96%D0%B4%D1%80%D0%BE%D0%BC%D0%B5%D1%85%D0%B0%D0%BD%D1%96%D0%BA%D0%B8-%D0%9D%D0%90%D0%9D%D0%A3.pdf
+  - name: Інститут металофізики ім. Г.В. Курдюмова НАН України
+    url: https://www.imp.kiev.ua/
+    logo: https://apd.ipt.kpi.ua/wp-content/uploads/2026/11/logo-imp.jpg
+    dates: 28.09.2022 – 28.09.2027
+    doc: https://dnvr.kpi.ua/wp-content/uploads/2022/10/%D0%86%D0%BD%D1%81%D1%82%D0%B8%D1%82%D1%83%D1%82-%D0%BC%D0%B5%D1%82%D0%B0%D0%BB%D0%BE%D1%84%D1%96%D0%B7%D0%B8%D0%BA%D0%B8-%D1%96%D0%BC.-%D0%9A%D1%83%D1%80%D0%B4%D1%8E%D0%BC%D0%BE%D0%B2%D0%B0.pdf
+  - name: Інститут відновлюваної енергетики
+    url: https://www.ive.org.ua/?page_id=6&lang=uk
+    logo: https://apd.ipt.kpi.ua/wp-content/uploads/2026/11/logo-ive.png
+    dates: 21.01.2022 – 21.01.2027
+    doc: https://dnvr.kpi.ua/wp-content/uploads/2022/02/%D0%86%D0%BD%D1%81%D1%82%D0%B8%D1%82%D1%83%D1%82-%D0%B2%D1%96%D0%B4%D0%BD%D0%BE%D0%B2%D0%BB%D1%8E%D0%B2%D0%B0%D0%BB%D1%8C%D0%BD%D0%BE%D1%97-%D0%B5%D0%BD%D0%B5%D1%80%D0%B3%D0%B5%D1%82%D0%B8%D0%BA%D0%B8-%D0%9D%D0%90%D0%9D%D0%A3.pdf
+  - name: Інститут магнетизму
+    url: http://ukr.imag.kiev.ua/
+    logo: https://apd.ipt.kpi.ua/wp-content/uploads/2026/03/Logo_Imag.jpg
+    dates: 15.07.2021 – 15.07.2026
+    doc: https://dnvr.kpi.ua/wp-content/uploads/2023/01/%D0%86%D0%BD%D1%81%D1%82%D0%B8%D1%82%D1%83%D1%82-%D0%BC%D0%B0%D0%B3%D0%BD%D0%B5%D1%82%D0%B8%D0%B7%D0%BC%D1%83-%D0%9D%D0%90%D0%9D%D0%A3.pdf
+  - name: Інститут електродинаміки
+    url: https://ied.org.ua/ua/
+    logo: https://apd.ipt.kpi.ua/wp-content/uploads/2026/03/logo_IElD.jpeg
+    dates: 28.05.2021 – 28.05.2026
+    doc: https://dnvr.kpi.ua/wp-content/uploads/2021/06/%D0%86%D0%BD%D1%81%D1%82%D0%B8%D1%82%D1%83%D1%82-%D0%B5%D0%BB%D0%B5%D0%BA%D1%82%D1%80%D0%BE%D0%B4%D0%B8%D0%BD%D0%B0%D0%BC%D1%96%D0%BA%D0%B8-%D0%9D%D0%90%D0%9D%D0%A3.pdf
+  - name: Інститут технічної теплофізики НАН України
+    url: http://ittf.kiev.ua/
+    logo: https://apd.ipt.kpi.ua/wp-content/uploads/2026/11/logo-ittf.png
+    dates: 04.06.2021 – 04.06.2026
+    doc: https://dnvr.kpi.ua/wp-content/uploads/2021/06/%D0%86%D0%A2%D0%A2%D0%A4-%D0%9D%D0%90%D0%9D%D0%A3.pdf
+- title: Підприємства та компанії
+  partners:
+  - name: ПлазмаТек
+    url: https://plasmatec-weld.com.ua/
+    logo: https://apd.ipt.kpi.ua/wp-content/uploads/2026/02/logo-b80b685d.png
+    dates: 23.02.2024 – 15.02.2029
+    doc: https://dnvr.kpi.ua/wp-content/uploads/2024/03/%D0%A2%D0%9E%D0%92-%D0%9F%D0%BB%D0%B0%D0%B7%D0%BC%D0%B0%D0%A2%D0%B5%D0%BA.pdf
+  - name: ТОВ «Аджакс Сістемс Мануфектурінг»
+    url: https://ajax.systems/
+    logo: https://apd.ipt.kpi.ua/wp-content/uploads/2026/11/logo-ajax.jpg
+    dates: 10.04.2024 – 31.12.2029
+    doc: https://dnvr.kpi.ua/wp-content/uploads/2024/04/%D0%A2%D0%9E%D0%92-%D0%90%D0%94%D0%96%D0%90%D0%9A%D0%A1-%D0%A1%D0%86%D0%A1%D0%A2%D0%95%D0%9C%D0%A1-%D0%9C%D0%90%D0%9D%D0%AE%D0%A4%D0%95%D0%9A%D0%A7%D0%A3%D0%A0%D0%86%D0%9D%D0%93.pdf
+  - name: ТОВ «НВП Єнамін»
+    logo: https://apd.ipt.kpi.ua/wp-content/uploads/2025/03/enamine-300x149.png
+    dates: 23.12.2024 – 31.12.2026
+    doc: https://drive.google.com/file/d/167FDg2iDchk6xHwRFj5jh5wgC-7aCcDO/view?usp=drivesdk
+  - name: ТОВ «Елватех»
+    url: https://elvatech.kiev.ua/uk/
+    logo: https://apd.ipt.kpi.ua/wp-content/uploads/2025/03/elvatech-300x60.png
+    dates: 03.12.2020 – 03.12.2025
+    doc: https://dnvr.kpi.ua/wp-content/uploads/2020/12/%D0%A2%D0%9E%D0%92-%D0%95%D0%BB%D0%B2%D0%B0%D1%82%D0%B5%D1%85.pdf

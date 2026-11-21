@@ -9,6 +9,11 @@ from sitepages.common import load_yaml, publish  # noqa: E402
 PAGES = {  # ім'я папки -> опис (сторінка на сайті)
     "syllabi": "/for_stud/syllab_potoch/ — силабуси поточного року",
     "course_works": "/nauka/course-works/ — теми курсових робіт",
+    "lab": "/nauka/lab/ — лабораторія «ФіНоТех»",
+    "cooperation": "/international/cooperation/ — міжнародне співробітництво",
+    "partners": "/international/partners/ — партнери кафедри",
+    "kurators": "/kurators/ — куратори студентських груп",
+    "seminar": "/nauka/seminar/ — науковий семінар",
     "stud_sci_works": "/nauka/stud_sci_works/ — наукові роботи студентів (публікації)",
 }
 # Окремо (багато сторінок): python sitepages/staff/manage.py generate|generate-staff|push|run-all

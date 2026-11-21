@@ -1,0 +1,264 @@
+title: Науковий семінар
+page_id: 124
+intro: На кафедрі працює науковий семінар з проблем прикладної фізики. В семінарі приймають участь викладачі кафедри, аспіранти, студенти старших курсів та науковці з провідних установ.
+  Тематика охоплює різні напрямки з високих фізичних технологій, нанотехнологій, фізики живих систем та фізики енергетичних систем. Науковий семінар дозволяє познайомити студентів та
+  викладачів кафедри з сучасним станом досліджень в різноманітних галузях та полегшити обрання свого власного наукового шляху, розвиває професійні зв'язки діючих науковців різних галузей
+  та дозволяє презентувати наукові результати колегам.
+youtube: https://www.youtube.com/watch?v=DP7JTBc1zxQ&list=PLjd3PvSesgEyYe9HeLlejpv2yQTO1kK_9
+seminars:
+- date: '2026-03-18'
+  title: Застосування фізично-інформованих нейронних мереж до задач теплопереносу в наноматеріалах
+  speaker: М.В. Геркалюк, аспірант кафедри ПФ, НН ФТІ, КПІ ім. Ігоря Сікорського
+  extra:
+  - 'Науковий керівник: к.ф.-м.н., доц. каф. ПФ А.В. Гільчук'
+  lang: українська
+  photo: https://apd.ipt.kpi.ua/wp-content/uploads/2026/03/Herkaluk_Marko-225x300.jpg
+  annotation_label: Анотація
+  annotation:
+  - p: У сучасних напівпровідникових наноструктурах (транзистори &lt; 10 нм, нанодроти, квантові точки) характерні розміри стають порівнянними або меншими за середній вільний пробіг
+      фононів. За таких умов закон Фур'є стає непридатним, і для коректного опису явищ теплопереносу необхідно розв'язувати фононне рівняння переносу Больцмана (BTE) у багатовимірному
+      фазовому просторі. Класичні чисельні методи (метод дискретних ординат, метод Монте-Карло) наштовхуються на обчислювальні обмеження через високу розмірність задачі та обчислювальну
+      жорсткість (stiffness), зумовлену багатомасштабністю фононного спектра. У доповіді розглядається альтернативний підхід — фізично-інформовані нейронні мережі (Physics-Informed Neural
+      Networks, PINN), які включають диференціальне рівняння безпосередньо до функції втрат, що дозволяє розв'язувати BTE без побудови обчислювальної сітки (mesh-free) та без розмічених
+      даних.
+  - p: 'Представлено результати розробки програмного комплексу PINN-BTE для нестаціонарного фононного транспорту з великими градієнтами температури (ΔT ~ 100 K) та температурно-залежним
+      розсіюванням τ(T). Основні результати:'
+  - ul:
+    - адаптація β-мережі для апроксимації нелінійного розподілу Бозе–Ейнштейна у нестаціонарному режимі;
+    - формула адаптивного зважування збереження енергії w_E = min(1, 10·Kn²), що усуває дегенерацію у дифузійному режимі;
+    - нормалізація нев'язки BTE за окремими модами, що вирівнює градієнтні внески мод, масштаби яких різняться у 540 разів.
+  - p: Фреймворк валідовано для чисел Кнудсена від 10 (балістичний режим) до 0.001 (дифузійний режим) для задач transient thermal grating (TTG) та локального Гаусового нагріву (Gaussian
+      hotspot). Показано, що врахування τ(T) ~ T⁻³ прискорює термічну релаксацію у 6–7 разів порівняно з лінеаризованим наближенням. Завдяки оптимізації коду (змішана точність обчислень
+      (mixed precision), підвибірка (subsampling) колокаційних точок, об'єднання обчислювальних циклів) час навчання зменшено до 20–30 хвилин на одному GPU.
+  links:
+  - https://www.youtube.com/watch?v=lhxxY4DlhHU
+- date: '2025-02-25'
+  title: 'Emerging Frontiers in Condensed Matter Physics: Topological Insulators and Beyond'
+  speaker: Takuya Takashiro PhD, Institut für Halbleiter- und Festkörperphysik, Johannes Kepler Universität.
+  lang: English
+  photo: https://apd.ipt.kpi.ua/wp-content/uploads/2025/02/photo_Takuya.png
+  annotation_label: Annotation
+  annotation:
+  - p: Recent advances in condensed matter physics have unveiled a new class of quantum materials known as topological insulators (TIs). TIs are insulating in the bulk while hosting
+      metallic surface states within the bulk band gap. Notably, these surface states exhibit spin-polarized Dirac cones that are robust against backscattering, making TIs promising
+      candidates for next-generation spintronic and quantum computing applications. Beyond TIs, the exploration of novel topological phases such as topological crystalline insulators
+      (TCI), magnetic topological insulators (MTI), and topological superconductors has further expanded the frontier of quantum materials research. These emerging systems exhibit exotic
+      quantum phenomena, including the quantum anomalous Hall effect, magnetic skyrmions, and Majorana fermions, offering new opportunities for fundamental physics and technological
+      innovation.
+  - p: In this talk, I will present recent research progress in topological materials based on my present experimental work. Specifically, I will demonstrate that Te-based MTI layered
+      materials [1,2], MnBi2Te4 and MnSb2Te4, and multivalley TCI materials [3], SnTe and PbSnSe, are grown using molecular beam epitaxy techniques. To probe the topological nature in
+      terms of electronic structures, state-of-the-art angle-resolved photoemission spectroscopy (ARPES) is employed. Furthermore, low-temperature magnetotransport measurements are conducted
+      to investigate quantum Hall effects and magnetic skyrmions reflecting the band topology. These research efforts provide new insights into the interplay of Dirac electrons and magnetic
+      and crystalline structures, paving the way for future studies on quantum materials and their potential applications.
+  - p: <em>[1] E.D.L. Rienks, et al., Nature 576, 423 (2019).</em>
+  - p: <em>[2] T. Takashiro, et al., Nano Letters 22, 881 (2022).</em>
+  - p: <em>[3] G. Krizman, ..., T. Takashiro, et al., Phys. Rev. Lett. 132, 166601 (2024).</em>
+- date: '2024-12-04'
+  title: High frequency linear accelerators for societal and medical applications
+  speaker: Doctor Alessandra Lombardi, Senior Applied physicist at CERN.
+  lang: English
+  photo: https://apd.ipt.kpi.ua/wp-content/uploads/2025/01/seminar-04-12-24-Alessandra-Lombardi-192x300.jpg
+  annotation_label: Annotation
+  annotation:
+  - p: “LINAC4, a 160MeV H- LINAC based on 352MHz normal conducting cavities, was commissioned in stages during the year 2013-2019 at CERN. The experience gained during the design and
+      commissioning of LINAC4 has been exploited for the design and realization of pre-injectors for use in the medical and art diagnostics field, in particular high frequency Radio
+      Frequency Quadrupole based on the frequency of 750MHz.
+  - p: In this talk, we will give a brief summary of the crucial achievements of the LINAC4 commissioning and the status of the pre-injectors projects for medical and societal application
+      including future R&amp;D plans.
+- date: '2024-10-16'
+  title: Dynamic control of light and heat with conducting polymers
+  speaker: Magnus Jonsson, Professor of Applied Physics at the Laboratory of Organic Electronics of Linköping University, Sweden. PhD in Physics from Chalmers University of Technology.
+  lang: English
+  photo: https://apd.ipt.kpi.ua/images/Magnus.jpg
+  annotation_label: Annotation
+  annotation:
+  - p: Conducting polymers offer unique ways to control light and heat, which I will illustrate using examples from our recent research. I will first demonstrate that conducting polymers
+      enable a new type of dynamically tuneable plasmonic nanoantennas.<sup>1-5</sup> Such optical nanoantennas form the basis for important applications like optical metasurfaces, but
+      they are traditionally static. By contrast, the optical response of conducting polymer nanoantennas can be dynamically tuned by varying the oxidation state of the polymer, thereby
+      opening for redox-tunable metasurfaces and applications like dynamic flat lenses and video holograms.
+  - p: Next, I will introduce novel means for dynamic structural coloration for reflective colour displays.<sup>6-7</sup> Reflective displays form an energy-efficient complement to emissive
+      displays and provide additional benefits such as being suitable for use in bright light. I will describe how we can achieve materials with tunable structural colour for such devices
+      by combining dynamic electroactive functions of conducting polymers with interference effects in thin films.
+  - p: In the third example, we utilize the coldness of outer space to passively cool objects on Earth via thermal radiation. This concept, called passive radiative cooling, is explored
+      world-wide as a sustainable complement to energy-consuming cooling methods which currently consume around 10% of all electricity used globally. Our recent research shows that conducting
+      polymers can be used to electrically tune the radiative cooling power, offering temperature regulation of objects at ambient conditions by tuning their ability to radiate heat.<sup>8-9</sup>
+      The concept is based on modulating the infrared emissivity of our devices, which also offer means for adaptable camouflage and anticounterfeiting.<sup>10</sup>
+  - ol:
+    - <em>Conductive polymer nanoantennas for dynamic organic plasmonics</em>. S. Chen et al. <strong>Nature Nanotechnology</strong> 2020, 15, 35-40.
+    - <em>Electrical Tuning of Plasmonic Conducting Polymer Nanoantennas</em>. A. Karki et al. <strong>Advanced Materials</strong> 2022, 34, 13, 2107172
+    - <em>Doped Semiconducting Polymer Nanoantennas for Tunable Organic Plasmonics</em>. A. Karki et al. <strong>Communications Materials</strong> 2022, 3, 48
+    - <em>Dynamic Conducting Polymer Plasmonics and Metasurfaces</em>. S. Chen and M. P. Jonsson. <strong>ACS Photonics</strong> 2023, 10, 3, 571–581
+    - <em>Tuneable anisotropic plasmonics with shape-symmetric conducting polymer nanoantennas</em>. Y. Duan, et al. <strong>Advanced Materials</strong> 2023, 35, 51, 2303949.
+    - <em>Dynamically tuneable reflective structural colouration with electroactive conducting polymer nanocavities</em>. S. Rossi et al. <strong>Advanced Materials</strong> 2021, 33,
+      40, 2105004
+    - <em>Tunable structural color images by UV-patterned conducting polymer nanofilms on metal surfaces</em>. S. Chen et al. <strong>Advanced Materials</strong> 2021, 33, 33, 2102451
+    - <em>Cellulose-based Radiative Cooling and Solar Heating Powers Ionic Thermoelectrics</em>. M. Liao, et al. <strong>Advanced Science</strong> 2023, 10, 2206510
+    - <em>Electrical Tuning of Radiative Cooling at Ambient Conditions</em>. D. Banerjee et al. <strong>Cell Reports Physical Science</strong>, 2023, 4, 101274
+    - <em>Electrically tunable infrared optics enabled by flexible ion-permeable conducting polymer-cellulose paper</em>. Kuang et al. <strong>npj Flexible Electronics</strong> 2024,
+      in press.
+  links:
+  - https://youtu.be/dNIPhryz_WY?si=I9SpMWAfVSjfwSf6
+- date: '2024-10-02'
+  title: Simulation of the deformation and breakage of a polyyne carbon chain
+  speaker: Магістр групи ФФ-31мн Недождій Олексій Сергійович.
+  lang: українська
+  photo: http://apd.ipt.kpi.ua/wp-content/uploads/2025/01/Nedizhdij-198x300.jpg
+  annotation_label: Анотація
+  annotation:
+  - p: In the present study, the ab-initio approach was used in order to model the strength properties of carbon chains of infinite length with cumulene and polyyne structures. Calculations
+      were performed in the framework of density functional theory (DFT) using the Vienna ab initio simulation package (VASP). Stretch diagrams of the cumulene and polyyne chains were
+      calculated. It is shown that when the critical deformation of the chain of cumulene structure is reached, the chain breaks down into the carbon atoms, while for the polyyne chain
+      it breaks down into C2 molecules. The change in the electronic structure of the polyyne chain during its stretching up to destruction into molecules has been studied. The dependence
+      of the direct band gap (0.3 eV in ground state) on the value of the deformation has been calculated.
+- date: '2024-05-22'
+  title: 'Нейронні моделі: порівняння біологічних та штучних систем.'
+  speaker: ст.н.с. Інституту фізіології ім. О.О.Богомольця НАН України ЯВОРСЬКИЙ Володимир Антонович.
+  lang: українська
+  photo: http://apd.ipt.kpi.ua/wp-content/uploads/2025/01/Yavors-225x300.jpg
+  annotation_label: Анотація
+  annotation:
+  - p: Швидкий розвиток штучних нейромереж, які забезпечують все ширший спектр застосувань ШІ, базується на біонічних принципах, виявлених у процесі розвитку наук біофізики та фізіології.
+      Три покоління штучних нейромереж доповнюються системами мультимодальності, мультиекспертності та застосунком RAG-технологій. Системи LLM наразі включають у себе трільйони параметрів
+      і досягли середнього рівня IQ, що властивий людині, завдяки поліпшенню обчислювальних можливостей. Однак врахування інших властивостей біологічних нейронів та нейросистем має потенціал
+      ще більше покращити ефективність штучних нейромоделей. У презентації будуть розглянуті біонічні принципи, отримані від природних нейросистем, які вже застосовуються при організації
+      штучних нейромереж. Це включає огляд роботи окремих нейронів та їхнього кодування інформації, організацію нейронів у шари, що лежать в основі нейроморфної архітектури, форму активаційної
+      функції природних нейронів та процеси формування синаптичних з'єднань. Крім того, будуть розглянуті аспекти відмінностей між біосистемами та штучними нейросистемами, такі як ефект
+      перевантаження нейронів, ефект акомодації, варіації активності нейронів та різновиди правил Хебба для зміни синаптичних ваг. Виступ також міститиме власні висновки та обговорення
+      філософських питань, щодо віднесення штучних нейромереж до галузей математики та біофізики, а також можливостей набуття штучними нейросистемами переваг над біологічними зразками.
+- date: '2024-04-24'
+  title: 'Електрофізіологічний експеримент: прилади, обладнання та методи'
+  speaker: м.н.с. Інституту фізіології ім. О.О. Богомольця НАН України Олег Володимирович Рихальський.
+  lang: українська
+  photo: http://apd.ipt.kpi.ua/wp-content/uploads/2025/01/Rihalsky-230x300.jpg
+  annotation_label: Анотація
+  annotation:
+  - p: 'В електрофізіологічних експериментах вимірюють потенціали або струми, що виникають у живих клітинах. Аналіз цих струмів, потенціалів та їх змін у часі надає інформацію про процеси,
+      що відбуваються в клітинах, та про взаємодію між клітинами. Проте, деякі особливості об’єкта дослідження, а саме: розміри та будова клітини, величини сигналів, необхідність спеціального
+      зовнішньоклітинного середовища та ін., роблять навіть задачу електричного підключення об’єкта до вимірювальної апаратури нетривіальною справою. Цю задачу вирішують за допомогою
+      спеціальних мікроелектродних систем, які спотворюють електричні сигнали та не гарантують довготривалого якісного електричного з’єднання. Доводиться налаштовувати підсилювач під
+      конкретний мікроелектрод/піпетку і періодично контролювати стан електродної системи та якість електричного з’єднання за допомогою тестових сигналів. Ці сигнали можна використовувати
+      і для стимуляції клітин.'
+  - p: У даній доповіді будуть розглянуті різні методи відведення електричних сигналів від нервових клітин і нервових волокон та особливості електронного обладнання для їх реалізації.
+      Доповідь є оглядовою та освітлює базові принципи побудови і фізичні основи функціонування електронних приладів для електрофізіології. .
+  links:
+  - https://www.youtube.com/watch?v=dOY6dP-cB2o
+- date: '2024-03-20'
+  title: Елементарна фізика нейрона
+  speaker: к.б.н., ст.н.с. Інституту фізіології ім. О.О. Богомольця НАН України Віталій Юрійович Маслов.
+  lang: українська
+  annotation_label: Анотація
+  annotation:
+  - p: Основною функцією нервової клітини (нейрона) є генерування та передача електричних імпульсів (т.з. потенціалів дії), яка забезпечується спеціалізованими білковими структурами
+      (селективними іонними каналами), інтегрованими у зовнішню мембрану. Активність цих каналів відносно незалежна від внутрішньоклітинних процесів та є предметом дослідження клітинної
+      електрофізіології та біофізики збудливих мембран.
+  - p: Нейрон є надзвичайно складною системою, проте фізичні принципи функціонування та методичні підходи для досліджень є достатньо елементарними. Ці принципи та основні поняття клітинної
+      електрофізіології будуть розглянуті у даній доповіді. Характерні значення електрофізіологічних параметрів нейрона будуть проілюстровані прикладами-задачами оціночного характеру.
+      Доповідь можна вважати певним «теоретичним мінімумом», необхідним для розуміння принципів функціонування нейрона.
+- date: '2024-01-21'
+  title: 'Дрони: матмоделювання, теорія керування, штучний інтелект'
+  speaker: к.т.н., молодший науковий співробітник ННК ІПСА КПІ ім. Ігоря Сікорського, В’ячеслав Осауленко.
+  lang: українська
+  photo: https://apd.ipt.kpi.ua/infusions/news/images/Osaylenko.jpg
+  annotation_label: Анотація
+  annotation:
+  - p: В умовах війни з кількісно переважаючим противником єдиним способом не програти є компенсація кількості якістю. Українці дуже вміло адаптували доступні існуючі технології для
+      ведення бойових дій. Проте вкрай необхідним є розвиток нових інженерних рішень, що дадуть довгострокову перевагу. Такі рішення потребують високої кваліфікації фахівців, яких зараз
+      недостатньо. Тому в даній доповіді на прикладі квадрокоптера буде розглянуто динамічну модель польоту та керуючі алгоритми для стабілізації траєкторії. На прикладі стеку PX4 розглянуто
+      симуляцію в програмному середовищі (software in the loop).
+  - p: Далі, приділено увагу тому, як технології штучного інтелекту допомагають вирішити автономне наведення на ціль та локалізацію в невідомому середовищі. В кінці висвітлено перспективні
+      напрямки та відкриті питання у створенні автономних роботів. Матмоделювання, керуючі алгоритми та симуляція в програмному забезпеченні є необхідною складовою будь-яких більш-менш
+      складних інженерних рішень. Дана доповідь є оглядовою і слугує дороговказом для подальшого самостійного вивчення.
+  links:
+  - https://youtu.be/tgpAK3yCPbA
+- date: '2023-12-20'
+  title: Композиційні матеріали для екранування електромагнітних полів широкого частотного діапазону
+  speaker: д.т.н., професор, завідувач кафедри фізики КНУБА Глива Валентин Анатолійович.
+  lang: українська
+  photo: https://apd.ipt.kpi.ua/images/news/Глива В.А..jpg
+  annotation_label: Анотація
+  annotation:
+  - p: На сьогодні актуальним є розроблення матеріалів для екранування електромагнітних полів як наднизької частоти (промислової частоти та її гармонік), так і полів ультрависоких і
+      вищих частот. Для високочастотних полів бажано мінімізувати коефіцієнти відбиття і забезпечити прийнятний рівень поглинання. Тобто, є необхідність створення матеріалів з керованими
+      параметрами. Важливою умовою є можливість застосування екрануючих матеріалів для покриття поверхонь великих площ та складних конфігурацій. Бажаним є створення матеріалів прийнятної
+      ефективності як у низькочастотній, так і високочастотній областях спектра. При цьому композиції повинні мати прийнятні стійкості до фізичних і хімічних впливів. Буде розглянуто
+      напрацювання щодо розроблення таких матеріалів та обговорено шляхи їх удосконалення у залежності від цивільних та військових потреб.
+- date: '2023-11-29'
+  title: 'Бойові малорозмірні безпілотні літальні апарати на базі мініреактивних двигунів: проблеми зниження радіолокаційної та теплової «помітності'
+  speaker: академік НАН України, професор, д.т.н. Халатов Артем Артемович.
+  lang: українська
+  photo: https://apd.ipt.kpi.ua/images/khalatov.jpg
+  annotation_label: Анотація
+  annotation:
+  - p: Зниження радіолокаційної та теплової «помітності» безпілотного апарату відіграє важливу роль при вирішенні складних бойових завдань прориву протиповітряної оборони та знищення
+      зенітних комплексів. Незважаючи на високу швидкість польоту безпілотного апарату з реактивним двигуном, ця проблема зберігається і для малорозмірних літальних апаратів.
+  - p: У доповіді розглянуто сучасні «стелс» технології, застосовувані для великих літальних апаратів, аналізується можливість та доцільність їх використання для захисту малорозмірних
+      об'єктів. Розглянуто ефективну поверхню розсіювання різних об'єктів, фізику використання кутової форми літального апарату, радіопоглинаючих матеріалів та покриттів, спеціальні
+      заходи щодо розташування двигуна. Аналізуються можливі технології зниження температури вихідного струменя двигуна та зниження теплової «помітності», включаючи подачу холодного
+      повітря у вихідний струмінь двигуна, використання вихідного ежектора з високим ступенем перемішування гарячого та холодного потоків. Наводяться деякі приклади малорозмірних безпілотних
+      апаратів реактивної тяги.
+- date: '2023-11-22'
+  title: 'Feeling the Force: Tools and Techniques to Unravel the Cellular Forces'
+  speaker: Sam Aytekin, Doctoral Researcher in @Rocha Lab, Molecular Imaging and Photonics Research Unit, Department of Chemistry, KU Leuven, Belgium.
+  lang: English
+  photo: https://susanarocha.github.io//images/samet.png
+  annotation_label: Annotation
+  annotation:
+  - p: Mechanobiology is an interdisciplinary field that examines the critical role played by mechanical forces in various biological phenomena, including cell migration, tissue development,
+      and disease progression. Cells constantly sense and respond to mechanical cues from their microenvironment, and these forces have profound implications for cellular behavior and
+      tissue physiology. By unraveling the bidirectional force transmission between cells and their surroundings, mechanobiology provides crucial insights into fundamental biological
+      processes and offers promising avenues for novel therapeutic interventions. This seminar delves into the importance of mechanobiology and highlights two main techniques, Traction
+      Force Microscopy (TFM) and Molecular Force Sensors, which are integral to our understanding of how mechanical forces shape biological systems.
+  - p: Traction Force Microscopy (TFM) is the long-standing standard technique in mechanobiology that enables the quantification of ‘traction’ forces exerted by cells on their substrates.
+      TFM relies on the measurement of substrate <em>deformations</em> caused by cellular forces and the subsequent reconstruction of force maps. TFM has proven invaluable in studies
+      of cell adhesion, migration, and contractility, as well as in understanding the mechanical properties of tissues.
+  - p: Molecular Tension Probes, on the other hand, are recently developed tools that have revolutionized our ability to investigate mechanical forces at <em>the molecular level</em>
+      within living cells. These probes rely on the principles of Förster Resonance Energy Transfer (FRET), where the transfer of energy between fluorophores is extremely sensitive to
+      changes in the distance between them. By fusing FRET donor and acceptor pairs to force-sensitive proteins inside the cell, researchers can monitor the dynamic mechanical forces
+      experienced by these molecules in real time. This technology has provided unprecedented insights into the spatiotemporal distribution of forces within cellular structures, shedding
+      light on how cells perceive, distribute, and respond to mechanical cues, ultimately contributing to our understanding of mechanobiological phenomena.
+  - p: In conclusion, mechanobiology is a field of growing importance that addresses the impact of mechanical forces on biological systems. The techniques of Traction Force Microscopy
+      and Molecular Tension Probes are indispensable for dissecting the relationships between mechanical cues and cellular behavior. Their application not only enhances our understanding
+      of fundamental biology but also holds great promise for the development of innovative therapeutic strategies in the future. As mechanobiology continues to evolve, these techniques
+      will remain at the forefront of groundbreaking research in this dynamic and transformative field.
+  links:
+  - https://youtu.be/8-5xin0grVs
+- date: '2023-11-15'
+  title: Силові установки безпілотних літальних апаратів
+  speaker: к.т.н., с.н.с., провідний науковий співробітник відділу високотемпературної термогазодинаміки Інституту Технічної Теплофізики НАН України Кобзар Сергій Григорович.
+  lang: українська
+  annotation_label: Анотація
+  annotation:
+  - p: Війна в Україні характерна широким застосуванням безпілотних літальних апаратів. Бойові дії ведуться різними типами безпілотних літальних апаратів, що відрізняються цільовим призначенням,
+      типом двигуна, вагою, розміром та ін. Частина безпілотників від початку розроблена для виконання бойових завдань, а частина адаптована з комерційних зразків. Всі ці безпілотні
+      літальні апарати приводяться в рух силовою установкою, призначення якої — перемістити безпілотник у задану точку простору за певний час.
+  - p: У доповіді розглянуті існуючі види силових установок в залежності від розмірів та призначення безпілотників. Також наведені приклади перспективних видів двигунів, які можуть бути
+      використані для покращення ефективності безпілотних літальних апаратів у майбутньому.
+- date: '2023-11-03'
+  title: 'Бойові безпілотні апарати: класифікація, застосування, досвід використання у військових діях в Україні'
+  speaker: к.т.н., с.н.с. відділу високотемпературної термогазодинаміки Інституту Технічної Теплофізики НАН України Кузьмін Андрій Володимирович.
+  lang: українська
+  annotation_label: Анотація
+  annotation:
+  - p: Як показує аналіз, значна частка військових операцій, принаймні у повітряному просторі, виконується за допомогою безпілотних літальних апаратів, які активно взаємодіють з авіацією
+      та артилерією. Їхній перелік представлений сотнями (навіть тисячами) різних пристроїв, що відрізняються цільовим призначенням, типом двигуна, вагою, розміром та ін. Успіх застосування
+      таких апаратів в останніх збройних конфліктах, у тому числі у Сирії та Україні, дозволяє з упевненістю констатувати, що у найближчому майбутньому — це війна та протистояння безпілотників
+      різного калібру.
+  - p: У зв'язку з великою кількістю безпілотних літальних апаратів (БПЛА), що розробляються та експлуатуються в останні роки, існує проблема класифікації цих апаратів. Оскільки БПЛА
+      використовуються в різних сферах, важко розробити єдину систему класифікації, що охоплює всі БПЛА, і тому на сьогоднішній день відсутній єдиний стандарт для класифікації безпілотних
+      ЛА.У доповіді розглянуто різні види класифікації апаратів на початок 2023 року, наведено найбільш характерні зразки різних типів, виконано аналіз БПЛА, які використовуються у збройному
+      конфлікті між Україною та Росією.
+- date: '2023-10-25'
+  title: Бойові малорозмірні безпілотні літальні апарати (МБПЛА) на базі мініреактивних двигунів тягою 10 – 90 кгс зі зменшеною «помітністю
+  speaker: академік НАН України, професор, д.т.н. Халатов Артем Артемович.
+  lang: українська
+  photo: https://apd.ipt.kpi.ua/images/khalatov.jpg
+  annotation_label: Анотація
+  annotation:
+  - p: Досвід бойових дій в Україні показав, що безпілотні літальні апарати відіграють провідну роль у сучасній війні. Сьогодні відомі та випускається широка номенклатура апаратів вагою
+      від кількох десятків грам до кількох тон, але найбільш широко використовується клас малорозмірних безпілотних апаратів (МБПЛА) з тягою 10 – 90 кгс. Переважна більшість із них заснована
+      на пропелерній тязі, вони тихохідні, тому понад 90% їх знищуються ще до досягнення мети. Сьогодні великий інтерес становлять високошвидкісні, маневрені безпілотні апарати з реактивною
+      тягою, що мають високу бойову «живучість». Однак, в даний час такі апарати серійно не випускаються.
+  - p: У доповіді буде розглянуто класифікацію безпілотних апаратів, дано аналіз ринку газотурбінних двигунів (МГТД) з тягою 10 – 90 кгс та розглянуто базові характеристики МГТД, вагові,
+      геометричні та швидкісні характеристики МБПЛА з МГТД тягою 10 – 90 кгс. Визначено динамічні та висотно-швидкісні характеристики МБПЛА з тягою 20 кгс. Розглянуто методи зниження
+      радіолокаційної та теплової «помітності» літальних апаратів, визначена доцільність їх використання в МБПЛА реактивного типу. Сформульовано перелік можливих оперативно-тактичних
+      завдань для МБПЛА з МГТД тягою 10 – 90 кгс.

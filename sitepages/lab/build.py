@@ -19,7 +19,9 @@ CSS = """
 .lb .lb-btn{display:inline-block;padding:8px 18px;border-radius:999px;background:var(--c-acc);color:#fff!important;font-weight:600;font-size:14px;white-space:nowrap}
 .lb .lb-btn:hover{background:#174a96}
 .lb-people{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px;margin:0 0 28px}
-.lb-person{padding:14px 18px;border:1px solid var(--c-line);border-radius:10px;box-shadow:0 1px 2px rgba(20,30,50,.05)}
+.lb-person{display:flex;gap:16px;align-items:center;padding:14px 18px;border:1px solid var(--c-line);border-radius:10px;box-shadow:0 1px 2px rgba(20,30,50,.05)}
+.lb-pph{flex:none;width:84px;height:106px;border-radius:8px;overflow:hidden;background:var(--c-acc-bg)}
+.lb-pph img{display:block;width:100%;height:100%;object-fit:cover;object-position:center top}
 .lb-role{font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--c-mute);font-weight:700}
 .lb-name{font-size:18px;font-weight:700;margin:2px 0}
 .lb-post{font-size:14px;color:var(--c-mute)}
@@ -52,14 +54,21 @@ def photos(urls: list | None, alt: str) -> str:
         f'<img src="{escape(u, quote=True)}" alt="{escape(alt, quote=True)}" loading="lazy">' for u in urls) + "</div>"
 
 
+def person_photo(x: dict) -> str:
+    if not x.get("photo"):
+        return ""
+    return (f'<a class="lb-pph" href="{escape(x["url"], quote=True)}"><img src="{escape(x["photo"], quote=True)}" '
+            f'alt="{escape(x["name"], quote=True)}" loading="lazy"></a>')
+
+
 def build(data: dict) -> str:
     p = [f"<style>{minify_css(CSS)}</style>", '<div class="lb">']
     p.append(f'<div class="lb-intro"><p>{data["intro"]}</p>'
              f'<a class="lb-btn" href="{escape(data["passport"], quote=True)}" target="_blank" rel="noopener">Паспорт лабораторії</a></div>')
     p.append('<div class="lb-people">' + "".join(
-        f'<div class="lb-person"><div class="lb-role">{escape(x["role"])}</div>'
+        f'<div class="lb-person">{person_photo(x)}<div><div class="lb-role">{escape(x["role"])}</div>'
         f'<div class="lb-name"><a href="{escape(x["url"], quote=True)}">{escape(x["name"])}</a></div>'
-        f'<div class="lb-post">{escape(x["post"])}</div></div>' for x in data["people"]) + "</div>")
+        f'<div class="lb-post">{escape(x["post"])}</div></div></div>' for x in data["people"]) + "</div>")
     p.append(f'<p class="lb-lead">{escape(data["mission"])}:</p>')
     p.append('<ul class="lb-dirs">' + "".join(f"<li>{escape(d)}</li>" for d in data["directions"]) + "</ul>")
     p.append("<h3>Основні завдання лабораторії</h3>")

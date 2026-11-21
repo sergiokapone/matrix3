@@ -13,6 +13,7 @@ PAGES = {  # ім'я папки -> опис (сторінка на сайті)
     "cooperation": "/international/cooperation/ — міжнародне співробітництво",
     "partners": "/international/partners/ — партнери кафедри",
     "kurators": "/kurators/ — куратори студентських груп",
+    "contacts": "/main/contacts/ — контакти",
     "seminar": "/nauka/seminar/ — науковий семінар",
     "stud_sci_works": "/nauka/stud_sci_works/ — наукові роботи студентів (публікації)",
 }

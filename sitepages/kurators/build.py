@@ -16,6 +16,8 @@ CSS = """
 .ku-intro{margin:0 0 22px;padding:16px 20px;border:1px solid var(--c-line);border-left:5px solid var(--c-acc);border-radius:10px;background:#f6f8fc;font-size:16px}
 .ku h3{margin:26px 0 14px!important;padding:0 0 8px;border-bottom:2px solid var(--c-acc-bg);font-size:1.25em}
 .ku-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px}
+.ku a.ku-card{border-bottom:1px solid var(--c-line)!important}
+.ku a.ku-card:hover{border-bottom-color:var(--c-acc)!important}
 .ku .ku-card{display:flex;gap:16px;align-items:center;padding:12px 14px;border:1px solid var(--c-line);border-radius:10px;background:#fff;color:var(--c-text)!important;box-shadow:0 1px 2px rgba(20,30,50,.05)}
 .ku .ku-card:hover{border-color:var(--c-acc);box-shadow:0 2px 8px rgba(31,95,191,.18)}
 .ku-ph{flex:none;width:76px;height:96px;border-radius:8px;overflow:hidden;background:var(--c-acc-bg)}

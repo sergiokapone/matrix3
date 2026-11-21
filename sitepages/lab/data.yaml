@@ -6,11 +6,13 @@ people:
 - role: Науковий керівник
   post: завідувач кафедри
   name: Монастирський Г.Є.
-  url: http://apd.ipt.kpi.ua/kafedra/stuff/monastyrsky/
+  url: https://apd.ipt.kpi.ua/kafedra/stuff/monastyrsky/
+  photo: https://apd.ipt.kpi.ua/wp-content/uploads/2024/09/MGE-264x300.jpg
 - role: Завідувач лабораторії
   post: доцент кафедри
   name: Іванова В.В.
-  url: http://apd.ipt.kpi.ua/kafedra/stuff/ivanova/
+  url: https://apd.ipt.kpi.ua/kafedra/stuff/ivanova/
+  photo: https://apd.ipt.kpi.ua/wp-content/uploads/2026/03/Ivanova_VV.jpg
 mission: Лабораторія «ФіНоТех» — творче середовище для реалізації наукових ідей та проєктів за напрямками
 directions:
 - фізичних основ розробки і застосування наноматеріалів та матеріалів з унікальними властивостями

@@ -38,7 +38,7 @@ CSS = """
 .sm-txt li{margin:0 0 5px}
 .sm-txt .sm-ref{font-size:13px;color:#4a5368;margin:0 0 3px}
 .sm-lk{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
-.sm .sm-lk a{display:inline-block;padding:3px 14px;border-radius:999px;border:1px solid var(--c-acc);color:var(--c-acc)!important;font-size:13px;font-weight:600}
+.sm .sm-lk a{display:inline-block;padding:3px 14px;border-radius:999px;border:1px solid var(--c-acc);border-bottom:1px solid var(--c-acc)!important;color:var(--c-acc)!important;font-size:13px;font-weight:600}
 .sm .sm-lk a:hover{background:var(--c-acc);color:#fff!important}
 @media(max-width:700px){
 .sm-row>summary{grid-template-columns:minmax(0,1fr) 32px;padding:10px 14px}

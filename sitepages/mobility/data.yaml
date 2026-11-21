@@ -1,0 +1,103 @@
+title: Академічна мобільність
+page_id: 411
+hero: https://apd.ipt.kpi.ua/wp-content/uploads/2026/11/mobility-hero.jpg
+# інтро — готовий html (посилання)
+intro: 'Навчання в КПІ забезпечує студентам не лише якісну вищу освіту, а й передбачає можливість здобути досвід навчання або стажування за кордоном (зовнішня мобільність) та в межах України (національна або внутрішня мобільність) (п. 2 ч. 1 ст. 1 <a href="https://osvita.ua/legislation/law/2235/">Закону України «Про вищу освіту»</a>). Інформацію щодо мобільності, її видів та порядку її оформлення можна дізнатися на сайті <a href="https://mobilnist.kpi.ua/" target="_blank" rel="noopener">Відділу академічної мобільності</a>. З більш детальною інформацією можна також ознайомитися в оновленому <a href="https://osvita.kpi.ua/ppam">Положенні про академічну мобільність</a> за 2025 рік.'
+services_title: Послуги відділу академічної мобільності
+services:
+- Консультація студентів про наявні програми обміну та стажування, допомога з оформленням документів в університеті.
+- Інформаційні заходи про академічну мобільність, стажування та волонтерства як від представників відділу, так і у співпраці з партнерами.
+- Відділ займається укладанням угод з новими закордонними та українськими університетами, а також підтримує вже існуючі міжуніверситетські зв’язки.
+students_title: Студенти кафедри, які взяли участь у академічній мобільності (2020–2025)
+students:
+- name: Козачук Всеволод
+  photo: https://apd.ipt.kpi.ua/wp-content/uploads/2025/12/photo_2025-12-14_09-44-06-300x300.jpg
+  period: Запланована мобільність на весняний семестр 2026 року
+  planned: true
+  places:
+  - {text: 'Гіссенський університет імені Юстуса Лібіха, м. Гіссен, Німеччина', url: 'https://www.uni-giessen.de/de'}
+  docs: []
+  docs_note: Очікується
+- name: Красильнікова Анна
+  photo: https://apd.ipt.kpi.ua/wp-content/uploads/2025/12/Krasilnikova-169x300.jpg
+  period: 2025 – 2026
+  places:
+  - {text: 'Вища національна школа передових технологій ENSTA-ParisTech, м. Палезо, Французька Республіка', url: 'https://www.ensta.fr/'}
+  docs:
+  - {text: 'Накази 4136-С, 4070-С', url: 'https://apd.ipt.kpi.ua/wp-content/uploads/2025/12/Наказ_на_мобільність_КПІ-та-ФТІ.pdf'}
+- name: Козакевич Михайло
+  photo: https://apd.ipt.kpi.ua/wp-content/uploads/2025/07/Kozakevich_foto-272x300.jpg
+  period: '2025'
+  places:
+  - {text: 'Університет ім. Йогана Кеплера, м. Лінц, Австрія', url: 'http://www.jku.at/'}
+  docs:
+  - {text: 'Наказ 832-с', url: 'https://drive.google.com/file/d/1n3N1TZThacSZXTSFZeLCcdpTe7T-pdv7/view?usp=sharing'}
+- name: Хруль Олександра
+  photo: https://apd.ipt.kpi.ua/wp-content/uploads/2025/07/Khrul_foto-300x300.jpg
+  period: 2023 – 2025
+  places:
+  - {text: 'Університет Париж XIII (Université Sorbonne Paris Nord), м. Вільтанез, Франція', url: 'https://www.univ-spn.fr/'}
+  - {text: 'Європейська організація з ядерних досліджень, м. Женева, Швейцарія', url: 'https://home.cern/'}
+  docs:
+  - {text: 'Розпорядження 35/2023', url: 'https://drive.google.com/file/d/1HNkmoZRdY5V_4yix300lKQJfGta7iJlp/view?usp=sharing'}
+  - {text: 'Розпорядження 41/2024', url: 'https://drive.google.com/file/d/1Ms0SzBpkX6SyB8OhjxyNZn7dwVW55a0y/view?usp=sharing'}
+- name: Богомолов Данило
+  photo: https://apd.ipt.kpi.ua/wp-content/uploads/2025/07/Foto_Bohomolov-225x300.jpg
+  period: 2022 – 2024
+  places:
+  - {text: 'Технічний університет м. Хемніц, Німеччина', url: 'http://www.tu-chemnitz.de/'}
+  docs:
+  - {text: 'Наказ НС 97/2022', url: 'https://drive.google.com/file/d/1kodEqFotBYOjpI7KBHW1nC4RM4fNO7tk/view?usp=sharing'}
+  - {text: 'Розпорядження 11/2023', url: 'https://drive.google.com/file/d/1UvhDEArML2JgCZ9LTzWjQbkj4GlEIDiA/view?usp=sharing'}
+  - {text: 'Розпорядження 39/2024', url: 'https://drive.google.com/file/d/1A3AqBR0WXn3q-O0yBfHVe6aOhiFfWm_y/view?usp=sharing'}
+  - {text: 'Розпорядження 07-1/2024', url: 'https://drive.google.com/file/d/18pIzB4CIfLTpN78R-q12P4lgSIlHqXPY/view?usp=sharing'}
+- name: Петрова Тетяна
+  photo: https://apd.ipt.kpi.ua/wp-content/uploads/2025/07/Foto_Petrova2-263x300.jpg
+  period: 2022 – 2024
+  places:
+  - {text: 'Варшавський політехнічний університет, Польща', url: 'https://www.pw.edu.pl/'}
+  - {text: 'Університет Пікардії ім. Жуля Верна, м. Ам’єн, Франція', url: 'https://www.u-picardie.fr/'}
+  docs:
+  - {text: 'Розпорядження 31-1/2022', url: 'https://drive.google.com/file/d/1NzkByaJ3_zU5nuJnam-2GJ3iaav14mqM/view?usp=sharing'}
+- name: Динник Анна
+  photo: https://apd.ipt.kpi.ua/wp-content/uploads/2025/07/Dynnik_foto-225x300.jpg
+  period: 2023 – 2024
+  places:
+  - {text: 'Лабораторія інженерії механічних систем «Емпа», м. Дюбендорф, Швейцарія', url: 'https://www.empa.ch/web/s304'}
+  docs:
+  - {text: 'Розпорядження 34/2023', url: 'https://drive.google.com/file/d/1H-HTHE-ilWzvuF7yuMlEDOnO3YJW2-Tl/view?usp=sharing'}
+- name: Девятаєва Анастасія
+  photo: https://apd.ipt.kpi.ua/wp-content/uploads/2025/07/Devataeva_foto-300x300.jpg
+  period: '2023'
+  places:
+  - {text: 'Школа фізики Трініті-коледжу, м. Дублін, Ірландія', url: 'http://www.tcd.ie/'}
+  docs:
+  - {text: 'Розпорядження 13-1/2023', url: 'https://drive.google.com/file/d/1h6CtmnRT4T8WvGjiD1E7wlDF-7B2CcrC/view?usp=sharing'}
+- name: Борисенко Єгор
+  period: '2023'
+  places:
+  - {text: 'Університет ім. Йогана Кеплера, м. Лінц, Австрія', url: 'http://www.jku.at/'}
+  docs:
+  - {text: 'Розпорядження 10/2023', url: 'https://drive.google.com/file/d/1XDJlyfXpFQ-RHwDCX7vvBv9zCBAoYFki/view?usp=sharing'}
+- name: Лицарь Данило
+  period: '2023'
+  places:
+  - {text: 'Університет ім. Йогана Кеплера, м. Лінц, Австрія', url: 'http://www.jku.at/'}
+  docs:
+  - {text: 'Розпорядження 12/2023', url: 'https://drive.google.com/file/d/1VWdniiaGqfyCshWp-Fs_-Hzg9591_6jy/view?usp=sharing'}
+teachers_title: Мобільність викладачів
+teachers:
+- name: Іванова Віта
+  url: https://apd.ipt.kpi.ua/kafedra/stuff/ivanova/
+  text: 'стажування в Технологічному університеті міста Хемніц (Німеччина) терміном з вересня по грудень 2023 р.'
+  links:
+  - {text: Наказ на відрядження, url: 'https://apd.ipt.kpi.ua/wp-content/uploads/2025/12/Nakaz_Ivanova.pdf'}
+  - {text: Сертифікат Visiting Scholar Program, url: 'https://apd.ipt.kpi.ua/wp-content/uploads/2025/12/Сегtificate-Ivanova.pdf'}
+- name: Монастирський Геннадій
+  url: https://apd.ipt.kpi.ua/kafedra/stuff/monastyrsky/
+  text: 'наукове стажування «Advanced training in the field “Material science. Materials. Innovations”» (Болгарія) у 2023 р., 50 годин, сертифікат №434 від 07.09.2023 р.'
+  links:
+  - {text: Сертифікат про стажування, url: 'https://apd.ipt.kpi.ua/wp-content/uploads/2025/12/Certificate-Monastyrskyi-2023_page-0001.pdf'}
+coordinator: Координатор академічної мобільності
+coordinator_name: Долгошей В.Б.
+coordinator_url: https://apd.ipt.kpi.ua/kafedra/stuff/dolgoshey/

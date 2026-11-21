@@ -8,14 +8,14 @@ UP = "https://apd.ipt.kpi.ua/wp-content/uploads/2026/11/"
 OLD = "https://osvita.kpi.ua/sites/default/files/opfiles/"
 LEVELS = [
     dict(id="cert-b", title="Бакалавр", kind="Освітньо-професійна програма", color="#2980b9",
-         link="https://osvita.kpi.ua/105_OPPB_PF", pdf=UP + "105_OPPB_PF_Certificate_2026_no21622.pdf",
+         link="https://osvita.kpi.ua/105_OPPB_PF", pdf=UP + "105_OPPB_PF_Certificate_2026_no21622.pdf", img=UP + "cert_bachelor_21622.png",
          num="№ 21622 від 27.05.2026", until="01.07.2031", year="2026", ok=True),
     dict(id="cert-m", title="Магістр", kind="Освітньо-наукова програма", color="#16a085",
-         link="https://osvita.kpi.ua/105_ONPM_PF", pdf=UP + "105_ONPM_PF_Certificate_2026_no20757.pdf",
+         link="https://osvita.kpi.ua/105_ONPM_PF", pdf=UP + "105_ONPM_PF_Certificate_2026_no20757.pdf", img=UP + "cert_master_20757.png",
          num="№ 20757 від 22.04.2026", until="01.07.2031", year="2026", ok=True),
     dict(id="cert-d", title="Доктор філософії", kind="Освітньо-наукова програма", color="#8e44ad",
-         link="https://osvita.kpi.ua/105_ONPD_PF", pdf=OLD + "105_ONPD_PF_Certificate_01-07-2027.pdf",
-         num="акредитація 2021 року", until="01.07.2027", year="2021", ok=True),
+         link="https://osvita.kpi.ua/105_ONPD_PF", pdf=UP + "105_ONPD_PF_Certificate_2023_no5433.pdf", img=UP + "cert_phd_5433.png",
+         num="№ 5433 від 06.07.2023", until="01.07.2027", year="2021", ok=True),
 ]
 
 CSS = """<style>
@@ -28,7 +28,7 @@ CSS = """<style>
 .osv-badge{display:inline-block;background:#e8f6ee;color:#1e8449;border-radius:20px;padding:4px 12px;font-size:14px;font-weight:bold;align-self:flex-start}
 .osv-meta{color:#555;font-size:14px;line-height:1.5}
 .osv-prev{position:relative;border:1px solid #e1e5ea;border-radius:8px;overflow:hidden;background:#f4f6f8}
-.osv-prev iframe{display:block;width:100%;height:230px;border:none;pointer-events:none}
+.osv-prev img{display:block;width:100%;height:auto}
 .osv-prev a{position:absolute;top:0;left:0;right:0;bottom:0;display:flex;align-items:flex-end;justify-content:center;padding-bottom:10px;text-decoration:none}
 .osv-prev a span{background:rgba(44,62,80,.88);color:#fff;border-radius:20px;padding:5px 14px;font-size:14px}
 .osv-prev a:hover span{background:#3498db}
@@ -39,7 +39,9 @@ CSS = """<style>
 .osv-more a:hover{background:#3498db;color:#fff}
 .cert-full{display:none;position:fixed;top:0;left:0;right:0;bottom:0;z-index:99999;background:rgba(0,0,0,.85);padding:20px;box-sizing:border-box}
 .cert-full:target{display:block}
-.cert-full iframe{width:100%;height:100%;border:none;background:#fff;border-radius:6px}
+.cert-full{overflow:auto;text-align:center}
+.cert-full img{max-width:100%;max-height:calc(100% - 60px);width:auto;height:auto;background:#fff;border-radius:6px;margin-top:30px}
+.cert-pdf{display:inline-block;margin:12px 0;padding:9px 20px;background:#3498db;color:#fff;border-radius:6px;text-decoration:none;font-weight:bold}
 .cert-close{position:absolute;top:6px;right:14px;z-index:2;font-size:28px;line-height:1;color:#fff;text-decoration:none;background:#c0392b;border-radius:50%;width:38px;height:38px;text-align:center;padding-top:5px;box-sizing:border-box}
 </style>
 """
@@ -50,13 +52,14 @@ def card(l):
 <div class="osv-body">
 <span class="osv-badge">✔ Акредитовано до {l['until']}</span>
 <div class="osv-meta">Сертифікат НАЗЯВО: {l['num']}</div>
-<div class="osv-prev"><iframe src="{l['pdf']}#toolbar=0&amp;navpanes=0" scrolling="no" loading="lazy"></iframe><a href="#{l['id']}"><span>⤢ Розгорнути на весь екран</span></a></div>
+<div class="osv-prev"><img src="{l['img']}" alt="Сертифікат акредитації: {l['title']}" loading="lazy"><a href="#{l['id']}"><span>⤢ Розгорнути на весь екран</span></a></div>
+<a href="{l['pdf']}" style="text-align:center;font-size:14px">⬇ Завантажити PDF</a>
 <a class="osv-btn" style="background:{l['color']}" href="{l['link']}">Сторінка програми →</a>
 </div></div>"""
 
 def overlay(l):
     return (f'<div class="cert-full" id="{l["id"]}"><a class="cert-close" href="#cert-top" title="Закрити">✕</a>'
-            f'<iframe src="{l["pdf"]}" loading="lazy"></iframe></div>')
+            f'<br><img src="{l["img"]}" alt="Сертифікат"><br><a class="cert-pdf" href="{l["pdf"]}">⬇ Завантажити PDF</a></div>')
 
 def build():
     return (CSS + '<span id="cert-top"></span>\n'

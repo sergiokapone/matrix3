@@ -37,9 +37,12 @@ CSS = """
 .mb .mb-dc a:hover{background:var(--c-acc);color:#fff}
 .mb .mb-dc span{background:#f1f3f8;color:var(--c-mute)}
 .mb-tc{display:grid;gap:12px;list-style:none!important;margin:0!important;padding:0!important}
-.mb-tc li{list-style:none!important;margin:0!important;padding:14px 18px;border:1px solid var(--c-line);border-left:5px solid var(--c-acc);border-radius:10px;background:#fff;font-size:15px}
+.mb-tc li{list-style:none!important;margin:0!important;display:flex;gap:16px;align-items:center;padding:14px 18px;border:1px solid var(--c-line);border-left:5px solid var(--c-acc);border-radius:10px;background:#fff;font-size:15px}
+.mb-tc .mb-ph{width:76px;height:96px}
 .mb-tc .mb-dc{margin-top:8px}
-.mb-co{margin:26px 0 0;padding:14px 20px;border-radius:10px;background:var(--c-acc-bg);font-size:16px}
+.mb-co{display:flex;gap:16px;align-items:center;margin:26px 0 0;padding:14px 20px;border-radius:10px;background:var(--c-acc-bg);font-size:16px}
+.mb-co .mb-ph{background:#fff;width:76px;height:96px}
+.mb-co p{margin:0}
 .mb-co a{font-weight:700}
 @media(max-width:520px){.mb-st{grid-template-columns:minmax(0,1fr)}.mb-hero{height:130px}}
 """
@@ -67,8 +70,10 @@ def student(s: dict) -> str:
 
 
 def teacher(t: dict) -> str:
-    return (f'<li><a href="{escape(t["url"], quote=True)}"><strong>{escape(t["name"])}</strong></a> — {escape(t["text"])}'
-            f'{links(t["links"])}</li>')
+    ph = (f'<a class="mb-ph" href="{escape(t["url"], quote=True)}"><img src="{escape(t["photo"], quote=True)}" '
+          f'alt="{escape(t["name"], quote=True)}" loading="lazy"></a>') if t.get("photo") else ""
+    return (f'<li>{ph}<div class="mb-bd"><a href="{escape(t["url"], quote=True)}"><strong>{escape(t["name"])}</strong></a> — '
+            f'{escape(t["text"])}{links(t["links"])}</div></li>')
 
 
 def build(data: dict) -> str:
@@ -79,6 +84,9 @@ def build(data: dict) -> str:
     p.append(f'<h3>{escape(data["services_title"])}</h3><ol class="mb-srv">' + "".join(f"<li>{escape(x)}</li>" for x in data["services"]) + "</ol>")
     p.append(f'<h3>{escape(data["students_title"])}</h3><div class="mb-st">' + "".join(student(s) for s in data["students"]) + "</div>")
     p.append(f'<h3>{escape(data["teachers_title"])}</h3><ul class="mb-tc">' + "".join(teacher(t) for t in data["teachers"]) + "</ul>")
-    p.append(f'<p class="mb-co">{escape(data["coordinator"])}: <a href="{escape(data["coordinator_url"], quote=True)}">{escape(data["coordinator_name"])}</a></p>')
+    u = escape(data["coordinator_url"], quote=True)
+    cph = (f'<a class="mb-ph" href="{u}"><img src="{escape(data["coordinator_photo"], quote=True)}" '
+           f'alt="{escape(data["coordinator_name"], quote=True)}" loading="lazy"></a>') if data.get("coordinator_photo") else ""
+    p.append(f'<div class="mb-co">{cph}<p>{escape(data["coordinator"])}: <a href="{u}"><strong>{escape(data["coordinator_name"])}</strong></a></p></div>')
     p.append("</div>")
     return wrap("".join(p))

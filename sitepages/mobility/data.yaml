@@ -89,15 +89,18 @@ teachers_title: Мобільність викладачів
 teachers:
 - name: Іванова Віта
   url: https://apd.ipt.kpi.ua/kafedra/stuff/ivanova/
+  photo: https://apd.ipt.kpi.ua/wp-content/uploads/2026/03/Ivanova_VV.jpg
   text: 'стажування в Технологічному університеті міста Хемніц (Німеччина) терміном з вересня по грудень 2023 р.'
   links:
   - {text: Наказ на відрядження, url: 'https://apd.ipt.kpi.ua/wp-content/uploads/2025/12/Nakaz_Ivanova.pdf'}
   - {text: Сертифікат Visiting Scholar Program, url: 'https://apd.ipt.kpi.ua/wp-content/uploads/2025/12/Сегtificate-Ivanova.pdf'}
 - name: Монастирський Геннадій
   url: https://apd.ipt.kpi.ua/kafedra/stuff/monastyrsky/
+  photo: https://apd.ipt.kpi.ua/wp-content/uploads/2024/09/MGE-264x300.jpg
   text: 'наукове стажування «Advanced training in the field “Material science. Materials. Innovations”» (Болгарія) у 2023 р., 50 годин, сертифікат №434 від 07.09.2023 р.'
   links:
   - {text: Сертифікат про стажування, url: 'https://apd.ipt.kpi.ua/wp-content/uploads/2025/12/Certificate-Monastyrskyi-2023_page-0001.pdf'}
 coordinator: Координатор академічної мобільності
 coordinator_name: Долгошей В.Б.
 coordinator_url: https://apd.ipt.kpi.ua/kafedra/stuff/dolgoshey/
+coordinator_photo: https://apd.ipt.kpi.ua/wp-content/uploads/2024/10/Dolgoshey_photo_2020-236x300.jpg

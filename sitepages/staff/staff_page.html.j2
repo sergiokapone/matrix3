@@ -1,64 +1,61 @@
-{# staff_page.html.j2 — шаблон сторінки співробітників кафедри #}
-<section id="staff-ranking" style="max-width: 1200px; margin: 0 auto; font-family: inherit;">
-
-  {# --- Завідувач кафедри --- #}
-  {% if groups.head %}
-  <div style="margin-bottom: 30px; padding-bottom: 20px; border-bottom: 2px solid #eee;">
-    <h2>👨‍🏫 Завідувач кафедри</h2>
-    <ul style="list-style: none !important; padding: 0 !important; margin: 0 !important;">
-      {% for t in groups.head %}
-      <li style="background: #f5f9ff; padding: 12px 20px; border-left: 5px solid #2b6f9e; list-style: none !important; margin: 0 !important;">
-        <a style="color: #1e3c5c; text-decoration: none;" href="{{ profile_url(t) }}">{{ t.name }}</a>
-        — {{ t.degree }}{% if t.academic_title %}, {{ t.academic_title | join(', ') }}{% endif %}
-      </li>
-      {% endfor %}
-    </ul>
-  </div>
-  {% endif %}
-
-  {# --- Двоколонковий макет --- #}
-  <table style="width: 100%; border-collapse: collapse; margin: 0; padding: 0;">
-    <tbody>
-      <tr>
-
-        {# ЛІВА КОЛОНКА: професори, старші викладачі, асистенти #}
-        <td style="width: 50%; vertical-align: top; padding-right: 20px; margin: 0;">
-
-          {% for cat in ['professor', 'senior_lecturer', 'assistant'] %}
-          {% if groups[cat] %}
-          <h2 style="border-left: 5px solid #2b6f9e; padding-left: 15px; margin-top: 30px; margin-bottom: 15px; text-align: left;">{{ titles[cat] }}</h2>
-          <ul style="list-style: none !important; padding: 0 !important; margin: 0 0 30px 0 !important;">
-            {% for t in groups[cat] %}
-            <li style="margin-bottom: 8px; text-align: left; list-style: none !important; padding: 0 !important;">
-              <a style="color: #1e3c5c; text-decoration: none;" href="{{ profile_url(t) }}">{{ t.name }}</a>
-            </li>
-            {% endfor %}
-          </ul>
-          {% endif %}
-          {% endfor %}
-
-        </td>
-
-        {# ПРАВА КОЛОНКА: доценти, НДП #}
-        <td style="width: 50%; vertical-align: top; padding-left: 20px; margin: 0;">
-
-          {% for cat in ['docent', 'staff'] %}
-          {% if groups[cat] %}
-          <h2 style="border-left: 5px solid #2b6f9e; padding-left: 15px; margin-top: 30px; margin-bottom: 15px; text-align: left;">{{ titles[cat] }}</h2>
-          <ul style="list-style: none !important; padding: 0 !important; margin: 0 0 30px 0 !important;">
-            {% for t in groups[cat] %}
-            <li style="margin-bottom: 8px; text-align: left; list-style: none !important; padding: 0 !important;">
-              <a style="color: #1e3c5c; text-decoration: none;" href="{{ profile_url(t) }}">{{ t.name }}</a>
-            </li>
-            {% endfor %}
-          </ul>
-          {% endif %}
-          {% endfor %}
-
-        </td>
-
-      </tr>
-    </tbody>
-  </table>
-
-</section>
+{# staff_page.html.j2 — сторінка співробітників кафедри (WP page 181, /kafedra/stuff/). Стиль узгоджений зі сторінками lab/contacts; без CSS-escape кодів. #}
+{%- macro card(t, big=False) -%}
+{%- set ph = t.photo if t.photo and 'gravatar.com' not in t.photo else '' -%}
+{%- set ini = (t.name.split()[0][0] ~ t.name.split()[1][0]) if t.name.split()|length > 1 else t.name[0] -%}
+<a class="st-card{% if big %} st-big{% endif %}" href="{{ profile_url(t) }}">
+  <span class="st-ph">{% if ph %}<img src="{{ ph }}" alt="{{ t.name }}" loading="lazy">{% else %}<span class="st-ini">{{ ini }}</span>{% endif %}</span>
+  <span class="st-tx">
+    {%- if t.academic_title and not big %}<span class="st-role">{{ t.academic_title | join(', ') }}</span>{% endif -%}
+    <span class="st-name">{{ t.name }}</span>
+    {%- if t.degree %}<span class="st-deg">{{ t.degree }}{% if big and t.academic_title %}, {{ t.academic_title | join(', ') }}{% endif %}</span>{% endif -%}
+    {%- if t.position %}<span class="st-pos">{{ t.position }}</span>{% endif -%}
+  </span>
+</a>
+{%- endmacro -%}
+<!-- wp:html --><style>
+.st{--c-line:#b9c2d3;--c-text:#1d2433;--c-mute:#556079;--c-acc:#1f5fbf;--c-acc-bg:#eaf1fc;margin:0 0 2em;color:var(--c-text);line-height:1.45}
+.st *{box-sizing:border-box}
+.st a,.st a:hover{text-decoration:none!important;border-bottom:0!important}
+.st-nav{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 8px}
+.st .st-chip{display:inline-flex;align-items:center;gap:8px;padding:6px 14px;border:2px solid #8fa5cc;border-radius:999px;background:#fff;color:var(--c-text);font-size:14px;font-weight:600;line-height:1.3;box-shadow:0 2px 0 #8fa5cc}
+.st .st-chip:hover{border-color:var(--c-acc);color:var(--c-acc);background:var(--c-acc-bg)}
+.st-chip b{min-width:22px;padding:1px 6px;border-radius:999px;background:var(--c-acc-bg);color:var(--c-acc);font-size:12px;text-align:center}
+.st h3.st-h{display:flex;align-items:baseline;gap:10px;margin:32px 0 14px!important;padding:0 0 8px;border-bottom:2px solid var(--c-acc);font-size:1.3em;scroll-margin-top:80px}
+.st-h span{font-size:13px;font-weight:700;color:var(--c-mute)}
+.st-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:14px}
+.st .st-card{display:flex;gap:14px;align-items:center;padding:12px 14px;border:1px solid var(--c-line);border-bottom:2px solid #8fa5cc;border-radius:12px;background:#fff;color:var(--c-text);box-shadow:0 2px 0 var(--c-line);transition:box-shadow .15s,border-color .15s,transform .15s}
+.st .st-card:hover{border-color:var(--c-acc);box-shadow:0 6px 18px rgba(31,95,191,.16);transform:translateY(-2px)}
+.st-ph{flex:none;width:76px;height:96px;border-radius:9px;overflow:hidden;background:var(--c-acc-bg);display:flex;align-items:center;justify-content:center}
+.st-ph img{display:block;width:100%;height:100%;object-fit:cover;object-position:center top}
+.st-ini{font-size:26px;font-weight:700;color:var(--c-acc);letter-spacing:.02em}
+.st-tx{display:flex;flex-direction:column;gap:2px;min-width:0}
+.st-role{font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--c-acc);font-weight:700}
+.st-name{font-size:17px;font-weight:700;line-height:1.25}
+.st .st-card:hover .st-name{color:var(--c-acc)}
+.st-deg{font-size:13.5px;color:#2a3246}
+.st-pos{font-size:13px;color:#3d4760}
+.st .st-big{margin:0 0 6px;padding:18px 22px;gap:22px;border-left:5px solid var(--c-acc);background:#f6f8fc}
+.st-big .st-ph{width:112px;height:140px}
+.st-big .st-name{font-size:22px}
+.st-big .st-deg{font-size:15px}
+@media(max-width:600px){.st-grid{grid-template-columns:1fr}.st-big .st-ph{width:88px;height:110px}.st-big .st-name{font-size:19px}}
+</style>
+<div class="st" id="staff-ranking">
+{%- set shown = ['professor', 'docent', 'senior_lecturer', 'assistant', 'staff'] -%}
+<div class="st-nav">
+{%- for cat in shown if groups[cat] %}<a class="st-chip" href="#st-{{ cat }}">{{ titles[cat] }}<b>{{ groups[cat]|length }}</b></a>{% endfor -%}
+</div>
+{%- for t in groups.head %}
+<h3 class="st-h" id="st-head">Завідувач кафедри</h3>
+{{ card(t, True) }}
+{%- endfor %}
+{%- for cat in shown if groups[cat] %}
+<h3 class="st-h" id="st-{{ cat }}">{{ titles[cat] }} <span>{{ groups[cat]|length }}</span></h3>
+<div class="st-grid">
+{%- for t in groups[cat] %}
+{{ card(t) }}
+{%- endfor %}
+</div>
+{%- endfor %}
+</div>
+<!-- /wp:html -->

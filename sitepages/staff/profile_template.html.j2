@@ -1,199 +1,145 @@
-{# ═══════════════════════════════════════════════════════════════════════════
-   МАКРОС: collapsible <details> секція
-════════════════════════════════════════════════════════════════════════════ #}
-{% macro collapsible(title) %}
-<details style="margin: 10px 0;">
-<summary style="cursor: pointer; font-weight: bold; font-family: 'Segoe UI',Tahoma,Geneva,Verdana,sans-serif; color: #1a3c6d; background: linear-gradient(135deg,#eef2f9 0%,#dce6f4 100%); border-left: 5px solid #1a3c6d; padding: 10px 15px; border-radius: 0 6px 6px 0; display: list-item; gap: 8px; user-select: none;">{{ title }}</summary>
-<div style="background: white; padding: 25px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-{{ caller() }}
+{# profile_template.html.j2 — персональна сторінка викладача. Стиль узгоджений зі staff_page (префікс tp), без CSS-escape кодів. Шорткоди kpi_* лишаються поза розміткою. #}
+{%- macro sec(title) -%}
+<details class="tp-sec"><summary>{{ title }}</summary><div class="tp-body">
+{{- caller() -}}
+</div></details>
+{%- endmacro -%}
+{%- macro courses(title, list) -%}
+{%- if list -%}
+{%- if title %}<h4 class="tp-lvl">{{ title }}</h4>{% endif %}
+<div class="tp-courses">
+{%- for c in list %}
+{%- if c.url %}<a class="tp-course" href="{{ c.url }}" target="_blank" rel="noopener">{% else %}<div class="tp-course">{% endif -%}
+<span class="tp-ct">{{ c.title }}</span>{% if c.description %}<span class="tp-cd">{{ c.description }}</span>{% endif -%}
+{%- if c.url %}</a>{% else %}</div>{% endif %}
+{%- endfor %}
 </div>
-</details>
-{% endmacro %}
+{%- endif -%}
+{%- endmacro -%}
+{%- set c = teacher.contacts or {} -%}
+{%- set ph = teacher.photo if teacher.photo and 'gravatar.com' not in teacher.photo else '' -%}
+{%- set parts = teacher.name.split() -%}
+{%- set ini = parts[0][0] ~ parts[1][0] if parts|length > 1 else parts[0][0] -%}
+<!-- wp:html --><style>
+.tp{--c-line:#b9c2d3;--c-text:#1d2433;--c-mute:#556079;--c-acc:#1f5fbf;--c-acc-bg:#eaf1fc;margin:0 0 2em;color:var(--c-text);line-height:1.5}
+.tp *{box-sizing:border-box}
+.tp a,.tp a:hover{text-decoration:none!important;border-bottom:0!important}
+.tp a{color:var(--c-acc)}
+.tp-hero{display:flex;gap:26px;align-items:center;padding:22px 26px;border:1px solid var(--c-line);border-bottom:2px solid #8fa5cc;border-left:5px solid var(--c-acc);border-radius:12px;background:#f6f8fc;box-shadow:0 2px 0 var(--c-line)}
+.tp-ph{flex:none;width:170px;height:212px;border-radius:10px;overflow:hidden;background:var(--c-acc-bg);display:flex;align-items:center;justify-content:center;border:1px solid var(--c-line)}
+.tp-ph img{display:block;width:100%;height:100%;object-fit:cover;object-position:center top}
+.tp-ini{font-size:46px;font-weight:700;color:var(--c-acc)}
+.tp-hx{min-width:0}
+.tp-role{font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--c-acc);font-weight:700}
+.tp .tp-name{margin:4px 0 8px!important;font-size:28px!important;line-height:1.2!important}
+.tp-deg{font-size:16px;color:#2a3246;font-weight:600}
+.tp-pos{margin-top:4px;font-size:14.5px;color:#3d4760}
+.tp h3.tp-h{margin:30px 0 14px!important;padding:0 0 8px;border-bottom:2px solid var(--c-acc);font-size:1.3em}
+.tp-links{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 0}
+.tp .tp-l{display:inline-flex;flex-direction:column;padding:7px 14px;border:2px solid #8fa5cc;border-radius:12px;background:#fff;color:var(--c-text);box-shadow:0 2px 0 #8fa5cc;line-height:1.25}
+.tp .tp-l:hover{border-color:var(--c-acc);background:var(--c-acc-bg);box-shadow:0 2px 0 var(--c-acc)}
+.tp-lk{font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--c-mute);font-weight:700}
+.tp-lv{font-size:14px;font-weight:600;color:var(--c-acc)}
+.tp-tags{display:flex;flex-wrap:wrap;gap:10px;list-style:none!important;margin:0!important;padding:0!important}
+.tp-tags li{list-style:none!important;margin:0!important;padding:8px 14px;border:1px solid var(--c-line);border-bottom:2px solid #8fa5cc;border-radius:10px;background:#fff;font-size:15px}
+.tp-lvl{margin:18px 0 10px!important;font-size:12px!important;letter-spacing:.06em;text-transform:uppercase;color:var(--c-mute);font-weight:700!important}
+.tp-courses{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:12px}
+.tp .tp-course{display:flex;flex-direction:column;gap:3px;padding:12px 16px;border:1px solid var(--c-line);border-bottom:2px solid #8fa5cc;border-left:4px solid var(--c-acc);border-radius:10px;background:#fff;color:var(--c-text);box-shadow:0 2px 0 var(--c-line)}
+.tp a.tp-course:hover{border-color:var(--c-acc);box-shadow:0 6px 18px rgba(31,95,191,.16)}
+.tp-ct{font-weight:700;font-size:15.5px}
+.tp a.tp-course:hover .tp-ct{color:var(--c-acc)}
+.tp-cd{font-size:13px;color:#3d4760}
+.tp-secs{margin-top:30px}
+.tp-sec{margin:0 0 10px;border:1px solid var(--c-line);border-bottom:2px solid #8fa5cc;border-radius:10px;background:#fff;box-shadow:0 2px 0 var(--c-line)}
+.tp-sec summary{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 18px;cursor:pointer;font-weight:700;font-size:16px;list-style:none;user-select:none}
+.tp-sec summary::-webkit-details-marker{display:none}
+.tp-sec summary::after{content:"";flex:none;width:8px;height:8px;border-right:2px solid var(--c-acc);border-bottom:2px solid var(--c-acc);transform:rotate(45deg);margin-top:-4px}
+.tp-sec[open] summary{background:var(--c-acc-bg);border-bottom:1px solid var(--c-line);border-radius:9px 9px 0 0;color:var(--c-acc)}
+.tp-sec[open] summary::after{transform:rotate(-135deg);margin-top:4px}
+.tp-body{padding:16px 22px}
+.tp-body ol,.tp-body ul{margin:0 0 0 1.2em;padding:0}
+.tp-body li{margin:0 0 8px}
+.tp-ext{margin:18px 0 0;padding:10px 16px;border:1px solid var(--c-line);border-radius:10px;background:#fff;font-size:14.5px}
+@media(max-width:640px){.tp-hero{flex-direction:column;text-align:center;padding:18px}.tp-ph{width:150px;height:188px}.tp-links{justify-content:center}.tp .tp-name{font-size:23px!important}}
+</style>
+<div class="tp profile-container">
+<div class="tp-hero">
+<div class="tp-ph">{% if ph %}<img src="{{ ph }}" alt="{{ teacher.name }}">{% else %}<span class="tp-ini">{{ ini }}</span>{% endif %}</div>
+<div class="tp-hx">
+{%- if teacher.academic_title %}<div class="tp-role">{{ teacher.academic_title | join(', ') }}</div>{% endif %}
+<h2 class="tp-name">{{ teacher.name }}</h2>
+{%- if teacher.degree %}<div class="tp-deg">{{ teacher.degree }}</div>{% endif %}
+{%- if teacher.position %}<div class="tp-pos">{{ teacher.position }}</div>{% endif %}
+<div class="tp-links">
+{%- if c.email %}<a class="tp-l" href="mailto:{{ c.email }}"><span class="tp-lk">Email</span><span class="tp-lv">{{ c.email }}</span></a>{% endif %}
+{%- if c.orcid %}<a class="tp-l" href="https://orcid.org/{{ c.orcid }}" target="_blank" rel="me noopener noreferrer"><span class="tp-lk">ORCID</span><span class="tp-lv">{{ c.orcid }}</span></a>{% endif %}
+{%- if c.scopus %}<a class="tp-l" href="https://www.scopus.com/authid/detail.uri?authorId={{ c.scopus }}" target="_blank" rel="noopener"><span class="tp-lk">Scopus ID</span><span class="tp-lv">{{ c.scopus }}</span></a>{% endif %}
+{%- if c.wos %}<a class="tp-l" href="https://www.webofscience.com/wos/author/record/{{ c.wos }}" target="_blank" rel="noopener"><span class="tp-lk">Web of Science</span><span class="tp-lv">{{ c.wos }}</span></a>{% endif %}
+{%- if c.google_scholar %}<a class="tp-l" href="https://scholar.google.com/citations?user={{ c.google_scholar }}" target="_blank" rel="noopener"><span class="tp-lk">Google Scholar</span><span class="tp-lv">{{ c.google_scholar }}</span></a>{% endif %}
+{%- if c.github %}<a class="tp-l" href="https://github.com/{{ c.github }}" target="_blank" rel="noopener"><span class="tp-lk">GitHub</span><span class="tp-lv">@{{ c.github }}</span></a>{% endif %}
+{%- if c.linkedin %}<a class="tp-l" href="https://www.linkedin.com/in/{{ c.linkedin }}/" target="_blank" rel="noopener"><span class="tp-lk">LinkedIn</span><span class="tp-lv">in/{{ c.linkedin }}</span></a>{% endif %}
+{%- if c.intellect %}<a class="tp-l" href="https://intellect.kpi.ua/profile/{{ c.intellect }}" target="_blank" rel="noopener"><span class="tp-lk">Intellect</span><span class="tp-lv">{{ c.intellect }}</span></a>{% endif %}
+{%- if c.schedule %}<a class="tp-l" href="{{ c.schedule }}" target="_blank" rel="noopener"><span class="tp-lk">Розклад занять</span><span class="tp-lv">schedule.kpi.ua</span></a>{% endif %}
+</div>
+</div>
+</div>
+{%- if teacher.external %}
+{%- if teacher.external.main_workplace %}
+<div class="tp-ext"><strong>Основне місце роботи:</strong> <a href="{{ teacher.external.main_workplace.url }}" target="_blank" rel="noopener">{{ teacher.external.main_workplace.name }}</a>{% if teacher.external.main_workplace.position %}, {{ teacher.external.main_workplace.position }}{% endif %}{% if teacher.external.nas_profile %} · <a href="{{ teacher.external.nas_profile }}" target="_blank" rel="noopener">сторінка на сайті НАН України</a>{% endif %}</div>
+{%- endif %}
+{%- endif %}
 
-{# ── SECTION HEADER ── #}
-{% macro section_h4(title) %}
-<h4 style="font-size: 20px; border-bottom: 1px solid #ddd; display: inline-block; padding-bottom: 5px; margin-left: 20px; width: 50%;">{{ title }}</h4>
-{% endmacro %}
-
-{# ── COURSE LIST ── #}
-{% macro course_list(courses) %}
-<ul>
-{% for course in courses %}
- 	<li>{% if course.url %}<a href="{{ course.url }}">{{ course.title }}</a>{% else %}{{ course.title }}{% endif %}{% if course.description %} ({{ course.description }}){% endif %}</li>
-{% endfor %}
+{%- if teacher.research_interests %}
+<h3 class="tp-h">Наукові інтереси</h3>
+<ul class="tp-tags">
+{%- for i in teacher.research_interests %}
+<li>{{ i }}</li>
+{%- endfor %}
 </ul>
-{% endmacro %}
+{%- endif %}
 
-{# ══════════════════════════════════════════════════════════════════════════ #}
+{%- set cs = teacher.courses or {} -%}
+{%- if cs.bachelor or cs.master or cs.phd %}
+{%- set multi = (cs.bachelor and cs.master) or (cs.bachelor and cs.phd) or (cs.master and cs.phd) %}
+<h3 class="tp-h">Курси</h3>
+{{ courses('Бакалаврат' if multi else '', cs.bachelor) }}
+{{ courses('Магістратура' if multi else '', cs.master) }}
+{{ courses('PhD програма' if multi else '', cs.phd) }}
+{%- endif %}
 
-<div class="profile-container">
-
-{# ── HEADER ── #}
-<div class="header" style="text-align: center;">
-<h2 style="margin: 10px 0;">{{ teacher.name }}</h2>
-{% set title_line = [] %}
-{% if teacher.degree %}{% set _ = title_line.append(teacher.degree) %}{% endif %}
-{% if teacher.academic_title %}{% set _ = title_line.extend(teacher.academic_title) %}{% endif %}
-{% if title_line %}<strong>{{ title_line | join(", ") }}</strong>{% endif %}
-{% if teacher.position %}<br><strong>{{ teacher.position }}</strong>{% endif %}
-</div>
-
-<hr style="margin: 20px 0; border: none; border-top: 1px solid #ddd;">
-
-{# ── CONTACTS ── #}
-{% set c = teacher.contacts %}
-<div class="contacts" style="background-color: #f5f5f5; display: flex; align-items: center; gap: 20px;">
-<div class="photo" style="width: 30%; padding: 10px;"><img style="max-width: 100%;" src="{{ teacher.photo }}" alt="{{ teacher.name }}"></div>
-<div class="info" style="width: 70%; padding: 10px;">
-{% if c.email %}<strong>Email</strong>: <a href="mailto:{{ c.email }}">{{ c.email }}</a>{% endif %}
-{% if c.github %}<strong>GitHub</strong>: <a href="https://github.com/{{ c.github }}" target="_blank" rel="noopener">@{{ c.github }}</a>{% endif %}
-{% if c.linkedin %}<strong>LinkedIn</strong>: <a href="https://www.linkedin.com/in/{{ c.linkedin }}/" target="_blank" rel="noopener">in/{{ c.linkedin }}</a>{% endif %}
-{% if c.orcid %}<strong>ORCID</strong>:&nbsp;<a style="vertical-align: top;" href="https://orcid.org/{{ c.orcid }}" target="orcid.widget" rel="me noopener noreferrer"><img style="width: 1em; margin-inline-start: 0.5em;" src="https://orcid.org/sites/default/files/images/orcid_16x16.png" alt="ORCID iD icon">{{ c.orcid }}</a>{% endif %}
-{% if c.wos %}<strong>Web of Science</strong>: <a href="https://www.webofscience.com/wos/author/record/{{ c.wos }}" target="_blank">{{ c.wos }}</a>{% endif %}
-{% if c.scopus %}<strong>Scopus ID</strong>: <a href="https://www.scopus.com/authid/detail.uri?authorId={{ c.scopus }}" target="_blank">{{ c.scopus }}</a>{% endif %}
-{% if c.google_scholar %}<strong>Google Scholar</strong>: <a href="https://scholar.google.com/citations?user={{ c.google_scholar }}" target="_blank">{{ c.google_scholar }}</a>{% endif %}
-{% if c.intellect %}<strong>Сторінка на&nbsp;<a href="https://intellect.kpi.ua/profile/{{ c.intellect }}" target="_blank">intellect</a></strong>{% endif %}
-{% if c.schedule %}<strong>Розклад занять</strong>: <a href="{{ c.schedule }}" target="_blank">schedule.kpi.ua</a>{% endif %}
-{# ── Позаштатники: основне місце роботи ── #}
-{% if teacher.external %}
-{% if teacher.external.main_workplace %}<strong>Основне місце роботи</strong>: <a href="{{ teacher.external.main_workplace.url }}" target="_blank">{{ teacher.external.main_workplace.name }}</a>{% if teacher.external.main_workplace.position %}, {{ teacher.external.main_workplace.position }}{% endif %}{% endif %}
-{% if teacher.external.nas_profile %}<strong>Сторінка на сайті</strong>: <a href="{{ teacher.external.nas_profile }}" target="_blank">НАН України</a>{% endif %}
-{% endif %}
-</div>
-</div>
-
-<hr style="margin: 20px 0; border: none; border-top: 1px solid #ddd;">
-
-{# ── RESEARCH INTERESTS ── #}
-{% if teacher.research_interests %}
-<div class="science">
-<h3 style="color: #1a3c6d; border-left: 5px solid #1a3c6d; padding-left: 10px;">Наукові інтереси</h3>
-<ul>
-{% for interest in teacher.research_interests %}
- 	<li>{{ interest }};</li>
-{% endfor %}
-</ul>
-</div>
-<hr style="margin: 20px 0; border: none; border-top: 1px solid #ddd;">
-{% endif %}
-
-{# ── COURSES ── #}
-{% if teacher.courses and (teacher.courses.bachelor or teacher.courses.master or teacher.courses.phd) %}
-<div class="courses">
-<h3 style="color: #1a3c6d; border-left: 5px solid #1a3c6d; padding-left: 10px;">Курси</h3>
-{% set has_multiple_levels = (teacher.courses.bachelor and teacher.courses.master)
-                          or (teacher.courses.bachelor and teacher.courses.phd)
-                          or (teacher.courses.master and teacher.courses.phd) %}
-{% if teacher.courses.bachelor %}
-{% if has_multiple_levels %}{{ section_h4("Бакалаврат") }}{% endif %}
-{{ course_list(teacher.courses.bachelor) }}
-{% endif %}
-{% if teacher.courses.master %}
-{% if has_multiple_levels %}{{ section_h4("Магістратура") }}{% endif %}
-{{ course_list(teacher.courses.master) }}
-{% endif %}
-{% if teacher.courses.phd %}
-{% if has_multiple_levels %}{{ section_h4("PhD програма") }}{% endif %}
-{{ course_list(teacher.courses.phd) }}
-{% endif %}
-</div>
-<hr style="margin: 20px 0; border: none; border-top: 1px solid #ddd;">
-{% endif %}
-
-{# ── DUTIES ── #}
-{% if teacher.duties %}
-{% call collapsible("Посадові обов'язки") %}
-<ol>
-{% for duty in teacher.duties %}
- 	<li>{{ duty }}</li>
-{% endfor %}
-</ol>
-{% endcall %}
-{% endif %}
-
-{# ── CERTIFICATES ── #}
-{% if teacher.certificates %}
-{% call collapsible("Сертифікати та підвищення кваліфікації") %}
-<ol style="padding-left: 20px; list-style: none; counter-reset: item;">
-{% for cert in teacher.certificates %}
- 	<li style="margin-bottom: 10px;"><strong>{{ cert.year }}</strong> — {% if cert.url %}<a href="{{ cert.url }}" target="_blank" rel="noopener">{{ cert.title }}</a>{% else %}{{ cert.title }}{% endif %}{% if cert.issuer %} ({{ cert.issuer }}){% endif %}</li>
-{% endfor %}
-</ol>
-{% endcall %}
-{% endif %}
-
-{# ── METHODICAL MATERIALS ── #}
-{% call collapsible("Методичні розробки") %}
+<div class="tp-secs">
+{%- if teacher.duties %}
+{% call sec("Посадові обов'язки") %}<ol>{% for d in teacher.duties %}<li>{{ d }}</li>{% endfor %}</ol>{% endcall %}
+{%- endif %}
+{%- if teacher.certificates %}
+{% call sec("Сертифікати та підвищення кваліфікації") %}<ul>{% for x in teacher.certificates %}<li><strong>{{ x.year }}</strong> — {% if x.url %}<a href="{{ x.url }}" target="_blank" rel="noopener">{{ x.title }}</a>{% else %}{{ x.title }}{% endif %}{% if x.issuer %} ({{ x.issuer }}){% endif %}</li>{% endfor %}</ul>{% endcall %}
+{%- endif %}
+{% call sec("Методичні розробки") %}
 {% set _n = teacher.name.split(" ", 1) %}[kpi_author_works author="{{ _n[0] }}, {{ _n[1] }}"]
 {% endcall %}
-
-{# ── PUBLICATIONS (ORCID shortcode) ── #}
-{% if teacher.contacts.orcid %}
-{% call collapsible("Наукові публікації") %}
-[kpi_scholar orcid="{{ teacher.contacts.orcid }}"]
+{%- if c.orcid %}
+{% call sec("Наукові публікації") %}
+[kpi_scholar orcid="{{ c.orcid }}"]
 {% endcall %}
-{% endif %}
-
-{# ── CONFERENCES ── #}
-{% if teacher.conferences %}
-{% call collapsible("Конференції") %}
-<ul>
-{% for conf in teacher.conferences %}
- 	<li>{% if conf.url %}<a href="{{ conf.url }}" target="_blank">{{ conf.title }}</a>{% else %}{{ conf.title }}{% endif %}{% if conf.date %}, {{ conf.date }}{% endif %}{% if conf.location %}, {{ conf.location }}{% endif %}</li>
-{% endfor %}
-</ul>
+{%- endif %}
+{%- if teacher.conferences %}
+{% call sec("Конференції") %}<ul>{% for x in teacher.conferences %}<li>{% if x.url %}<a href="{{ x.url }}" target="_blank" rel="noopener">{{ x.title }}</a>{% else %}{{ x.title }}{% endif %}{% if x.date %}, {{ x.date }}{% endif %}{% if x.location %}, {{ x.location }}{% endif %}</li>{% endfor %}</ul>{% endcall %}
+{%- endif %}
+{%- if teacher.national_projects %}
+{% call sec("Національні наукові проєкти") %}<ul>{% for x in teacher.national_projects %}<li>{% if x.url %}<a href="{{ x.url }}" target="_blank" rel="noopener">{{ x.title }}</a>{% else %}{{ x.title }}{% endif %}{% if x.role %} — {{ x.role }}{% endif %}{% if x.years %} ({{ x.years }}){% endif %}</li>{% endfor %}</ul>{% endcall %}
+{%- endif %}
+{%- if teacher.international_projects %}
+{% call sec("Міжнародні наукові проєкти") %}<ul>{% for x in teacher.international_projects %}<li>{% if x.url %}<a href="{{ x.url }}" target="_blank" rel="noopener">{{ x.title }}</a>{% else %}{{ x.title }}{% endif %}{% if x.role %} — {{ x.role }}{% endif %}{% if x.years %} ({{ x.years }}){% endif %}</li>{% endfor %}</ul>{% endcall %}
+{%- endif %}
+{%- if teacher.achievements %}
+{% call sec("Наукова діяльність та ключові досягнення") %}<ul>{% for x in teacher.achievements %}<li>{{ x }}</li>{% endfor %}</ul>{% endcall %}
+{%- endif %}
+{% call sec("Керівництво студентськими дослідженнями") %}
+[kpi_works advisor="{{ parts[0] }}, {{ parts[1][0] }}"]
 {% endcall %}
-{% endif %}
-
-{# ── NATIONAL PROJECTS ── #}
-{% if teacher.national_projects %}
-{% call collapsible("Національні наукові проєкти") %}
-<ul>
-{% for proj in teacher.national_projects %}
- 	<li>{% if proj.url %}<a href="{{ proj.url }}" target="_blank">{{ proj.title }}</a>{% else %}{{ proj.title }}{% endif %}{% if proj.role %} — {{ proj.role }}{% endif %}{% if proj.years %} ({{ proj.years }}){% endif %}</li>
-{% endfor %}
-</ul>
-{% endcall %}
-{% endif %}
-
-{# ── INTERNATIONAL PROJECTS ── #}
-{% if teacher.international_projects %}
-{% call collapsible("Міжнародні наукові проєкти") %}
-<ul>
-{% for proj in teacher.international_projects %}
- 	<li>{% if proj.url %}<a href="{{ proj.url }}" target="_blank">{{ proj.title }}</a>{% else %}{{ proj.title }}{% endif %}{% if proj.role %} — {{ proj.role }}{% endif %}{% if proj.years %} ({{ proj.years }}){% endif %}</li>
-{% endfor %}
-</ul>
-{% endcall %}
-{% endif %}
-
-{# ── ACHIEVEMENTS ── #}
-{% if teacher.achievements %}
-{% call collapsible("Наукова діяльність та ключові досягнення") %}
-<ul>
-{% for item in teacher.achievements %}
- 	<li>{{ item }}</li>
-{% endfor %}
-</ul>
-{% endcall %}
-{% endif %}
-
-{# ── STUDENTS ── #}
-{% set _parts = teacher.name.split() %}
-{% call collapsible("Керівництво студентськими дослідженнями") %}
-[kpi_works advisor="{{ _parts[0] }}, {{ _parts[1][0] }}"]
-{% endcall %}
-
-{# ── BIOGRAPHY ── #}
-{% if teacher.biography %}
-{% call collapsible("Біографія") %}
-{{ teacher.biography | safe }}
-{% endcall %}
-{% endif %}
-
+{%- if teacher.biography %}
+{% call sec("Біографія") %}{{ teacher.biography | safe }}{% endcall %}
+{%- endif %}
 </div>
-
-
-
-
-
+</div>
+<!-- /wp:html -->

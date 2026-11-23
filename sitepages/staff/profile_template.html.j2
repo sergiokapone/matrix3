@@ -73,6 +73,7 @@
 <div class="tp-links">
 {%- if c.email %}<a class="tp-l" href="mailto:{{ c.email }}"><span class="tp-lk">Email</span><span class="tp-lv">{{ c.email }}</span></a>{% endif %}
 {%- if c.orcid %}<a class="tp-l" href="https://orcid.org/{{ c.orcid }}" target="_blank" rel="me noopener noreferrer"><span class="tp-lk">ORCID</span><span class="tp-lv">{{ c.orcid }}</span></a>{% endif %}
+{%- if c.website %}<a class="tp-l" href="{{ c.website }}" target="_blank" rel="me noopener noreferrer"><span class="tp-lk">Сайт</span><span class="tp-lv">{{ c.website | replace('https://', '') | replace('http://', '') | trim('/') }}</span></a>{% endif %}
 {%- if c.scopus %}<a class="tp-l" href="https://www.scopus.com/authid/detail.uri?authorId={{ c.scopus }}" target="_blank" rel="noopener"><span class="tp-lk">Scopus ID</span><span class="tp-lv">{{ c.scopus }}</span></a>{% endif %}
 {%- if c.wos %}<a class="tp-l" href="https://www.webofscience.com/wos/author/record/{{ c.wos }}" target="_blank" rel="noopener"><span class="tp-lk">Web of Science</span><span class="tp-lv">{{ c.wos }}</span></a>{% endif %}
 {%- if c.google_scholar %}<a class="tp-l" href="https://scholar.google.com/citations?user={{ c.google_scholar }}" target="_blank" rel="noopener"><span class="tp-lk">Google Scholar</span><span class="tp-lv">{{ c.google_scholar }}</span></a>{% endif %}

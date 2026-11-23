@@ -17,6 +17,7 @@ PAGES = {  # ім'я папки -> опис (сторінка на сайті)
     "achievements": "/kafedra/achievements/ — досягнення викладачів і студентів",
     "mobility": "/international/mobility/ — академічна мобільність",
     "seminar": "/nauka/seminar/ — науковий семінар",
+    "method_works": "/method_works/ — методичні розробки (банер, онлайн-посібники, ela.kpi.ua)",
     "stud_sci_works": "/nauka/stud_sci_works/ — наукові роботи студентів (публікації)",
 }
 # Окремо (багато сторінок): python sitepages/staff/manage.py generate|generate-staff|push|run-all

@@ -1,0 +1,42 @@
+title: Методичні розробки кафедри
+page_id: 10662
+shelf_scope: bbd00047-58de-4bd9-bfa1-799c53edf020
+online_title: Онлайн-посібники
+online_note: Інтерактивні навчальні посібники, що відкриваються в браузері (формули, рисунки, задачі).
+guides:
+- name: Електрика та магнетизм
+  desc: Онлайн-підручник з фізики — теоретичні матеріали, конспекти та формули.
+  icon: magnet
+  url: https://sergiokapone.github.io/ElMagConspect/
+  authors: С. М. Пономаренко
+- name: Фізика плазми
+  desc: Навчальний посібник для студентів-прикладних фізиків — 12 розділів, задачі з відповідями, інтерактивні симуляції.
+  icon: plasma
+  url: https://sergiokapone.github.io/plasma-physics/
+  authors: С. М. Пономаренко
+- name: Оптика. Практичний курс
+  desc: Збірник задач і практичних завдань з оптики.
+  icon: optics
+  url: https://sergiokapone.github.io/opticsbook/
+  authors: В. В. Іванова, С. М. Пономаренко
+- name: Термодинаміка та молекулярна фізика
+  desc: Онлайн-версія підручника з термодинаміки та молекулярної фізики.
+  icon: thermo
+  url: https://sergiokapone.github.io/Thermodynamics/online/
+  authors: Г. Є. Монастирський, А. В. Гільчук, С. М. Пономаренко
+- name: "Мікроскопічна теорія та електродинаміка суцільних середовищ: збірник задач"
+  desc: Теоретичні відомості, задачі з відповідями.
+  icon: field
+  url: https://sergiokapone.github.io/FieldTheoryProblems/
+  authors: В. І. Жданов, С. М. Пономаренко, В. Б. Долгошей
+- name: Класична електродинаміка
+  desc: Онлайн-версія підручника з класичної електродинаміки.
+  icon: bolt
+  url: https://sergiokapone.github.io/ClassicalEletrodynamics/ClassicalElectrodynamics-html.html
+  authors: В. І. Жданов, С. М. Пономаренко, В. Б. Долгошей
+
+- name: Квантово-механічні методи обчислення. Використання PySCF
+  desc: Квантово-механічні обчислення атомів і молекул у PySCF — метод Хартрі–Фока, пост-HF, DFT, молекулярні властивості, коливання, збуджені стани; готові приклади коду.
+  icon: molecule
+  authors: С. М. Пономаренко
+  url: https://sergiokapone.github.io/QChemLectures/PyscfBook/

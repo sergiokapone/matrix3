@@ -7,13 +7,13 @@ from core.config import WordPressConfig
 UP = "https://apd.ipt.kpi.ua/wp-content/uploads/2026/11/"
 OLD = "https://osvita.kpi.ua/sites/default/files/opfiles/"
 LEVELS = [
-    dict(id="cert-b", title="Бакалавр", kind="Освітньо-професійна програма", color="#2980b9",
+    dict(id="cert-b", title="Бакалавр", kind="Освітньо-професійна програма", color="#2e8b4a",
          link="https://osvita.kpi.ua/105_OPPB_PF", pdf=UP + "105_OPPB_PF_Certificate_2026_no21622.pdf", img=UP + "cert_bachelor_21622.png",
          num="№ 21622 від 27.05.2026", until="01.07.2031", year="2026", ok=True),
-    dict(id="cert-m", title="Магістр", kind="Освітньо-наукова програма", color="#16a085",
+    dict(id="cert-m", title="Магістр", kind="Освітньо-наукова програма", color="#1f4e9c",
          link="https://osvita.kpi.ua/105_ONPM_PF", pdf=UP + "105_ONPM_PF_Certificate_2026_no20757.pdf", img=UP + "cert_master_20757.png",
          num="№ 20757 від 22.04.2026", until="01.07.2031", year="2026", ok=True),
-    dict(id="cert-d", title="Доктор філософії", kind="Освітньо-наукова програма", color="#8e44ad",
+    dict(id="cert-d", title="Доктор філософії", kind="Освітньо-наукова програма", color="#6a1b9a",
          link="https://osvita.kpi.ua/105_ONPD_PF", pdf=UP + "105_ONPD_PF_Certificate_2023_no5433.pdf", img=UP + "cert_phd_5433.png",
          num="№ 5433 від 06.07.2023", until="01.07.2027", year="2021", ok=True),
 ]

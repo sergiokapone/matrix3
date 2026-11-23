@@ -53,9 +53,9 @@ TIMELINE_UK = """<ul class="tl">
 ACC_EN = """<h2 class="hist-h">Accreditation of educational programmes</h2>
 <p>The educational programmes of specialty <strong>E6 “Applied Physics and Nanomaterials”</strong> are accredited by the National Agency for Higher Education Quality Assurance (NAQA).</p>
 <div class="acc">
-<div><h4 style="background:#2980b9">Bachelor</h4><p>Professional programme “Applied Physics”<br>Certificate No. 21622, issued May 27, 2026<br><strong>Valid until July 1, 2031</strong></p></div>
-<div><h4 style="background:#16a085">Master</h4><p>Scientific programme “Applied Physics”<br>Certificate No. 20757, issued April 22, 2026<br><strong>Valid until July 1, 2031</strong></p></div>
-<div><h4 style="background:#8e44ad">Doctor of Philosophy</h4><p>Scientific programme “Applied Physics”<br>Certificate No. 5433, issued July 6, 2023<br><strong>Valid until July 1, 2027</strong></p></div>
+<div><h4 style="background:#2e8b4a">Bachelor</h4><p>Professional programme “Applied Physics”<br>Certificate No. 21622, issued May 27, 2026<br><strong>Valid until July 1, 2031</strong></p></div>
+<div><h4 style="background:#1f4e9c">Master</h4><p>Scientific programme “Applied Physics”<br>Certificate No. 20757, issued April 22, 2026<br><strong>Valid until July 1, 2031</strong></p></div>
+<div><h4 style="background:#6a1b9a">Doctor of Philosophy</h4><p>Scientific programme “Applied Physics”<br>Certificate No. 5433, issued July 6, 2023<br><strong>Valid until July 1, 2027</strong></p></div>
 </div>
 <p><a class="acc-btn" href="https://apd.ipt.kpi.ua/osvita/">Certificates and programmes →</a></p>"""
 
@@ -63,9 +63,9 @@ ACC_EN = """<h2 class="hist-h">Accreditation of educational programmes</h2>
 ACC_UK = """<h2 class="hist-h">Акредитація освітніх програм</h2>
 <p>Освітні програми спеціальності <strong>E6 «Прикладна фізика та наноматеріали»</strong> акредитовані Національним агентством із забезпечення якості вищої освіти (НАЗЯВО).</p>
 <div class="acc">
-<div><h4 style="background:#2980b9">Бакалавр</h4><p>Освітньо-професійна програма «Прикладна фізика»<br>Сертифікат № 21622 від 27.05.2026<br><strong>Строк дії до 01.07.2031</strong></p></div>
-<div><h4 style="background:#16a085">Магістр</h4><p>Освітньо-наукова програма «Прикладна фізика»<br>Сертифікат № 20757 від 22.04.2026<br><strong>Строк дії до 01.07.2031</strong></p></div>
-<div><h4 style="background:#8e44ad">Доктор філософії</h4><p>Освітньо-наукова програма «Прикладна фізика»<br>Сертифікат № 5433 від 06.07.2023<br><strong>Строк дії до 01.07.2027</strong></p></div>
+<div><h4 style="background:#2e8b4a">Бакалавр</h4><p>Освітньо-професійна програма «Прикладна фізика»<br>Сертифікат № 21622 від 27.05.2026<br><strong>Строк дії до 01.07.2031</strong></p></div>
+<div><h4 style="background:#1f4e9c">Магістр</h4><p>Освітньо-наукова програма «Прикладна фізика»<br>Сертифікат № 20757 від 22.04.2026<br><strong>Строк дії до 01.07.2031</strong></p></div>
+<div><h4 style="background:#6a1b9a">Доктор філософії</h4><p>Освітньо-наукова програма «Прикладна фізика»<br>Сертифікат № 5433 від 06.07.2023<br><strong>Строк дії до 01.07.2027</strong></p></div>
 </div>
 <p><a class="acc-btn" href="https://apd.ipt.kpi.ua/osvita/">Сертифікати та програми →</a></p>"""
 
